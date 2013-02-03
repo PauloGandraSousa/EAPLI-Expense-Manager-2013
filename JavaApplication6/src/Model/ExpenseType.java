@@ -9,5 +9,5 @@ package Model;
  * @author Paulo Gandra Sousa
  */
 public class ExpenseType {
-    
+    String description;
 }
