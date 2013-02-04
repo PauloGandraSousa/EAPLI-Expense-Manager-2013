@@ -4,11 +4,15 @@
  */
 package eapli.util;
 
+import java.util.Calendar;
+import sun.util.calendar.CalendarDate;
+import sun.util.calendar.CalendarSystem;
+
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public class Util {
+public class Math {
     public static boolean isOdd(int i) { return i % 2 != 0; }
     
     public static boolean isEven(int i) { return i % 2 == 0; }

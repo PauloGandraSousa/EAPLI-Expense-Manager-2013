@@ -4,8 +4,12 @@
  */
 package Model;
 
+import eapli.util.DateTime;
+import eapli.util.Math;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import sun.util.calendar.CalendarDate;
+import sun.util.calendar.CalendarSystem;
 
 /**
  *
@@ -22,10 +26,11 @@ public class Expense {
     }
 
     public boolean occursThisWeek() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        int weekOfExpense = DateTime.weekNumber(dateOccurred);
+        return DateTime.currentWeekNumber() == weekOfExpense;
     }
 
     public boolean occursThisMonth() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return (DateTime.today().getMonth() == dateOccurred.getMonth());
     }
 }
