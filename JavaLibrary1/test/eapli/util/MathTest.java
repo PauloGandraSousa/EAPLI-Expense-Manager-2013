@@ -61,13 +61,11 @@ public class MathTest {
      * Test of isEven method, of class Math.
      */
     @Test
-    public void testIsEven() {
+    public void testTwoIsEven() {
         System.out.println("isEven");
-        int i = 0;
-        boolean expResult = false;
+        int i = 2;
+        boolean expResult = true;
         boolean result = Math.isEven(i);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }
