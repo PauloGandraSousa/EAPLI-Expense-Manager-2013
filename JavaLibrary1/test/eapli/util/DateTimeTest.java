@@ -56,12 +56,10 @@ public class DateTimeTest {
     @Test
     public void testWeekNumber() {
         System.out.println("weekNumber");
-        CalendarDate date = null;
-        int expResult = 0;
+        CalendarDate date = DateTime.newCalendarDate(2013, 01, 01);
+        int expResult = 1;
         int result = DateTime.weekNumber(date);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
