@@ -4,6 +4,9 @@
  */
 package javaapplication6;
 
+import eapli.util.Util;
+import java.io.Console;
+
 /**
  *
  * @author Paulo Gandra Sousa
@@ -15,5 +18,9 @@ public class JavaApplication6 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        if (Util.isOdd(3)) {
+            System.out.println("yep");
+        }
     }
 }
