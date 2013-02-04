@@ -8,6 +8,10 @@ package Model;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseType {
+public abstract class ExpenseType {
     String description;
+    
+    public ExpenseType(String description) {
+        this.description = description;
+    }
 }

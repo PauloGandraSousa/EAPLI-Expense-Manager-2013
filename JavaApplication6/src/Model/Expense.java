@@ -21,6 +21,25 @@ public class Expense {
     CalendarDate dateOccurred;
     BigDecimal amount;
     
+    public Expense(ExpenseType type, String description, CalendarDate dateOccurred, BigDecimal amount) {
+        if (type == null || description == null || dateOccurred == null || amount == null) {
+            throw new IllegalArgumentException();
+        }
+        // cannot record a negative expense or a zero EUR expense
+        if (amount.signum() == -1 || amount.signum() ==  0) {
+            throw new IllegalArgumentException();
+        }
+            
+        this.type = type;
+        this.description = description;
+        this.dateOccurred = dateOccurred;
+        this.amount = amount;
+    }
+    
+    public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount) {
+        this(type, description, DateTime.newCalendarDate(year, month, day), amount);
+    }
+    
     public BigDecimal getAmount() {
         return amount;
     }
