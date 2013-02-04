@@ -40,14 +40,21 @@ public class MathTest {
      * Test of isOdd method, of class Math.
      */
     @Test
-    public void testIsOdd() {
-        System.out.println("isOdd");
-        int i = 0;
+    public void testTwoIsNotOdd() {
+        System.out.println("twoIsNotOdd");
+        int i = 2;
         boolean expResult = false;
         boolean result = Math.isOdd(i);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testOneIsOdd() {
+        System.out.println("oneIsOdd");
+        int i = 1;
+        boolean expResult = true;
+        boolean result = Math.isOdd(i);
+        assertEquals(expResult, result);
     }
 
     /**
