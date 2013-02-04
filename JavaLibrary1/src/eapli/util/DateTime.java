@@ -5,6 +5,7 @@
 package eapli.util;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import sun.util.calendar.CalendarDate;
 import sun.util.calendar.CalendarSystem;
 
@@ -26,7 +27,16 @@ public class DateTime {
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
     
-    public static int currentWeekNumber() {
+    public static int currentWeekNumber() {       
         return weekNumber(today());
+    }
+    
+    public static CalendarDate newCalendarDate(int year, int month, int day) {
+        CalendarSystem calendar = CalendarSystem.getGregorianCalendar();
+        CalendarDate date = calendar.getCalendarDate();
+        date.setYear(year);
+        date.setMonth(month);
+        date.setDayOfMonth(day);
+        return date;
     }
 }
