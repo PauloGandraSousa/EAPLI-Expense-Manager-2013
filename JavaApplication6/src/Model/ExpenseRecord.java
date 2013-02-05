@@ -23,10 +23,12 @@ public class ExpenseRecord {
     }
 
     private void updateBalances(Expense expense) {
-        if (expense.occursThisWeek())
+        if (expense.occursThisWeek()) {
             thisWeekBalance.add(expense.getAmount());
-        if (expense.occursThisMonth())
+        }
+        if (expense.occursThisMonth()) {
             thisMonthBalance.add(expense.getAmount());
+        }
     }
 
     public BigDecimal getThisWeekBalance() {
