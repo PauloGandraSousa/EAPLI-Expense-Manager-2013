@@ -14,4 +14,6 @@ public abstract class ExpenseType {
     public ExpenseType(String description) {
         this.description = description;
     }
+    
+    
 }
