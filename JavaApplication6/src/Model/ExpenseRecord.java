@@ -38,4 +38,11 @@ public class ExpenseRecord {
     public BigDecimal getThisMonthBalance() {
         return thisMonthBalance;
     }
+    
+    public BigDecimal getTotal() {
+        BigDecimal total = new BigDecimal(0);
+        for (Expense expense : theExpenses)
+            total.add(expense.getAmount());
+        return total;
+    }
 }
