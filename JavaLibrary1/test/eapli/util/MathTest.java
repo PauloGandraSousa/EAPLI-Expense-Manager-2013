@@ -48,7 +48,9 @@ public class MathTest {
         assertEquals(expResult, result);
     }
 
-    @Test
+    /**
+     * Test of isOdd method, of class Math.
+     */    @Test
     public void testOneIsOdd() {
         System.out.println("oneIsOdd");
         int i = 1;
@@ -62,9 +64,21 @@ public class MathTest {
      */
     @Test
     public void testTwoIsEven() {
-        System.out.println("isEven");
+        System.out.println("twoIsEven");
         int i = 2;
         boolean expResult = true;
+        boolean result = Math.isEven(i);
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of isEven method, of class Math.
+     */
+    @Test
+    public void testOneIsNotEven() {
+        System.out.println("oneIsNotEven");
+        int i = 1;
+        boolean expResult = false;
         boolean result = Math.isEven(i);
         assertEquals(expResult, result);
     }
