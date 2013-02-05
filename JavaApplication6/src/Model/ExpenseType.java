@@ -24,4 +24,6 @@ public abstract class ExpenseType {
     public boolean isRecurrent() {
         return isRecurrent;
     }
+    
+    
 }
