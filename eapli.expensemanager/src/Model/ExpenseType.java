@@ -8,7 +8,7 @@ package Model;
  *
  * @author Paulo Gandra Sousa
  */
-public abstract class ExpenseType {
+public class ExpenseType {
     String description;
     boolean isRecurrent;
     
