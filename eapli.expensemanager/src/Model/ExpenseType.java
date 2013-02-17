@@ -17,6 +17,10 @@ public abstract class ExpenseType {
     }
     
     public ExpenseType(String description, boolean isRecurrent) {
+        if (description == null) {
+            throw new IllegalArgumentException();
+        }
+        
         this.description = description;
         this.isRecurrent = isRecurrent;
     }
@@ -24,6 +28,4 @@ public abstract class ExpenseType {
     public boolean isRecurrent() {
         return isRecurrent;
     }
-    
-    
 }

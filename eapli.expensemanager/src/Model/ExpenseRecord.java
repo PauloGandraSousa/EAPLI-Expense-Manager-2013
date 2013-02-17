@@ -14,21 +14,30 @@ import java.util.List;
  */
 public class ExpenseRecord {
     List<Expense> theExpenses = new ArrayList<Expense>();
-    BigDecimal thisWeekBalance;
-    BigDecimal thisMonthBalance;
+    BigDecimal thisWeekBalance = new BigDecimal(0);
+    BigDecimal thisMonthBalance= new BigDecimal(0);
+    BigDecimal balance = new BigDecimal(0);
             
     public void register(Expense expense) {
+        if (expense == null) {
+            throw new IllegalArgumentException();
+        }
         theExpenses.add(expense);
         updateBalances(expense);
     }
 
     private void updateBalances(Expense expense) {
+        assert expense != null;
+        assert balance != null;
+        
         if (expense.occursThisWeek()) {
             thisWeekBalance.add(expense.getAmount());
         }
         if (expense.occursThisMonth()) {
             thisMonthBalance.add(expense.getAmount());
         }
+        
+        balance.add(expense.getAmount());
     }
 
     public BigDecimal getThisWeekBalance() {
@@ -41,8 +50,9 @@ public class ExpenseRecord {
     
     public BigDecimal getTotal() {
         BigDecimal total = new BigDecimal(0);
-        for (Expense expense : theExpenses)
+        for (Expense expense : theExpenses) {
             total.add(expense.getAmount());
+        }
         return total;
     }
 }
