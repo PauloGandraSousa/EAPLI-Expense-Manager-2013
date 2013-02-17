@@ -4,10 +4,6 @@
  */
 package eapli.util;
 
-import java.util.Calendar;
-import sun.util.calendar.CalendarDate;
-import sun.util.calendar.CalendarSystem;
-
 /**
  *
  * @author Paulo Gandra Sousa
