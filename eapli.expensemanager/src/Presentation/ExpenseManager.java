@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication6;
+package Presentation;
 
 import Presentation.MainMenu;
 import eapli.util.Math;
@@ -11,7 +11,7 @@ import eapli.util.Math;
  *
  * @author Paulo Gandra Sousa
  */
-public class JavaApplication6 {
+public class ExpenseManager {
 
     /**
      * @param args the command line arguments
