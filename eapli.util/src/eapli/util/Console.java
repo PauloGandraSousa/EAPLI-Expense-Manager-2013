@@ -79,4 +79,18 @@ public class Console {
             }
         } while (true);
     }
+
+    public static double readDouble(String prompt) {
+        do {
+            try {
+                String input = readLine(prompt);
+
+                double valor = Double.parseDouble(input);
+
+                return valor;
+            } catch (NumberFormatException ex) {
+                Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } while (true);
+    }
 }
