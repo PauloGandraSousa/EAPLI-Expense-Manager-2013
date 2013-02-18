@@ -20,9 +20,9 @@ import java.util.logging.Logger;
  */
 public class Console {
 
-    static public String readLineFromConsole(String strPrompt) {
+    static public String readLine(String prompt) {
         try {
-            System.out.println(strPrompt);
+            System.out.println(prompt);
 
             InputStreamReader converter = new InputStreamReader(System.in);
             BufferedReader in = new BufferedReader(converter);
@@ -34,10 +34,10 @@ public class Console {
         }
     }
 
-    static public int readIntegerFromConsole(String strPrompt) {
+    static public int readInteger(String prompt) {
         do {
             try {
-                String strInt = readLineFromConsole(strPrompt);
+                String strInt = readLine(prompt);
 
                 int valor = Integer.parseInt(strInt);
 
@@ -48,10 +48,10 @@ public class Console {
         } while (true);
     }
 
-    static public boolean readBooleanFromConsole(String strPrompt) {
+    static public boolean readBoolean(String prompt) {
         do {
             try {
-                String strBool = readLineFromConsole(strPrompt).toLowerCase();
+                String strBool = readLine(prompt).toLowerCase();
 
                 if (strBool.equals("s") || strBool.equals("y")) {
                     return true;
@@ -64,10 +64,10 @@ public class Console {
         } while (true);
     }
 
-    static public Date readDateFromConsole(String strPrompt) {
+    static public Date readDate(String prompt) {
         do {
             try {
-                String strDate = readLineFromConsole(strPrompt);
+                String strDate = readLine(prompt);
 
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -78,19 +78,5 @@ public class Console {
                 Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (true);
-    }
-
-    static public Date dateFromString(String strDate) {
-        try {
-
-            SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-
-            Date date = df.parse(strDate);
-
-            return date;
-        } catch (ParseException ex) {
-            Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
 }
