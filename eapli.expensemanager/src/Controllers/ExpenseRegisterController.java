@@ -9,7 +9,6 @@ import Model.ExpenseRecord;
 import Model.ExpenseType;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.eclipse.persistence.jpa.internal.jpql.parser.WhenClause;
 
 /**
  *
