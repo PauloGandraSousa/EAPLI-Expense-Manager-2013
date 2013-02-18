@@ -20,7 +20,7 @@ public class JavaApplication6 {
         // TODO code application logic here
         
         if (Math.isOdd(3)) {
-            System.out.println("yep ROCHA");
+            System.out.println("yep");
         }
     }
 }
