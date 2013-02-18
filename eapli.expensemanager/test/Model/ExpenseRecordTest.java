@@ -44,7 +44,7 @@ public class ExpenseRecordTest {
     public void testRegister() {
         System.out.println("register");
         Expense expense = null;
-        ExpenseRecord instance = new ExpenseRecord();
+        ExpenseRecord instance = ExpenseRecord.instance();
         instance.register(expense);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -56,7 +56,7 @@ public class ExpenseRecordTest {
     @Test
     public void testGetThisWeekBalance() {
         System.out.println("getThisWeekBalance");
-        ExpenseRecord instance = new ExpenseRecord();
+        ExpenseRecord instance = ExpenseRecord.instance();
         BigDecimal expResult = null;
         BigDecimal result = instance.getThisWeekBalance();
         assertEquals(expResult, result);
@@ -70,7 +70,7 @@ public class ExpenseRecordTest {
     @Test
     public void testGetThisMonthBalance() {
         System.out.println("getThisMonthBalance");
-        ExpenseRecord instance = new ExpenseRecord();
+        ExpenseRecord instance = ExpenseRecord.instance();
         BigDecimal expResult = null;
         BigDecimal result = instance.getThisMonthBalance();
         assertEquals(expResult, result);
@@ -84,7 +84,7 @@ public class ExpenseRecordTest {
     @Test
     public void testRegister10GetTotal10() {
         System.out.println("getTotal");
-        ExpenseRecord instance = new ExpenseRecord();
+        ExpenseRecord instance = ExpenseRecord.instance();
                 
         BigDecimal expResult = new BigDecimal(10);
         
@@ -100,7 +100,7 @@ public class ExpenseRecordTest {
     @Test
     public void testRegister2x10GetTotal20() {
         System.out.println("getTotal");
-        ExpenseRecord instance = new ExpenseRecord();
+        ExpenseRecord instance = ExpenseRecord.instance();
         
         instance.register(new Expense(ExpenseTypes.CLOTHING, "1", 2013, 2, 17, new BigDecimal(10)));
         instance.register(new Expense(ExpenseTypes.CLOTHING, "2", 2013, 2, 17, new BigDecimal(10)));
