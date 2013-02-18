@@ -5,6 +5,7 @@
 package eapli.util;
 
 import java.util.Calendar;
+import java.util.Date;
 import sun.util.calendar.CalendarDate;
 import sun.util.calendar.CalendarSystem;
 
@@ -25,6 +26,12 @@ public class DateTime {
         calendar.setTimeInMillis(date.getMillis());
         return calendar.get(Calendar.WEEK_OF_YEAR);
     }
+
+    public static int weekNumber(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(date.getTime());
+        return calendar.get(Calendar.WEEK_OF_YEAR);
+    }
     
     public static int currentWeekNumber() {       
         return weekNumber(today());
@@ -37,5 +44,11 @@ public class DateTime {
         date.setMonth(month);
         date.setDayOfMonth(day);
         return date;
+    }
+    
+    public static Date newDate(int year, int month, int day) {
+        Calendar c = Calendar.getInstance();
+        c.set(year, month-1, day);
+        return c.getTime();
     }
 }

@@ -31,13 +31,13 @@ public class ExpenseRecord {
         assert balance != null;
         
         if (expense.occursThisWeek()) {
-            thisWeekBalance.add(expense.getAmount());
+            thisWeekBalance = thisWeekBalance.add(expense.getAmount());
         }
         if (expense.occursThisMonth()) {
-            thisMonthBalance.add(expense.getAmount());
+            thisMonthBalance = thisMonthBalance.add(expense.getAmount());
         }
         
-        balance.add(expense.getAmount());
+        balance = balance.add(expense.getAmount());
     }
 
     public BigDecimal getThisWeekBalance() {
@@ -51,7 +51,7 @@ public class ExpenseRecord {
     public BigDecimal getTotal() {
         BigDecimal total = new BigDecimal(0);
         for (Expense expense : theExpenses) {
-            total.add(expense.getAmount());
+            total = total.add(expense.getAmount());
         }
         return total;
     }

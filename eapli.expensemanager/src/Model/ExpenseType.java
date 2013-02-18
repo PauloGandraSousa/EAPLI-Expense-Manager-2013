@@ -4,13 +4,21 @@
  */
 package Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Paulo Gandra Sousa
  */
+@Entity
 public class ExpenseType {
+    @Id
+    long Id;
     String description;
     boolean isRecurrent;
+    
+    protected ExpenseType() {}
     
     public ExpenseType(String description) {
         this(description, false);

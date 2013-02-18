@@ -6,19 +6,29 @@ package Model;
 
 import eapli.util.DateTime;
 import java.math.BigDecimal;
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import sun.util.calendar.CalendarDate;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
+@Entity
 public class Expense {
+    @Id 
+    long Id;
+    @ManyToOne 
     ExpenseType type;
     String description;
-    CalendarDate dateOccurred;
+    Date dateOccurred;
     BigDecimal amount;
     
-    public Expense(ExpenseType type, String description, CalendarDate dateOccurred, BigDecimal amount) {
+    protected Expense() {}
+    
+    public Expense(ExpenseType type, String description, Date dateOccurred, BigDecimal amount) {
         if (type == null || description == null || dateOccurred == null || amount == null) {
             throw new IllegalArgumentException();
         }
@@ -34,7 +44,7 @@ public class Expense {
     }
     
     public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount) {
-        this(type, description, DateTime.newCalendarDate(year, month, day), amount);
+        this(type, description, DateTime.newDate(year, month, day), amount);
     }
     
     public BigDecimal getAmount() {
