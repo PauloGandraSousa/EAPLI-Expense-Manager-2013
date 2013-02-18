@@ -17,7 +17,15 @@ public class ExpenseRecord {
     BigDecimal thisWeekBalance = new BigDecimal(0);
     BigDecimal thisMonthBalance= new BigDecimal(0);
     BigDecimal balance = new BigDecimal(0);
-            
+    
+    // SINGLETON
+    private ExpenseRecord() {}
+    private static ExpenseRecord theInstance = new ExpenseRecord();
+    public static ExpenseRecord instance() {
+        return theInstance;
+    }
+    
+    
     public void register(Expense expense) {
         if (expense == null) {
             throw new IllegalArgumentException();

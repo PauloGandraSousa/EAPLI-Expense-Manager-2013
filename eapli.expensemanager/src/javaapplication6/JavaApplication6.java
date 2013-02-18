@@ -4,8 +4,8 @@
  */
 package javaapplication6;
 
+import Presentation.MainMenu;
 import eapli.util.Math;
-import java.io.Console;
 
 /**
  *
@@ -19,8 +19,7 @@ public class JavaApplication6 {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        if (Math.isOdd(3)) {
-            System.out.println("yep");
-        }
+        MainMenu menu = new MainMenu();
+        menu.mainLoop();
     }
 }
