@@ -23,5 +23,4 @@ public class ExpenseRegisterController {
         Expense expense = new Expense(expenseType, what, date, amount);
         ExpenseRecord.instance().register(expense);
     }
-    
 }
