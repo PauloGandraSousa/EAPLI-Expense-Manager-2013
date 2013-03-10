@@ -10,7 +10,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import sun.util.calendar.CalendarDate;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -19,10 +19,11 @@ import sun.util.calendar.CalendarDate;
 @Entity
 public class Expense {
     @Id 
-    long Id;
+    long id;
     @ManyToOne 
     ExpenseType type;
     String description;
+    @Temporal(javax.persistence.TemporalType.DATE)
     Date dateOccurred;
     BigDecimal amount;
     

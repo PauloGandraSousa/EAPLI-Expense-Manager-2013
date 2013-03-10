@@ -25,7 +25,6 @@ public class ExpenseRecord {
         return theInstance;
     }
     
-    
     public void register(Expense expense) {
         if (expense == null) {
             throw new IllegalArgumentException();

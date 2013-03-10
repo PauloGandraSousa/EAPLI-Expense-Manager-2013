@@ -14,26 +14,21 @@ import javax.persistence.Id;
 @Entity
 public class ExpenseType {
     @Id
-    long Id;
+    String id;
     String description;
-    boolean isRecurrent;
+
     
     protected ExpenseType() {}
     
-    public ExpenseType(String description) {
-        this(description, false);
-    }
-    
-    public ExpenseType(String description, boolean isRecurrent) {
-        if (description == null) {
+    public ExpenseType(String key, String description) {
+        if (key == null || description == null) {
+            throw new IllegalArgumentException();
+        }
+        if (key.trim().length() == 0) {
             throw new IllegalArgumentException();
         }
         
+        this.id = key;
         this.description = description;
-        this.isRecurrent = isRecurrent;
-    }
-    
-    public boolean isRecurrent() {
-        return isRecurrent;
     }
 }

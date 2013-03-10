@@ -19,7 +19,7 @@ class ExpenseRegisterUI {
         System.out.println("* * *  REGISTER AN EXPENSE  * * *\n");
         
         String what = Console.readLine("Description:");
-        Date date = Console.readDate("When:");
+        Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("Amount:");
         BigDecimal amount = new BigDecimal(value);
         
