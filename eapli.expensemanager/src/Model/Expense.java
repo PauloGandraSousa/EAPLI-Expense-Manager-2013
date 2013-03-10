@@ -54,10 +54,13 @@ public class Expense {
 
     public boolean occursThisWeek() {
         int weekOfExpense = DateTime.weekNumber(dateOccurred);
-        return DateTime.currentWeekNumber() == weekOfExpense;
+        int thisWeek = DateTime.currentWeekNumber() ;
+        return thisWeek == weekOfExpense;
     }
 
     public boolean occursThisMonth() {
-        return (DateTime.today().getMonth() == dateOccurred.getMonth());
+        int thisMonth = DateTime.today().getMonth() ;
+        int expenseMonth = dateOccurred.getMonth() + 1;
+        return (thisMonth == expenseMonth);
     }
 }
