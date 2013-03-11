@@ -4,6 +4,7 @@
  */
 package eapli.util;
 
+import java.util.Calendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,8 +44,8 @@ public class DateTimeTest {
     @Test
     public void testToday() {
         System.out.println("today");
-        CalendarDate expResult = null;
-        CalendarDate result = DateTime.today();
+        Calendar expResult = null;
+        Calendar result = DateTime.today();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -56,7 +57,7 @@ public class DateTimeTest {
     @Test
     public void testWeekNumber() {
         System.out.println("weekNumber");
-        CalendarDate date = DateTime.newCalendarDate(2013, 01, 01);
+        Calendar date = DateTime.newCalendarDate(2013, 01, 01);
         int expResult = 1;
         int result = DateTime.weekNumber(date);
         assertEquals(expResult, result);
@@ -84,8 +85,8 @@ public class DateTimeTest {
         int year = 0;
         int month = 0;
         int day = 0;
-        CalendarDate expResult = null;
-        CalendarDate result = DateTime.newCalendarDate(year, month, day);
+        Calendar expResult = null;
+        Calendar result = DateTime.newCalendarDate(year, month, day);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
