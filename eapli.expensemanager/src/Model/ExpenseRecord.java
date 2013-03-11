@@ -4,6 +4,7 @@
  */
 package Model;
 
+import Persistence.ExpenseTypeRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,11 @@ public class ExpenseRecord {
     
     // SINGLETON
     private ExpenseRecord() {}
-    private static ExpenseRecord theInstance = new ExpenseRecord();
+    
+    private static ExpenseRecord theInstance = null;
     public static ExpenseRecord instance() {
+        if (theInstance == null)
+            theInstance = new ExpenseRecord();
         return theInstance;
     }
     

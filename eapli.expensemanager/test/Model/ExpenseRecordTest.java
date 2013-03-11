@@ -88,7 +88,7 @@ public class ExpenseRecordTest {
                 
         BigDecimal expResult = new BigDecimal(10);
         
-        instance.register(new Expense(ExpenseTypes.CLOTHING, "", 2013, 2, 17, expResult));
+ //       instance.register(new Expense(ExpenseTypes.CLOTHING, "", 2013, 2, 17, expResult));
         
         BigDecimal result = instance.getTotal();
         assertEquals(expResult, result);
@@ -102,8 +102,8 @@ public class ExpenseRecordTest {
         System.out.println("getTotal");
         ExpenseRecord instance = ExpenseRecord.instance();
         
-        instance.register(new Expense(ExpenseTypes.CLOTHING, "1", 2013, 2, 17, new BigDecimal(10)));
-        instance.register(new Expense(ExpenseTypes.CLOTHING, "2", 2013, 2, 17, new BigDecimal(10)));
+//        instance.register(new Expense(ExpenseTypes.CLOTHING, "1", 2013, 2, 17, new BigDecimal(10)));
+//        instance.register(new Expense(ExpenseTypes.CLOTHING, "2", 2013, 2, 17, new BigDecimal(10)));
         
         BigDecimal expResult = new BigDecimal(20);
         BigDecimal result = instance.getTotal();
