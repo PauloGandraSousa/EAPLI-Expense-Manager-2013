@@ -5,6 +5,7 @@
 package Model;
 
 import eapli.util.DateTime;
+import java.util.Calendar;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -60,9 +61,8 @@ public class Expense {
     }
 
     public boolean occursThisMonth() {
-//        int thisMonth = DateTime.today().getMonth() ;
-//        int expenseMonth = dateOccurred.getMonth() + 1;
-//        return (thisMonth == expenseMonth);
-        return true;
+        int thisMonth = DateTime.today().get(Calendar.MONTH);
+        int expenseMonth = DateTime.dateToCalendar(dateOccurred).get(Calendar.MONTH);
+        return (thisMonth == expenseMonth);
     }
 }
