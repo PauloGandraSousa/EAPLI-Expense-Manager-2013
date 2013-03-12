@@ -5,6 +5,7 @@
 package Presentation;
 
 import Controllers.ExpenseRegisterController;
+import Model.ExpenseRecord;
 import Model.ExpenseTypes;
 import eapli.util.Console;
 import java.math.BigDecimal;
@@ -26,6 +27,6 @@ class ExpenseRegisterUI {
         ExpenseRegisterController controller = new ExpenseRegisterController();
         controller.registerExpense(what, date, amount, ExpenseTypes.MISC);
         
-        System.out.println("expense recorded.");
-    }
+        System.out.println("expense recorded.\n\n");
+    }    
 }

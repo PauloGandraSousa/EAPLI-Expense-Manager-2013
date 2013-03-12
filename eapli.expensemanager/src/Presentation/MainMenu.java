@@ -4,6 +4,7 @@
  */
 package Presentation;
 
+import Model.ExpenseRecord;
 import eapli.util.Console;
 
 /**
@@ -17,6 +18,8 @@ public class MainMenu {
             System.out.println("===================");
             System.out.println("  EXPENSE MANAGER  ");
             System.out.println("===================\n");
+
+            showBalances();
 
             System.out.println("1. Register an expense");
             System.out.println("0. Exit\n\n");
@@ -33,4 +36,13 @@ public class MainMenu {
             }
         } while (true);
     }
+    
+        private void showBalances() {
+        System.out.print("weekly spenditure:");
+        System.out.println(ExpenseRecord.instance().getThisWeekBalance());
+        System.out.print("monthly spenditure:");
+        System.out.println(ExpenseRecord.instance().getThisMonthBalance());
+        System.out.println("-------------------\n");
+    }
+
 }

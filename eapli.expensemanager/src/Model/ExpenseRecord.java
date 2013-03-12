@@ -4,6 +4,8 @@
  */
 package Model;
 
+import Persistence.ExpenseRepository;
+import eapli.util.DateTime;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +21,28 @@ public class ExpenseRecord {
     BigDecimal balance = new BigDecimal(0);
     
     // SINGLETON
-    private ExpenseRecord() {}
+    private ExpenseRecord() {
+        loadBalances();
+    }
+    
     private static ExpenseRecord theInstance = new ExpenseRecord();
     public static ExpenseRecord instance() {
         return theInstance;
+    }
+    
+    private void loadBalances() {
+        ExpenseRepository repo = new ExpenseRepository();
+        thisWeekBalance = repo.balanceOfWeek(DateTime.currentYear(), DateTime.currentWeekNumber());
+        thisMonthBalance = repo.balanceOfMonth(DateTime.currentYear(), DateTime.currentMonth());
     }
     
     public void register(Expense expense) {
         if (expense == null) {
             throw new IllegalArgumentException();
         }
-        theExpenses.add(expense);
+        //theExpenses.add(expense);
+        ExpenseRepository repo = new ExpenseRepository();
+        repo.save(expense);
         updateBalances(expense);
     }
 

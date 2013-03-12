@@ -6,6 +6,7 @@ package Persistence;
 
 import Model.ExpenseType;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
@@ -21,7 +22,11 @@ public class ExpenseTypeRepository extends Repository {
 
         EntityManager em = getEntityManager();
         assert em != null;
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
         em.persist(expenseType);
+        tx.commit();
+        em.close();
     }
 
     public ExpenseType findOrCreate(String key, String description) {

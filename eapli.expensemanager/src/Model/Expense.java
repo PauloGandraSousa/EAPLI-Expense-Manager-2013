@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -19,13 +20,14 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Expense {
-    @Id 
+    @Id
+    @GeneratedValue
     long id;
     @ManyToOne 
     ExpenseType type;
     String description;
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date dateOccurred;
+    Date dateOcurred;
     BigDecimal amount;
     
     protected Expense() {}
@@ -41,7 +43,7 @@ public class Expense {
             
         this.type = type;
         this.description = description;
-        this.dateOccurred = dateOccurred;
+        this.dateOcurred = dateOccurred;
         this.amount = amount;
     }
     
@@ -54,14 +56,14 @@ public class Expense {
     }
 
     public boolean occursThisWeek() {
-        int weekOfExpense = DateTime.weekNumber(dateOccurred);
+        int weekOfExpense = DateTime.weekNumber(dateOcurred);
         int thisWeek = DateTime.currentWeekNumber() ;
         return thisWeek == weekOfExpense;
     }
 
     public boolean occursThisMonth() {
         int thisMonth = DateTime.today().get(Calendar.MONTH);
-        int expenseMonth = DateTime.dateToCalendar(dateOccurred).get(Calendar.MONTH);
+        int expenseMonth = DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
         return (thisMonth == expenseMonth);
     }
 }
