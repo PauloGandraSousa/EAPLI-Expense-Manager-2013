@@ -29,7 +29,17 @@ public class ExpenseRepository extends Repository {
         em.close();
     }
 
-    public BigDecimal balanceOfWeek(int year, int weekNumber) {
+    /**
+     * gets the expenditure of a specific week
+     * 
+     * note that this method is actualy placing the business logic in the HQL code
+     * which is normally something to avoid
+     * 
+     * @param year
+     * @param weekNumber
+     * @return
+     */
+    public BigDecimal expenditureOfWeek(int year, int weekNumber) {
         EntityManager em  = getEntityManager();
         Query q = em.createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
         Date start = DateTime.firstDateOfWeek(year, weekNumber).getTime();
@@ -44,7 +54,17 @@ public class ExpenseRepository extends Repository {
         return balance;
     }
 
-    public BigDecimal balanceOfMonth(int year, int month) {
+    /**
+     * gets the total expenditure of a specific month
+     * 
+     * note that this method is actualy placing the business logic in the HQL code
+     * which is normally something to avoid
+     * 
+     * @param year
+     * @param month
+     * @return 
+     */
+    public BigDecimal expenditureOfMonth(int year, int month) {
         EntityManager em  = getEntityManager();
         Query q = em.createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
         Date start = new Date(year-1900, month-1, 1);
@@ -52,6 +72,24 @@ public class ExpenseRepository extends Repository {
         Date end = new Date(year-1900, month-1, 31);
         q.setParameter("end", end);
         
+        BigDecimal balance = (BigDecimal) q.getSingleResult();
+        if (balance == null) {
+            balance = new BigDecimal(0);
+        }
+        return balance;
+    }
+
+    /**
+     * gets the total amount of expenses
+     * 
+     * note that this method is actualy placing the business logic in the HQL code
+     * which is normally something to avoid
+     * 
+     * @return 
+     */
+    public BigDecimal totalExpenditure() {
+        EntityManager em  = getEntityManager();
+        Query q = em.createQuery("SELECT SUM(e.amount) FROM Expense e");
         BigDecimal balance = (BigDecimal) q.getSingleResult();
         if (balance == null) {
             balance = new BigDecimal(0);
