@@ -4,8 +4,8 @@
  */
 package Controllers;
 
-import Model.Expense;
 import Model.AppExpenses;
+import Model.Expense;
 import Model.ExpenseRecord;
 import Model.ExpenseType;
 import java.math.BigDecimal;
@@ -26,10 +26,8 @@ public class ExpenseRegisterController {
         Expense expense = new Expense(expenseType, what, date, amount);
         ExpenseRecord.instance().register(expense);
     }
-    
-        
-    public List<String> getExpenseTypes()
-    {
+
+    public List<String> getExpenseTypes() {
         return AppExpenses.getInstance().expenseTypes.getExpenseTypes();
     }
 }
