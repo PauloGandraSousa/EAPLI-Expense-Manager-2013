@@ -5,10 +5,12 @@
 package Controllers;
 
 import Model.Expense;
+import Model.AppExpenses;
 import Model.ExpenseRecord;
 import Model.ExpenseType;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -19,8 +21,15 @@ public class ExpenseRegisterController {
     public ExpenseRegisterController() {
     }
 
-    public void registerExpense(String what, Date date, BigDecimal amount, ExpenseType expenseType) {
+    public void registerExpense(String what, Date date, BigDecimal amount, String expenseTypeDescr) {
+        ExpenseType expenseType = AppExpenses.getInstance().expenseTypes.getExpenseTypeByDescr(expenseTypeDescr);
         Expense expense = new Expense(expenseType, what, date, amount);
         ExpenseRecord.instance().register(expense);
+    }
+    
+        
+    public List<String> getExpenseTypes()
+    {
+        return AppExpenses.getInstance().expenseTypes.getExpenseTypes();
     }
 }

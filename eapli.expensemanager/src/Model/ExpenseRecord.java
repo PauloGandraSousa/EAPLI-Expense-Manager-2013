@@ -25,8 +25,11 @@ public class ExpenseRecord {
         loadBalances();
     }
     
-    private static ExpenseRecord theInstance = new ExpenseRecord();
+    
+    private static ExpenseRecord theInstance = null;
     public static ExpenseRecord instance() {
+        if (theInstance == null)
+            theInstance = new ExpenseRecord();
         return theInstance;
     }
     

@@ -5,8 +5,8 @@
 package Model;
 
 import eapli.util.DateTime;
-import java.math.BigDecimal;
 import java.util.Calendar;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,6 +50,7 @@ public class Expense {
     public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount) {
         this(type, description, DateTime.newDate(year, month, day), amount);
     }
+    
     
     public BigDecimal getAmount() {
         return amount;
