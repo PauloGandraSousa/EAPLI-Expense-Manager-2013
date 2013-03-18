@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 package Presentation;
-import Controllers.ExpenseTypeRegisterController;
+import Controllers.RegisterExpenseTypeController;
 import eapli.util.Console;
 /**
  *
@@ -13,11 +13,12 @@ public class ExpenseTypeRegisterUI {
         public void mainLoop() {
         System.out.println("* * *  REGISTER AN EXPENSE TYPE  * * *\n");
         
+        String shortName = Console.readLine("Short name:");
         String descr = Console.readLine("Description:");
         
-        ExpenseTypeRegisterController controller = new ExpenseTypeRegisterController();
-        controller.registerTypeExpense(descr);
+        RegisterExpenseTypeController controller = new RegisterExpenseTypeController();
+        controller.registerExpenseType(shortName, descr);
         
-        System.out.println("expense type recorded.");
+        System.out.println("\nExpense type recorded!");
     }
 }

@@ -64,6 +64,17 @@ public class Console {
         } while (true);
     }
 
+    static public int readOption(int low, int high, int exit) {
+        int option;
+        do
+        {
+            option = Console.readInteger("Introduza opção: ");
+            if (option == exit)
+                break;
+        } while (option < low || option > high);
+        return option;
+    }
+    
     static public Date readDate(String prompt) {
         do {
             try {

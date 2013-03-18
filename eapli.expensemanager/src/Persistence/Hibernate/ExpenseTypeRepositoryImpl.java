@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Persistence;
+package Persistence.Hibernate;
 
 import Model.ExpenseType;
+import Persistence.ExpenseTypeRepository;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
@@ -14,7 +16,8 @@ import javax.persistence.Query;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseTypeRepository extends Repository {
+public class ExpenseTypeRepositoryImpl extends HibernateRepository implements ExpenseTypeRepository {
+    @Override
     public void save(ExpenseType expenseType) {
         if (expenseType == null) {
             throw new IllegalArgumentException();
@@ -29,6 +32,7 @@ public class ExpenseTypeRepository extends Repository {
         em.close();
     }
 
+    @Override
     public ExpenseType findOrCreate(String key, String description) {
         if (key == null || key.trim().length() == 0) {
             throw new IllegalArgumentException();
@@ -48,5 +52,15 @@ public class ExpenseTypeRepository extends Repository {
             save(expenseType);           
         }
         return expenseType;
+    }
+
+    @Override
+    public List<ExpenseType> all() {
+        EntityManager em = getEntityManager();
+        assert em != null;
+
+        Query q = em.createQuery("SELECT et FROM ExpenseType et");
+        List<ExpenseType> expenseTypes = q.getResultList();
+        return expenseTypes;
     }
 }

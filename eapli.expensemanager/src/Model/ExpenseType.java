@@ -32,24 +32,7 @@ public class ExpenseType {
         this.description = description;
     }
     
-    public ExpenseType(String description) {
-        String key=description; // devia gerar um sequencial??
-                                
-        if (key == null || description == null) {
-            throw new IllegalArgumentException();
-        }
-        if (key.trim().length() == 0) {
-            throw new IllegalArgumentException();
-        }
-        
-        this.id = key;
-        this.description = description;
-    }
-    
-    
-    
     public String getDescription(){
         return description;
     }  
-
 }

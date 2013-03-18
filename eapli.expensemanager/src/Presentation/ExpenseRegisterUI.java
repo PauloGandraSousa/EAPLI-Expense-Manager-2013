@@ -4,9 +4,8 @@
  */
 package Presentation;
 
-import Controllers.ExpenseRegisterController;
-import Model.ExpenseRecord;
-import Model.ExpenseTypes;
+import Controllers.RegisterExpenseController;
+import Model.ExpenseType;
 import eapli.util.Console;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,7 +18,7 @@ import java.util.List;
  */
 class ExpenseRegisterUI {
     public void mainLoop() {
-        ExpenseRegisterController controller = new ExpenseRegisterController();
+        RegisterExpenseController controller = new RegisterExpenseController();
 
         System.out.println("* * *  REGISTER AN EXPENSE  * * *\n");
         
@@ -27,31 +26,18 @@ class ExpenseRegisterUI {
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("Amount:");
         BigDecimal amount = new BigDecimal(value);
-         System.out.println("EXPENSE TYPES ");
         
-        
-        List<String> listExpenseTypes = controller.getExpenseTypes();
-       
-        int position = 0;
-        for (Iterator<String> i = listExpenseTypes.iterator(); i.hasNext();)
-        {
-            String descr = i.next();
+        System.out.println("-- EXPENSE TYPES --");      
+        int position = 1;
+        List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
+        for (ExpenseType et : listExpenseTypes) {
+            System.out.println(position + ". " + et.getDescription());
             position++;
-            System.out.println(position + ". " + descr);
         }
-
-        String option;
-        int nOption;
-        do
-        {
-            option = Console.readLine("Introduza opção: ");
-            nOption = new Integer(option);
-        } while (nOption < 1 || nOption > listExpenseTypes.size());
-        
+        int option = Console.readOption(1, position, 0);
               
-  //      controller.registerExpense(what, date, amount, ExpenseTypes.MISC);
-          controller.registerExpense(what, date, amount, listExpenseTypes.get(nOption));
+        controller.registerExpense(what, date, amount, listExpenseTypes.get(option));
           
-        System.out.println("expense recorded.");
+        System.out.println("\nExpense recorded!");
     }
 }
