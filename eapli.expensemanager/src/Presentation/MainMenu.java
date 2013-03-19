@@ -16,14 +16,11 @@ import eapli.util.Console;
 public class MainMenu {
 
     public void mainLoop() {
-        System.out.println("===================");
         int option = -1;
         while (option != 0) {
             System.out.println("===================");
             System.out.println("  EXPENSE MANAGER  ");
             System.out.println("===================\n");
-
-            showBalances();
 
             System.out.println("1. Register an expense");
             System.out.println("2. Register an expense type");
@@ -35,24 +32,14 @@ public class MainMenu {
                     System.out.println("bye bye ...");
                     return;
                 case 1:
-                    ExpenseRegisterUI ui = new ExpenseRegisterUI();
-                    ui.mainLoop();
+                    RegisterExpenseUI registerExpenseUI = new RegisterExpenseUI();
+                    registerExpenseUI.mainLoop();
                     break;
                 case 2:
-                    ExpenseTypeRegisterUI expenseTypeRegisterUI = new ExpenseTypeRegisterUI();
-                    expenseTypeRegisterUI.mainLoop();
+                    RegisterExpenseTypeUI registerExpenseTypeUI = new RegisterExpenseTypeUI();
+                    registerExpenseTypeUI.mainLoop();
                     break;
             }
         }
-    }
-
-    private void showBalances() {
-        BaseController controller  = new BaseController();
-        
-        System.out.print("weekly spenditure:");
-        System.out.println(controller.getThisWeekBalance());
-        System.out.print("monthly spenditure:");
-        System.out.println(controller.getThisMonthBalance());
-        System.out.println("-------------------\n");
     }
 }

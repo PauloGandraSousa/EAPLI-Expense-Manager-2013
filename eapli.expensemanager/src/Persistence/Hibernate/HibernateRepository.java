@@ -15,10 +15,10 @@ import javax.persistence.PersistenceUnit;
  */
 public abstract class HibernateRepository {
     @PersistenceUnit
-    protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("eapli.expensemanagerPU");
+    static protected EntityManagerFactory emf= Persistence.createEntityManagerFactory("eapli.expensemanagerPU");;
     
     protected EntityManager getEntityManager() {
-        EntityManager em = emf.createEntityManager();
-        return em;
+        EntityManager entityManager = emf.createEntityManager();
+        return entityManager;
     }
 }

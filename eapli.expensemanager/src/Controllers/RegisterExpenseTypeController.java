@@ -12,7 +12,7 @@ import Persistence.PersistenceRegistry;
  *
  * @author arocha
  */
-public class RegisterExpenseTypeController {
+public class RegisterExpenseTypeController extends BaseController {
 
     public RegisterExpenseTypeController() {
     }

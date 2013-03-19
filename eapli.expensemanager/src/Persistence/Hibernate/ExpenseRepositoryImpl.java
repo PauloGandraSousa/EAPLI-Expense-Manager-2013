@@ -9,6 +9,7 @@ import Persistence.ExpenseRepository;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -103,5 +104,15 @@ public class ExpenseRepositoryImpl extends HibernateRepository implements Expens
             balance = new BigDecimal(0);
         }
         return balance;
+    }
+
+    @Override
+    public List<Expense> between(Date start, Date end) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT e FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
+        q.setParameter("start", start);
+        q.setParameter("end", end);
+
+        return q.getResultList();
     }
 }

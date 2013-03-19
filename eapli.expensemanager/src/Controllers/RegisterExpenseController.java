@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-public class RegisterExpenseController {
+public class RegisterExpenseController extends BaseController {
 
     public RegisterExpenseController() {
     }
