@@ -4,9 +4,6 @@
  */
 package Presentation;
 
-import Controllers.BaseController;
-import Persistence.ExpenseRepository;
-import Persistence.PersistenceRegistry;
 import eapli.util.Console;
 
 /**

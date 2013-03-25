@@ -20,9 +20,9 @@ class RegisterExpenseUI extends BaseUI {
     public void mainLoop() {
         System.out.println("* * *  REGISTER AN EXPENSE  * * *\n");
         
-        String what = Console.readLine("Description:");
+        String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
-        double value = Console.readDouble("Amount:");
+        double value = Console.readDouble("How much:");
         BigDecimal amount = new BigDecimal(value);
         
         System.out.println("-- EXPENSE TYPES --");      
