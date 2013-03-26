@@ -5,18 +5,16 @@
 package Model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class ExpenseType extends BaseType {
+class IncomeType extends BaseType{
+        protected IncomeType() {}
     
-    protected ExpenseType() {}
-    
-    public ExpenseType(String key, String description) {
+    public IncomeType(String key, String description) {
         super(key, description);
     }
 }
