@@ -11,7 +11,7 @@ import eapli.util.Console;
  * @author arocha
  */
 public class RegisterExpenseTypeUI extends BaseUI {
-        public void mainLoop() {
+        public void show() {
         System.out.println("* * *  REGISTER AN EXPENSE TYPE  * * *\n");
         
         String shortName = Console.readLine("Short name:");

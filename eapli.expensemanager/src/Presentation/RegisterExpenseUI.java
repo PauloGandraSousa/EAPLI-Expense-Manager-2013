@@ -17,7 +17,7 @@ import java.util.List;
  * @author Paulo Gandra Sousa
  */
 class RegisterExpenseUI extends BaseUI {
-    public void mainLoop() {
+    public void show() {
         System.out.println("* * *  REGISTER AN EXPENSE  * * *\n");
         
         String what = Console.readLine("What:");

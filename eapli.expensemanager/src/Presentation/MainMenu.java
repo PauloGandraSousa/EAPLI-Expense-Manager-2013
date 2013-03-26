@@ -20,7 +20,14 @@ public class MainMenu {
             System.out.println("===================\n");
 
             System.out.println("1. Register an expense");
-            System.out.println("2. Register an expense type");
+            System.out.println("2. List expenses");
+            System.out.println("3. Register an income");
+            System.out.println("--- master tables ---");
+            System.out.println("20. Register an expense type");
+            System.out.println("21. List expense types");
+            System.out.println("30. Register an income type");
+            System.out.println("31. List income types");
+            System.out.println("--- --- --- --- ---");
             System.out.println("0. Exit\n\n");
 
             option = Console.readInteger("Please choose an option");
@@ -30,11 +37,17 @@ public class MainMenu {
                     return;
                 case 1:
                     RegisterExpenseUI registerExpenseUI = new RegisterExpenseUI();
-                    registerExpenseUI.mainLoop();
+                    registerExpenseUI.show();
                     break;
-                case 2:
+                case 20:
                     RegisterExpenseTypeUI registerExpenseTypeUI = new RegisterExpenseTypeUI();
-                    registerExpenseTypeUI.mainLoop();
+                    registerExpenseTypeUI.show();
+                    break;
+                case 21:
+                    ListExpenseTypesUI listExpensesTypesUI = new ListExpenseTypesUI();
+                    listExpensesTypesUI.show();
+                default:
+                    System.out.println("option not recognized.");
                     break;
             }
         }
