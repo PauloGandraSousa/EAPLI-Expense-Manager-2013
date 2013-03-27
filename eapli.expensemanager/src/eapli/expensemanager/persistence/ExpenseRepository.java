@@ -59,4 +59,5 @@ public interface ExpenseRepository {
      */
     public List<Expense> between(Date start, Date end);
     
+    public List<Expense> all();
 }

@@ -15,7 +15,7 @@ public abstract class BaseUI {
     // derived classes should provide the controller object
     protected abstract BaseController controller();
     
-    public abstract void doShow();
+    protected abstract void doShow();
     public abstract String headline();
     
     public void show() {

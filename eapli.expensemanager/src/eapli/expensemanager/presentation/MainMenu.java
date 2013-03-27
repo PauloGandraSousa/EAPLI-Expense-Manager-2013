@@ -50,6 +50,10 @@ public class MainMenu {
                     RegisterExpenseUI registerExpenseUI = new RegisterExpenseUI();
                     registerExpenseUI.show();
                     break;
+                case LIST_EXPENSES_OPTION:
+                    ListExpensesUI listExpensesUI = new ListExpensesUI();
+                    listExpensesUI.show();
+                    break;
                 case REGISTER_EXPENSE_TYPE_OPTION:
                     RegisterExpenseTypeUI registerExpenseTypeUI = new RegisterExpenseTypeUI();
                     registerExpenseTypeUI.show();
