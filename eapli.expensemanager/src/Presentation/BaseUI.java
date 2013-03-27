@@ -15,7 +15,14 @@ public abstract class BaseUI {
     // derived classes should provide the controller object
     protected abstract BaseController controller();
     
-    public abstract void show();
+    public abstract void doShow();
+    public abstract String headline();
+    
+    public void show() {
+        showHeadline();
+        doShow();
+        showBalances();
+    }
     
     public void showBalances() {
         System.out.println("-------------------");
@@ -24,5 +31,9 @@ public abstract class BaseUI {
         System.out.print("monthly spenditure:");
         System.out.println(controller().getThisMonthBalance());
         System.out.println("-------------------\n");
+    }
+
+    private void showHeadline() {
+        System.out.println(headline());
     }
 }

@@ -26,4 +26,18 @@ public class Income {
     Date dateOcurred;
     BigDecimal amount;
 
+    public Income(String description, Date dateOccurred, BigDecimal amount) {
+        // TODO refactor with Expense
+       if (description == null || dateOccurred == null || amount == null) {
+            throw new IllegalArgumentException();
+        }
+        // cannot record a negative income or a zero EUR income
+        if (amount.signum() == -1 || amount.signum() ==  0) {
+            throw new IllegalArgumentException();
+        }
+            
+        this.description = description;
+        this.dateOcurred = dateOccurred;
+        this.amount = amount;
+    }
 }

@@ -28,6 +28,7 @@ public class RegisterExpenseController extends BaseController {
         repo.save(expense);
     }
 
+    // TODO removed duplicated method also present in ListExpenseTypesController
     public List<ExpenseType> getExpenseTypes() {
         ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
         return repo.all();

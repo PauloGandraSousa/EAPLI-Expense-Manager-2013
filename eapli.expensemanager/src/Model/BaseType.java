@@ -4,14 +4,18 @@
  */
 package Model;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class BaseType {
-
     @Id
     String id;
     String description;

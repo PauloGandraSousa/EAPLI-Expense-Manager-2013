@@ -21,4 +21,8 @@ public class PersistenceRegistry {
     public ExpenseTypeRepository expenseTypeRepository() {
         return new Persistence.Hibernate.ExpenseTypeRepositoryImpl();
     }
+
+    public IncomeRepository incomeRepository() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

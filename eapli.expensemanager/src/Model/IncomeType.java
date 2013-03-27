@@ -11,7 +11,7 @@ import javax.persistence.Entity;
  * @author Paulo Gandra Sousa
  */
 @Entity
-class IncomeType extends BaseType{
+public class IncomeType extends BaseType{
         protected IncomeType() {}
     
     public IncomeType(String key, String description) {

@@ -11,29 +11,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseRepositoryImpl extends HibernateRepository implements ExpenseRepository {
-
-    @Override
-    public void save(Expense expense) {
-        if (expense == null) {
-            throw new IllegalArgumentException();
-        }
-
-        EntityManager em = getEntityManager();
-        assert em != null;
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(expense);
-        tx.commit();
-        em.close();
-    }
+public class ExpenseRepositoryImpl extends HibernateRepository<Expense, Long> implements ExpenseRepository {
 
     /**
      * gets the expenditure of a specific week

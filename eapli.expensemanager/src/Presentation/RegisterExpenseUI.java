@@ -17,15 +17,20 @@ import java.util.List;
  * @author Paulo Gandra Sousa
  */
 class RegisterExpenseUI extends BaseUI {
-    public void show() {
-        System.out.println("* * *  REGISTER AN EXPENSE  * * *\n");
-        
+    @Override
+    public String headline() {
+        return "* * *  REGISTER AN EXPENSE  * * *\n";        
+    }
+    
+    @Override
+    public void doShow() {
         String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");
         BigDecimal amount = new BigDecimal(value);
         
-        System.out.println("-- EXPENSE TYPES --");      
+        System.out.println("-- EXPENSE TYPES --");    
+        // TODO remove duplicated code block also present in ListExpenseTypesUI
         int position = 1;
         List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
         for (ExpenseType et : listExpenseTypes) {
@@ -37,8 +42,6 @@ class RegisterExpenseUI extends BaseUI {
         controller.registerExpense(what, date, amount, listExpenseTypes.get(option));
           
         System.out.println("\nExpense recorded!");
-        
-        showBalances();
     }
 
             RegisterExpenseController controller = new RegisterExpenseController();

@@ -22,7 +22,7 @@ import javax.persistence.Temporal;
 public class Expense {
     @Id
     @GeneratedValue
-    long id;
+    Long id;
     @ManyToOne 
     ExpenseType type;
     String description;
@@ -33,6 +33,7 @@ public class Expense {
     protected Expense() {}
     
     public Expense(ExpenseType type, String description, Date dateOccurred, BigDecimal amount) {
+        // TODO refactor with Income
         if (type == null || description == null || dateOccurred == null || amount == null) {
             throw new IllegalArgumentException();
         }

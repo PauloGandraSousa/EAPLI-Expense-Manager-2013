@@ -16,21 +16,7 @@ import javax.persistence.Query;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseTypeRepositoryImpl extends HibernateRepository implements ExpenseTypeRepository {
-    @Override
-    public void save(ExpenseType expenseType) {
-        if (expenseType == null) {
-            throw new IllegalArgumentException();
-        }
-
-        EntityManager em = getEntityManager();
-        assert em != null;
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(expenseType);
-        tx.commit();
-        em.close();
-    }
+public class ExpenseTypeRepositoryImpl extends HibernateRepository<ExpenseType, String> implements ExpenseTypeRepository {
 
     @Override
     public ExpenseType findOrCreate(String key, String description) {
@@ -52,15 +38,5 @@ public class ExpenseTypeRepositoryImpl extends HibernateRepository implements Ex
             save(expenseType);           
         }
         return expenseType;
-    }
-
-    @Override
-    public List<ExpenseType> all() {
-        EntityManager em = getEntityManager();
-        assert em != null;
-
-        Query q = em.createQuery("SELECT et FROM ExpenseType et");
-        List<ExpenseType> expenseTypes = q.getResultList();
-        return expenseTypes;
     }
 }
