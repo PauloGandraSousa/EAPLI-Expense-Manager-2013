@@ -23,6 +23,10 @@ public class PersistenceRegistry {
     }
 
     public IncomeRepository incomeRepository() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new eapli.expensemanager.persistence.hibernate.IncomeRepositoryImpl();
+    }
+
+    public IncomeTypeRepository incomeTypeRepository() {
+        return new eapli.expensemanager.persistence.hibernate.IncomeTypeRepositoryImpl();
     }
 }

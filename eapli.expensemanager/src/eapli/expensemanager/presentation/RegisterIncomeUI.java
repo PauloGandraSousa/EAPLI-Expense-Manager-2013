@@ -20,25 +20,23 @@ class RegisterIncomeUI extends BaseUI {
     protected BaseController controller() {
         return controller;
     }
-
     RegisterIncomeController controller = new RegisterIncomeController();
-    
+
     @Override
     public void doShow() {
         String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");
         BigDecimal amount = new BigDecimal(value);
-        
+
         controller.registerIncome(what, date, amount);
-          
-        System.out.println("\nExpense recorded!");
+
+        System.out.println("\nIncome recorded!");
 
     }
 
     @Override
     public String headline() {
-        return "* * *  REGISTER AN INCOME  * * *\n";        
+        return "* * *  REGISTER AN INCOME  * * *\n";
     }
-    
 }

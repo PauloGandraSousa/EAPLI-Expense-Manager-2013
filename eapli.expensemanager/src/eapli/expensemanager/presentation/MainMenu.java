@@ -62,6 +62,14 @@ public class MainMenu {
                     ListExpenseTypesUI listExpensesTypesUI = new ListExpenseTypesUI();
                     listExpensesTypesUI.show();
                     break;
+                case REGISTER_INCOME_TYPE_OPTION:
+                    RegisterIncomeTypeUI registerIncomeTypeUI = new RegisterIncomeTypeUI();
+                    registerIncomeTypeUI.show();
+                    break;
+                case LIST_INCOME_TYPES_OPTION:
+                    ListIncomeTypesUI listIncomesTypesUI = new ListIncomeTypesUI();
+                    listIncomesTypesUI.show();
+                    break;
                 default:
                     System.out.println("option not recognized.");
                     break;
