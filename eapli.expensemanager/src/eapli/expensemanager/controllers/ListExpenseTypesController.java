@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class ListExpenseTypesController extends BaseController {
 
-    // TODO removed duplicated method also present in RegisterExpenseController
     public List<ExpenseType> getExpenseTypes() {
         ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
         return repo.all();

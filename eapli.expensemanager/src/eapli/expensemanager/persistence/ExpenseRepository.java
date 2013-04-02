@@ -13,6 +13,7 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
+@Deprecated
 public interface ExpenseRepository {
 
     /**

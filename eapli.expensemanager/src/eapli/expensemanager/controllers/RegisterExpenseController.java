@@ -8,7 +8,6 @@ import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
-import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PersistenceRegistry;
 import java.math.BigDecimal;
@@ -33,9 +32,8 @@ public class RegisterExpenseController extends BaseController {
         repo.save(account);
     }
 
-    // TODO removed duplicated method also present in ListExpenseTypesController
     public List<ExpenseType> getExpenseTypes() {
-        ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
-        return repo.all();
+        ListExpenseTypesController listExpenseTypesController = new ListExpenseTypesController();
+        return listExpenseTypesController.getExpenseTypes();
     }
 }

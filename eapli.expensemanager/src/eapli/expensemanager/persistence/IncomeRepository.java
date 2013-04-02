@@ -10,6 +10,7 @@ import eapli.expensemanager.model.Income;
  *
  * @author Paulo Gandra Sousa
  */
+@Deprecated
 public interface IncomeRepository {
     Income save(Income income);
 }
