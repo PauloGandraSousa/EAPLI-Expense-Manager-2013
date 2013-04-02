@@ -39,7 +39,7 @@ public interface ExpenseRepository {
      */
     BigDecimal expenditureOfWeek(int year, int weekNumber);
 
-    void save(Expense expense);
+    Expense save(Expense expense);
 
     /**
      * gets the total amount of expenses

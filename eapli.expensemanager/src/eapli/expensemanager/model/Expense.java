@@ -6,13 +6,10 @@ package eapli.expensemanager.model;
 
 import eapli.util.DateTime;
 import java.math.BigDecimal;
-import java.util.Calendar;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
 
 /**
  *
@@ -20,7 +17,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Expense extends Movement {
-    @ManyToOne 
+    @ManyToOne(cascade = CascadeType.MERGE)
     ExpenseType type;
     
     protected Expense() {}

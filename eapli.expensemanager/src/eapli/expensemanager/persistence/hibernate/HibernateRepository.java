@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 
@@ -74,24 +75,46 @@ public abstract class HibernateRepository<T, PK extends Serializable> {
                 .getResultList();
     }
 
-    public void save(T entity) {
+    /**
+     * inserts or updates an entity
+     *
+     * @param entity
+     * @return the persisted entity - migth be a diferent object than the
+     * parameter
+     */
+    public T save(T entity) {
         if (entity == null) {
             throw new IllegalArgumentException();
         }
 
         EntityManager em = getEntityManager();
         assert em != null;
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(entity);
-        tx.commit();
-        em.close();
+        try {
+            // transaction will be rolled back if any exception occurs
+            EntityTransaction tx = em.getTransaction();
+            try {
+                tx.begin();
+                em.persist(entity);
+                tx.commit();
+            } catch (PersistenceException ex) {
+                tx.rollback();
+                // we need to set up a new transaction if persist raises an exception
+                tx = em.getTransaction();
+                tx.begin();
+                entity = em.merge(entity);
+                tx.commit();
+            }
+        } finally {
+            em.close();
+        }
+
+        return entity;
     }
 
     public List<T> all() {
         // TODO check performance impact of this 'where' clause
         return match("1=1");
-        
+
 //        EntityManager em = getEntityManager();
 //        assert em != null;
 //

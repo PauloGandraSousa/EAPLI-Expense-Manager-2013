@@ -11,5 +11,5 @@ import eapli.expensemanager.model.Income;
  * @author Paulo Gandra Sousa
  */
 public interface IncomeRepository {
-    void save(Income income);
+    Income save(Income income);
 }

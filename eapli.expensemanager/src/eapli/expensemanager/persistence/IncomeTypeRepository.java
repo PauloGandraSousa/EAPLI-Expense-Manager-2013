@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IncomeTypeRepository {
 
-    void save(IncomeType incomeType);
+    IncomeType save(IncomeType incomeType);
 
     public List<IncomeType> all();
 }

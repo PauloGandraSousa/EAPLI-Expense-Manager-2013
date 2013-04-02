@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class CheckingAccount {
     Long id;
     String owner;
     BigDecimal balance;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.MERGE)
     List<Movement> movements;
     @Transient
     Map<Integer, List<Movement>> indexedMovements;

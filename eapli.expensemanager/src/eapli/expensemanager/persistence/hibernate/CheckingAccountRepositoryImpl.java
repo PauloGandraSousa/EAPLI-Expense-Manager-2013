@@ -5,13 +5,9 @@
 package eapli.expensemanager.persistence.hibernate;
 
 import eapli.expensemanager.model.CheckingAccount;
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import java.util.Collection;
 import java.util.Iterator;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.Query;
 
 /**
  *

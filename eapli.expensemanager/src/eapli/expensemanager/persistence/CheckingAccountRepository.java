@@ -18,5 +18,5 @@ public interface CheckingAccountRepository {
      */
     public CheckingAccount theAccount();
 
-    public void save(CheckingAccount account);
+    public CheckingAccount save(CheckingAccount account);
 }
