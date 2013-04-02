@@ -16,7 +16,6 @@ import javax.persistence.Query;
  */
 public class ExpenseTypeRepositoryImpl extends HibernateRepository<ExpenseType, String> implements ExpenseTypeRepository {
 
-    @Override
     public ExpenseType findOrCreate(String key, String description) {
         if (key == null || key.trim().length() == 0) {
             throw new IllegalArgumentException();

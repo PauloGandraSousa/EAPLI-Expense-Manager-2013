@@ -13,10 +13,9 @@ import java.util.List;
  */
 public interface ExpenseTypeRepository {
 
-    ExpenseType findOrCreate(String key, String description);
+    //ExpenseType findOrCreate(String key, String description);
 
     void save(ExpenseType expenseType);
 
     public List<ExpenseType> all();
-    
 }

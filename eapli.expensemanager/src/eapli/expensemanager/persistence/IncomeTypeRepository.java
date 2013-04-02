@@ -12,8 +12,8 @@ import java.util.List;
  * @author Paulo Gandra Sousa
  */
 public interface IncomeTypeRepository {
-        void save(IncomeType incomeType);
+
+    void save(IncomeType incomeType);
 
     public List<IncomeType> all();
-
 }
