@@ -37,7 +37,7 @@ public class CheckingAccount {
     final Integer INCOME_MOVEMENT_TYPE = new Integer(1);
 
     public CheckingAccount() {
-        //movements = new ArrayList();
+        movements = new ArrayList();
         indexedMovements = new HashMap<Integer, List<Movement>>();
         indexedMovements.put(INCOME_MOVEMENT_TYPE, new ArrayList<Movement>());
         indexedMovements.put(EXPENSE_MOVEMENT_TYPE, new ArrayList<Movement>());
@@ -48,22 +48,37 @@ public class CheckingAccount {
 
     public BigDecimal totalExpenditure() {
         List<Movement> theExpenses = indexedMovements.get(EXPENSE_MOVEMENT_TYPE);
-        BigDecimal expenditure = new BigDecimal(0);
-        for (Movement e : theExpenses) {
-            expenditure = expenditure.add(e.getAmount());
-        }
-        return expenditure;
+        return sumAmount(theExpenses);
+    }
+
+    public BigDecimal totalEarnings() {
+        List<Movement> theIncomes = indexedMovements.get(INCOME_MOVEMENT_TYPE);
+        return sumAmount(theIncomes);
     }
 
     public void registerExpense(Expense expense) {
+        if (expense == null) {
+            throw new IllegalArgumentException();
+        }
         movements.add(expense);
         List<Movement> theExpenses = indexedMovements.get(EXPENSE_MOVEMENT_TYPE);
         theExpenses.add(expense);
     }
 
     public void registerIncome(Income income) {
+        if (income == null) {
+            throw new IllegalArgumentException();
+        }
         movements.add(income);
         List<Movement> theIncomes = indexedMovements.get(INCOME_MOVEMENT_TYPE);
         theIncomes.add(income);
+    }
+
+    private BigDecimal sumAmount(List<Movement> theMovements) {
+        BigDecimal sum = new BigDecimal(0);
+        for (Movement e : theMovements) {
+            sum = sum.add(e.getAmount());
+        }
+        return sum;
     }
 }

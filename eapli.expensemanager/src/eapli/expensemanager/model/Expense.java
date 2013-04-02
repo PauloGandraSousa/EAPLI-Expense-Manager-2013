@@ -24,6 +24,9 @@ public class Expense extends Movement {
     
     public Expense(ExpenseType type, String description, Date dateOccurred, BigDecimal amount) {
         super(description, dateOccurred, amount);
+        if (type == null) {
+            throw new IllegalArgumentException();
+        }
         this.type = type;
     }
     

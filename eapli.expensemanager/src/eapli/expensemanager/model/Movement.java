@@ -72,7 +72,7 @@ public abstract class Movement {
     }
 
     /**
-     * @return the dateOcurred
+     * @return the date when the movement ocurred
      */
     public Date getDateOcurred() {
         return dateOcurred;
