@@ -4,19 +4,16 @@
  */
 package eapli.expensemanager.persistence.hibernate;
 
-import eapli.expensemanager.model.IncomeType;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.List;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
-import javax.persistence.Table;
 
 /**
  *

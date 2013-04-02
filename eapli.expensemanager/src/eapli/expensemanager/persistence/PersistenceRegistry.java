@@ -29,4 +29,8 @@ public class PersistenceRegistry {
     public IncomeTypeRepository incomeTypeRepository() {
         return new eapli.expensemanager.persistence.hibernate.IncomeTypeRepositoryImpl();
     }
+
+    public CheckingAccountRepository checkingAccountRepository() {
+        return new eapli.expensemanager.persistence.hibernate.CheckingAccountRepositoryImpl();
+    }
 }

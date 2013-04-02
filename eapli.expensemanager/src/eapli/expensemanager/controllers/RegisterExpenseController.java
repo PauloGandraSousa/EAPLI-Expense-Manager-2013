@@ -4,8 +4,10 @@
  */
 package eapli.expensemanager.controllers;
 
+import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PersistenceRegistry;
@@ -24,8 +26,11 @@ public class RegisterExpenseController extends BaseController {
 
     public void registerExpense(String what, Date date, BigDecimal amount, ExpenseType expenseType) {
         Expense expense = new Expense(expenseType, what, date, amount);
-        ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
-        repo.save(expense);
+        //ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
+        CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
+        CheckingAccount account = repo.theAccount();
+        account.registerExpense(expense);
+        repo.save(account);
     }
 
     // TODO removed duplicated method also present in ListExpenseTypesController

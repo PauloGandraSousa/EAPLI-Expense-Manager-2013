@@ -6,9 +6,7 @@ package eapli.expensemanager.persistence.hibernate;
 
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
-import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 

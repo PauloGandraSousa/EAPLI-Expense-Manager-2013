@@ -23,7 +23,7 @@ public class BaseController {
      * 
      * @return 
      */
-    public BigDecimal getThisWeekBalance() {
+    public BigDecimal getThisWeekExpenditure() {
         ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
         int year = DateTime.currentYear();
         int week = DateTime.currentWeekNumber();
@@ -39,7 +39,7 @@ public class BaseController {
      * this methods relies on the repository to do the calculation
      * @return 
      */
-    public BigDecimal getThisMonthBalance() {
+    public BigDecimal getThisMonthExpenditure() {
         ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
         return repo.expenditureOfMonth(DateTime.currentYear(), DateTime.currentMonth());        
     }

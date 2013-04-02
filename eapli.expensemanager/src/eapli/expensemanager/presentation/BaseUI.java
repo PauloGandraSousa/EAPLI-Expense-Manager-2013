@@ -27,9 +27,9 @@ public abstract class BaseUI {
     public void showBalances() {
         System.out.println("-------------------");
         System.out.print("weekly spenditure:");
-        System.out.println(controller().getThisWeekBalance());
+        System.out.println(controller().getThisWeekExpenditure());
         System.out.print("monthly spenditure:");
-        System.out.println(controller().getThisMonthBalance());
+        System.out.println(controller().getThisMonthExpenditure());
         System.out.println("-------------------\n");
     }
 
