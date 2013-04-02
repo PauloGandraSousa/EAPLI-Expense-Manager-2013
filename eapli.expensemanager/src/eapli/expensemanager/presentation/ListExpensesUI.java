@@ -5,10 +5,8 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.controllers.ListExpenseTypesController;
 import eapli.expensemanager.controllers.ListExpensesController;
 import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
 import java.util.List;
 
 /**
@@ -29,7 +27,10 @@ class ListExpensesUI extends BaseUI {
         int position = 1;
         List<Expense> listExpenses = controller.getExpenses();
         for (Expense et : listExpenses) {
-            System.out.println(position + ". " + et.getDescription());
+            System.out.print(position + ". ");
+            System.out.print(et.getDateOcurred() + " ");
+            System.out.print(et.getAmount() + " ");
+            System.out.println(et.getDescription());
             position++;
         }
     }

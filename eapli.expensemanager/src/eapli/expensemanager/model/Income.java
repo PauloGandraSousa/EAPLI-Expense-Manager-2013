@@ -23,7 +23,8 @@ public class Income extends Movement {
     public Income() {
     }
 
-    public Income(String description, Date dateOccurred, BigDecimal amount) {
+    public Income(String description, Date dateOccurred, BigDecimal amount, IncomeType type) {
         super(description, dateOccurred, amount);
+        this.type = type;
     }
 }

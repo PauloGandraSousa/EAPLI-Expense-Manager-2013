@@ -6,9 +6,11 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.RegisterIncomeController;
 import eapli.expensemanager.controllers.BaseController;
+import eapli.expensemanager.model.IncomeType;
 import eapli.util.Console;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -29,7 +31,17 @@ class RegisterIncomeUI extends BaseUI {
         double value = Console.readDouble("How much:");
         BigDecimal amount = new BigDecimal(value);
 
-        controller.registerIncome(what, date, amount);
+        System.out.println("-- INCOME TYPES --");    
+        // TODO remove duplicated code block also present in ListIncomeTypesUI
+                int position = 1;
+        List<IncomeType> listIncomeTypes = controller.getIncomeTypes();
+        for (IncomeType et : listIncomeTypes) {
+            System.out.println(position + ". " + et.getDescription());
+            position++;
+        }
+        int option = Console.readOption(1, position, 0);
+
+        controller.registerIncome(what, date, amount, listIncomeTypes.get(option));
 
         System.out.println("\nIncome recorded!");
 

@@ -5,9 +5,7 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.controllers.ListExpenseTypesController;
 import eapli.expensemanager.controllers.ListIncomeTypesController;
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.IncomeType;
 import java.util.List;
 

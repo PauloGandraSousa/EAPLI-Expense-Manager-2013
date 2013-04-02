@@ -28,8 +28,8 @@ public abstract class Movement {
     long id;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date dateOcurred;
-    BigDecimal amount;
+    private Date dateOcurred;
+    private BigDecimal amount;
 
     public Movement() {
     }
@@ -53,14 +53,14 @@ public abstract class Movement {
     }
 
     public boolean occursThisWeek() {
-        int weekOfMovement = DateTime.weekNumber(dateOcurred);
+        int weekOfMovement = DateTime.weekNumber(getDateOcurred());
         int thisWeek = DateTime.currentWeekNumber();
         return thisWeek == weekOfMovement;
     }
 
     public boolean occursThisMonth() {
         int thisMonth = DateTime.today().get(Calendar.MONTH);
-        int movementMonth = DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
+        int movementMonth = DateTime.dateToCalendar(getDateOcurred()).get(Calendar.MONTH);
         return (thisMonth == movementMonth);
     }
 
@@ -69,5 +69,12 @@ public abstract class Movement {
      */
     public String getDescription() {
         return description;
+    }
+
+    /**
+     * @return the dateOcurred
+     */
+    public Date getDateOcurred() {
+        return dateOcurred;
     }
 }

@@ -21,7 +21,7 @@ public class ExpenseRecord {
     public BigDecimal getExpenditure() {
         BigDecimal expenditure = new BigDecimal(0);
         for (Expense e : theExpenses) {
-            expenditure = expenditure.add(e.amount);
+            expenditure = expenditure.add(e.getAmount());
         }
         return expenditure;
     }

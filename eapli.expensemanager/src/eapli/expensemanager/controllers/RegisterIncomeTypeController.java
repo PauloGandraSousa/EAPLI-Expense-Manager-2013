@@ -22,4 +22,5 @@ public class RegisterIncomeTypeController extends BaseController {
         IncomeTypeRepository repo = PersistenceRegistry.instance().incomeTypeRepository();
         repo.save(incomeType);
     }
+
 }

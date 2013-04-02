@@ -5,6 +5,7 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
+import java.text.NumberFormat;
 
 /**
  *
@@ -25,12 +26,13 @@ public abstract class BaseUI {
     }
     
     public void showBalances() {
-        System.out.println("-------------------");
-        System.out.print("weekly spenditure:");
-        System.out.println(controller().getThisWeekExpenditure());
-        System.out.print("monthly spenditure:");
-        System.out.println(controller().getThisMonthExpenditure());
-        System.out.println("-------------------\n");
+        System.out.println("---------------------------------------------------------------------------------");
+        System.out.print("this week expenditure: ");
+        System.out.print(NumberFormat.getCurrencyInstance().format( controller().getThisWeekExpenditure()));
+        System.out.print(" | ");
+        System.out.print("this month expenditure: ");
+        System.out.println(NumberFormat.getCurrencyInstance().format( controller().getThisMonthExpenditure()));
+        System.out.println("---------------------------------------------------------------------------------");
     }
 
     private void showHeadline() {

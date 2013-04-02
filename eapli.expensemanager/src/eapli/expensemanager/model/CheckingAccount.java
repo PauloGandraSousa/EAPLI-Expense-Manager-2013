@@ -50,7 +50,7 @@ public class CheckingAccount {
         List<Movement> theExpenses = indexedMovements.get(EXPENSE_MOVEMENT_TYPE);
         BigDecimal expenditure = new BigDecimal(0);
         for (Movement e : theExpenses) {
-            expenditure = expenditure.add(e.amount);
+            expenditure = expenditure.add(e.getAmount());
         }
         return expenditure;
     }

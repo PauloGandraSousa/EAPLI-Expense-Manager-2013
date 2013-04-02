@@ -4,9 +4,7 @@
  */
 package eapli.expensemanager.controllers;
 
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.IncomeType;
-import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.IncomeTypeRepository;
 import eapli.expensemanager.persistence.PersistenceRegistry;
 import java.util.List;
