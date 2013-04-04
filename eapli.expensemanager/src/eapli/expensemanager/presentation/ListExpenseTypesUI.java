@@ -23,7 +23,7 @@ class ListExpenseTypesUI extends BaseUI {
     }
 
     @Override
-    public void doShow() {
+    public boolean doShow() {
         // TODO remove duplicated code block also present in RegisterExpenseUI
         int position = 1;
         List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
@@ -31,10 +31,11 @@ class ListExpenseTypesUI extends BaseUI {
             System.out.println(position + ". " + et.getDescription());
             position++;
         }
+        return true;
     }
 
     @Override
     public String headline() {
-        return "* * *  LIST EXPENSE TYPES  * * *\n";    
+        return "LIST EXPENSE TYPES";    
     }
 }

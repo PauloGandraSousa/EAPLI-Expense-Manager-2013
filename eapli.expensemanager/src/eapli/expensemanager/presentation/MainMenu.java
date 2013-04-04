@@ -4,13 +4,14 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.controllers.BaseController;
 import eapli.util.Console;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public class MainMenu {
+public class MainMenu extends BaseUI {
 
     final byte EXIT_OPTION = 0;
     final byte REGISTER_EXPENSE_OPTION = 1;
@@ -21,15 +22,17 @@ public class MainMenu {
     final byte REGISTER_INCOME_TYPE_OPTION = 30;
     final byte LIST_INCOME_TYPES_OPTION = 31;
 
+    @Override
+    public boolean show() {
+        drawFormTitle();
+        return doShow();
+    }
+    
     /**
      *
      * @return true if the user selected the exit option
      */
-    public boolean show() {
-        System.out.println("===================");
-        System.out.println("  EXPENSE MANAGER  ");
-        System.out.println("===================\n");
-
+    public boolean doShow() {
         System.out.println(REGISTER_EXPENSE_OPTION + ". Register an expense");
         System.out.println(LIST_EXPENSES_OPTION + ". List expenses");
         System.out.println(REGISTER_INCOME_OPTION + ". Register an income");
@@ -38,7 +41,7 @@ public class MainMenu {
         System.out.println(LIST_EXPENSE_TYPES_OPTION + ". List expense types");
         System.out.println(REGISTER_INCOME_TYPE_OPTION + ". Register an income type");
         System.out.println(LIST_INCOME_TYPES_OPTION + ". List income types");
-        System.out.println("-------------------");
+        System.out.println("--------------------");
         System.out.println("0. Exit\n\n");
 
         int option = Console.readInteger("Please choose an option");
@@ -78,5 +81,17 @@ public class MainMenu {
                 break;
         }
         return option == 0;
+    }
+
+    static BaseController controller = new BaseController();
+    
+    @Override
+    protected BaseController controller() {
+        return controller;
+    }
+
+    @Override
+    public String headline() {
+        return "EXPENSE MANAGER";
     }
 }

@@ -23,17 +23,19 @@ class ListIncomeTypesUI extends BaseUI {
     }
 
     @Override
-    public void doShow() {
+    public boolean doShow() {
         int position = 1;
         List<IncomeType> listIncomeTypes = controller.getIncomeTypes();
         for (IncomeType et : listIncomeTypes) {
             System.out.println(position + ". " + et.getDescription());
             position++;
         }
+        
+        return true;
     }
 
     @Override
     public String headline() {
-        return "* * *  LIST INCOME TYPES  * * *\n";    
+        return "LIST INCOME TYPES";    
     }
 }

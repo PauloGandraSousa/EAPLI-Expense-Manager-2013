@@ -23,7 +23,7 @@ class ListExpensesUI extends BaseUI {
     }
 
     @Override
-    public void doShow() {
+    public boolean doShow() {
         int position = 1;
         List<Expense> listExpenses = controller.getExpenses();
         for (Expense et : listExpenses) {
@@ -33,10 +33,12 @@ class ListExpensesUI extends BaseUI {
             System.out.println(et.getDescription());
             position++;
         }
+        
+        return true;
     }
 
     @Override
     public String headline() {
-        return "* * *  LIST EXPENSES  * * *\n";    
+        return "LIST EXPENSES";    
     }
 }
