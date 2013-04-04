@@ -6,6 +6,7 @@ package eapli.expensemanager.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,59 +27,96 @@ public class CheckingAccount {
 
     @Id
     @GeneratedValue
-    Long id;
-    String owner;
-    BigDecimal balance;
+    private Long id;
+    private String owner;
+    private BigDecimal balance;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    List<Movement> movements;
+    private List<Movement> movements;
+    
     @Transient
-    Map<Integer, List<Movement>> indexedMovements;
-    final Integer EXPENSE_MOVEMENT_TYPE = new Integer(0);
-    final Integer INCOME_MOVEMENT_TYPE = new Integer(1);
-
+    private List<Expense> expenses;
+    @Transient
+    private List<Income> incomes;
+    @Transient
+    private Map<ExpenseType, List<Expense>> expensesByType;
+    
     public CheckingAccount() {
-        movements = new ArrayList();
-        indexedMovements = new HashMap<Integer, List<Movement>>();
-        indexedMovements.put(INCOME_MOVEMENT_TYPE, new ArrayList<Movement>());
-        indexedMovements.put(EXPENSE_MOVEMENT_TYPE, new ArrayList<Movement>());
+        //movements = new ArrayList();
+        
+        expenses = new ArrayList();
+        incomes = new ArrayList();
 
+        expensesByType = new HashMap<ExpenseType, List<Expense>>();
+        
         // TODO load initial balance
         //balance = new BigDecimal(0);
     }
 
     public BigDecimal totalExpenditure() {
-        List<Movement> theExpenses = indexedMovements.get(EXPENSE_MOVEMENT_TYPE);
-        return sumAmount(theExpenses);
+        return sumAmount(expenses );
     }
 
     public BigDecimal totalEarnings() {
-        List<Movement> theIncomes = indexedMovements.get(INCOME_MOVEMENT_TYPE);
-        return sumAmount(theIncomes);
+        return sumAmount(incomes);
     }
 
     public void registerExpense(Expense expense) {
-        if (expense == null) {
-            throw new IllegalArgumentException();
-        }
-        movements.add(expense);
-        List<Movement> theExpenses = indexedMovements.get(EXPENSE_MOVEMENT_TYPE);
-        theExpenses.add(expense);
+        addMovement(expense);
+        classifyMovementAsExpense(expense);
+        classifyExpense(expense);
     }
 
     public void registerIncome(Income income) {
-        if (income == null) {
-            throw new IllegalArgumentException();
-        }
-        movements.add(income);
-        List<Movement> theIncomes = indexedMovements.get(INCOME_MOVEMENT_TYPE);
-        theIncomes.add(income);
+        addMovement(income);
+        classifyMovementAsIncome(income);
     }
 
-    private BigDecimal sumAmount(List<Movement> theMovements) {
+    private BigDecimal sumAmount(List<? extends Movement> theMovements) {
         BigDecimal sum = new BigDecimal(0);
         for (Movement e : theMovements) {
             sum = sum.add(e.getAmount());
         }
         return sum;
+    }
+
+    private void classifyMovementAsExpense(Expense expense) {
+        expenses.add(expense);
+    }
+
+    private void classifyExpense(Expense expense) {
+        List<Expense> theExpenses = expensesByType.get(expense.getExpenseType());
+        if (theExpenses == null) {
+            theExpenses = new ArrayList<Expense>();
+            expensesByType.put(expense.getExpenseType(), theExpenses);
+        }
+        theExpenses.add(expense);
+    }
+
+    private void classifyMovementAsIncome(Income income) {
+        incomes.add(income);
+    }
+    
+    public List<Movement> getMovements() {
+        return Collections.unmodifiableList(movements);
+    }
+    
+    public List<Expense> getExpenses() {
+        return Collections.unmodifiableList(expenses);
+    }
+    
+    public List<Income> getIncomes() {
+        return Collections.unmodifiableList(incomes);
+    }
+    
+    public Map<ExpenseType, List<Expense>> getExpensesClassifiedByExpenseType() {
+        return Collections.unmodifiableMap(expensesByType);
+    }
+
+    private void addMovement(Movement movement) throws IllegalArgumentException {
+        if (movement == null) {
+            throw new IllegalArgumentException();
+        }
+        
+        movements.add(movement);
     }
 }

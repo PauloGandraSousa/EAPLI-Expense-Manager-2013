@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.bootstrap.Bootstrap;
+
 /**
  *
  * @author Paulo Gandra Sousa

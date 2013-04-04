@@ -36,4 +36,9 @@ public class ExpenseTypeRepositoryImpl extends HibernateRepository<ExpenseType, 
         }
         return expenseType;
     }
+
+    @Override
+    public ExpenseType findForName(String key) {
+        return super.read(key);
+    }
 }
