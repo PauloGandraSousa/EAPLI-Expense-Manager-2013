@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
+@Deprecated
 public class ExpenseRecord {
     List<Expense> theExpenses;
     
