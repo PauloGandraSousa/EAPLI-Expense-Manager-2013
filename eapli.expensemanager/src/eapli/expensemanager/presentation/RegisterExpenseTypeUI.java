@@ -15,13 +15,15 @@ import eapli.util.Console;
 public class RegisterExpenseTypeUI extends BaseUI {
 
     @Override
-    public void doShow() {
+    public boolean doShow() {
         String shortName = Console.readLine("Short name:");
         String descr = Console.readLine("Description:");
 
         controller.registerExpenseType(shortName, descr);
 
         System.out.println("\nExpense type recorded!");
+        
+        return true;
     }
     RegisterExpenseTypeController controller = new RegisterExpenseTypeController();
 
@@ -32,6 +34,6 @@ public class RegisterExpenseTypeUI extends BaseUI {
 
     @Override
     public String headline() {
-        return "* * *  REGISTER AN EXPENSE TYPE  * * *\n";
+        return "REGISTER AN EXPENSE TYPE";
     }
 }

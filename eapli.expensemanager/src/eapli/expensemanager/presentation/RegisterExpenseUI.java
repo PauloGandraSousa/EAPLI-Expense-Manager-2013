@@ -19,11 +19,11 @@ import java.util.List;
 class RegisterExpenseUI extends BaseUI {
     @Override
     public String headline() {
-        return "* * *  REGISTER AN EXPENSE  * * *\n";        
+        return "REGISTER AN EXPENSE";        
     }
     
     @Override
-    public void doShow() {
+    public boolean doShow() {
         String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");
@@ -42,6 +42,8 @@ class RegisterExpenseUI extends BaseUI {
         controller.registerExpense(what, date, amount, listExpenseTypes.get(option));
           
         System.out.println("\nExpense recorded!");
+        
+        return true;
     }
 
             RegisterExpenseController controller = new RegisterExpenseController();

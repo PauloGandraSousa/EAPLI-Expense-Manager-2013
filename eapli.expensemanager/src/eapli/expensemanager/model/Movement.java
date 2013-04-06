@@ -25,7 +25,7 @@ public abstract class Movement {
 
     @Id
     @GeneratedValue
-    long id;
+    private long id;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOcurred;

@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.bootstrap.Bootstrap;
+
 /**
  *
  * @author Paulo Gandra Sousa
@@ -14,10 +16,9 @@ public class ExpenseManager {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
         Bootstrap bootstrap = new Bootstrap();
         
         MainMenu menu = new MainMenu();
-        menu.mainLoop();
+        menu.mainLoop();        
     }
 }

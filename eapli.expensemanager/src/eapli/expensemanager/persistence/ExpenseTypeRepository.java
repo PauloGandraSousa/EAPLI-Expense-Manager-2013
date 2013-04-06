@@ -15,6 +15,8 @@ public interface ExpenseTypeRepository {
 
     //ExpenseType findOrCreate(String key, String description);
 
+    ExpenseType findForName(String key);
+    
     ExpenseType save(ExpenseType expenseType);
 
     public List<ExpenseType> all();

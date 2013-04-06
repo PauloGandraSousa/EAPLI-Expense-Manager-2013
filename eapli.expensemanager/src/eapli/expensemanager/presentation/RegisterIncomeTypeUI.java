@@ -15,13 +15,15 @@ import eapli.util.Console;
 public class RegisterIncomeTypeUI extends BaseUI {
 
     @Override
-    public void doShow() {
+    public boolean doShow() {
         String shortName = Console.readLine("Short name:");
         String descr = Console.readLine("Description:");
 
         controller.registerIncomeType(shortName, descr);
 
         System.out.println("\nIncome type recorded!");
+        
+        return true;
     }
     
     RegisterIncomeTypeController controller = new RegisterIncomeTypeController();
@@ -33,6 +35,6 @@ public class RegisterIncomeTypeUI extends BaseUI {
 
     @Override
     public String headline() {
-        return "* * *  REGISTER AN EXPENSE TYPE  * * *\n";
+        return "REGISTER AN EXPENSE TYPE";
     }
 }

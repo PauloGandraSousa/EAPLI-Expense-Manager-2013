@@ -25,7 +25,7 @@ class RegisterIncomeUI extends BaseUI {
     RegisterIncomeController controller = new RegisterIncomeController();
 
     @Override
-    public void doShow() {
+    public boolean doShow() {
         String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");
@@ -45,10 +45,11 @@ class RegisterIncomeUI extends BaseUI {
 
         System.out.println("\nIncome recorded!");
 
+        return true;
     }
 
     @Override
     public String headline() {
-        return "* * *  REGISTER AN INCOME  * * *\n";
+        return "REGISTER AN INCOME";
     }
 }

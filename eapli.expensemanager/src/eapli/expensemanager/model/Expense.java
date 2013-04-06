@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Expense extends Movement {
     @ManyToOne(cascade = CascadeType.MERGE)
-    ExpenseType type;
+    private ExpenseType type;
     
     protected Expense() {}
     
@@ -32,5 +32,9 @@ public class Expense extends Movement {
     
     public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount) {
         this(type, description, DateTime.newDate(year, month, day), amount);
+    }
+
+    public ExpenseType getExpenseType() {
+        return type;
     }
 }

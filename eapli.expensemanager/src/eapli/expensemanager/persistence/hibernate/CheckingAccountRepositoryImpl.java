@@ -14,7 +14,7 @@ import java.util.Iterator;
  * @author Paulo Gandra Sousa
  */
 public class CheckingAccountRepositoryImpl extends HibernateRepository<CheckingAccount, Long> implements CheckingAccountRepository {
-   
+  
     @Override
     public CheckingAccount theAccount() {
         Collection<CheckingAccount> accounts = super.findAll();
@@ -25,4 +25,6 @@ public class CheckingAccountRepositoryImpl extends HibernateRepository<CheckingA
         Iterator<CheckingAccount> iterator = accounts.iterator();
         return iterator.next();
     }
+    
+    
 }
