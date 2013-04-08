@@ -33,6 +33,7 @@ public class RegisterExpenseController extends BaseController {
     }
 
     public List<ExpenseType> getExpenseTypes() {
+        // use the existing controller to avoid duplication
         ListExpenseTypesController listExpenseTypesController = new ListExpenseTypesController();
         return listExpenseTypesController.getExpenseTypes();
     }

@@ -16,7 +16,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 
 /**
- *
+ * the base movement class.
+ * to be extended for concrete movement types such as Expense or Income
+ * 
  * @author Paulo Gandra Sousa
  */
 @Entity

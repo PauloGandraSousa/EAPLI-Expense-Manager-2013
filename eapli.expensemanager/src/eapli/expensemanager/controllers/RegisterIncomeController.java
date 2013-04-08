@@ -29,6 +29,7 @@ public class RegisterIncomeController extends BaseController {
     }
         
     public List<IncomeType> getIncomeTypes() {
+        // use existing controller to avoid duplication
         ListIncomeTypesController listIncomeTypesController = new ListIncomeTypesController();
         return listIncomeTypesController.getIncomeTypes();
     }
