@@ -27,7 +27,7 @@ public class RegisterExpenseController extends BaseController {
         Expense expense = new Expense(expenseType, what, date, amount);
         //ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
         CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
-        CheckingAccount account = repo.theAccount();
+        CheckingAccount account = repo.theAccount(); 
         account.registerExpense(expense);
         repo.save(account);
     }
