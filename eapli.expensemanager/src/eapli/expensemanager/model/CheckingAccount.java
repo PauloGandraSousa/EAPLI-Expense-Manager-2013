@@ -60,11 +60,7 @@ public class CheckingAccount {
         return sumAmount(incomes);
     }
 
-    public void registerExpense(Expense expense) {
-        addMovement(expense);
-        classifyMovementAsExpense(expense);
-        classifyExpense(expense);
-    }
+    
 
     public void registerIncome(Income income) {
         addMovement(income);
@@ -78,6 +74,14 @@ public class CheckingAccount {
         }
         return sum;
     }
+
+    
+    public void registerExpense(Expense expense) {
+        addMovement(expense);
+        classifyMovementAsExpense(expense);
+        classifyExpense(expense);
+    }
+
 
     private void classifyMovementAsExpense(Expense expense) {
         expenses.add(expense);

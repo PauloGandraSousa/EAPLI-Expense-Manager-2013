@@ -33,7 +33,7 @@ public abstract class BaseUI {
         drawFormTitle();
         boolean wantsToExit = doShow();
         showBalances();
-        Console.waitForKey("Press any key.");
+    //    Console.waitForKey("Press any key.");
         
         return wantsToExit;
     }
