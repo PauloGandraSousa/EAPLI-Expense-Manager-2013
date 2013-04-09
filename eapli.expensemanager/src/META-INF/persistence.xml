@@ -10,11 +10,19 @@
     <class>eapli.expensemanager.model.Income</class>
     <class>eapli.expensemanager.model.Movement</class>
     <properties>
+        <!--
       <property name="hibernate.connection.username" value="app"/>
       <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="hibernate.connection.password" value="app"/>
       <property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/sample"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
+      -->
+      <property name="hibernate.connection.username" value="app"/>
+      <property name="hibernate.connection.driver_class" value="org.sqlite.JDBC"/>
+      <property name="hibernate.connection.password" value="app"/>
+      <property name="hibernate.connection.url" value="jdbc:sqlite:../db/sqlite.db"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.dialect" value="com.applerao.hibernatesqlite.dialect.SQLiteDialect"/> 
     </properties>
   </persistence-unit>
 </persistence>
