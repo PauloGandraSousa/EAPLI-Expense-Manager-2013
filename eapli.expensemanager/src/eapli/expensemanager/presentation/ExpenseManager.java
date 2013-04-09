@@ -17,7 +17,7 @@ public class ExpenseManager {
      */
     public static void main(String[] args) {
         // call the bootstraper
-        // the netx line should be removed for "production" ready deployment
+        // the next line should be removed for "production" ready deployment
         Bootstrap bootstrap = new Bootstrap();
         
         MainMenu menu = new MainMenu();
