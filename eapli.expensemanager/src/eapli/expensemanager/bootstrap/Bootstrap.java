@@ -11,10 +11,29 @@ import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PersistenceRegistry;
 
 /**
- *
+ * this classes serves as bootstrap data loader. just to make sure some data exists
+ * in order to use the system
+ * it should be removed for "production-ready" deployment
+ * 
  * @author Paulo Gandra Sousa
  */
 public class Bootstrap {
+
+    private static void ensureClothingExpenseTypeExists(ExpenseTypeRepository repo) {
+        ExpenseType clothing = repo.findForName(CLOTHING_EXPENSE_TYPE);
+        if (clothing == null) {
+            clothing = new ExpenseType(CLOTHING_EXPENSE_TYPE, CLOTHING_EXPENSE_TYPE_DESC);
+            repo.save(clothing);
+        }
+    }
+
+    private static void ensureTransportsExpenseTypeExists(ExpenseTypeRepository repo) {
+        ExpenseType transports = repo.findForName(TRANSPORTS_EXPENSE_TYPE);
+        if (transports == null) {
+            transports = new ExpenseType(TRANSPORTS_EXPENSE_TYPE, TRANSPORTS_EXPENSE_TYPE_DESC);
+            repo.save(transports);
+        }
+    }
     
     public Bootstrap() {
     }
@@ -42,17 +61,7 @@ public class Bootstrap {
     
     private static void ensureDefaultExpenseTypesExist() {
         ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
-        
-        ExpenseType clothing = repo.findForName(CLOTHING_EXPENSE_TYPE);
-        if (clothing == null) {
-            clothing = new ExpenseType(CLOTHING_EXPENSE_TYPE, CLOTHING_EXPENSE_TYPE_DESC);
-            repo.save(clothing);
-        }
-
-        ExpenseType transports = repo.findForName(TRANSPORTS_EXPENSE_TYPE);
-        if (transports == null) {
-            transports = new ExpenseType(TRANSPORTS_EXPENSE_TYPE, TRANSPORTS_EXPENSE_TYPE_DESC);
-            repo.save(transports);
-        }
+        ensureClothingExpenseTypeExists(repo);
+        ensureTransportsExpenseTypeExists(repo);
     }
 }

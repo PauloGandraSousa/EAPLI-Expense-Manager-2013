@@ -12,16 +12,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- *
+ * the base controler class for all controllers
+ * 
  * @author Paulo Gandra Sousa
  */
 public class BaseController {
     /**
      * gets the expenditure of the current week
-     * this method asks the repository to recreate the expense record of the desired week
-     * and performs the calculation in memory
      * 
-     * @return 
+     * this method follows an "OO approach" by asking the repository to recreate the 
+     * expense record of the desired week and performs the calculation in memory
+     * 
+     * @return the total expenditure of the current week
      */
     public BigDecimal getThisWeekExpenditure() {
         ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
@@ -36,8 +38,11 @@ public class BaseController {
     
     /**
      * gets the expenditure of the current month
-     * this methods relies on the repository to do the calculation
-     * @return 
+     * 
+     * this methods relies on the repository to do the calculation. for performance reasons this type of
+     * aggregated calculations can be done directly by the database/persistence layer
+     * 
+     * @return the total expenditure of the current month
      */
     public BigDecimal getThisMonthExpenditure() {
         ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();

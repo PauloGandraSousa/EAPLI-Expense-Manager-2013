@@ -10,7 +10,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 /**
- *
+ * a base class for factoring out the common parts of ExpenseType and IcomeType
+ * 
  * @author Paulo Gandra Sousa
  */
 @Entity

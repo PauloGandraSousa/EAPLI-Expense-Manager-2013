@@ -5,6 +5,7 @@
 package eapli.util;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -103,5 +104,14 @@ public class Console {
                 Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
             }
         } while (true);
+    }
+
+    public static void waitForKey(String prompt) {
+        System.out.println(prompt);
+        try {
+        System.in.read();
+        } catch(IOException ex) {
+                Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);            
+        }
     }
 }
