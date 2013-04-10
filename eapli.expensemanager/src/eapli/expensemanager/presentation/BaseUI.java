@@ -49,12 +49,14 @@ public abstract class BaseUI {
     }
 
     protected void drawFormTitle() {
+        System.out.println();
         drawFormTitle(headline());
         System.out.println();
     }
 
     protected void drawFormBorder() {
         System.out.println(BORDER);
+        System.out.println();
     }
 
     protected void drawFormSeparator() {
