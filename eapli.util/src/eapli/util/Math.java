@@ -14,4 +14,10 @@ public class Math {
     public static boolean isEven(int i) { return i % 2 == 0; }
     
     public static int addOne(int n) { return n+1; }
+    
+    public static int subtractOne ( int i)
+    {
+        return i-1;
+        
+    }
 }

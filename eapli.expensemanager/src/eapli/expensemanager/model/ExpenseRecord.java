@@ -25,7 +25,7 @@ public class ExpenseRecord {
     public ExpenseRecord(List<Expense> expenses) {
         theExpenses = expenses;
     }
-            
+             
     public BigDecimal getExpenditure() {
         BigDecimal expenditure = new BigDecimal(0);
         for (Expense e : theExpenses) {
