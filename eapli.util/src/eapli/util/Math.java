@@ -12,4 +12,6 @@ public class Math {
     public static boolean isOdd(int i) { return i % 2 != 0; }
     
     public static boolean isEven(int i) { return i % 2 == 0; }
+    
+    public static int addOne(int n) { return n+1; }
 }
