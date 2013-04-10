@@ -9,6 +9,12 @@ package eapli.util;
  * @author Paulo Gandra Sousa
  */
 public class Math {
+    /**
+     * determines if a number is odd
+     * 
+     * @param i
+     * @return 
+     */
     public static boolean isOdd(int i) { return i % 2 != 0; }
     
     public static boolean isEven(int i) { return i % 2 == 0; }
