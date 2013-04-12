@@ -11,10 +11,12 @@ import eapli.expensemanager.model.CheckingAccount;
  * @author Paulo Gandra Sousa
  */
 public interface CheckingAccountRepository {
-    
-    /***
-     * 
-     * @return the one and only account
+
+    /**
+     * Quando uma classe é persistente, temos de garantir que o retorno da base
+     * de dados será sempre um e apenas um objecto, daí o nome theAccount
+     *
+     * @return the one and only accountƒ
      */
     public CheckingAccount theAccount();
 
