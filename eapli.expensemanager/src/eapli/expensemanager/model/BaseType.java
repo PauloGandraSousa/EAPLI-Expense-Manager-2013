@@ -18,7 +18,7 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class BaseType {
     @Id
-    String id;
+    String shortName;
     String description;
 
     protected BaseType(){}
@@ -31,12 +31,12 @@ public abstract class BaseType {
             throw new IllegalArgumentException();
         }
 
-        this.id = key;
+        this.shortName = key;
         this.description = description;
     }
 
     public String getId() {
-        return id;
+        return shortName;
     }
 
     public String getDescription() {
