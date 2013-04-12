@@ -20,6 +20,7 @@ several discussions migth be raised:
 5) factoring out common behaviour, e.g., IncomeType & ExpenseType, Income & Expense
 6) having the explicit concept of account or not
 7) initial balance of the account
+8) can controllers call other controllers?
 
 
 --------------------------------------------------------------------------
