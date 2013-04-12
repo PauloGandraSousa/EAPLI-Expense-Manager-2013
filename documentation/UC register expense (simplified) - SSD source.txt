@@ -1,0 +1,5 @@
+title register expense (simplified)
+
+User -> System: enter amount
+User -> System: enter description
+User -> System: register expense

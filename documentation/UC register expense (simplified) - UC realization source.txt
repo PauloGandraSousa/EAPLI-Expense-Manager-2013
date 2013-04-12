@@ -1,0 +1,12 @@
+title register expense (simplified)
+
+User -> +MenuUI: choose option "register expense"
+MenuUI -> +RegisterExpenseUI : create
+RegisterExpenseUI -> RegisterExpenseController: create
+RegisterExpenseUI --> -MenuUI:
+User -> RegisterExpenseUI: enter amount
+User -> RegisterExpenseUI: enter description
+User -> +RegisterExpenseUI: register expense
+RegisterExpenseUI -> +RegisterExpenseController: register expense (amount, descr)
+RegisterExpenseController -> exp Expense : create(amount, descr)
+RegisterExpenseController -> ExpenseRepository: save(exp)
