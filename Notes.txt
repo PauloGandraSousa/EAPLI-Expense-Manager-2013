@@ -16,6 +16,7 @@ several discussions migth be raised:
 10) have a single collection of movements or two separate colections for expenses and another for incomes?
 
 
+
 --------------------------------------------------------------------------
 1) which layers
 --------------------------------------------------------------------------
