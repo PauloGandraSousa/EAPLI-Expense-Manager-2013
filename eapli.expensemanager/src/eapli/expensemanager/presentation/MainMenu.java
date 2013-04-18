@@ -17,6 +17,7 @@ public class MainMenu extends BaseUI {
     final byte REGISTER_EXPENSE_OPTION = 1;
     final byte LIST_EXPENSES_OPTION = 2;
     final byte REGISTER_INCOME_OPTION = 3;
+    final byte LIST_EXPENSES_PER_TYPE_OPTION = 6;
     final byte REGISTER_EXPENSE_TYPE_OPTION = 20;
     final byte LIST_EXPENSE_TYPES_OPTION = 21;
     final byte REGISTER_INCOME_TYPE_OPTION = 30;
@@ -36,6 +37,7 @@ public class MainMenu extends BaseUI {
         System.out.println(REGISTER_EXPENSE_OPTION + ". Register an expense");
         System.out.println(LIST_EXPENSES_OPTION + ". List expenses");
         System.out.println(REGISTER_INCOME_OPTION + ". Register an income");
+        System.out.println(LIST_EXPENSES_PER_TYPE_OPTION + ". List expenses per type");
         System.out.println("--- master tables ---");
         System.out.println(REGISTER_EXPENSE_TYPE_OPTION + ". Register an expense type");
         System.out.println(LIST_EXPENSE_TYPES_OPTION + ". List expense types");
@@ -55,6 +57,10 @@ public class MainMenu extends BaseUI {
             case LIST_EXPENSES_OPTION:
                 ListExpensesUI listExpensesUI = new ListExpensesUI();
                 listExpensesUI.show();
+                break;
+            case LIST_EXPENSES_PER_TYPE_OPTION:
+                ListExpensesUIPerType listExpensesUIPerType = new ListExpensesUIPerType();
+                listExpensesUIPerType.show();
                 break;
             case REGISTER_EXPENSE_TYPE_OPTION:
                 RegisterExpenseTypeUI registerExpenseTypeUI = new RegisterExpenseTypeUI();
