@@ -14,8 +14,8 @@ several discussions migth be raised:
 8) can controllers call other controllers?
 9) Lazy load and filtering of the movements collection (CheckingAccount)
 10) have a single collection of movements or two separate colections for expenses and another for incomes?
-11) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
-12) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
 
 --------------------------------------------------------------------------
 1) which layers
@@ -88,6 +88,7 @@ see alternative B in picture "package diagrams"
 --------------------------------------------------------------------------
 
 
+
 --------------------------------------------------------------------------
 9) Lazy load and filtering of the movements collection (CheckingAccount)
 --------------------------------------------------------------------------
@@ -99,16 +100,14 @@ see alternative B in picture "package diagrams"
 
 
 --------------------------------------------------------------------------
-11) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
+11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
 --------------------------------------------------------------------------
 
-should the rules for the Creator pattern be fully enforced, e.g., the responsibility to 
+
+--------------------------------------------------------------------------
+12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
+--------------------------------------------------------------------------
+
+should the rules fo rth eCreator pattern be fully enforced, e.g., the responsibility to 
 create a Payment should be of Expense, or can the controller/UI create a Payment and pass it
 to the Expense?
-
-
---------------------------------------------------------------------------
-12) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
---------------------------------------------------------------------------
-
-
