@@ -19,5 +19,7 @@ public interface PersistenceStrategy {
     IncomeRepository incomeRepository();
 
     IncomeTypeRepository incomeTypeRepository();
+
+    public PaymentMethodRepository paymentMethodRepository();
     
 }

@@ -4,17 +4,20 @@
  */
 package eapli.expensemanager.bootstrap;
 
+import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
+import eapli.expensemanager.persistence.PaymentMethodRepository;
 import eapli.expensemanager.persistence.PersistenceRegistry;
+import javax.persistence.NoResultException;
 
 /**
- * this classes serves as bootstrap data loader. just to make sure some data exists
- * in order to use the system
- * it should be removed for "production-ready" deployment
- * 
+ * this classes serves as bootstrap data loader. just to make sure some data
+ * exists in order to use the system it should be removed for "production-ready"
+ * deployment
+ *
  * @author Paulo Gandra Sousa
  */
 public class Bootstrap {
@@ -34,31 +37,39 @@ public class Bootstrap {
             repo.save(transports);
         }
     }
-    
+
+    private static void ensureCashEurExists() {
+        try {
+            Cash cashEur = Cash.loadEUR();
+        } catch (NoResultException ex) {
+            Cash cashEur = new Cash(Cash.EUR);
+            cashEur.save();
+        }
+    }
+
     public Bootstrap() {
     }
 
     static {
         ensureTheAccountExists();
         ensureDefaultExpenseTypesExist();
+        ensureCashEurExists();
     }
 
     private static void ensureTheAccountExists() {
         CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
         try {
             CheckingAccount theAccount = repo.theAccount();
-        }
-        catch (IllegalStateException ex) {
+        } catch (IllegalStateException ex) {
             CheckingAccount theAccount = new CheckingAccount();
             repo.save(theAccount);
         }
     }
-    
     final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
     final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
     final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
     final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
-    
+
     private static void ensureDefaultExpenseTypesExist() {
         ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
         ensureClothingExpenseTypeExists(repo);
