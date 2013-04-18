@@ -20,18 +20,22 @@ public class Expense extends Movement {
     @ManyToOne(cascade = CascadeType.MERGE)
     private ExpenseType type;
     
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Payment payment;
+    
     protected Expense() {}
     
-    public Expense(ExpenseType type, String description, Date dateOccurred, BigDecimal amount) {
+    public Expense(ExpenseType type, String description, Date dateOccurred, BigDecimal amount, Payment payment) {
         super(description, dateOccurred, amount);
-        if (type == null) {
+        if (type == null || payment == null) {
             throw new IllegalArgumentException();
         }
         this.type = type;
+        this.payment = payment;
     }
     
-    public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount) {
-        this(type, description, DateTime.newDate(year, month, day), amount);
+    public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount, Payment payment) {
+        this(type, description, DateTime.newDate(year, month, day), amount, payment);
     }
 
     public ExpenseType getExpenseType() {

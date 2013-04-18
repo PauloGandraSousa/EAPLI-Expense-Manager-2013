@@ -11,7 +11,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -43,11 +42,11 @@ public class ExpenseTest {
 
         @Test(expected = IllegalArgumentException.class)
     public void testNegativeAmmountExpensesAreNotAllowed() {
-        Expense expense = new Expense(new ExpenseType(), "aaa", new Date(), MINUS_ONE);
+        Expense expense = new Expense(new ExpenseType(), "aaa", new Date(), MINUS_ONE, new Payment(new Cash()));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNullExpenseTypesAreNotAllowed() {
-        Expense expense = new Expense(null, "aaa", new Date(), ONE);
+        Expense expense = new Expense(null, "aaa", new Date(), ONE, new Payment(new Cash()));
     }
 }
