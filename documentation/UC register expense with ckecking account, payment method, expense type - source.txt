@@ -1,0 +1,38 @@
+title register expense
+
+User -> RegisterExpenseUI: enter amount
+User -> RegisterExpenseUI: enter description
+
+User -> RegisterExpenseUI: enter date
+
+RegisterExpenseUI -> RegisterExpenseController : getExpenseTypes
+
+RegisterExpenseController -> ListExpenseTypeController : getExpenseTypes
+
+ListExpenseTypeController -> ExpenseTypeRepository : all
+
+RegisterExpenseUI -> RegisterExpenseUI : show expense types
+
+User -> RegisterExpenseUI : select expense type
+
+RegisterExpenseUI -> RegisterExpenseController : getPaymentMethods
+
+RegisterExpenseController -> PaymentMethod.class : loadAll
+
+PaymentMethod.class -> PaymentMethodDAO : findAll
+
+RegisterExpenseUI -> RegisterExpenseUI : show payment methods
+
+User -> +RegisterExpenseUI: register expense
+
+RegisterExpenseUI -> +RegisterExpenseController: register expense
+ 
+RegisterExpenseController -> CheckingAccountRepository : theAccount
+
+CheckingAccountRepository -> account CheckingAccount : "select"
+
+RegisterExpenseController -> account CheckingAccount : registerExpense
+
+account CheckingAccount -> account CheckingAccount : addExpense
+
+RegisterExpenseController -> checkingAccountRepository: save(account)
