@@ -17,13 +17,14 @@ import java.util.List;
  */
 public class ListExpensesController extends BaseController {
 
+    /*
     public List<Expense> getExpenses() {
         ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
         return repo.all();
-    }    
+    } 
+    */
     
-    // TODO change method name when finished playing around :-)
-    List<Expense> getExpenses2() {
+    public List<Expense> getExpenses() {
         CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
         return account.getExpenses();

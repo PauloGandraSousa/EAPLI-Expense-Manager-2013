@@ -19,6 +19,7 @@ public class IncomeTypeRepositoryImpl implements IncomeTypeRepository {
     
     @Override
     public IncomeType save(IncomeType incomeType) {
+        // TODO check if we alreay know this object or add it if not
         incomeTypes.add(incomeType);
         return incomeType;
     }

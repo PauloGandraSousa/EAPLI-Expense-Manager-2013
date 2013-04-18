@@ -24,6 +24,7 @@ class ListExpensesUI extends BaseUI {
 
     @Override
     public boolean doShow() {
+        // FIX avoid duplicate code with ListIncomeUI
         int position = 1;
         List<Expense> listExpenses = controller.getExpenses();
         for (Expense et : listExpenses) {
