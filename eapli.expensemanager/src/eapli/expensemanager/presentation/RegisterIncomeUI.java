@@ -41,7 +41,9 @@ class RegisterIncomeUI extends BaseUI {
         }
         int option = Console.readOption(1, position, 0);
 
-        controller.registerIncome(what, date, amount, listIncomeTypes.get(option));
+        //NMB: corrigida a questão do index das receitas que não permitia obter 
+        // o primeiro tipo de receita
+        controller.registerIncome(what, date, amount, listIncomeTypes.get(option-1));
 
         System.out.println("\nIncome recorded!");
 
