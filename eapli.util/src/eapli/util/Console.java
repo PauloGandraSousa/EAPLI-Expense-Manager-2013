@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -84,6 +85,22 @@ public class Console {
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 
                 Date date = df.parse(strDate);
+
+                return date;
+            } catch (ParseException ex) {
+                Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } while (true);
+    }
+
+    static public Calendar readCalendar(String prompt) {
+        do {
+            try {
+                String strDate = readLine(prompt);
+
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+
+                Calendar date = DateTime.dateToCalendar(df.parse(strDate));
 
                 return date;
             } catch (ParseException ex) {
