@@ -5,7 +5,7 @@
 package eapli.expensemanager.model;
 
 import eapli.expensemanager.persistence.PaymentMethodRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -30,7 +30,7 @@ public class Cash extends PaymentMethod {
     }
     
     public static Cash loadEUR() {
-        PaymentMethodRepository repo = PersistenceRegistry.instance().paymentMethodRepository();
+        PaymentMethodRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMethodRepository();
         return repo.getCash(EUR);
     }
     

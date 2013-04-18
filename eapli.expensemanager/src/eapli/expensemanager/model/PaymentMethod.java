@@ -6,7 +6,7 @@ package eapli.expensemanager.model;
 
 import eapli.expensemanager.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.PaymentMethodRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.Entity;
@@ -20,7 +20,7 @@ import javax.persistence.InheritanceType;
  * 
  * this class hierarchy follows an Active Record pattern by having the load/save 
  * methods in the class' interface. in this case, controllers are NOT to call
- * the repository; the class will be responsible for calling the repository
+ * the repository; the class will be responsible for calling the repository/DAO
  * 
  * @author Paulo Gandra Sousa
  */
@@ -36,12 +36,12 @@ public abstract class PaymentMethod implements ActiveRecord, Descriptable {
     
     @Override
     public void save() {
-        PaymentMethodRepository repo = PersistenceRegistry.instance().paymentMethodRepository();
+        PaymentMethodRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMethodRepository();
         repo.save(this);
     }
     
     public static List<PaymentMethod> loadAll() {
-        PaymentMethodRepository repo = PersistenceRegistry.instance().paymentMethodRepository();
+        PaymentMethodRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMethodRepository();
         return repo.all();
     }
     

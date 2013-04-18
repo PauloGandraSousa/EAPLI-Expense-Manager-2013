@@ -9,7 +9,7 @@ import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import java.util.List;
 
 /**
@@ -26,7 +26,7 @@ public class ListIncomesController extends BaseController {
     */
     
     public List<Income> getIncomes() {
-        CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
         return account.getIncomes();
     }

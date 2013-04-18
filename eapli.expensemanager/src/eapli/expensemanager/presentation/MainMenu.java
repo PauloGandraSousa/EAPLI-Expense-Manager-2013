@@ -13,6 +13,10 @@ import eapli.util.Console;
  */
 public class MainMenu extends BaseUI {
 
+    // TODO restructure this class to use the Composite pattern and allow for 
+    // flexible menu and submenu structure
+    // use command pattenr for each action
+    
     final byte EXIT_OPTION = 0;
     final byte REGISTER_EXPENSE_OPTION = 1;
     final byte LIST_EXPENSES_OPTION = 2;

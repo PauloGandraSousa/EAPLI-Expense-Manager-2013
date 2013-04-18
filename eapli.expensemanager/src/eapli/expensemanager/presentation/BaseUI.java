@@ -16,10 +16,31 @@ public abstract class BaseUI {
     public static final String SEPARATOR = "+---------------------------------------------------------------------------------+";
     public static final String    BORDER = "+=================================================================================+";
     
-    // derived classes should provide the controller object
+    /**
+     * derived classes should provide the controller object
+     * 
+     * an example of the Factory Method and Template Method patterns
+     * 
+     * @return 
+     */
     protected abstract BaseController controller();
     
+    /**
+     * derived classes should override this method to perform the actual rendering
+     * of the UI
+     * 
+     * follows the Template Method pattern
+     * 
+     * @return 
+     */
     protected abstract boolean doShow();
+    
+    /**
+     * derived classes should override this method to provide the title of the 
+     * "window"
+     * 
+     * @return 
+     */
     public abstract String headline();
     
     public void mainLoop() {
@@ -40,11 +61,12 @@ public abstract class BaseUI {
     
     public void showBalances() {
         drawFormSeparator();
-        System.out.print("| this week expenditure: ");
+        System.out.print("| expenditure - this week: ");
         System.out.print(NumberFormat.getCurrencyInstance().format( controller().getThisWeekExpenditure()));
-        System.out.print(" | ");
-        System.out.print("this month expenditure: ");
+        System.out.print(" - ");
+        System.out.print("this month: ");
         System.out.println(NumberFormat.getCurrencyInstance().format( controller().getThisMonthExpenditure()));
+        System.out.print(" | ");
         drawFormBorder();
     }
 
@@ -63,7 +85,7 @@ public abstract class BaseUI {
         System.out.println(SEPARATOR);
     }
 
-    private void drawFormTitle(String title) {
+    protected void drawFormTitle(String title) {
         String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.substring(4+title.length());
         System.out.println(titleBorder);
     }

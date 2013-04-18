@@ -10,7 +10,7 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PaymentMethodRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import javax.persistence.NoResultException;
 
 /**
@@ -57,7 +57,7 @@ public class Bootstrap {
     }
 
     private static void ensureTheAccountExists() {
-        CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         try {
             CheckingAccount theAccount = repo.theAccount();
         } catch (IllegalStateException ex) {
@@ -65,13 +65,14 @@ public class Bootstrap {
             repo.save(theAccount);
         }
     }
+    
     final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
     final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
     final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
     final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
 
     private static void ensureDefaultExpenseTypesExist() {
-        ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
+        ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
         ensureClothingExpenseTypeExists(repo);
         ensureTransportsExpenseTypeExists(repo);
     }

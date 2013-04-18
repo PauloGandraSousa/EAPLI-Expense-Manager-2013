@@ -26,6 +26,7 @@ class RegisterIncomeUI extends BaseUI {
 
     @Override
     public boolean doShow() {
+        // TODO remove duplicate code with RegisterExpenseUI
         String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");
@@ -33,7 +34,7 @@ class RegisterIncomeUI extends BaseUI {
 
         System.out.println("-- INCOME TYPES --");    
         // TODO remove duplicated code block also present in ListIncomeTypesUI
-                int position = 1;
+        int position = 1;
         List<IncomeType> listIncomeTypes = controller.getIncomeTypes();
         for (IncomeType et : listIncomeTypes) {
             System.out.println(position + ". " + et.getDescription());
