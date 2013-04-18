@@ -15,7 +15,7 @@ several discussions migth be raised:
 9) Lazy load and filtering of the movements collection (CheckingAccount)
 10) have a single collection of movements or two separate colections for expenses and another for incomes?
 11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
-
+12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
 
 --------------------------------------------------------------------------
 1) which layers
@@ -45,12 +45,14 @@ from the repository, asking the domain objects to perform the business logic and
 them back to the repository. in this case, the domain objects can "easily" be tested as 
 they do not depend on any other package
 
-see alternative A in picture
+see alternative A in picture "package diagrams"
+
 
 in the second case, the controller asks the domain object class to load a certain instance,
 asks that object to perform the business operation and then asks the object to save itself
 back to the database
 
+see alternative B in picture "package diagrams"
 
 --------------------------------------------------------------------------
 3) passing domain objects to the UI or not 
@@ -84,3 +86,27 @@ back to the database
 8) can controllers call other controllers?
 --------------------------------------------------------------------------
 
+
+
+--------------------------------------------------------------------------
+9) Lazy load and filtering of the movements collection (CheckingAccount)
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+10) have a single collection of movements or two separate colections for expenses and another for incomes?
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
+--------------------------------------------------------------------------
+
+should the rules fo rth eCreator pattern be fully enforced, e.g., the responsibility to 
+create a Payment should be of Expense, or can the controller/UI create a Payment and pass it
+to the Expense?
