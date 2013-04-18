@@ -44,6 +44,7 @@ in the first case, the controller is responsible for obtaining the domain object
 from the repository, asking the domain objects to perform the business logic and then pass
 them back to the repository. in this case, the domain objects can "easily" be tested as 
 they do not depend on any other package
+this gets trickier whe we need/want ot have lazy load of collections...
 
 see alternative A in picture "package diagrams"
 

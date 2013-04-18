@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * the base controller class for all controllers
+ * the base controler class for all controllers
  * 
  * @author Paulo Gandra Sousa
  */

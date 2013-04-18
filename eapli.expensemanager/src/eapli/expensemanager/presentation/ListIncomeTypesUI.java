@@ -7,7 +7,6 @@ package eapli.expensemanager.presentation;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListIncomeTypesController;
 import eapli.expensemanager.model.IncomeType;
-import java.util.List;
 
 /**
  *
@@ -16,6 +15,7 @@ import java.util.List;
 class ListIncomeTypesUI extends BaseUI {
 
     private ListIncomeTypesController controller = new ListIncomeTypesController();
+    ListWidget<IncomeType> widget;
     
     @Override
     protected BaseController controller() {
@@ -24,12 +24,8 @@ class ListIncomeTypesUI extends BaseUI {
 
     @Override
     public boolean doShow() {
-        int position = 1;
-        List<IncomeType> listIncomeTypes = controller.getIncomeTypes();
-        for (IncomeType et : listIncomeTypes) {
-            System.out.println(position + ". " + et.getDescription());
-            position++;
-        }
+        widget = new ListWidget<IncomeType>(controller.getIncomeTypes());
+        widget.show();
         
         return true;
     }
