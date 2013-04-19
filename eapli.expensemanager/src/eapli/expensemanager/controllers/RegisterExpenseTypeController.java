@@ -6,7 +6,7 @@ package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 
 /**
  *
@@ -19,7 +19,7 @@ public class RegisterExpenseTypeController extends BaseController {
 
     public void registerExpenseType(String shortName, String Descr) {
         ExpenseType expenseType = new ExpenseType(shortName, Descr);
-        ExpenseTypeRepository repo = PersistenceRegistry.instance().expenseTypeRepository();
+        ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
         repo.save(expenseType);
     }
 }

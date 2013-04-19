@@ -19,6 +19,7 @@ public class IncomeRepositoryImpl implements IncomeRepository {
     
     @Override
     public Income save(Income income) {
+        // TODO check if we alreay know this object or add it if not
         incomes.add(income);
         return income;
     }

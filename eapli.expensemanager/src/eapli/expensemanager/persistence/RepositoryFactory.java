@@ -5,10 +5,11 @@
 package eapli.expensemanager.persistence;
 
 /**
- *
+ * an Abstract Factory for the persistence layer
+ * 
  * @author Paulo Gandra Sousa
  */
-public interface PersistenceStrategy {
+public interface RepositoryFactory {
 
     CheckingAccountRepository checkingAccountRepository();
 
@@ -19,5 +20,7 @@ public interface PersistenceStrategy {
     IncomeRepository incomeRepository();
 
     IncomeTypeRepository incomeTypeRepository();
+
+    public PaymentMethodRepository paymentMethodRepository();
     
 }

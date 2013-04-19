@@ -1,4 +1,4 @@
-title register expense
+title register expense w/ payment method
 
 User -> RegisterExpenseUI: enter amount
 User -> RegisterExpenseUI: enter description
@@ -23,9 +23,20 @@ PaymentMethod.class -> PaymentMethodDAO : findAll
 
 RegisterExpenseUI -> RegisterExpenseUI : show payment methods
 
+User -> RegisterExpenseUI : select payment method
+
+
+alt [user selected cash, credit or debit card]
+    RegisterExpenseUI -> RegisterExpenseController: createPayment
+RegisterExpenseController -> p Payment : create
+else [user selected cheque]
+    RegisterExpenseUI -> RegisterExpenseController: createChequePayment
+RegisterExpenseController -> p ChequePayment : create
+end
+
 User -> +RegisterExpenseUI: register expense
 
-RegisterExpenseUI -> +RegisterExpenseController: register expense
+RegisterExpenseUI -> +RegisterExpenseController: registerExpense(..., p)
  
 RegisterExpenseController -> CheckingAccountRepository : theAccount
 

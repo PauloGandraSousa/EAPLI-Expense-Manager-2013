@@ -1,0 +1,20 @@
+title Use case Register Payment method
+
+User -> RegisterPMUI : show
+
+RegisterPMUI->RegisterPMController: create
+
+alt user chooses credit option
+    User->RegisterPMUI: enter card data
+RegisterPMUI -> RegisterPMController: register credit card
+RegisterPMController -> CreditCard : create
+RegisterPMController -> CreditCard : save
+CreditCard -> PaymentMethodDAO : save(this)
+else user choose debit option
+    User->RegisterPMUI: enter card data
+RegisterPMUI -> RegisterPMController: register debit card
+RegisterPMController -> DebitCard : create
+RegisterPMController -> DebitCard : save
+DebitCard -> PaymentMethodDAO: save(this)
+
+end

@@ -24,6 +24,7 @@ public class ExpenseTypeRepositoryImpl implements ExpenseTypeRepository {
 
     @Override
     public ExpenseType save(ExpenseType expenseType) {
+        // TODO check if we alreay know this object or add it if not
         expenseTypes.add(expenseType);
         return expenseType;
     }

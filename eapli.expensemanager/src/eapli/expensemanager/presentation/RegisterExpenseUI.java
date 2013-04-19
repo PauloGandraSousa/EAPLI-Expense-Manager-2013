@@ -25,6 +25,7 @@ class RegisterExpenseUI extends BaseUI {
 
     @Override
     public boolean doShow() {
+        // TODO remove duplicate code with RegisterIncomeUI
         String what = Console.readLine("What:");
         Date date = Console.readDate("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");

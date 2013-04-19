@@ -16,6 +16,7 @@ public class RegisterExpenseTypeUI extends BaseUI {
 
     @Override
     public boolean doShow() {
+        // FIX remove code duplicate with RegisterIncomeType
         String shortName = Console.readLine("Short name:");
         String descr = Console.readLine("Description:");
 

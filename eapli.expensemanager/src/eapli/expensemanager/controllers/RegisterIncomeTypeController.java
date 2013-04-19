@@ -6,7 +6,7 @@ package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.IncomeType;
 import eapli.expensemanager.persistence.IncomeTypeRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 
 /**
  *
@@ -19,7 +19,7 @@ public class RegisterIncomeTypeController extends BaseController {
 
     public void registerIncomeType(String shortName, String Descr) {
         IncomeType incomeType = new IncomeType(shortName, Descr);
-        IncomeTypeRepository repo = PersistenceRegistry.instance().incomeTypeRepository();
+        IncomeTypeRepository repo = PersistenceFactory.buildPersistenceFactory().incomeTypeRepository();
         repo.save(incomeType);
     }
 

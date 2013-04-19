@@ -1,6 +1,7 @@
 Personal Expenses
 Polythecnic of Porto, School of Engineering
 EAPLI 
+
 =======================
 
 several discussions migth be raised:
@@ -15,6 +16,8 @@ several discussions migth be raised:
 9) Lazy load and filtering of the movements collection (CheckingAccount)
 10) have a single collection of movements or two separate colections for expenses and another for incomes?
 11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
+13) how to reuse behavior betwen controllers, e.g., ListExpense, RegisterExpense?
 
 
 --------------------------------------------------------------------------
@@ -44,12 +47,16 @@ in the first case, the controller is responsible for obtaining the domain object
 from the repository, asking the domain objects to perform the business logic and then pass
 them back to the repository. in this case, the domain objects can "easily" be tested as 
 they do not depend on any other package
+this gets trickier whe we need/want ot have lazy load of collections...
 
-see alternative A in picture
+see alternative A in picture "package diagrams"
+
 
 in the second case, the controller asks the domain object class to load a certain instance,
 asks that object to perform the business operation and then asks the object to save itself
 back to the database
+
+see alternative B in picture "package diagrams"
 
 --------------------------------------------------------------------------
 3) passing domain objects to the UI or not 
@@ -78,7 +85,40 @@ back to the database
 
 --------------------------------------------------------------------------
 8) can controllers call other controllers?
+
+
+
 --------------------------------------------------------------------------
+9) Lazy load and filtering of the movements collection (CheckingAccount)
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+10) have a single collection of movements or two separate colections for expenses and another for incomes?
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
+--------------------------------------------------------------------------
+
+should the rules fo rth eCreator pattern be fully enforced, e.g., the responsibility to 
+create a Payment should be of Expense, or can the controller/UI create a Payment and pass it
+to the Expense?
+
+
+--------------------------------------------------------------------------
+13) how to reuse behavior betwen controllers, e.g., ListExpenseType, RegisterExpense?
+--------------------------------------------------------------------------
+
+RegisterExpenseController needs to expose the list of expense types to the UI. however, the 
+ListExpenseTypeController already has that behaviour. in order to avoid duplication, should the 
+RegisterExpenseController create a ListExpenseTypeController?
 
 
 ---
@@ -100,3 +140,4 @@ this can be another strategy
 ---
 12) Should UI be specialized by other Use Cases?
 ---
+RegisterExpenseController create a ListExpenseTypeController?
