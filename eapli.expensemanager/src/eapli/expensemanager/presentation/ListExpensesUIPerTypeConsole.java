@@ -9,6 +9,7 @@ import eapli.expensemanager.controllers.ListExpensesController;
 import eapli.expensemanager.controllers.ListExpensesPerTypeController;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -22,7 +23,7 @@ import java.util.Map.Entry;
  *
  * @author Nuno Bettencourt
  */
-class ListExpensesUIPerType extends ListExpensesUI {
+class ListExpensesUIPerTypeConsole extends ListExpensesUI {
 
     /**
      * Poderia ter criado um set controller no ListExpensesUI, mas isso
@@ -45,17 +46,18 @@ class ListExpensesUIPerType extends ListExpensesUI {
     }
 
     /**
-     * Lists all expense movements grouped by their type
-     * it does not display types with no movements
+     * Lists all expense movements grouped by their type it does not display
+     * types with no movements
+     *
      * @return
      */
-    //TODO: pretende-se mostrar também tipos que não tenham movimentos?
+    //TODO: NMB:pretende-se mostrar também tipos que não tenham movimentos?
     @Override
     public boolean doShow() {
         Map<ExpenseType, List<Expense>> mapExpenses = controller.getExpensesClassificedByExpenseType();
         for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
-            System.out.println("Expenses for type:" + entry.getKey().getDescription());
-            System.out.println("Total amount:" + controller.sumAmount(entry.getValue()));
+            //System.out.println("Expenses for type:" + entry.getKey().getDescription());
+            //System.out.println("Total amount:" + controller.sumAmount(entry.getValue()));
             showExpenses(entry.getValue());
         }
 
@@ -64,6 +66,6 @@ class ListExpensesUIPerType extends ListExpensesUI {
 
     @Override
     public String headline() {
-        return "LIST EXPENSES PER TYPE";
+        return "LIST EXPENSES PER TYPE - Graph will open in a new window";
     }
 }
