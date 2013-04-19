@@ -9,7 +9,7 @@ import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Movement;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -36,18 +36,19 @@ public class ListExpensesPerTypeController extends ListExpensesController {
      * consegue calcular o seu resultado on the fly</ol></ul></p>
      */
     public Map<ExpenseType, List<Expense>> getExpensesClassificedByExpenseType() {
-        CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
         return account.getExpensesClassifiedByExpenseType();
     }
 
     /**
      * Permite obter o valor para um conjunto de registos
+     *
      * @param theMovements
      * @return BigDecimal - o valor somado dos movimentos passados
      */
     public BigDecimal sumAmount(List<? extends Movement> theMovements) {
-        CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
         return account.sumAmount(theMovements);
     }
