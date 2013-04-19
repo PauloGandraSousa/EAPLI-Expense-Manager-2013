@@ -51,7 +51,6 @@ in the second case, the controller asks the domain object class to load a certai
 asks that object to perform the business operation and then asks the object to save itself
 back to the database
 
-
 --------------------------------------------------------------------------
 3) passing domain objects to the UI or not 
 --------------------------------------------------------------------------
@@ -62,17 +61,14 @@ back to the database
 --------------------------------------------------------------------------
 
 
-
-
 --------------------------------------------------------------------------
 5) factoring out common behaviour, e.g., IncomeType & ExpenseType, Income & Expense
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-6) having the explcit concept of account or not
+6) having the explicit concept of account or not
 --------------------------------------------------------------------------
-
 
 
 --------------------------------------------------------------------------
@@ -84,3 +80,23 @@ back to the database
 8) can controllers call other controllers?
 --------------------------------------------------------------------------
 
+
+---
+9) when showing movements gruped by type, who performs the sum operation? UI, Controller or CheckingAccount?
+---
+* the UI might not be smart enough to compute the total sum with enough precision, and would carry a burden for the computer running the interface
+* the Controller might indeed perform such calculation has it has all the data is needs for a short period of time, but it is not the controller function to perform mathematical operations
+* the CheckingAccount might indeed be the very best resource to calculate the sum for each expense type, but it would not make sense to delegate the CheckingAccount to the interface. **NMB TODO** verificar o que faz sentido mover até o interface
+
+---
+10) when showing movements gruped by type, should types with no values also appear? 
+---
+this can be another strategy
+
+---
+11) Should Controllers be specialized by other Use Cases?
+---
+
+---
+12) Should UI be specialized by other Use Cases?
+---
