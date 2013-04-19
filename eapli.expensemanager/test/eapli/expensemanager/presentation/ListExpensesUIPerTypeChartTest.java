@@ -69,7 +69,7 @@ public class ListExpensesUIPerTypeChartTest {
         float newMin = 0.0F;
         float newMax = 10.0F;
         float oldValue = 575.0F;
-        ListExpensesUIPerTypeTextChart instance = new ListExpensesUIPerTypeGUIChart();
+        ListExpensesUIPerTypeChart instance = new ListExpensesUIPerTypeChart();
         float expResult = 10.0F;
         float result = instance.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
         assertEquals(expResult, result, 0.0);
@@ -87,7 +87,7 @@ public class ListExpensesUIPerTypeChartTest {
         float newMin = 0.0F;
         float newMax = 10.0F;
         float oldValue = 355.0F;
-        ListExpensesUIPerTypeTextChart instance = new ListExpensesUIPerTypeGUIChart();
+        ListExpensesUIPerTypeChart instance = new ListExpensesUIPerTypeChart();
         float expResult = 355.0F/575.0F*10;
         float result = instance.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
         assertEquals(expResult, result, 0.0);
@@ -105,7 +105,7 @@ public class ListExpensesUIPerTypeChartTest {
         BigDecimal newMin = new BigDecimal(0);
         BigDecimal newMax = new BigDecimal(10);
         BigDecimal oldValue = new BigDecimal(50);
-        ListExpensesUIPerTypeTextChart instance = new ListExpensesUIPerTypeGUIChart();
+        ListExpensesUIPerTypeChart instance = new ListExpensesUIPerTypeChart();
         BigDecimal expResult = new BigDecimal(5.0);
         BigDecimal result = instance.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
         assertEquals(expResult.doubleValue(), result.doubleValue(), 0);
@@ -124,7 +124,7 @@ public class ListExpensesUIPerTypeChartTest {
         BigDecimal newMin = new BigDecimal(0);
         BigDecimal newMax = new BigDecimal(10);
         BigDecimal oldValue = new BigDecimal(575);
-        ListExpensesUIPerTypeTextChart instance = new ListExpensesUIPerTypeGUIChart();
+        ListExpensesUIPerTypeChart instance = new ListExpensesUIPerTypeChart();
         BigDecimal expResult = new BigDecimal(10.0);
         BigDecimal result = instance.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
         assertEquals(expResult.doubleValue(), result.doubleValue(), 0);
@@ -143,7 +143,7 @@ public class ListExpensesUIPerTypeChartTest {
         BigDecimal newMin = new BigDecimal(0);
         BigDecimal newMax = new BigDecimal(10);
         BigDecimal oldValue = new BigDecimal(355);
-        ListExpensesUIPerTypeTextChart instance = new ListExpensesUIPerTypeGUIChart();
+        ListExpensesUIPerTypeChart instance = new ListExpensesUIPerTypeChart();
         BigDecimal expResult = new BigDecimal(6.0);
         BigDecimal result = instance.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
         assertEquals(expResult.doubleValue(), result.doubleValue(), 0);
