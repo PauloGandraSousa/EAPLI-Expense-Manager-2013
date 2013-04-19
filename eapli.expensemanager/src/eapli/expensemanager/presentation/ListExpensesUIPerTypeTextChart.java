@@ -4,24 +4,14 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.controllers.ListExpensesController;
-import eapli.expensemanager.controllers.ListExpensesPerTypeController;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.presentation.charts.Chart;
-import java.awt.EventQueue;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import javax.swing.JFrame;
 
 /**
  * Para se criar o UI para os agregadores de despesa, existe a possibilidade de
@@ -58,7 +48,7 @@ class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
 
         //TODO: NMB: Verificar se esta conversão deve ser efectuada aqui ou se deve vir do controller
         Map<ExpenseType, BigDecimal> mapExpensesSum = new HashMap<ExpenseType, BigDecimal>();
-        
+
         //obter o valor máximo possível de todos os tipos de despesa para efectuar a conversão
         BigDecimal maxExpense = new BigDecimal(BigInteger.ZERO);
         for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
@@ -71,13 +61,13 @@ class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
         //TODO: NMB quem criar o somatório?
         for (Entry<ExpenseType, BigDecimal> entry : mapExpensesSum.entrySet()) {
             BigDecimal expenseSumConverted = simpleLinearConversion(BigDecimal.ZERO, maxExpense, BigDecimal.ZERO, BigDecimal.TEN, entry.getValue());
-            System.out.println(String.format("%-20s:", entry.getKey().getDescription() + "(" + entry.getValue()+ ")") + String.format("%-" + expenseSumConverted.intValue() + "s", "").replace(' ', '*'));
+            System.out.println(String.format("%-20s:", entry.getKey().getDescription() + "(" + entry.getValue() + ")") + String.format("%-" + expenseSumConverted.intValue() + "s", "").replace(' ', '*'));
         }
         return true;
     }
 
     @Override
     public String headline() {
-        return super.headline()+" using text";
+        return super.headline() + " using text";
     }
 }

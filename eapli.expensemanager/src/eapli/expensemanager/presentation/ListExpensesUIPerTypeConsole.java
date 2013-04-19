@@ -4,12 +4,9 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.controllers.ListExpensesController;
 import eapli.expensemanager.controllers.ListExpensesPerTypeController;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
