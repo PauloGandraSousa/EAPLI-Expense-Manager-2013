@@ -1,9 +1,7 @@
 Personal Expenses
 Polythecnic of Porto, School of Engineering
-EAPLI 
-
+#EAPLI [^1]
 =======================
-
 several discussions migth be raised:
 1) which layers?
 2) domain objects with persistence knowledge or not
@@ -21,7 +19,7 @@ several discussions migth be raised:
 
 
 --------------------------------------------------------------------------
-1) which layers
+##1) which layers
 --------------------------------------------------------------------------
 
 the application follows a traditional approach of separating the following layers:
@@ -36,7 +34,7 @@ of the actual repository implementation (this can also be seen as a case of the 
 
 
 --------------------------------------------------------------------------
-2) domain objects with persistence knowledge or not
+##2) domain objects with persistence knowledge or not
 --------------------------------------------------------------------------
 
 two different approaches are possible:
@@ -59,52 +57,52 @@ back to the database
 see alternative B in picture "package diagrams"
 
 --------------------------------------------------------------------------
-3) passing domain objects to the UI or not 
+##3) passing domain objects to the UI or not 
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-4) performing calculations in memory or directly at the persistence layer
+##4) performing calculations in memory or directly at the persistence layer
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-5) factoring out common behaviour, e.g., IncomeType & ExpenseType, Income & Expense
+##5) factoring out common behaviour, e.g., IncomeType & ExpenseType, Income & Expense
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-6) having the explicit concept of account or not
+##6) having the explicit concept of account or not
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-7) initial balance of the account
+##7) initial balance of the account
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-8) can controllers call other controllers?
-
-
-
---------------------------------------------------------------------------
-9) Lazy load and filtering of the movements collection (CheckingAccount)
---------------------------------------------------------------------------
+##8) can controllers call other controllers?
+---
 
 
 --------------------------------------------------------------------------
-10) have a single collection of movements or two separate colections for expenses and another for incomes?
+##9) Lazy load and filtering of the movements collection (CheckingAccount)
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+##10) have a single collection of movements or two separate colections for expenses and another for incomes?
 --------------------------------------------------------------------------
 
 
 --------------------------------------------------------------------------
-12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
+##11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
+--------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------
+##12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
 --------------------------------------------------------------------------
 
 should the rules fo rth eCreator pattern be fully enforced, e.g., the responsibility to 
@@ -113,7 +111,7 @@ to the Expense?
 
 
 --------------------------------------------------------------------------
-13) how to reuse behavior betwen controllers, e.g., ListExpenseType, RegisterExpense?
+##13) how to reuse behavior betwen controllers, e.g., ListExpenseType, RegisterExpense?
 --------------------------------------------------------------------------
 
 RegisterExpenseController needs to expose the list of expense types to the UI. however, the 
@@ -122,22 +120,25 @@ RegisterExpenseController create a ListExpenseTypeController?
 
 
 ---
-9) when showing movements gruped by type, who performs the sum operation? UI, Controller or CheckingAccount?
+##14) when showing movements gruped by type, who performs the sum operation? UI, Controller or CheckingAccount?
 ---
 * the UI might not be smart enough to compute the total sum with enough precision, and would carry a burden for the computer running the interface
 * the Controller might indeed perform such calculation has it has all the data is needs for a short period of time, but it is not the controller function to perform mathematical operations
 * the CheckingAccount might indeed be the very best resource to calculate the sum for each expense type, but it would not make sense to delegate the CheckingAccount to the interface. **NMB TODO** verificar o que faz sentido mover até o interface
 
 ---
-10) when showing movements gruped by type, should types with no values also appear? 
+##15) when showing movements gruped by type, should types with no values also appear? 
 ---
 this can be another strategy
 
 ---
-11) Should Controllers be specialized by other Use Cases?
+##16) Should Controllers be specialized by other Use Cases?
 ---
 
 ---
-12) Should UI be specialized by other Use Cases?
+##17) Should UI be specialized by other Use Cases?
 ---
 RegisterExpenseController create a ListExpenseTypeController?
+
+##Footnotes
+[^1]:using # for headings, because === and ___ are not well combined with mac/linux/windows line breaks
