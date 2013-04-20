@@ -5,15 +5,17 @@
 package eapli.expensemanager.persistence;
 
 /**
- *
+ * the factory class for the perisstence abstarcat factory hierarchy
+ * 
  * @author Paulo Gandra Sousa
  */
-public class PersistenceRegistry {
-    private PersistenceRegistry() {
+public class PersistenceFactory {
+    
+    private PersistenceFactory() {
     }
 
-    public static PersistenceStrategy instance() {
-        return new HibernatePersistenceStrategy();
+    public static RepositoryFactory buildPersistenceFactory() {
+        return new HibernateRepositoryFactory();
         // TODO use configuration property to decide which strategy to use
         //return new InMemoryPersistenceStrategy();
     }

@@ -5,38 +5,39 @@
 package eapli.expensemanager.persistence;
 
 /**
- *
+ * a concrete factory - hibernate
+ * 
  * @author Paulo Gandra Sousa
  */
-class InMemoryPersistenceStrategy implements PersistenceStrategy {
+class HibernateRepositoryFactory implements RepositoryFactory {
 
     @Override
     public ExpenseRepository expenseRepository() {
-        return new eapli.expensemanager.persistence.inmemory.ExpenseRepositoryImpl();
+        return new eapli.expensemanager.persistence.hibernate.ExpenseRepositoryImpl();
     }
 
     @Override
     public ExpenseTypeRepository expenseTypeRepository() {
-        return new eapli.expensemanager.persistence.inmemory.ExpenseTypeRepositoryImpl();
+        return new eapli.expensemanager.persistence.hibernate.ExpenseTypeRepositoryImpl();
     }
 
     @Override
     public IncomeRepository incomeRepository() {
-        return new eapli.expensemanager.persistence.inmemory.IncomeRepositoryImpl();
+        return new eapli.expensemanager.persistence.hibernate.IncomeRepositoryImpl();
     }
 
     @Override
     public IncomeTypeRepository incomeTypeRepository() {
-        return new eapli.expensemanager.persistence.inmemory.IncomeTypeRepositoryImpl();
+        return new eapli.expensemanager.persistence.hibernate.IncomeTypeRepositoryImpl();
     }
 
     @Override
     public CheckingAccountRepository checkingAccountRepository() {
-        return new eapli.expensemanager.persistence.inmemory.CheckingAccountRepositoryImpl();
+        return new eapli.expensemanager.persistence.hibernate.CheckingAccountRepositoryImpl();
     }
 
     @Override
     public PaymentMethodRepository paymentMethodRepository() {
-        return new eapli.expensemanager.persistence.inmemory.PaymentMethodRepositoryImpl();
+        return new eapli.expensemanager.persistence.hibernate.PaymentMethodRepositoryImpl();
     }
 }

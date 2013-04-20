@@ -6,7 +6,7 @@ package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.ExpenseRecord;
 import eapli.expensemanager.persistence.ExpenseRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,12 +21,15 @@ public class BaseController {
      * gets the expenditure of the current week
      * 
      * this method follows an "OO approach" by asking the repository to recreate the 
-     * expense record of the desired week and performs the calculation in memory
+     * expense record of the desired week and performs the calculation in memory.
+     * doing the calculation in memory migth not be as performant as doing it 
+     * directly at the persistence layer but allows to apply business logic to the 
+     * calculation, for instance, as a Strategy pattern
      * 
      * @return the total expenditure of the current week
      */
     public BigDecimal getThisWeekExpenditure() {
-        ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
+        ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         int year = DateTime.currentYear();
         int week = DateTime.currentWeekNumber();
         Date start = DateTime.firstDateOfWeek(year, week).getTime();
@@ -45,7 +48,7 @@ public class BaseController {
      * @return the total expenditure of the current month
      */
     public BigDecimal getThisMonthExpenditure() {
-        ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
+        ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         return repo.expenditureOfMonth(DateTime.currentYear(), DateTime.currentMonth());        
     }
 }

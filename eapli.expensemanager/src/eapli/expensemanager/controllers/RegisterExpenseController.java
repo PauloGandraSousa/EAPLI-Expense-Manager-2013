@@ -13,7 +13,7 @@ import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMethod;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
-import eapli.expensemanager.persistence.PersistenceRegistry;
+import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +40,7 @@ public class RegisterExpenseController extends BaseController {
     public void registerExpense(String what, Date date, BigDecimal amount, ExpenseType expenseType, Payment method) {
         Expense expense = new Expense(expenseType, what, date, amount, method);
         //ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
-        CheckingAccountRepository repo = PersistenceRegistry.instance().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount(); 
         account.registerExpense(expense);
         repo.save(account);

@@ -13,11 +13,18 @@ import eapli.util.Console;
  */
 public class MainMenu extends BaseUI {
 
+    // TODO restructure this class to use the Composite pattern and allow for 
+    // flexible menu and submenu structure
+    // use command pattenr for each action
+    
     final byte EXIT_OPTION = 0;
     final byte REGISTER_EXPENSE_OPTION = 1;
     final byte LIST_EXPENSES_OPTION = 2;
     final byte REGISTER_INCOME_OPTION = 3;
     final byte LIST_INCOMES_OPTION = 4;
+    final byte LIST_EXPENSES_PER_TYPE_OPTION = 6;
+    final byte LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION = 7;
+    final byte LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION = 71;
     final byte REGISTER_EXPENSE_TYPE_OPTION = 20;
     final byte LIST_EXPENSE_TYPES_OPTION = 21;
     final byte REGISTER_INCOME_TYPE_OPTION = 30;
@@ -40,6 +47,9 @@ public class MainMenu extends BaseUI {
         System.out.println(LIST_EXPENSES_OPTION + ". List expenses");
         System.out.println(REGISTER_INCOME_OPTION + ". Register an income");
         System.out.println(LIST_INCOMES_OPTION + ". List incomes");
+        System.out.println(LIST_EXPENSES_PER_TYPE_OPTION + ". List expenses per type");
+        System.out.println(LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION + ". List expenses per type in text chart");
+        System.out.println(LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION + ". List expenses per type in GUI chart");
         System.out.println("--- master tables ---");
         System.out.println(REGISTER_EXPENSE_TYPE_OPTION + ". Register an expense type");
         System.out.println(LIST_EXPENSE_TYPES_OPTION + ". List expense types");
@@ -65,6 +75,18 @@ public class MainMenu extends BaseUI {
             case LIST_INCOMES_OPTION:
                 ListIncomesUI listIncomeUI = new ListIncomesUI();
                 listIncomeUI.show();
+                break;
+            case LIST_EXPENSES_PER_TYPE_OPTION:
+                ListExpensesUIPerTypeConsole listExpensesUIPerTypeConsole = new ListExpensesUIPerTypeConsole();
+                listExpensesUIPerTypeConsole.show();
+                break;
+            case LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION:
+                ListExpensesUIPerTypeTextChart listExpensesUIPerTypeChart = new ListExpensesUIPerTypeTextChart();
+                listExpensesUIPerTypeChart.show();
+                break;
+            case LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION:
+                ListExpensesUIPerTypeGUIChart listExpensesUIPerTypeGUIChart = new ListExpensesUIPerTypeGUIChart();
+                listExpensesUIPerTypeGUIChart.show();
                 break;
             case REGISTER_EXPENSE_TYPE_OPTION:
                 RegisterExpenseTypeUI registerExpenseTypeUI = new RegisterExpenseTypeUI();
