@@ -15,7 +15,7 @@ public class PersistenceFactory {
     }
 
     public static RepositoryFactory buildPersistenceFactory() {
-        return new HibernateRepositoryFactory();
+        return new JpaRepositoryFactory();
         // TODO use configuration property to decide which strategy to use
         //return new InMemoryPersistenceStrategy();
     }

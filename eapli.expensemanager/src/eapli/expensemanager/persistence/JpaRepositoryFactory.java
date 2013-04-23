@@ -9,35 +9,35 @@ package eapli.expensemanager.persistence;
  * 
  * @author Paulo Gandra Sousa
  */
-class HibernateRepositoryFactory implements RepositoryFactory {
+class JpaRepositoryFactory implements RepositoryFactory {
 
     @Override
     public ExpenseRepository expenseRepository() {
-        return new eapli.expensemanager.persistence.hibernate.ExpenseRepositoryImpl();
+        return new eapli.expensemanager.persistence.jpa.ExpenseRepositoryImpl();
     }
 
     @Override
     public ExpenseTypeRepository expenseTypeRepository() {
-        return new eapli.expensemanager.persistence.hibernate.ExpenseTypeRepositoryImpl();
+        return new eapli.expensemanager.persistence.jpa.ExpenseTypeRepositoryImpl();
     }
 
     @Override
     public IncomeRepository incomeRepository() {
-        return new eapli.expensemanager.persistence.hibernate.IncomeRepositoryImpl();
+        return new eapli.expensemanager.persistence.jpa.IncomeRepositoryImpl();
     }
 
     @Override
     public IncomeTypeRepository incomeTypeRepository() {
-        return new eapli.expensemanager.persistence.hibernate.IncomeTypeRepositoryImpl();
+        return new eapli.expensemanager.persistence.jpa.IncomeTypeRepositoryImpl();
     }
 
     @Override
     public CheckingAccountRepository checkingAccountRepository() {
-        return new eapli.expensemanager.persistence.hibernate.CheckingAccountRepositoryImpl();
+        return new eapli.expensemanager.persistence.jpa.CheckingAccountRepositoryImpl();
     }
 
     @Override
     public PaymentMethodRepository paymentMethodRepository() {
-        return new eapli.expensemanager.persistence.hibernate.PaymentMethodRepositoryImpl();
+        return new eapli.expensemanager.persistence.jpa.PaymentMethodRepositoryImpl();
     }
 }

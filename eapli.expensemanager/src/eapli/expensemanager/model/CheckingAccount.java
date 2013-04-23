@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
@@ -31,34 +32,35 @@ public class CheckingAccount {
     private String owner;
     private BigDecimal balance;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(name = "CheckingAccount_Movements")
     private List<Movement> movements;
-    @Transient
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(name = "CheckingAccount_Expenses")
     private List<Expense> expenses;
-    @Transient
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    @JoinTable(name = "CheckingAccount_Incomes")
     private List<Income> incomes;
+    //@ManyToMany
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @CollectionTable(name = "CheckingAccount_Expenses_by_ExpenseType")
+//    @MapKeyColumn(name = "ExpenseType_ID")
+//    @Column(name = "Expense_ID")
     @Transient
     private Map<ExpenseType, List<Expense>> expensesByType;
 
     public CheckingAccount() {
-        //movements = new ArrayList();
-
-        expenses = new ArrayList();
-
-        incomes = new ArrayList();
-
         expensesByType = new HashMap<ExpenseType, List<Expense>>();
 
         // TODO load initial balance
         //balance = new BigDecimal(0);
-
     }
 
     public BigDecimal totalExpenditure() {
-        return sumAmount(expenses);
+        return sumAmount(getExpenses());
     }
 
     public BigDecimal totalEarnings() {
-        return sumAmount(incomes);
+        return sumAmount(getIncomes());
     }
 
     public void registerIncome(Income income) {
@@ -128,17 +130,11 @@ public class CheckingAccount {
      * Permite reclassificar os tipos de movimentos em despesa e receitas
      */
     private void reClassifyMovements() {
-        //Verificar se existem o total de movimentos é igual ao total de
-        // despesas e de receitas
-        if (movements.size() != (expenses.size() + incomes.size())) {
-            //se não for, é necessário classificar os movimentos
-            for (Movement movement : movements) {
-                if (movement instanceof Expense) {
-                    classifyMovementAsExpense((Expense) movement);
-                    classifyExpense((Expense) movement);
-                } else {
-                    //TODO: falta o código para classificar uma receita
-                }
+        // TODO verificar se é necessário classificar os movimentos
+
+        for (Movement movement : getMovements()) {
+            if (movement instanceof Expense) {
+                classifyExpense((Expense) movement);
             }
         }
     }

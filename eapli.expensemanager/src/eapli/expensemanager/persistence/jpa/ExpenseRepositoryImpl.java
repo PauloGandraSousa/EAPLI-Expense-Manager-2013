@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence.hibernate;
+package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.persistence.ExpenseRepository;
@@ -17,7 +17,7 @@ import javax.persistence.Query;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseRepositoryImpl extends HibernateRepository<Expense, Long> implements ExpenseRepository {
+public class ExpenseRepositoryImpl extends JpaRepository<Expense, Long> implements ExpenseRepository {
 
     /**
      * gets the expenditure of a specific week

@@ -19,7 +19,8 @@ public class ExpenseManager {
     public static void main(String[] args) {
         // call the bootstraper
         // the next line should be removed for "production" ready deployment
-        Bootstrap bootstrap = new Bootstrap(); //new SomeDataBootstrap();
+        Bootstrap bootstrap = new Bootstrap(); 
+        //Bootstrap bootstrap = new SomeDataBootstrap();
         
         MainMenu menu = new MainMenu();
         menu.mainLoop();        

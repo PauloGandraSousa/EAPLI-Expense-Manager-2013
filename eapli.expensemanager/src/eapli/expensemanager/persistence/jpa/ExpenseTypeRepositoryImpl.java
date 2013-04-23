@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence.hibernate;
+package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
@@ -14,7 +14,7 @@ import javax.persistence.Query;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseTypeRepositoryImpl extends HibernateRepository<ExpenseType, String> implements ExpenseTypeRepository {
+public class ExpenseTypeRepositoryImpl extends JpaRepository<ExpenseType, String> implements ExpenseTypeRepository {
 
     public ExpenseType findOrCreate(String key, String description) {
         if (key == null || key.trim().length() == 0) {

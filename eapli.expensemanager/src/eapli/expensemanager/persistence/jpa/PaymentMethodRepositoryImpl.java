@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence.hibernate;
+package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.PaymentMethod;
@@ -14,7 +14,7 @@ import javax.persistence.Query;
  *
  * @author Paulo Gandra Sousa
  */
-public class PaymentMethodRepositoryImpl extends HibernateRepository<PaymentMethod, Long> implements PaymentMethodRepository {
+public class PaymentMethodRepositoryImpl extends JpaRepository<PaymentMethod, Long> implements PaymentMethodRepository {
 
     @Override
     public List<PaymentMethod> all() {

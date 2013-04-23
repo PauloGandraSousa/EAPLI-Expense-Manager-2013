@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence.hibernate;
+package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
@@ -13,7 +13,7 @@ import java.util.Iterator;
  *
  * @author Paulo Gandra Sousa
  */
-public class CheckingAccountRepositoryImpl extends HibernateRepository<CheckingAccount, Long> implements CheckingAccountRepository {
+public class CheckingAccountRepositoryImpl extends JpaRepository<CheckingAccount, Long> implements CheckingAccountRepository {
 
     /**
      * @exception IllegalStateException Esta exceção é uma runtime exception.

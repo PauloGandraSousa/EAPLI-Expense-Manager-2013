@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence.hibernate;
+package eapli.expensemanager.persistence.jpa;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -24,7 +24,7 @@ import javax.persistence.Query;
  * http://stackoverflow.com/questions/3888575/single-dao-generic-crud-methods-jpa-hibernate-spring
  * and on https://burtbeckwith.com/blog/?p=40
  */
-public abstract class HibernateRepository<T, PK extends Serializable> {
+public abstract class JpaRepository<T, PK extends Serializable> {
 
     @PersistenceUnit
     static protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("eapli.expensemanagerPU");
@@ -37,7 +37,7 @@ public abstract class HibernateRepository<T, PK extends Serializable> {
     }
     protected Class<T> entityClass;
 
-    public HibernateRepository() {
+    public JpaRepository() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass()
                 .getGenericSuperclass();
         this.entityClass = (Class<T>) genericSuperclass
@@ -71,7 +71,7 @@ public abstract class HibernateRepository<T, PK extends Serializable> {
     @SuppressWarnings("unchecked")
     public Collection<T> findAll() {
         return getEntityManager().createQuery(
-                "FROM " + entityClass.getName())
+                "SELECT e FROM " + entityClass.getName() + " e")
                 .getResultList();
     }
 
