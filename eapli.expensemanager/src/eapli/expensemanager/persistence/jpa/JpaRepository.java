@@ -53,6 +53,11 @@ public abstract class JpaRepository<T, PK extends Serializable> {
         return this.getEntityManager().find(entityClass, id);
     }
 
+    // alias to read()
+    public T findById(PK id) {
+        return read(id);
+    }
+    
     public T update(T t) {
         return this.getEntityManager().merge(t);
     }
@@ -62,6 +67,11 @@ public abstract class JpaRepository<T, PK extends Serializable> {
         this.getEntityManager().remove(t);
     }
 
+    // alias to getCount();
+    public long size() {
+        return getCount();
+    }
+    
     public long getCount() {
         return (Long) getEntityManager().createQuery(
                 "SELECT COUNT(*) FROM " + entityClass.getSimpleName())
@@ -77,6 +87,9 @@ public abstract class JpaRepository<T, PK extends Serializable> {
 
     /**
      * inserts or updates an entity
+     * 
+     * check http://blog.xebia.com/2009/03/23/jpa-implementation-patterns-saving-detached-entities/
+     * for a discussion on saveOrUpdate() behaviour and merge()
      *
      * @param entity
      * @return the persisted entity - migth be a diferent object than the

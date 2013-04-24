@@ -34,6 +34,7 @@ class ListExpensesUIPerTypeConsole extends ListExpensesUI {
     private void showExpenses(List<Expense> expenseList) {
         int position = 1;
         for (Expense expense : expenseList) {
+            System.out.print("\t");
             System.out.print(position + ". ");
             System.out.print(expense.getDateOcurred() + " ");
             System.out.print(expense.getAmount() + " ");
@@ -53,8 +54,8 @@ class ListExpensesUIPerTypeConsole extends ListExpensesUI {
     public boolean doShow() {
         Map<ExpenseType, List<Expense>> mapExpenses = controller.getExpensesClassifiedByExpenseType();
         for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
-            //System.out.println("Expenses for type:" + entry.getKey().getDescription());
-            //System.out.println("Total amount:" + controller.sumAmount(entry.getValue()));
+            System.out.print(entry.getKey().getDescription());
+            System.out.println("\tTotal amount:" + controller.sumAmount(entry.getValue()));
             showExpenses(entry.getValue());
         }
 
