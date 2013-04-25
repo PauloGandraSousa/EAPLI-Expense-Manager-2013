@@ -40,6 +40,8 @@ public class CheckingAccount {
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "CheckingAccount_Incomes")
     private List<Income> incomes;
+    
+    
     //@ManyToMany
 //    @ElementCollection(fetch = FetchType.EAGER)
 //    @CollectionTable(name = "CheckingAccount_Expenses_by_ExpenseType")

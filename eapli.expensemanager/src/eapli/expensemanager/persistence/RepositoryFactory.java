@@ -12,6 +12,8 @@ package eapli.expensemanager.persistence;
 public interface RepositoryFactory {
 
     CheckingAccountRepository checkingAccountRepository();
+    
+    SavingsPlanRepository savingsPlanRepository();
 
     ExpenseRepository expenseRepository();
 

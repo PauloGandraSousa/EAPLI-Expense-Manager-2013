@@ -32,6 +32,7 @@ public class MainMenu extends BaseUI {
     final byte LIST_INCOME_TYPES_OPTION = 31;
     final byte REGISTER_PAYMENT_METHOD_OPTION = 40;
     final byte LIST_PAYMENT_METHODS_OPTION = 41;
+    final byte REGISTER_SAVING_GOAL_OPTION = 51;
 
     @Override
     public boolean show() {
@@ -58,6 +59,7 @@ public class MainMenu extends BaseUI {
         System.out.println(LIST_INCOME_TYPES_OPTION + ". List income types");
         System.out.println(REGISTER_PAYMENT_METHOD_OPTION + ". Register a payment method");
         System.out.println(LIST_PAYMENT_METHODS_OPTION + ". List payment methods");
+        System.out.println(REGISTER_SAVING_GOAL_OPTION + ". Register SavingGoal");
         System.out.println("--------------------");
         System.out.println("0. Exit\n\n");
 
@@ -117,6 +119,12 @@ public class MainMenu extends BaseUI {
                 ListPaymentMethodsUI listPaymentMethodsUI = new ListPaymentMethodsUI();
                 listPaymentMethodsUI.show();
                 break;
+            case REGISTER_SAVING_GOAL_OPTION:
+                RegisterGoalSavingUI registergoalsavingUI = new  RegisterGoalSavingUI();
+                registergoalsavingUI.show();
+                break;   
+                
+                
             default:
                 System.out.println("option not recognized.");
                 break;
