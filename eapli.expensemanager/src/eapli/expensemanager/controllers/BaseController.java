@@ -16,7 +16,7 @@ import java.util.Date;
  * 
  * @author Paulo Gandra Sousa
  */
-public class BaseController {
+public abstract class BaseController {
     /**
      * gets the expenditure of the current week
      * 

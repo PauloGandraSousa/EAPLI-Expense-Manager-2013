@@ -16,18 +16,16 @@ import java.util.List;
  * @author Paulo Gandra Sousa
  */
 public class ListExpensesController extends BaseController {
-
+/*
     public List<Expense> getExpenses() {
         ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         return repo.all();
     } 
+*/
 
-    
-    /*
     public List<Expense> getExpenses() {
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
         return account.getExpenses();
     }
-    */
 }

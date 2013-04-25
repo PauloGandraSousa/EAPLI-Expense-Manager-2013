@@ -64,6 +64,6 @@ class ListExpensesUIPerTypeConsole extends ListExpensesUI {
 
     @Override
     public String headline() {
-        return "LIST EXPENSES PER TYPE - Graph will open in a new window";
+        return "LIST EXPENSES PER TYPE";
     }
 }

@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.framework.ListWidget;
+import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListPaymentMethodsController;
 import eapli.expensemanager.model.PaymentMethod;
@@ -24,7 +26,7 @@ class ListPaymentMethodsUI extends BaseUI {
 
     @Override
     protected boolean doShow() {
-        widget = new ListWidget<PaymentMethod>(controller.getPaymentMethods());
+        widget = new ListWidget<PaymentMethod>(controller.getPaymentMethods(), new PaymentMethodListVisitor());
         widget.show();
         
         return true;

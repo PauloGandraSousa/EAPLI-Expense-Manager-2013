@@ -4,10 +4,12 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListIncomesController;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
+import eapli.expensemanager.presentation.framework.ListWidget;
 import java.util.List;
 
 /**
@@ -17,6 +19,7 @@ import java.util.List;
 class ListIncomesUI extends BaseUI {
 
     ListIncomesController controller = new ListIncomesController();
+    ListWidget<Income> widget;
     
     @Override
     protected BaseController controller() {
@@ -25,16 +28,9 @@ class ListIncomesUI extends BaseUI {
 
     @Override
     protected boolean doShow() {
-        // FIX avoid duplicate code with ListExpenseUI
-        int position = 1;
-        List<Income> listIncomes = controller.getIncomes();
-        for (Income i : listIncomes) {
-            System.out.print(position + ". ");
-            System.out.print(i.getDateOcurred() + " ");
-            System.out.print(i.getAmount() + " ");
-            System.out.println(i.getDescription());
-            position++;
-        }
+        widget = new ListWidget<Income>(controller.getIncomes(), new IncomeListVisitor());
+        widget.show();
+
         
         return true;
     }

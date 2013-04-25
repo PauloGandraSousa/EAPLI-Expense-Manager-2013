@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.framework.ListWidget;
+import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterExpenseController;
 import eapli.expensemanager.model.Cheque;
@@ -59,7 +61,7 @@ class RegisterExpenseUI extends BaseUI {
         System.out.println("-- EXPENSE TYPES --");
         List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
         // TODO create SelectWidget to list and select an option
-        widget = new ListWidget(listExpenseTypes);
+        widget = new ListWidget(listExpenseTypes, new ExpenseTypeListVisitor());
         widget.show();
         int option = Console.readOption(1, listExpenseTypes.size(), 0);
         ExpenseType expenseType = listExpenseTypes.get(option);

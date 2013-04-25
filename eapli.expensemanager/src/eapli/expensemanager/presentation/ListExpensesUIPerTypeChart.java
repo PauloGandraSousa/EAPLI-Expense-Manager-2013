@@ -18,7 +18,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  *
  * @author Nuno Bettencourt
  */
-class ListExpensesUIPerTypeChart extends ListExpensesUI {
+abstract class ListExpensesUIPerTypeChart extends ListExpensesUI {
 
     /**
      * Poderia ter criado um set controller no ListExpensesUI, mas isso
@@ -33,54 +33,8 @@ class ListExpensesUIPerTypeChart extends ListExpensesUI {
         return controller;
     }
 
-    /**
-     * Lists all expense movements grouped by their type but it does not display
-     * types with no movements
-     *
-     * @return
-     */
-    //TODO: NMB: pretende-se mostrar também tipos que não tenham movimentos?
-    @Override
-    public boolean doShow() {
-        throw new NotImplementedException();
-    }
-
     @Override
     public String headline() {
         return "LIST EXPENSES PER TYPE CHART";
-    }
-
-    /**
-     * Permite efectuar a conversão de um valor para outra escala
-     *
-     * @param oldMin - exemplo 0
-     * @param oldMax - exemplo 100
-     * @param newMin - exemplo 0
-     * @param newMax - exemplo 10
-     * @param oldValue - exemplo 50
-     * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
-     */
-    //TODO: NMB: cria-se uma classe para operações matemáticas?
-    public float simpleLinearConversion(float oldMin, float oldMax, float newMin, float newMax, float oldValue) {
-        float new_value;
-        new_value = ((oldValue - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin;
-        return new_value;
-
-    }
-
-    /**
-     * Permite efectuar a conversão de um valor para outra escala
-     *
-     * @param oldMin - exemplo 0
-     * @param oldMax - exemplo 100
-     * @param newMin - exemplo 0
-     * @param newMax - exemplo 10
-     * @param oldValue - exemplo 50
-     * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
-     */
-    public BigDecimal simpleLinearConversion(BigDecimal oldMin, BigDecimal oldMax, BigDecimal newMin, BigDecimal newMax, BigDecimal oldValue) {
-        BigDecimal new_value;
-        new_value = ((oldValue.subtract(oldMin)).divide(oldMax.subtract(oldMin), 1, RoundingMode.HALF_UP)).multiply((newMax.subtract(newMin)).add(newMin));
-        return new_value;
     }
 }

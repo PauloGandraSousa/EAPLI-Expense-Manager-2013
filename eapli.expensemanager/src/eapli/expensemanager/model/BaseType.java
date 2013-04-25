@@ -16,7 +16,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public abstract class BaseType implements Descriptable {
+public abstract class BaseType {
     @Id
     String shortName;
     String description;
@@ -39,7 +39,6 @@ public abstract class BaseType implements Descriptable {
         return shortName;
     }
 
-    @Override
     public String getDescription() {
         return description;
     }

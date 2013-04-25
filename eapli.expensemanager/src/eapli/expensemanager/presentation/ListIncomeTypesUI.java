@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.framework.ListWidget;
+import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListIncomeTypesController;
 import eapli.expensemanager.model.IncomeType;
@@ -24,7 +26,7 @@ class ListIncomeTypesUI extends BaseUI {
 
     @Override
     public boolean doShow() {
-        widget = new ListWidget<IncomeType>(controller.getIncomeTypes());
+        widget = new ListWidget<IncomeType>(controller.getIncomeTypes(), new IncomeTypeListVisitor());
         widget.show();
         
         return true;

@@ -60,7 +60,7 @@ class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
         }
         //TODO: NMB quem criar o somatório?
         for (Entry<ExpenseType, BigDecimal> entry : mapExpensesSum.entrySet()) {
-            BigDecimal expenseSumConverted = simpleLinearConversion(BigDecimal.ZERO, maxExpense, BigDecimal.ZERO, BigDecimal.TEN, entry.getValue());
+            BigDecimal expenseSumConverted = eapli.util.Math.simpleLinearConversion(BigDecimal.ZERO, maxExpense, BigDecimal.ZERO, BigDecimal.TEN, entry.getValue());
             System.out.println(String.format("%-20s:", entry.getKey().getDescription() + "(" + entry.getValue() + ")") + String.format("%-" + expenseSumConverted.intValue() + "s", "").replace(' ', '*'));
         }
         return true;

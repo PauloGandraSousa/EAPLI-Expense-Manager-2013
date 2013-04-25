@@ -26,7 +26,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class PaymentMethod implements ActiveRecord, Descriptable {
+public abstract class PaymentMethod implements ActiveRecord {
     @Id
     @GeneratedValue
     Long id;

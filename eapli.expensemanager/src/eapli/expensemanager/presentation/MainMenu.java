@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.util.Console;
 
@@ -15,7 +16,7 @@ public class MainMenu extends BaseUI {
 
     // TODO restructure this class to use the Composite pattern and allow for 
     // flexible menu and submenu structure
-    // use command pattenr for each action
+    // use command pattern for each action
     
     final byte EXIT_OPTION = 0;
     final byte REGISTER_EXPENSE_OPTION = 1;
@@ -123,11 +124,11 @@ public class MainMenu extends BaseUI {
         return option == 0;
     }
 
-    static BaseController controller = new BaseController();
+    //static BaseController controller = new BaseController();
     
     @Override
     protected BaseController controller() {
-        return controller;
+        return null; //controller;
     }
 
     @Override
