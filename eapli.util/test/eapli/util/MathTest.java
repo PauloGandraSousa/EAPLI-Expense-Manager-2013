@@ -4,6 +4,7 @@
  */
 package eapli.util;
 
+import java.math.BigDecimal;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -81,5 +82,110 @@ public class MathTest {
         boolean expResult = false;
         boolean result = Math.isEven(i);
         assertEquals(expResult, result);
+    }
+    
+      /**
+     * Test of simpleLinearConversion method, of class
+     * ListExpensesUIPerTypeTextChart.
+     */
+    @Test
+    public void testSimpleLinearConversion1() {
+        System.out.println("simpleLinearConversion");
+        float oldMin = 0.0F;
+        float oldMax = 100.0F;
+        float newMin = 0.0F;
+        float newMax = 10.0F;
+        float oldValue = 50.0F;
+        float expResult = 5.0F;
+        float result = Math.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
+        assertEquals(expResult, result, 0.0);
+    }
+
+    /**
+     * Test of simpleLinearConversion method, of class
+     * ListExpensesUIPerTypeTextChart.
+     */
+    @Test
+    public void testSimpleLinearConversion2() {
+        System.out.println("simpleLinearConversion");
+        float oldMin = 0.0F;
+        float oldMax = 575.0F;
+        float newMin = 0.0F;
+        float newMax = 10.0F;
+        float oldValue = 575.0F;
+        float expResult = 10.0F;
+        float result = Math.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
+        assertEquals(expResult, result, 0.0);
+    }
+
+    /**
+     * Test of simpleLinearConversion method, of class
+     * ListExpensesUIPerTypeTextChart.
+     */
+    @Test
+    public void testSimpleLinearConversion3() {
+        System.out.println("simpleLinearConversion");
+        float oldMin = 0.0F;
+        float oldMax = 575.0F;
+        float newMin = 0.0F;
+        float newMax = 10.0F;
+        float oldValue = 355.0F;
+        float expResult = 355.0F/575.0F*10;
+        float result = Math.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
+        assertEquals(expResult, result, 0.0);
+    }
+
+    /**
+     * Test of simpleLinearConversion2 method, of class
+     * ListExpensesUIPerTypeTextChart.
+     */
+    @Test
+    public void testSimpleLinearConversion_BigDecimal1() {
+        System.out.println("simpleLinearConversion2");
+        BigDecimal oldMin = new BigDecimal(0);
+        BigDecimal oldMax = new BigDecimal(100);
+        BigDecimal newMin = new BigDecimal(0);
+        BigDecimal newMax = new BigDecimal(10);
+        BigDecimal oldValue = new BigDecimal(50);
+        BigDecimal expResult = new BigDecimal(5.0);
+        BigDecimal result = Math.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
+        assertEquals(expResult.doubleValue(), result.doubleValue(), 0);
+
+    }
+
+    /**
+     * Test of simpleLinearConversion2 method, of class
+     * ListExpensesUIPerTypeTextChart.
+     */
+    @Test
+    public void testSimpleLinearConversion_BigDecimal2() {
+        System.out.println("simpleLinearConversion2");
+        BigDecimal oldMin = new BigDecimal(0);
+        BigDecimal oldMax = new BigDecimal(575);
+        BigDecimal newMin = new BigDecimal(0);
+        BigDecimal newMax = new BigDecimal(10);
+        BigDecimal oldValue = new BigDecimal(575);
+        BigDecimal expResult = new BigDecimal(10.0);
+        BigDecimal result = Math.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
+        assertEquals(expResult.doubleValue(), result.doubleValue(), 0);
+
+    }
+
+    /**
+     * Test of simpleLinearConversion2 method, of class
+     * ListExpensesUIPerTypeTextChart.
+     */
+    @Test
+    public void testSimpleLinearConversion_BigDecimal3() {
+        System.out.println("simpleLinearConversion2");
+        BigDecimal oldMin = new BigDecimal(0);
+        BigDecimal oldMax = new BigDecimal(575);
+        BigDecimal newMin = new BigDecimal(0);
+        BigDecimal newMax = new BigDecimal(10);
+        BigDecimal oldValue = new BigDecimal(355);
+        BigDecimal expResult = new BigDecimal(6.0);
+        BigDecimal result = Math.simpleLinearConversion(oldMin, oldMax, newMin, newMax, oldValue);
+        assertEquals(expResult.doubleValue(), result.doubleValue(), 0);
+
     }
 }
