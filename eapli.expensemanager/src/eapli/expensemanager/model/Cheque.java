@@ -14,7 +14,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Cheque extends PaymentMethod {
+public class Cheque extends PaymentMean {
 
     String chequeBooksName;
     String bank;

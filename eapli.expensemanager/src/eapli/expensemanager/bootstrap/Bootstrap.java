@@ -9,7 +9,7 @@ import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
-import eapli.expensemanager.persistence.PaymentMethodRepository;
+import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import javax.persistence.NoResultException;
 
@@ -63,10 +63,10 @@ public class Bootstrap {
         }
     }
     
-    final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
-    final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
-    final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
-    final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
+    public final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
+    public final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
+    public final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
+    public final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
 
     private void ensureDefaultExpenseTypesExist() {
         ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();

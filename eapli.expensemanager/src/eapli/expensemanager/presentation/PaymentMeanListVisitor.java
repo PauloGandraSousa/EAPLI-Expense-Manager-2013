@@ -4,20 +4,20 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.model.PaymentMethod;
+import eapli.expensemanager.model.PaymentMean;
 import eapli.expensemanager.model.Visitor;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-class PaymentMethodListVisitor implements Visitor<PaymentMethod> {
+class PaymentMeanListVisitor implements Visitor<PaymentMean> {
 
-    public PaymentMethodListVisitor() {
+    public PaymentMeanListVisitor() {
     }
 
     @Override
-    public void visit(PaymentMethod visited) {
+    public void visit(PaymentMean visited) {
         System.out.println(visited.getDescription());
     }
     

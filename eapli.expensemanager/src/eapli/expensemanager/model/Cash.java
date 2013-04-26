@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.expensemanager.persistence.PaymentMethodRepository;
+import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -16,7 +16,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Cash extends PaymentMethod {
+public class Cash extends PaymentMean {
     String currency;
 
     public static final String EUR = "EUR";
@@ -30,7 +30,7 @@ public class Cash extends PaymentMethod {
     }
     
     public static Cash loadEUR() {
-        PaymentMethodRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMethodRepository();
+        PaymentMeanRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMeanRepository();
         return repo.getCash(EUR);
     }
     

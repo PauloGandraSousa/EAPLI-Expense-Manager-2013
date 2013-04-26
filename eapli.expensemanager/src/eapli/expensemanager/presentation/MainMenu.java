@@ -114,7 +114,7 @@ public class MainMenu extends BaseUI {
                 registerPaymentMethodUI.show();
                 break;
             case LIST_PAYMENT_METHODS_OPTION:
-                ListPaymentMethodsUI listPaymentMethodsUI = new ListPaymentMethodsUI();
+                ListPaymentMeansUI listPaymentMethodsUI = new ListPaymentMeansUI();
                 listPaymentMethodsUI.show();
                 break;
             default:

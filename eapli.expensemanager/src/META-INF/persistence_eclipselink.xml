@@ -16,7 +16,7 @@
     <class>eapli.expensemanager.model.IncomeType</class>
     <class>eapli.expensemanager.model.Movement</class>
     <class>eapli.expensemanager.model.Payment</class>
-    <class>eapli.expensemanager.model.PaymentMethod</class>
+    <class>eapli.expensemanager.model.PaymentMean</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:../db/expensemanager"/>
       <property name="javax.persistence.jdbc.password" value=""/>

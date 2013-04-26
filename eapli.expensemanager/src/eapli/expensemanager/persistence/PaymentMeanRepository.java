@@ -5,7 +5,7 @@
 package eapli.expensemanager.persistence;
 
 import eapli.expensemanager.model.Cash;
-import eapli.expensemanager.model.PaymentMethod;
+import eapli.expensemanager.model.PaymentMean;
 import java.util.List;
 
 /**
@@ -16,10 +16,10 @@ import java.util.List;
  * 
  * @author Paulo Gandra Sousa
  */
-public interface PaymentMethodRepository {  
-    List<PaymentMethod> all();
+public interface PaymentMeanRepository {  
+    List<PaymentMean> all();
     
-    PaymentMethod save(PaymentMethod paymentMethod);
+    PaymentMean save(PaymentMean paymentMethod);
 
     public Cash getCash(String currency);
 }

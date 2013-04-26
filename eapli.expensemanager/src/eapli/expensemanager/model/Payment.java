@@ -23,11 +23,11 @@ public class Payment {
     long id;
     
     @ManyToOne
-    PaymentMethod method;
+    PaymentMean method;
 
     public Payment() {}
     
-    public Payment(PaymentMethod method) {
+    public Payment(PaymentMean method) {
         this.method = method;
     }
 }
