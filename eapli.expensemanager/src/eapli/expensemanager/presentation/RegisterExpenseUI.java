@@ -64,7 +64,7 @@ class RegisterExpenseUI extends BaseUI {
         widget = new ListWidget(listExpenseTypes, new ExpenseTypeListVisitor());
         widget.show();
         int option = Console.readOption(1, listExpenseTypes.size(), 0);
-        ExpenseType expenseType = listExpenseTypes.get(option);
+        ExpenseType expenseType = listExpenseTypes.get(option-1);
         return expenseType;
     }
 
