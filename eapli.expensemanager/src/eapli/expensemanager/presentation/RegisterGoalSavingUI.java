@@ -28,7 +28,7 @@ public class RegisterGoalSavingUI extends BaseUI {
         
         String desctarget = Console.readLine("Description of new Target");
         
-        double value =  Console.readDouble("Total Ammount");
+       double value =  Console.readDouble("Total Ammount");
         BigDecimal totaltargetammount = new BigDecimal(value);
         controller.registerTargetSaving(desctarget,totaltargetammount);
         

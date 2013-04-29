@@ -15,6 +15,11 @@
     <class>eapli.expensemanager.model.CreditCard</class>
     <class>eapli.expensemanager.model.DebitCard</class>
     <class>eapli.expensemanager.model.PaymentMethod</class>
+    
+    <class>eapli.expensemanager.model.SavingsPlan</class>
+    <class>eapli.expensemanager.model.SavingGoal</class>
+    <class>eapli.expensemanager.model.Saving</class>
+
     <properties>
       <!--
             apache derby test database on default instalation

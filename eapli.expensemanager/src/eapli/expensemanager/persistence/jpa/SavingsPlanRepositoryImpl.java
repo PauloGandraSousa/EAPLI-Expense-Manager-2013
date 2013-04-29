@@ -6,7 +6,7 @@ package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.SavingsPlan;
-import eapli.expensemanager.persistence.CheckingAccountRepository;
+import eapli.expensemanager.persistence.SavingsPlanRepository;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -14,7 +14,7 @@ import java.util.Iterator;
  *
  * @author Paulo Gandra Sousa
  */
-public class SavingPlansRepositoryImpl extends JpaRepository<SavingsPlan, Long> implements eapli.expensemanager.persistence.SavingsPlanRepository {
+public class SavingsPlanRepositoryImpl extends JpaRepository<SavingsPlan, Long> implements SavingsPlanRepository {
 
     /**
      * @exception IllegalStateException Esta exceção é uma runtime exception.
@@ -38,4 +38,5 @@ public class SavingPlansRepositoryImpl extends JpaRepository<SavingsPlan, Long> 
         Iterator<SavingsPlan> iterator = savingsplan.iterator();
         return iterator.next();
     }
+
 }

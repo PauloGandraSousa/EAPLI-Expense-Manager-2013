@@ -4,7 +4,9 @@
  */
 package eapli.expensemanager.controllers;
 
+import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.SavingGoal;
+import eapli.expensemanager.model.SavingsPlan;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingsPlanRepository;
@@ -21,9 +23,16 @@ public class RegisterTargetSavingController extends BaseController{
         
         repo = PersistenceFactory.buildPersistenceFactory().savingsPlanRepository();
         
-        SavingGoal targetsaving = new SavingGoal(desctarget,totaltargetammount);
+        SavingGoal savingGoal = new SavingGoal(desctarget,totaltargetammount);
         
         
+      
+        SavingsPlan savingsplan = repo.theSavingsPlan();
+        savingsplan.registerSavingGoal(savingGoal);
+        repo.save(savingsplan); 
+        
+        
+       
         
     
     }

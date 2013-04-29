@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.persistence;
 
+import eapli.expensemanager.persistence.jpa.SavingsPlanRepositoryImpl;
+
 /**
  * a concrete factory - in memory
  * 
@@ -16,6 +18,13 @@ class InMemoryRepositoryFactory implements RepositoryFactory {
         return new eapli.expensemanager.persistence.inmemory.ExpenseRepositoryImpl();
     }
 
+        
+    @Override
+    public SavingsPlanRepository savingsPlanRepository(){
+        return new eapli.expensemanager.persistence.inmemory.SavingsPlanRepositoryImpl();
+    
+    }
+    
     @Override
     public ExpenseTypeRepository expenseTypeRepository() {
         return new eapli.expensemanager.persistence.inmemory.ExpenseTypeRepositoryImpl();

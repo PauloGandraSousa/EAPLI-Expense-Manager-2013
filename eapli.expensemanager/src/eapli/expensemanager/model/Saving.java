@@ -7,6 +7,7 @@ package eapli.expensemanager.model;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,20 +16,44 @@ import javax.persistence.Id;
  */
 @Entity
 public class Saving {
-    
     @Id
     @GeneratedValue
-    private long id;
+    private Long id; 
     
-    BigDecimal goalAmmount;
-    String description;
-    
-    Saving () {}
-    
-    Saving ( String desc,BigDecimal ammount)
+    private BigDecimal ammount;
+
+    Saving(){}
+    public Saving(BigDecimal ammount)
     {
-        desc=description;
-        goalAmmount=ammount;
-        
+        this.ammount=ammount;
+    }
+    
+    
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the ammount
+     */
+    public BigDecimal getAmmount() {
+        return ammount;
+    }
+
+    /**
+     * @param ammount the ammount to set
+     */
+    public void setAmmount(BigDecimal ammount) {
+        this.ammount = ammount;
     }
 }
