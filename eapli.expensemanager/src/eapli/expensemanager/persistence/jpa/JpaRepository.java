@@ -81,7 +81,7 @@ public abstract class JpaRepository<T, PK extends Serializable> {
     @SuppressWarnings("unchecked")
     public Collection<T> findAll() {
         return getEntityManager().createQuery(
-                "SELECT e FROM " + entityClass.getName() + " e")
+                "SELECT e FROM " + entityClass.getSimpleName() + " e")
                 .getResultList();
     }
 
@@ -94,6 +94,11 @@ public abstract class JpaRepository<T, PK extends Serializable> {
      * @param entity
      * @return the persisted entity - migth be a diferent object than the
      * parameter
+     * 
+     * FAM[2013-04-29] - comentei a linha  tx.rollback();
+     * 	   Lançava a seguinte exceção:
+     * 	   Exception in thread "main" java.lang.IllegalStateException:
+     * 	   Exception Description: No transaction is currently active
      */
     public T save(T entity) {
         if (entity == null) {
@@ -110,7 +115,7 @@ public abstract class JpaRepository<T, PK extends Serializable> {
                 em.persist(entity);
                 tx.commit();
             } catch (PersistenceException ex) {
-                tx.rollback();
+//                tx.rollback();
                 // we need to set up a new transaction if persist raises an exception
                 tx = em.getTransaction();
                 tx.begin();
@@ -141,7 +146,7 @@ public abstract class JpaRepository<T, PK extends Serializable> {
         EntityManager em = getEntityManager();
         assert em != null;
 
-        String tableName = entityClass.getName(); //entityClass.getAnnotation(Table.class).name();
+        String tableName = entityClass.getSimpleName(); //entityClass.getAnnotation(Table.class).name();
         Query q = em.createQuery("SELECT it FROM " + tableName + " it WHERE " + where);
         List<T> some = q.getResultList();
         return some;

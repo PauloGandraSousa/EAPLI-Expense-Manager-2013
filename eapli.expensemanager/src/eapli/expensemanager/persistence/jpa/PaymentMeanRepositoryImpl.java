@@ -28,7 +28,7 @@ public class PaymentMeanRepositoryImpl extends JpaRepository<PaymentMean, Long> 
 
     @Override
     public Cash getCash(String currency) {
-        Query query = getEntityManager().createQuery("FROM Cash c WHERE c.currency = :curr");
+        Query query = getEntityManager().createQuery("SELECT c FROM Cash c WHERE c.currency = :curr");
         query.setParameter("curr", currency);
         Cash cash = (Cash)query.getSingleResult();
         return cash;
