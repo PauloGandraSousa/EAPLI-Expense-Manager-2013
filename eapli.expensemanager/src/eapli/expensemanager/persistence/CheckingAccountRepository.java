@@ -16,7 +16,7 @@ public interface CheckingAccountRepository {
      * Quando uma classe é persistente, temos de garantir que o retorno da base
      * de dados será sempre um e apenas um objecto, daí o nome theAccount
      *
-     * @return the one and only accountƒ
+     * @return the one and only account
      */
     public CheckingAccount theAccount();
 

@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,7 +25,7 @@ import javax.persistence.Transient;
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class CheckingAccount {
+public class CheckingAccount implements Serializable {
 
     @Id
     @GeneratedValue

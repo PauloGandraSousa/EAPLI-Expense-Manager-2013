@@ -6,7 +6,7 @@ package eapli.expensemanager.persistence;
 
 /**
  * a concrete factory - hibernate
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 class JpaRepositoryFactory implements RepositoryFactory {
@@ -16,7 +16,6 @@ class JpaRepositoryFactory implements RepositoryFactory {
         return new eapli.expensemanager.persistence.jpa.ExpenseRepositoryImpl();
     }
 
-   
     @Override
     public ExpenseTypeRepository expenseTypeRepository() {
         return new eapli.expensemanager.persistence.jpa.ExpenseTypeRepositoryImpl();
@@ -37,12 +36,11 @@ class JpaRepositoryFactory implements RepositoryFactory {
         return new eapli.expensemanager.persistence.jpa.CheckingAccountRepositoryImpl();
     }
 
-    
     @Override
     public SavingsPlanRepository savingsPlanRepository() {
         return new eapli.expensemanager.persistence.jpa.SavingsPlanRepositoryImpl();
     }
-    
+
     @Override
     public PaymentMeanRepository paymentMeanRepository() {
         return new eapli.expensemanager.persistence.jpa.PaymentMeanRepositoryImpl();

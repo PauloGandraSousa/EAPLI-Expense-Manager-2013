@@ -5,10 +5,8 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.CheckingAccount;
-import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
-import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.util.List;
 

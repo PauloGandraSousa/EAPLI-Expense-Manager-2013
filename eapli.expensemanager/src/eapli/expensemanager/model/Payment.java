@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class Payment {
+public class Payment implements Serializable {
     @Id
     @GeneratedValue
     long id;

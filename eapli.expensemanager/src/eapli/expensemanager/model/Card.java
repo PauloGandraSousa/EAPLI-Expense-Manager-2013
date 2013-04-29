@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;

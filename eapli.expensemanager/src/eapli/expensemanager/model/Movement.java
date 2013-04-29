@@ -5,6 +5,7 @@
 package eapli.expensemanager.model;
 
 import eapli.util.DateTime;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,7 +24,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE) // TODO check if single table inheritance is the best strategy
-public abstract class Movement {
+public abstract class Movement implements Serializable {
 
     @Id
     @GeneratedValue

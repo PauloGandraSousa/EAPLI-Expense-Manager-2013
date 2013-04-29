@@ -11,10 +11,8 @@ import eapli.expensemanager.model.SavingsPlan;
  * @author losa
  */
 public interface SavingsPlanRepository {
-        
-    public SavingsPlan theSavingsPlan();
-    public SavingsPlan  save(SavingsPlan savingsplan); 
-    
 
-    
+    public SavingsPlan theSavingsPlan();
+
+    public SavingsPlan save(SavingsPlan savingsplan);
 }

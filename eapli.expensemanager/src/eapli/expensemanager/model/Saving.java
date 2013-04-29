@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,14 +16,15 @@ import javax.persistence.Id;
  * @author losa
  */
 @Entity
-public class Saving {
+public class Saving implements Serializable {
     @Id
     @GeneratedValue
     private Long id; 
     
     private BigDecimal ammount;
 
-    Saving(){}
+    public Saving(){}
+    
     public Saving(BigDecimal ammount)
     {
         this.ammount=ammount;

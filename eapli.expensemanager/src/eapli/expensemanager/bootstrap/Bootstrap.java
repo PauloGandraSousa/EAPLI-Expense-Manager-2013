@@ -55,7 +55,7 @@ public class Bootstrap {
         ensureDefaultExpenseTypesExist();
         ensureCashEurExists();
         ensureSavingsPlanExists();
-    }          
+    }
 
     private void ensureTheAccountExists() {
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
@@ -66,10 +66,8 @@ public class Bootstrap {
             repo.save(theAccount);
         }
     }
-    
-    
-    
-     private void ensureSavingsPlanExists() {
+
+    private void ensureSavingsPlanExists() {
         SavingsPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingsPlanRepository();
         try {
             SavingsPlan theSavingPlan = repo.theSavingsPlan();
@@ -79,10 +77,6 @@ public class Bootstrap {
         }
     }
     
-    final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
-    final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
-    final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
-    final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
     public final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
     public final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
     public final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";

@@ -7,8 +7,8 @@ package eapli.expensemanager.model;
 import eapli.expensemanager.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
+import java.io.Serializable;
 import java.util.List;
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +27,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class PaymentMean implements ActiveRecord {
+public abstract class PaymentMean implements ActiveRecord, Serializable {
     @Id
     @GeneratedValue
     Long id;

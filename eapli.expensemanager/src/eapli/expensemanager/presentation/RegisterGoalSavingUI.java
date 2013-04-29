@@ -9,40 +9,37 @@ import eapli.expensemanager.controllers.RegisterTargetSavingController;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.util.Console;
 import java.math.BigDecimal;
-import eapli.expensemanager.presentation.framework.*;                                                                                                                                                                                            
+import eapli.expensemanager.presentation.framework.*;
 
 /**
  *
  * @author losa
  */
 public class RegisterGoalSavingUI extends BaseUI {
-    
-    RegisterTargetSavingController controller = new  RegisterTargetSavingController();
-     @Override
+
+    RegisterTargetSavingController controller = new RegisterTargetSavingController();
+
+    @Override
     protected BaseController controller() {
         return controller;
     }
-    
+
     @Override
     public boolean doShow() {
-        
+
         String desctarget = Console.readLine("Description of new Target");
-        
-       double value =  Console.readDouble("Total Ammount");
+
+        double value = Console.readDouble("Total Ammount");
         BigDecimal totaltargetammount = new BigDecimal(value);
-        controller.registerTargetSaving(desctarget,totaltargetammount);
+        controller.registerTargetSaving(desctarget, totaltargetammount);
+
+        System.out.println("\nSaving Goal registered.");
         
-        return true; 
+        return true;
     }
 
     @Override
     public String headline() {
-        return "REGISTER NEW TARGET SAVING";    
+        return "REGISTER NEW TARGET SAVING";
     }
-   public boolean show()
-   {
-       headline();
-       doShow();
-       return true;
-   }
 }

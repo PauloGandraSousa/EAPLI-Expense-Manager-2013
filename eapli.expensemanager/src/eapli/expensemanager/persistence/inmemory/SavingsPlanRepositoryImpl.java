@@ -11,16 +11,23 @@ import eapli.expensemanager.persistence.SavingsPlanRepository;
  *
  * @author losa
  */
-public class SavingsPlanRepositoryImpl implements SavingsPlanRepository{
+public class SavingsPlanRepositoryImpl implements SavingsPlanRepository {
+
+    static SavingsPlan theOneAndOnlySavingsPlan = new SavingsPlan();
 
     @Override
     public SavingsPlan theSavingsPlan() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return theOneAndOnlySavingsPlan;
     }
 
     @Override
     public SavingsPlan save(SavingsPlan savingsplan) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // make sure we receive the same object
+        assert (savingsplan == theOneAndOnlySavingsPlan);
+        if (savingsplan != theOneAndOnlySavingsPlan) {
+            throw new IllegalStateException();
+        }
+
+        return theOneAndOnlySavingsPlan;
     }
-    
 }

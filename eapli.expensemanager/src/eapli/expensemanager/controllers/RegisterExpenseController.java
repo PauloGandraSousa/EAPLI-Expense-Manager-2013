@@ -12,7 +12,6 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
-import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.util.Date;
