@@ -5,7 +5,7 @@
 package eapli.expensemanager;
 
 import eapli.expensemanager.bootstrap.Bootstrap;
-import eapli.expensemanager.bootstrap.SomeDataBootstrap;
+import eapli.expensemanager.bootstrap.SomeExpensesBootstrap;
 import eapli.expensemanager.presentation.MainMenu;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -23,6 +23,8 @@ public class ExpenseManager {
     public static void main(String[] args) {
         loadProperties();
 
+        // call the bootstraper
+        // the next line should be removed for "production" ready deployment
         doBootstrap();
 
         MainMenu menu = new MainMenu();
@@ -55,9 +57,8 @@ public class ExpenseManager {
     }
 
     private static void doBootstrap() {
-        // call the bootstraper
-        // the next line should be removed for "production" ready deployment
-        Bootstrap bootstrap = new Bootstrap();
-        //Bootstrap bootstrap = new SomeDataBootstrap();
+        Bootstrap referenceDataBootstrap = new Bootstrap();
+        
+        SomeExpensesBootstrap sampleExpensesBootstrap = new SomeExpensesBootstrap();
     }
 }

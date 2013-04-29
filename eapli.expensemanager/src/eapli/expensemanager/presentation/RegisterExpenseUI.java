@@ -12,7 +12,7 @@ import eapli.expensemanager.model.Cheque;
 import eapli.expensemanager.model.ChequePayment;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
-import eapli.expensemanager.model.PaymentMethod;
+import eapli.expensemanager.model.PaymentMean;
 import eapli.util.Console;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -41,7 +41,7 @@ class RegisterExpenseUI extends BaseUI {
         ExpenseType expenseType = readExpenseType();
         
         // TODO should the UI create a Payment object?
-        Payment method = readPaymentMethod();        
+        Payment method = readPaymentMean();        
 
         controller.registerExpense(what, date, amount, expenseType, method);
 
@@ -64,21 +64,21 @@ class RegisterExpenseUI extends BaseUI {
         widget = new ListWidget(listExpenseTypes, new ExpenseTypeListVisitor());
         widget.show();
         int option = Console.readOption(1, listExpenseTypes.size(), 0);
-        ExpenseType expenseType = listExpenseTypes.get(option);
+        ExpenseType expenseType = listExpenseTypes.get(option-1);
         return expenseType;
     }
 
-    private Payment readPaymentMethod() {
-        System.out.println("-- PAYMENT METHODS --");
-        List<PaymentMethod> methods = controller.getPaymentMethods();
+    private Payment readPaymentMean() {
+        System.out.println("-- PAYMENT MEANS --");
+        List<PaymentMean> methods = controller.getPaymentMeans();
         // FIX use ListWidget to avoid code duplication
         int position = 1;
-        for (PaymentMethod method : methods) {
+        for (PaymentMean method : methods) {
             System.out.println(position + ". " + method.getDescription());
             position++;
         }
         int option = Console.readOption(1, methods.size(), 0);
-        PaymentMethod method = methods.get(option-1);
+        PaymentMean method = methods.get(option-1);
         
         // TODO should the UI ask for a Payment object or call different 
         // registerXXX methods on the controller, i.e., registerExpensePaidwithCheque

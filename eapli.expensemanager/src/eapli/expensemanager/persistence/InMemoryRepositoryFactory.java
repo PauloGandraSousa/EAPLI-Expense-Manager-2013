@@ -46,7 +46,7 @@ class InMemoryRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public PaymentMethodRepository paymentMethodRepository() {
-        return new eapli.expensemanager.persistence.inmemory.PaymentMethodRepositoryImpl();
+    public PaymentMeanRepository paymentMeanRepository() {
+        return new eapli.expensemanager.persistence.inmemory.PaymentMeanRepositoryImpl();
     }
 }

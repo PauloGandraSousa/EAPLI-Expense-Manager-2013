@@ -44,7 +44,7 @@ class JpaRepositoryFactory implements RepositoryFactory {
     }
     
     @Override
-    public PaymentMethodRepository paymentMethodRepository() {
-        return new eapli.expensemanager.persistence.jpa.PaymentMethodRepositoryImpl();
+    public PaymentMeanRepository paymentMeanRepository() {
+        return new eapli.expensemanager.persistence.jpa.PaymentMeanRepositoryImpl();
     }
 }

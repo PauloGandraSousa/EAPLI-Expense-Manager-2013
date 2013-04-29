@@ -16,7 +16,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Card extends PaymentMethod {
+public abstract class Card extends PaymentMean {
     String cardName;
     String bank;
     String cardNumber;

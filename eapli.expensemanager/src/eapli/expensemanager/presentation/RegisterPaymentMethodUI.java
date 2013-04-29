@@ -6,7 +6,7 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.controllers.RegisterPaymentMethodController;
+import eapli.expensemanager.controllers.RegisterPaymentMeanController;
 import eapli.util.Console;
 import java.util.Calendar;
 
@@ -24,7 +24,7 @@ class RegisterPaymentMethodUI extends BaseUI {
     String chequeBookName;
     String accountNumber;
     
-    RegisterPaymentMethodController controller = new RegisterPaymentMethodController();
+    RegisterPaymentMeanController controller = new RegisterPaymentMeanController();
 
     @Override
     protected BaseController controller() {

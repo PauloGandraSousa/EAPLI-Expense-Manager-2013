@@ -23,6 +23,6 @@ public interface RepositoryFactory {
 
     IncomeTypeRepository incomeTypeRepository();
 
-    public PaymentMethodRepository paymentMethodRepository();
+    public PaymentMeanRepository paymentMeanRepository();
     
 }

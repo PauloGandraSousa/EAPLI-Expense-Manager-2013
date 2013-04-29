@@ -11,32 +11,35 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
-import eapli.expensemanager.persistence.PaymentMethodRepository;
+import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public class SomeDataBootstrap extends Bootstrap {
+public class SomeExpensesBootstrap  {
     
-    public SomeDataBootstrap() {
-        super();
+    public SomeExpensesBootstrap() {
         
         CheckingAccountRepository repoAccount = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount theAccount = repoAccount.theAccount();
         
         ExpenseTypeRepository repoExpenseType = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
-        ExpenseType clothing = repoExpenseType.findForName(CLOTHING_EXPENSE_TYPE);
-        ExpenseType transport = repoExpenseType.findForName(TRANSPORTS_EXPENSE_TYPE);
+        ExpenseType clothing = repoExpenseType.findForName(Bootstrap.CLOTHING_EXPENSE_TYPE);
+        ExpenseType transport = repoExpenseType.findForName(Bootstrap.TRANSPORTS_EXPENSE_TYPE);
         
-        PaymentMethodRepository repoPaymentMethod = PersistenceFactory.buildPersistenceFactory().paymentMethodRepository();
+        PaymentMeanRepository repoPaymentMethod = PersistenceFactory.buildPersistenceFactory().paymentMeanRepository();
         Cash cashEur = repoPaymentMethod.getCash(Cash.EUR);
         Payment payment = new Payment(cashEur);
 
-        Expense exp = new Expense(clothing, "sapatilhas", DateTime.newDate(2013, 4, 1), new BigDecimal(100), payment);
+        // TODO use relative dateOfExpense to today's date
+        Date dateOfExpense = DateTime.newDate(2013, 4, 1);
+        
+        Expense exp = new Expense(clothing, "sapatilhas", dateOfExpense, new BigDecimal(100), payment);
         theAccount.registerExpense(exp);
                 
         exp = new Expense(clothing, "calças", DateTime.newDate(2013, 4, 5), new BigDecimal(150), payment);

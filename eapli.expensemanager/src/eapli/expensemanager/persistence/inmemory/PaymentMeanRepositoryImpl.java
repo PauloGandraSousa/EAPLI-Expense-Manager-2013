@@ -5,8 +5,8 @@
 package eapli.expensemanager.persistence.inmemory;
 
 import eapli.expensemanager.model.Cash;
-import eapli.expensemanager.model.PaymentMethod;
-import eapli.expensemanager.persistence.PaymentMethodRepository;
+import eapli.expensemanager.model.PaymentMean;
+import eapli.expensemanager.persistence.PaymentMeanRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,24 +14,24 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-public class PaymentMethodRepositoryImpl implements PaymentMethodRepository {
+public class PaymentMeanRepositoryImpl implements PaymentMeanRepository {
 
-    static List<PaymentMethod> paymentMethods = new ArrayList<PaymentMethod>();
-    static Cash cashEur = new Cash(Cash.EUR);
+    static final List<PaymentMean> paymentMeans = new ArrayList<PaymentMean>();
+    static final Cash cashEur = new Cash(Cash.EUR);
     
     static {
-        paymentMethods.add(cashEur);
+        paymentMeans.add(cashEur);
     }
     
     @Override
-    public List<PaymentMethod> all() {
-        return paymentMethods;
+    public List<PaymentMean> all() {
+        return paymentMeans;
     }
 
     @Override
-    public PaymentMethod save(PaymentMethod paymentMethod) {
+    public PaymentMean save(PaymentMean paymentMethod) {
         // TODO check if we alreay know this object or add it if not
-        paymentMethods.add(paymentMethod);
+        paymentMeans.add(paymentMethod);
         return paymentMethod;
     }
 

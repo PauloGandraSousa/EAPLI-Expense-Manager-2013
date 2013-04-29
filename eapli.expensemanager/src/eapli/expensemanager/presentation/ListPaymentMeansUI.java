@@ -7,17 +7,17 @@ package eapli.expensemanager.presentation;
 import eapli.expensemanager.presentation.framework.ListWidget;
 import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.controllers.ListPaymentMethodsController;
-import eapli.expensemanager.model.PaymentMethod;
+import eapli.expensemanager.controllers.ListPaymentMeansController;
+import eapli.expensemanager.model.PaymentMean;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-class ListPaymentMethodsUI extends BaseUI {
+class ListPaymentMeansUI extends BaseUI {
 
-    ListPaymentMethodsController controller = new ListPaymentMethodsController();
-    ListWidget<PaymentMethod> widget;
+    ListPaymentMeansController controller = new ListPaymentMeansController();
+    ListWidget<PaymentMean> widget;
     
     @Override
     protected BaseController controller() {
@@ -26,7 +26,7 @@ class ListPaymentMethodsUI extends BaseUI {
 
     @Override
     protected boolean doShow() {
-        widget = new ListWidget<PaymentMethod>(controller.getPaymentMethods(), new PaymentMethodListVisitor());
+        widget = new ListWidget<PaymentMean>(controller.getPaymentMeans(), new PaymentMeanListVisitor());
         widget.show();
         
         return true;

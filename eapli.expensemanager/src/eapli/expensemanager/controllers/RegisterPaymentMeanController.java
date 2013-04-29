@@ -13,7 +13,7 @@ import java.util.Calendar;
  *
  * @author Paulo Gandra Sousa
  */
-public class RegisterPaymentMethodController extends BaseController {
+public class RegisterPaymentMeanController extends BaseController {
     public void registerCreditCard(String cardName, String bank, String cardNumber, String name, Calendar validUntil) {
         CreditCard card = new CreditCard(cardName, bank, cardNumber, name, validUntil);
         card.save();

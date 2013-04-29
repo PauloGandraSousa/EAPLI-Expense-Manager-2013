@@ -5,8 +5,8 @@
 package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.Cash;
-import eapli.expensemanager.model.PaymentMethod;
-import eapli.expensemanager.persistence.PaymentMethodRepository;
+import eapli.expensemanager.model.PaymentMean;
+import eapli.expensemanager.persistence.PaymentMeanRepository;
 import java.util.List;
 import javax.persistence.Query;
 
@@ -14,21 +14,21 @@ import javax.persistence.Query;
  *
  * @author Paulo Gandra Sousa
  */
-public class PaymentMethodRepositoryImpl extends JpaRepository<PaymentMethod, Long> implements PaymentMethodRepository {
+public class PaymentMeanRepositoryImpl extends JpaRepository<PaymentMean, Long> implements PaymentMeanRepository {
 
     @Override
-    public List<PaymentMethod> all() {
+    public List<PaymentMean> all() {
         return super.all();
     }
 
     @Override
-    public PaymentMethod save(PaymentMethod paymentMethod) {
-        return super.save(paymentMethod);
+    public PaymentMean save(PaymentMean paymentMean) {
+        return super.save(paymentMean);
     }
 
     @Override
     public Cash getCash(String currency) {
-        Query query = getEntityManager().createQuery("FROM Cash c WHERE c.currency = :curr");
+        Query query = getEntityManager().createQuery("SELECT c FROM Cash c WHERE c.currency = :curr");
         query.setParameter("curr", currency);
         Cash cash = (Cash)query.getSingleResult();
         return cash;
