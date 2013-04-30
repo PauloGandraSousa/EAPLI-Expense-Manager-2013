@@ -4,9 +4,9 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterPaymentMeanController;
+import eapli.framework.Controller;
 import eapli.util.Console;
 import java.util.Calendar;
 
@@ -14,7 +14,7 @@ import java.util.Calendar;
  *
  * @author Paulo Gandra Sousa
  */
-class RegisterPaymentMeanUI extends BaseUI {
+class RegisterPaymentMeanUI extends BaseForm {
 
     String cardName;
     String bank;

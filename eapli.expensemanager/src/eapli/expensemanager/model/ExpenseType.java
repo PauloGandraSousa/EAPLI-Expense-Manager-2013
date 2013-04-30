@@ -12,7 +12,7 @@ import javax.persistence.Id;
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class ExpenseType extends BaseType {
+public class ExpenseType extends MovementType {
     
     protected ExpenseType() {}
     

@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.Action;
+import eapli.framework.Action;
 
 /**
  *

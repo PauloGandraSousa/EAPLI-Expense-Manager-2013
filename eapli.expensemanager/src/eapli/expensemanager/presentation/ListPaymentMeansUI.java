@@ -4,8 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.ListWidget;
-import eapli.expensemanager.presentation.framework.BaseUI;
+import eapli.framework.presentation.ListWidget;
+import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListPaymentMeansController;
 import eapli.expensemanager.model.PaymentMean;
@@ -14,7 +14,7 @@ import eapli.expensemanager.model.PaymentMean;
  *
  * @author Paulo Gandra Sousa
  */
-class ListPaymentMeansUI extends BaseUI {
+class ListPaymentMeansUI extends BaseForm {
 
     ListPaymentMeansController controller = new ListPaymentMeansController();
     ListWidget<PaymentMean> widget;

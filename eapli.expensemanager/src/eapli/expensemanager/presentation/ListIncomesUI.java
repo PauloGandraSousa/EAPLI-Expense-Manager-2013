@@ -4,19 +4,19 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.BaseUI;
+import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListIncomesController;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
-import eapli.expensemanager.presentation.framework.ListWidget;
+import eapli.framework.presentation.ListWidget;
 import java.util.List;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-class ListIncomesUI extends BaseUI {
+class ListIncomesUI extends BaseForm {
 
     ListIncomesController controller = new ListIncomesController();
     ListWidget<Income> widget;

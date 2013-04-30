@@ -6,7 +6,7 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.IncomeType;
-import eapli.expensemanager.model.Visitor;
+import eapli.framework.Visitor;
 
 /**
  * an implementation of the Visitor pattern for listing objects of type ExpenseType

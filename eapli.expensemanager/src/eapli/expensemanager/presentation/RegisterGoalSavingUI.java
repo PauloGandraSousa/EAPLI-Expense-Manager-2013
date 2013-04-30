@@ -4,18 +4,18 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterTargetSavingController;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.util.Console;
 import java.math.BigDecimal;
-import eapli.expensemanager.presentation.framework.*;
 
 /**
  *
  * @author losa
  */
-public class RegisterGoalSavingUI extends BaseUI {
+public class RegisterGoalSavingUI extends BaseForm {
 
     RegisterTargetSavingController controller = new RegisterTargetSavingController();
 

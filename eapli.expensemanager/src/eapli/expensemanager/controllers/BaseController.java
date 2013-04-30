@@ -7,6 +7,7 @@ package eapli.expensemanager.controllers;
 import eapli.expensemanager.model.ExpenseRecord;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
+import eapli.framework.Controller;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -16,7 +17,7 @@ import java.util.Date;
  * 
  * @author Paulo Gandra Sousa
  */
-public abstract class BaseController {
+public abstract class BaseController implements Controller {
     /**
      * gets the expenditure of the current week
      * 

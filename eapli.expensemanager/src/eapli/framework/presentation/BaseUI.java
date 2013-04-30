@@ -2,11 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.presentation.framework;
+package eapli.framework.presentation;
 
-import eapli.expensemanager.controllers.BaseController;
-import eapli.util.Console;
-import java.text.NumberFormat;
+import eapli.framework.Controller;
 
 /**
  *
@@ -23,7 +21,7 @@ public abstract class BaseUI {
      * 
      * @return 
      */
-    protected abstract BaseController controller();
+    protected abstract Controller controller();
     
     /**
      * derived classes should override this method to perform the actual rendering
@@ -54,21 +52,10 @@ public abstract class BaseUI {
     public boolean show() {
         drawFormTitle();
         boolean wantsToExit = doShow();
-        showBalances();
         drawFormBorder();
         //Console.waitForKey("Press any key.");
         
         return wantsToExit;
-    }
-    
-    protected void showBalances() {
-        drawFormSeparator();
-        System.out.print("| expenditure - this week: ");
-        System.out.print(NumberFormat.getCurrencyInstance().format( controller().getThisWeekExpenditure()));
-        System.out.print(" - ");
-        System.out.print("this month: ");
-        System.out.print(NumberFormat.getCurrencyInstance().format( controller().getThisMonthExpenditure()));
-        System.out.println(" | ");
     }
 
     protected void drawFormTitle() {

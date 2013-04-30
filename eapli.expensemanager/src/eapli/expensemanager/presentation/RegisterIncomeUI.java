@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.BaseUI;
+import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.RegisterIncomeController;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.model.IncomeType;
@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-class RegisterIncomeUI extends BaseUI {
+class RegisterIncomeUI extends BaseForm {
 
     @Override
     protected BaseController controller() {

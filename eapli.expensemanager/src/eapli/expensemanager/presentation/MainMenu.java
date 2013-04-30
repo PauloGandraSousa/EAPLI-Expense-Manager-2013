@@ -4,16 +4,16 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.ReturnAction;
-import eapli.expensemanager.presentation.framework.BaseUI;
+import eapli.framework.ReturnAction;
+import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
-import eapli.expensemanager.presentation.framework.Action;
-import eapli.expensemanager.presentation.framework.Menu;
-import eapli.expensemanager.presentation.framework.MenuItem;
-import eapli.expensemanager.presentation.framework.MenuSeparator;
-import eapli.expensemanager.presentation.framework.NullAction;
-import eapli.expensemanager.presentation.framework.ShowUiAction;
-import eapli.expensemanager.presentation.framework.SubMenu;
+import eapli.framework.Action;
+import eapli.framework.Controller;
+import eapli.framework.presentation.Menu;
+import eapli.framework.presentation.MenuItem;
+import eapli.framework.presentation.MenuSeparator;
+import eapli.framework.presentation.ShowUiAction;
+import eapli.framework.presentation.SubMenu;
 import eapli.util.Console;
 
 /**
@@ -57,11 +57,6 @@ public class MainMenu extends BaseUI {
     public boolean doShow() {
         //return showMenuOldStyle();
         return showMenuUsingCompositeAndCommand();
-    }
-
-    @Override
-    protected BaseController controller() {
-        return null;
     }
 
     @Override
@@ -256,5 +251,10 @@ public class MainMenu extends BaseUI {
                 break;
         }
         return option == 0;
+    }
+
+    @Override
+    protected Controller controller() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -5,7 +5,7 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.model.PaymentMean;
-import eapli.expensemanager.model.Visitor;
+import eapli.framework.Visitor;
 
 /**
  *

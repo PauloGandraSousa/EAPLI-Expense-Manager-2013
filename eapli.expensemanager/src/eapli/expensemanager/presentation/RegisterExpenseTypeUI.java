@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.framework.BaseUI;
+import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterExpenseTypeController;
 import eapli.util.Console;
@@ -13,7 +13,7 @@ import eapli.util.Console;
  *
  * @author arocha
  */
-public class RegisterExpenseTypeUI extends BaseUI {
+public class RegisterExpenseTypeUI extends BaseForm {
 
     @Override
     public boolean doShow() {

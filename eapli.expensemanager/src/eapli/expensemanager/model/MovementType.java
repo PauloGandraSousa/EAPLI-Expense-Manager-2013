@@ -17,14 +17,14 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public abstract class BaseType implements Serializable {
+public abstract class MovementType implements Serializable {
     @Id
     String shortName;
     String description;
 
-    protected BaseType(){}
+    protected MovementType(){}
     
-    public BaseType(String key, String description) {
+    public MovementType(String key, String description) {
         if (key == null || description == null) {
             throw new IllegalArgumentException();
         }
