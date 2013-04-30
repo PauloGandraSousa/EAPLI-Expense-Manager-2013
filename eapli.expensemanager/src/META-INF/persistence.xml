@@ -17,17 +17,15 @@
     <class>eapli.expensemanager.model.Movement</class>
     <class>eapli.expensemanager.model.Payment</class>
     <class>eapli.expensemanager.model.PaymentMean</class>
-    
     <class>eapli.expensemanager.model.SavingsPlan</class>
     <class>eapli.expensemanager.model.SavingGoal</class>
     <class>eapli.expensemanager.model.Saving</class>
-
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:../db/expensemanager"/>
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
       <property name="javax.persistence.jdbc.user" value=""/>
-      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

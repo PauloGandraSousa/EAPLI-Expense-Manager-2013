@@ -14,7 +14,7 @@ import java.util.Calendar;
  *
  * @author Paulo Gandra Sousa
  */
-class RegisterPaymentMethodUI extends BaseUI {
+class RegisterPaymentMeanUI extends BaseUI {
 
     String cardName;
     String bank;

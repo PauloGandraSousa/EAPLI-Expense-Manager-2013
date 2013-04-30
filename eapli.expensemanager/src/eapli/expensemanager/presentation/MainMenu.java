@@ -4,8 +4,16 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.framework.ReturnAction;
 import eapli.expensemanager.presentation.framework.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
+import eapli.expensemanager.presentation.framework.Action;
+import eapli.expensemanager.presentation.framework.Menu;
+import eapli.expensemanager.presentation.framework.MenuItem;
+import eapli.expensemanager.presentation.framework.MenuSeparator;
+import eapli.expensemanager.presentation.framework.NullAction;
+import eapli.expensemanager.presentation.framework.ShowUiAction;
+import eapli.expensemanager.presentation.framework.SubMenu;
 import eapli.util.Console;
 
 /**
@@ -17,34 +25,157 @@ public class MainMenu extends BaseUI {
     // TODO restructure this class to use the Composite pattern and allow for 
     // flexible menu and submenu structure
     // use command pattern for each action
-    
-    final byte EXIT_OPTION = 0;
-    final byte REGISTER_EXPENSE_OPTION = 1;
-    final byte LIST_EXPENSES_OPTION = 2;
-    final byte REGISTER_INCOME_OPTION = 3;
-    final byte LIST_INCOMES_OPTION = 4;
-    final byte LIST_EXPENSES_PER_TYPE_OPTION = 6;
-    final byte LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION = 7;
-    final byte LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION = 71;
-    final byte REGISTER_EXPENSE_TYPE_OPTION = 20;
-    final byte LIST_EXPENSE_TYPES_OPTION = 21;
-    final byte REGISTER_INCOME_TYPE_OPTION = 30;
-    final byte LIST_INCOME_TYPES_OPTION = 31;
-    final byte REGISTER_PAYMENT_METHOD_OPTION = 40;
-    final byte LIST_PAYMENT_METHODS_OPTION = 41;
-    final byte REGISTER_SAVING_GOAL_OPTION = 51;
+    final int EXIT_OPTION = 0;
+    final int REGISTER_EXPENSE_OPTION = 1;
+    final int LIST_EXPENSES_OPTION = 2;
+    final int REGISTER_INCOME_OPTION = 3;
+    final int LIST_INCOMES_OPTION = 4;
+    final int LIST_EXPENSES_PER_TYPE_OPTION = 6;
+    final int LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION = 7;
+    final int LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION = 71;
+    final int REGISTER_EXPENSE_TYPE_OPTION = 20;
+    final int LIST_EXPENSE_TYPES_OPTION = 21;
+    final int REGISTER_INCOME_TYPE_OPTION = 30;
+    final int LIST_INCOME_TYPES_OPTION = 31;
+    final int REGISTER_PAYMENT_METHOD_OPTION = 40;
+    final int LIST_PAYMENT_METHODS_OPTION = 41;
+    final int REGISTER_SAVING_GOAL_OPTION = 51;
+    final int LISTINGS_OPTION = 100;
+    final int MASTER_TABLES_OPTION = 200;
+
+    public MainMenu() {
+    }
 
     @Override
     public boolean show() {
         drawFormTitle();
         return doShow();
     }
-    
+
     /**
      *
      * @return true if the user selected the exit option
      */
+    @Override
     public boolean doShow() {
+        //return showMenuOldStyle();
+        return showMenuUsingCompositeAndAction();
+    }
+
+    @Override
+    protected BaseController controller() {
+        return null;
+    }
+
+    @Override
+    public String headline() {
+        return "EXPENSE MANAGER";
+    }
+
+    private boolean showMenuUsingCompositeAndAction() {
+        Menu menu = buildMainMenu();
+        return menu.show();
+    }
+
+    private Menu buildListingsMenu() {
+        Menu menu = new Menu("Listings");
+
+        // use a generic "show UI" action
+        menu.addMenuItem(
+                new MenuItem(LIST_EXPENSES_OPTION, "List expenses",
+                new ShowUiAction(new ListExpensesUI())));
+        menu.addMenuItem(
+                new MenuItem(LIST_INCOMES_OPTION, "List incomes",
+                new ShowUiAction(new ListIncomesUI())));
+        menu.addMenuItem(
+                new MenuItem(LIST_EXPENSES_PER_TYPE_OPTION, "List expenses per type",
+                new ShowUiAction(new ListExpensesUIPerTypeConsole())));
+        menu.addMenuItem(
+                new MenuItem(LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION, "List expenses per type in text chart",
+                new ShowUiAction(new ListExpensesUIPerTypeTextChart())));
+        menu.addMenuItem(
+                new MenuItem(LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION, "List expenses per type in GUI chart",
+                new ShowUiAction(new ListExpensesUIPerTypeGUIChart())));
+
+        menu.addMenuItem(
+                new MenuItem(0, "Return", new ReturnAction()));
+
+        return menu;
+    }
+    
+    private Menu buildMasterTablesMenu() {
+        Menu menu = new Menu("Master tables");
+        
+        menu.addMenuItem(
+                new MenuItem(REGISTER_EXPENSE_TYPE_OPTION, "Register an expense type",
+                new ShowUiAction(new RegisterExpenseTypeUI())));
+
+        menu.addMenuItem(
+                new MenuItem(LIST_EXPENSE_TYPES_OPTION, "List expense types",
+                new ShowUiAction(new ListExpenseTypesUI())));
+
+        menu.addMenuItem(
+                new MenuItem(REGISTER_INCOME_TYPE_OPTION, "Register an income type",
+                new ShowUiAction(new RegisterIncomeTypeUI())));
+
+        menu.addMenuItem(
+                new MenuItem(LIST_INCOME_TYPES_OPTION, "List income types",
+                new ShowUiAction(new ListIncomeTypesUI())));
+
+        menu.addMenuItem(
+                new MenuItem(REGISTER_PAYMENT_METHOD_OPTION, "Register a payment mean",
+                new ShowUiAction(new RegisterPaymentMeanUI())));
+
+        menu.addMenuItem(
+                new MenuItem(LIST_PAYMENT_METHODS_OPTION, "List payment methods",
+                new ShowUiAction(new ListPaymentMeansUI())));
+
+        menu.addMenuItem(
+                new MenuItem(0, "Return", new ReturnAction()));
+
+        return menu;
+    }
+
+    private Menu buildMainMenu() {
+        Menu menu = new Menu();
+
+        // add a menu item and create an "anonynous class" action 
+        menu.addMenuItem(
+                new MenuItem(REGISTER_EXPENSE_OPTION, "Register an expense",
+                new Action() {
+            @Override
+            public boolean execute() {
+                RegisterExpenseUI registerExpenseUI = new RegisterExpenseUI();
+                registerExpenseUI.show();
+                return false;
+            }
+        }));
+        // use a generic "show UI" action
+        menu.addMenuItem(
+                new MenuItem(REGISTER_INCOME_OPTION, "Register an income",
+                new ShowUiAction(new RegisterIncomeUI())));
+
+        menu.addMenuItem(new MenuSeparator());
+
+        menu.addMenuItem(
+                new MenuItem(REGISTER_SAVING_GOAL_OPTION, "Register Saving Goal",
+                new ShowUiAction(new RegisterGoalSavingUI())));
+
+        menu.addMenuItem(new MenuSeparator());
+        
+        menu.addMenuItem(
+                new SubMenu(LISTINGS_OPTION, buildListingsMenu()));
+
+        menu.addMenuItem(
+                new SubMenu(MASTER_TABLES_OPTION, buildMasterTablesMenu()));
+
+        menu.addMenuItem(
+                new MenuItem(0, "Exit", new ExitWithMessageAction()));
+
+        return menu;
+    }
+
+    private boolean showMenuOldStyle() {
         System.out.println(REGISTER_EXPENSE_OPTION + ". Register an expense");
         System.out.println(LIST_EXPENSES_OPTION + ". List expenses");
         System.out.println(REGISTER_INCOME_OPTION + ". Register an income");
@@ -52,6 +183,7 @@ public class MainMenu extends BaseUI {
         System.out.println(LIST_EXPENSES_PER_TYPE_OPTION + ". List expenses per type");
         System.out.println(LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION + ". List expenses per type in text chart");
         System.out.println(LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION + ". List expenses per type in GUI chart");
+        System.out.println(REGISTER_SAVING_GOAL_OPTION + ". Register SavingGoal");
         System.out.println("--- master tables ---");
         System.out.println(REGISTER_EXPENSE_TYPE_OPTION + ". Register an expense type");
         System.out.println(LIST_EXPENSE_TYPES_OPTION + ". List expense types");
@@ -59,7 +191,6 @@ public class MainMenu extends BaseUI {
         System.out.println(LIST_INCOME_TYPES_OPTION + ". List income types");
         System.out.println(REGISTER_PAYMENT_METHOD_OPTION + ". Register a payment method");
         System.out.println(LIST_PAYMENT_METHODS_OPTION + ". List payment methods");
-        System.out.println(REGISTER_SAVING_GOAL_OPTION + ". Register SavingGoal");
         System.out.println("--------------------");
         System.out.println("0. Exit\n\n");
 
@@ -112,7 +243,7 @@ public class MainMenu extends BaseUI {
                 listIncomesTypesUI.show();
                 break;
             case REGISTER_PAYMENT_METHOD_OPTION:
-                RegisterPaymentMethodUI registerPaymentMethodUI = new RegisterPaymentMethodUI();
+                RegisterPaymentMeanUI registerPaymentMethodUI = new RegisterPaymentMeanUI();
                 registerPaymentMethodUI.show();
                 break;
             case LIST_PAYMENT_METHODS_OPTION:
@@ -120,27 +251,13 @@ public class MainMenu extends BaseUI {
                 listPaymentMethodsUI.show();
                 break;
             case REGISTER_SAVING_GOAL_OPTION:
-                RegisterGoalSavingUI registergoalsavingUI = new  RegisterGoalSavingUI();
+                RegisterGoalSavingUI registergoalsavingUI = new RegisterGoalSavingUI();
                 registergoalsavingUI.show();
-                break;   
-                
-                
+                break;
             default:
                 System.out.println("option not recognized.");
                 break;
         }
         return option == 0;
-    }
-
-    //static BaseController controller = new BaseController();
-    
-    @Override
-    protected BaseController controller() {
-        return null; //controller;
-    }
-
-    @Override
-    public String headline() {
-        return "EXPENSE MANAGER";
     }
 }

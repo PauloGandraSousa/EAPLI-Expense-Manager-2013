@@ -43,6 +43,7 @@ public abstract class BaseUI {
      */
     public abstract String headline();
     
+    
     public void mainLoop() {
         boolean wantsToExit;
         do {
@@ -54,12 +55,13 @@ public abstract class BaseUI {
         drawFormTitle();
         boolean wantsToExit = doShow();
         showBalances();
-    //    Console.waitForKey("Press any key.");
+        drawFormBorder();
+        //Console.waitForKey("Press any key.");
         
         return wantsToExit;
     }
     
-    public void showBalances() {
+    protected void showBalances() {
         drawFormSeparator();
         System.out.print("| expenditure - this week: ");
         System.out.print(NumberFormat.getCurrencyInstance().format( controller().getThisWeekExpenditure()));
@@ -67,7 +69,6 @@ public abstract class BaseUI {
         System.out.print("this month: ");
         System.out.print(NumberFormat.getCurrencyInstance().format( controller().getThisMonthExpenditure()));
         System.out.println(" | ");
-        drawFormBorder();
     }
 
     protected void drawFormTitle() {
