@@ -5,7 +5,8 @@
 package eapli.expensemanager.presentation.framework;
 
 /**
- *
+ * allows for the composition of menus (Composite pattern)
+ * 
  * @author Paulo Gandra Sousa
  */
 public class SubMenu extends MenuItem {

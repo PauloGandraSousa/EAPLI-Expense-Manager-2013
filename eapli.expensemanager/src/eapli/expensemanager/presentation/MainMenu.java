@@ -22,9 +22,6 @@ import eapli.util.Console;
  */
 public class MainMenu extends BaseUI {
 
-    // TODO restructure this class to use the Composite pattern and allow for 
-    // flexible menu and submenu structure
-    // use command pattern for each action
     final int EXIT_OPTION = 0;
     final int REGISTER_EXPENSE_OPTION = 1;
     final int LIST_EXPENSES_OPTION = 2;
@@ -59,7 +56,7 @@ public class MainMenu extends BaseUI {
     @Override
     public boolean doShow() {
         //return showMenuOldStyle();
-        return showMenuUsingCompositeAndAction();
+        return showMenuUsingCompositeAndCommand();
     }
 
     @Override
@@ -72,7 +69,7 @@ public class MainMenu extends BaseUI {
         return "EXPENSE MANAGER";
     }
 
-    private boolean showMenuUsingCompositeAndAction() {
+    private boolean showMenuUsingCompositeAndCommand() {
         Menu menu = buildMainMenu();
         return menu.show();
     }

@@ -5,7 +5,8 @@
 package eapli.expensemanager.presentation.framework;
 
 /**
- *
+ * a generic Action interface (the Command pattern)
+ * 
  * @author Paulo Gandra Sousa
  */
 public interface Action {
