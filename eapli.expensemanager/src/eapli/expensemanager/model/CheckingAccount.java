@@ -80,6 +80,8 @@ public class CheckingAccount implements Serializable {
      */
     //TODO: NMB: verificar se faz algum sentido passar para público ou se deviamos
     //criar outro método ou fazer de outra forma qualquer
+    // FIX de um ponto de vista de API desta classe não faz sentido existir este 
+    // método como public.  
     public BigDecimal sumAmount(List<? extends Movement> theMovements) {
         BigDecimal sum = new BigDecimal(0);
         for (Movement e : theMovements) {

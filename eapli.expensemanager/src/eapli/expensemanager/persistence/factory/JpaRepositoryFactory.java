@@ -2,14 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence;
+package eapli.expensemanager.persistence.factory;
+
+import eapli.expensemanager.persistence.CheckingAccountRepository;
+import eapli.expensemanager.persistence.ExpenseRepository;
+import eapli.expensemanager.persistence.ExpenseTypeRepository;
+import eapli.expensemanager.persistence.IncomeRepository;
+import eapli.expensemanager.persistence.IncomeTypeRepository;
+import eapli.expensemanager.persistence.PaymentMeanRepository;
+import eapli.expensemanager.persistence.RepositoryFactory;
+import eapli.expensemanager.persistence.SavingsPlanRepository;
 
 /**
  * a concrete factory - hibernate
  *
  * @author Paulo Gandra Sousa
  */
-class JpaRepositoryFactory implements RepositoryFactory {
+public class JpaRepositoryFactory implements RepositoryFactory {
 
     @Override
     public ExpenseRepository expenseRepository() {

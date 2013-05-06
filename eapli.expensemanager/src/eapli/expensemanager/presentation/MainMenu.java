@@ -70,7 +70,7 @@ public class MainMenu extends BaseUI {
     }
 
     private Menu buildListingsMenu() {
-        Menu menu = new Menu("Listings");
+        Menu menu = new Menu("Listings...");
 
         // use a generic "show UI" action
         menu.addMenuItem(
@@ -96,7 +96,7 @@ public class MainMenu extends BaseUI {
     }
     
     private Menu buildMasterTablesMenu() {
-        Menu menu = new Menu("Master tables");
+        Menu menu = new Menu("Master tables...");
         
         menu.addMenuItem(
                 new MenuItem(REGISTER_EXPENSE_TYPE_OPTION, "Register an expense type",
