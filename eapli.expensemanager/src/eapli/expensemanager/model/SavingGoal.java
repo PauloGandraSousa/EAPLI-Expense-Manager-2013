@@ -92,4 +92,15 @@ public class SavingGoal implements Serializable
     {
         return actualsavings;
     }
+    
+    
+    public boolean enoughSavings(BigDecimal amount)
+    {
+        // return 1 if bigger
+        if(amount.compareTo(actualsavings)==1)
+            return false;
+        
+        return true;
+    }
+    
 }
