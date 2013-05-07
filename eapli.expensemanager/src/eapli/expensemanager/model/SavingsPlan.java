@@ -20,7 +20,8 @@ import javax.persistence.Temporal;
  * @author losa
  */
 @Entity
-public class SavingsPlan implements Serializable {
+public class SavingsPlan implements Serializable
+{
 
     @Id
     @GeneratedValue
@@ -30,20 +31,32 @@ public class SavingsPlan implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     private List<SavingGoal> listSavingGoal;
 
-    public SavingsPlan() {
+    public SavingsPlan()
+    {
         listSavingGoal = new ArrayList<SavingGoal>();
     }
 
-    public SavingsPlan(Date d) {
+    public SavingsPlan(Date d)
+    {
         InicialDate = d;
     }
 
-    public SavingGoal registerSavingGoal(SavingGoal savingGoal) {
+    public SavingGoal registerSavingGoal(SavingGoal savingGoal)
+    {
         listSavingGoal.add(savingGoal);
         return savingGoal;
     }
 
-    public void registerSaving(Saving s, SavingGoal goal1) {
-        goal1.registerSaving(s);
+    
+    // fixme: modificado AJS -- isto deveria trabalhar com indices da lista e não com objectivos 
+    // propriamente ditos
+    public void registerSavingDeposit(SavingDeposit s, SavingGoal goal1)
+    {
+        goal1.registerSavingDeposit(s);
+    }
+
+    public void registerSavingWithdraw(SavingDeposit s, SavingGoal goal1)
+    {
+        goal1.registerSavingDeposit(s);
     }
 }
