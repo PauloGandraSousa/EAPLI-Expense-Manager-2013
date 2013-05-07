@@ -162,4 +162,18 @@ public class CheckingAccount implements Serializable {
 
         movements.add(movement);
     }
+    
+    
+    //AJS: determina se existe valor suficiente para gastar numa despesa ou transferência
+    // para poupança
+    public boolean enoughBalance(BigDecimal amount)
+    {
+        // return 1 if bigger
+        if(amount.compareTo(balance)==1)
+            return false;
+        
+        return true;
+    }
+    
+    
 }
