@@ -13,7 +13,7 @@ public interface RepositoryFactory {
 
     CheckingAccountRepository checkingAccountRepository();
     
-    SavingsPlanRepository savingsPlanRepository();
+    SavingPlanRepository savingPlanRepository();
 
     ExpenseRepository expenseRepository();
 

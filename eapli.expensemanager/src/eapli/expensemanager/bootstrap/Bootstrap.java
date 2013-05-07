@@ -7,12 +7,12 @@ package eapli.expensemanager.bootstrap;
 import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.SavingsPlan;
+import eapli.expensemanager.model.SavingPlan;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
-import eapli.expensemanager.persistence.SavingsPlanRepository;
+import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.util.Date;
 import javax.persistence.NoResultException;
 
@@ -68,11 +68,11 @@ public class Bootstrap {
     }
 
     private void ensureSavingsPlanExists() {
-        SavingsPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingsPlanRepository();
+        SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
         try {
-            SavingsPlan theSavingPlan = repo.theSavingsPlan();
+            SavingPlan theSavingPlan = repo.theSavingPlan();
         } catch (IllegalStateException ex) {
-            SavingsPlan theSavingPlan = new SavingsPlan(new Date());
+            SavingPlan theSavingPlan = new SavingPlan(new Date());
             repo.save(theSavingPlan);
         }
     }

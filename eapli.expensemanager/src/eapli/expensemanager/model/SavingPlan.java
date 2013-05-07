@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * @author losa
  */
 @Entity
-public class SavingsPlan implements Serializable
+public class SavingPlan implements Serializable
 {
 
     @Id
@@ -31,12 +31,12 @@ public class SavingsPlan implements Serializable
     @OneToMany(cascade = CascadeType.ALL)
     private List<SavingGoal> listSavingGoal;
 
-    public SavingsPlan()
+    public SavingPlan()
     {
         listSavingGoal = new ArrayList<SavingGoal>();
     }
 
-    public SavingsPlan(Date d)
+    public SavingPlan(Date d)
     {
         InicialDate = d;
     }
@@ -58,4 +58,10 @@ public class SavingsPlan implements Serializable
     {
         goal1.registerSavingWithdraw(s);
     }
+    
+    public List<SavingGoal> getSavingGoals()
+    {
+        return listSavingGoal;
+    }
+    
 }

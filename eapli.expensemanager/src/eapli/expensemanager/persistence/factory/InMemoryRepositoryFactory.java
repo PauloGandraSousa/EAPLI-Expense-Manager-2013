@@ -11,7 +11,7 @@ import eapli.expensemanager.persistence.IncomeRepository;
 import eapli.expensemanager.persistence.IncomeTypeRepository;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.RepositoryFactory;
-import eapli.expensemanager.persistence.SavingsPlanRepository;
+import eapli.expensemanager.persistence.SavingPlanRepository;
 
 /**
  * a concrete factory - in memory
@@ -26,8 +26,8 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public SavingsPlanRepository savingsPlanRepository() {
-        return new eapli.expensemanager.persistence.inmemory.SavingsPlanRepositoryImpl();
+    public SavingPlanRepository savingPlanRepository() {
+        return new eapli.expensemanager.persistence.inmemory.SavingPlanRepositoryImpl();
     }
 
     @Override

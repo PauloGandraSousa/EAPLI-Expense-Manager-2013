@@ -11,7 +11,7 @@ import eapli.expensemanager.persistence.IncomeRepository;
 import eapli.expensemanager.persistence.IncomeTypeRepository;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.RepositoryFactory;
-import eapli.expensemanager.persistence.SavingsPlanRepository;
+import eapli.expensemanager.persistence.SavingPlanRepository;
 
 /**
  * a concrete factory - hibernate
@@ -46,8 +46,8 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     }
 
     @Override
-    public SavingsPlanRepository savingsPlanRepository() {
-        return new eapli.expensemanager.persistence.jpa.SavingsPlanRepositoryImpl();
+    public SavingPlanRepository savingPlanRepository() {
+        return new eapli.expensemanager.persistence.jpa.SavingPlanRepositoryImpl();
     }
 
     @Override

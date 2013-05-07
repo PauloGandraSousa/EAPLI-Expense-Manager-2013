@@ -5,9 +5,9 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.SavingGoal;
-import eapli.expensemanager.model.SavingsPlan;
+import eapli.expensemanager.model.SavingPlan;
 import eapli.expensemanager.persistence.PersistenceFactory;
-import eapli.expensemanager.persistence.SavingsPlanRepository;
+import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.math.BigDecimal;
 
 /**
@@ -17,13 +17,13 @@ import java.math.BigDecimal;
 public class RegisterTargetSavingController extends BaseController {
 
     public void registerTargetSaving(String desctarget, BigDecimal totaltargetammount) {
-        SavingsPlanRepository repo;
+        SavingPlanRepository repo;
 
-        repo = PersistenceFactory.buildPersistenceFactory().savingsPlanRepository();
+        repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
 
         SavingGoal savingGoal = new SavingGoal(desctarget, totaltargetammount);
 
-        SavingsPlan savingsplan = repo.theSavingsPlan();
+        SavingPlan savingsplan = repo.theSavingPlan();
         savingsplan.registerSavingGoal(savingGoal);
         repo.save(savingsplan);
     }
