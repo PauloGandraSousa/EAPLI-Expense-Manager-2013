@@ -48,15 +48,14 @@ public class SavingsPlan implements Serializable
     }
 
     
-    // fixme: modificado AJS -- isto deveria trabalhar com indices da lista e não com objectivos 
-    // propriamente ditos
+    // TODO:AJS: isto deveria trabalhar com indices da lista e não com objectivos propriamente ditos
     public void registerSavingDeposit(SavingDeposit s, SavingGoal goal1)
     {
         goal1.registerSavingDeposit(s);
     }
 
-    public void registerSavingWithdraw(SavingDeposit s, SavingGoal goal1)
+    public void registerSavingWithdraw(SavingWithdraw s, SavingGoal goal1)
     {
-        goal1.registerSavingDeposit(s);
+        goal1.registerSavingWithdraw(s);
     }
 }
