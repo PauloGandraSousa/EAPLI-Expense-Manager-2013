@@ -28,5 +28,10 @@ public class IncomeTypeRepositoryImpl implements IncomeTypeRepository {
     public List<IncomeType> all() {
         return incomeTypes;
     }
+
+    @Override
+    public IncomeType findForName(String shortDescription) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

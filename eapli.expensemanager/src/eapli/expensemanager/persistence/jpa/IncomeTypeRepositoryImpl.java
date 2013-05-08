@@ -17,5 +17,10 @@ import javax.persistence.Query;
  */
 public class IncomeTypeRepositoryImpl extends JpaRepository<IncomeType, String> implements IncomeTypeRepository {
 
+    @Override
+    public IncomeType findForName(String shortDescription) {
+        return super.read(shortDescription);
+    }
+
 
 }
