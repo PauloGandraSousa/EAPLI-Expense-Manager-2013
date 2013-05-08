@@ -18,47 +18,40 @@ import java.util.List;
  *
  * @author mcn
  */
-public class AlertLimitsConfigController  extends BaseController{
-      
-      
-      public AlertLimitType[] getAlertLimitTypes(){
-            return AlertLimitType.values();
-      }
-      
-      
-       public List<ExpenseType> getAllExpenseTypes(){
-            return PersistenceFactory.buildPersistenceFactory().expenseTypeRepository().all();
-       }
+// TODO refactor rename the class to a more verb oriented name, e.g, ConfigureAlertLimitsController
+public class AlertLimitsConfigController extends BaseController {
 
-        public AlertLimitExpenditure findAlertLimitByType(AlertLimitType aLertType){
-             AlertLimitExpenditure alertLimits=AlertLimitExpenditure.findByAlertType(aLertType);
-               return alertLimits;
-      }
-      
-       
-      public AlertLimitByExpenseType findAlertLimitByExpType( ExpenseType eT){
-            AlertLimitByExpenseType alertLimits=AlertLimitByExpenseType.findByExpenseType(eT);
-               return alertLimits;
-      }
-      
-       
-       public void registerAlertLimitExpenditure(AlertLimitType alertType, double yellowLimit, double redLimit){
-            new AlertLimitExpenditure(alertType,new BigDecimal(yellowLimit),new BigDecimal(redLimit)).save();
-      }
+    public AlertLimitType[] getAlertLimitTypes() {
+        return AlertLimitType.values();
+    }
 
-      
-       public void registerAlertLimitByExpenseType(AlertLimitType alertType, double yellowLimit, double redLimit, ExpenseType eT){
-            new AlertLimitByExpenseType(alertType,yellowLimit,redLimit,eT).save();
-      }
-       
+    public List<ExpenseType> getAllExpenseTypes() {
+        return PersistenceFactory.buildPersistenceFactory().expenseTypeRepository().all();
+    }
 
-      public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimit, double yellow, double red){
-            alertLimit.update(yellow,red);
-      }
-      
-         public void updateAlertLimitPercentValues(AlertLimitPercentValues alertLimit, double yellow, double red){
-            alertLimit.update(yellow,red);
-      }
-      
-      
+    public AlertLimitExpenditure findAlertLimitByType(AlertLimitType aLertType) {
+        AlertLimitExpenditure alertLimits = AlertLimitExpenditure.findByAlertType(aLertType);
+        return alertLimits;
+    }
+
+    public AlertLimitByExpenseType findAlertLimitByExpType(ExpenseType eT) {
+        AlertLimitByExpenseType alertLimits = AlertLimitByExpenseType.findByExpenseType(eT);
+        return alertLimits;
+    }
+
+    public void registerAlertLimitExpenditure(AlertLimitType alertType, double yellowLimit, double redLimit) {
+        new AlertLimitExpenditure(alertType, new BigDecimal(yellowLimit), new BigDecimal(redLimit)).save();
+    }
+
+    public void registerAlertLimitByExpenseType(AlertLimitType alertType, double yellowLimit, double redLimit, ExpenseType eT) {
+        new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT).save();
+    }
+
+    public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimit, double yellow, double red) {
+        alertLimit.update(yellow, red);
+    }
+
+    public void updateAlertLimitPercentValues(AlertLimitPercentValues alertLimit, double yellow, double red) {
+        alertLimit.update(yellow, red);
+    }
 }

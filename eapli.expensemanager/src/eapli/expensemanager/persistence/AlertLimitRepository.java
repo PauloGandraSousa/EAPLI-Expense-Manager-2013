@@ -25,13 +25,16 @@ public interface AlertLimitRepository {
 
       void save(AlertLimitByExpenseType alertLimit);
 
+      // FIX repository interface should deal with objects not individual attributes
       AlertLimitExpenditure update(int key, BigDecimal yellow, BigDecimal red);
 
+      // FIX repository interface should deal with objects not individual attributes
       AlertLimitPercentValues update(int key, double yellow, double red);
 
       AlertLimit findByKey(int i);
 
       List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
 
+      // TODO refactor to a more meaningfull name
       List<AlertLimitByExpenseType> findByET(ExpenseType eT);
 }

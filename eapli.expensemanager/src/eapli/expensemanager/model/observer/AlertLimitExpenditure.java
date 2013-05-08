@@ -53,6 +53,9 @@ public class AlertLimitExpenditure extends AlertLimit implements ActiveRecord {
             return str;
       }
 
+      // FIX this method is to DB oriented. it migth make sense to have it as a business
+      // method mut should have a more busines oriented name (e.g., updateLimits)
+      // and NOT call any repository methods
       public void update(double limitYellow, double limitRed) {
 
             BigDecimal yellow = new BigDecimal(limitYellow);
