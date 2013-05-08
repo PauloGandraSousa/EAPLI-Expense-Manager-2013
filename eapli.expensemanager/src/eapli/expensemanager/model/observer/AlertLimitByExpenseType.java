@@ -18,41 +18,40 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class AlertLimitByExpenseType extends AlertLimitPercentValues implements ActiveRecord {
-      @OneToOne
-      private ExpenseType expenseType;
 
-      public AlertLimitByExpenseType() {
-      }
+    @OneToOne
+    private ExpenseType expenseType;
 
+    public AlertLimitByExpenseType() {
+    }
 
-       public AlertLimitByExpenseType(AlertLimitType alertType, double limitYellow, double limitRed,ExpenseType eT) {
-            super(alertType, limitYellow, limitRed);
-            this.expenseType=eT;
-      }
+    public AlertLimitByExpenseType(AlertLimitType alertType, double limitYellow, double limitRed, ExpenseType eT) {
+        super(alertType, limitYellow, limitRed);
+        this.expenseType = eT;
+    }
 
-      public ExpenseType getExpenseType() {
-            return expenseType;
-      }
-        
-         public static AlertLimitByExpenseType findByExpenseType(ExpenseType eT) {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            List<AlertLimitByExpenseType> list=repo.findByET(eT);
-            if(list.isEmpty()){
-                  return null;
-            }
-            return list.get(0);
-      }
-         
-           @Override
-      public String toString() {
-             String str =super.toString()+ "\nExpenseType:"+expenseType.getDescription();
-            return str;
-      }
-      
-@Override
-      public void save() {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            repo.save(this);
-      }
+    public ExpenseType getExpenseType() {
+        return expenseType;
+    }
 
+    public static AlertLimitByExpenseType findByExpenseType(ExpenseType eT) {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        List<AlertLimitByExpenseType> list = repo.findByET(eT);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
+    public String toString() {
+        String str = super.toString() + "\nExpenseType:" + expenseType.getDescription();
+        return str;
+    }
+
+    @Override
+    public void save() {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        repo.save(this);
+    }
 }

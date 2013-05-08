@@ -20,43 +20,36 @@ import java.util.List;
  *
  * @author AJS
  */
-public class RegisterSavingWithdrawController extends BaseController
-{
-    
+public class RegisterSavingWithdrawController extends BaseController {
 
-    public RegisterSavingWithdrawController() 
-    {
+    public RegisterSavingWithdrawController() {
     }
 
-    public void registerSavingWithdraw(SavingGoal goal, Date date, BigDecimal amount, String description) 
-    {
-            SavingPlanRepository savingPlanRepository = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
-            SavingPlan savingPlan = savingPlanRepository.theSavingPlan(); 
+    public void registerSavingWithdraw(SavingGoal goal, Date date, BigDecimal amount, String description) {
+        SavingPlanRepository savingPlanRepository = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
+        SavingPlan savingPlan = savingPlanRepository.theSavingPlan();
 
         //falta testar se o saldo é suficiente para resgatar    
         //if(savingPlan.)
-        
-       if(goal.enoughSavings(amount))
-       {
-            
-        CheckingAccountRepository checkingAccountRepository = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
-        CheckingAccount checkingAccount = checkingAccountRepository.theAccount(); 
-            
+
+        // FIX controllers shouldn't have business logic
+        if (goal.enoughSavings(amount)) {
+
+            CheckingAccountRepository checkingAccountRepository = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
+            CheckingAccount checkingAccount = checkingAccountRepository.theAccount();
+
             SavingWithdraw savingWithdraw = new SavingWithdraw(description, date, amount);
-            
-        
-            savingPlan.registerSavingWithdraw(savingWithdraw,goal);
+
+
+            savingPlan.registerSavingWithdraw(savingWithdraw, goal);
             checkingAccount.registerSavingWithdraw(savingWithdraw);
-                        
+
             savingPlanRepository.save(savingPlan);
             checkingAccountRepository.save(checkingAccount);
-       }
+        }
     }
 
-    public List<SavingGoal> getSavingGoals() 
-    {
+    public List<SavingGoal> getSavingGoals() {
         return new ListSavingGoalsController().getSavingGoals();
-    } 
+    }
 }
-
-

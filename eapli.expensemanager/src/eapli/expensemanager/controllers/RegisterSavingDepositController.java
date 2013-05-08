@@ -31,6 +31,7 @@ public class RegisterSavingDepositController extends BaseController
         CheckingAccountRepository checkingAccountRepository = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount checkingAccount = checkingAccountRepository.theAccount(); 
         
+        // FIX controllers shouldn't have business logic
         if(checkingAccount.enoughBalance(amount))
         {
             SavingDeposit savingDeposit = new SavingDeposit(description, date, amount);
