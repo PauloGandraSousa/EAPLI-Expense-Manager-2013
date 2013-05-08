@@ -10,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.event.WindowEvent;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -214,26 +213,26 @@ public class Chart extends ApplicationFrame implements IChart {
     public CategoryDataset getChartDataset() {
         return chartDataset;
     }
-
-    public static void main(String[] args) {
-
-        Chart demo = new Chart("title");
-
-        Map<ExpenseType, BigDecimal> mapExpenses = new HashMap<ExpenseType, BigDecimal>();
-
-        ExpenseType expenseTypeClothing = new ExpenseType("clothing", "Clothing");
-        ExpenseType expenseTypeTransport = new ExpenseType("transport", "Transport");
-
-        BigDecimal expenseTypeClothingSum = new BigDecimal(12.3);
-        BigDecimal expenseTypeTransportSum = new BigDecimal(30);
-
-        mapExpenses.put(expenseTypeClothing, expenseTypeClothingSum);
-        mapExpenses.put(expenseTypeTransport, expenseTypeTransportSum);
-
-        //criar o dataSet a utilizar no gráfico
-        demo.setDataset(mapExpenses);
-
-        demo.doShow();
-
-    }
+//
+//    public static void main(String[] args) {
+//
+//        Chart demo = new Chart("title");
+//
+//        Map<ExpenseType, BigDecimal> mapExpenses = new HashMap<ExpenseType, BigDecimal>();
+//
+//        ExpenseType expenseTypeClothing = new ExpenseType("clothing", "Clothing");
+//        ExpenseType expenseTypeTransport = new ExpenseType("transport", "Transport");
+//
+//        BigDecimal expenseTypeClothingSum = new BigDecimal(12.3);
+//        BigDecimal expenseTypeTransportSum = new BigDecimal(30);
+//
+//        mapExpenses.put(expenseTypeClothing, expenseTypeClothingSum);
+//        mapExpenses.put(expenseTypeTransport, expenseTypeTransportSum);
+//
+//        //criar o dataSet a utilizar no gráfico
+//        demo.setDataset(mapExpenses);
+//
+//        demo.doShow();
+//
+//    }
 }
