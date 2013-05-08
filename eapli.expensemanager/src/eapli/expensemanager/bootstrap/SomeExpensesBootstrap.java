@@ -15,6 +15,7 @@ import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,7 +25,6 @@ import java.util.Date;
 public class SomeExpensesBootstrap  {
     
     public SomeExpensesBootstrap() {
-        
         CheckingAccountRepository repoAccount = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount theAccount = repoAccount.theAccount();
         
@@ -36,19 +36,25 @@ public class SomeExpensesBootstrap  {
         Cash cashEur = repoPaymentMethod.getCash(Cash.EUR);
         Payment payment = new Payment(cashEur);
 
-        // TODO use relative dateOfExpense to today's date
-        Date dateOfExpense = DateTime.newDate(2013, 4, 1);
-        
+        Calendar baseDateOfExpense = DateTime.today();
+        Date dateOfExpense = baseDateOfExpense.getTime();
+                
         Expense exp = new Expense(clothing, "sapatilhas", dateOfExpense, new BigDecimal(100), payment);
         theAccount.registerExpense(exp);
                 
-        exp = new Expense(clothing, "calças", DateTime.newDate(2013, 4, 5), new BigDecimal(150), payment);
+        exp = new Expense(clothing, "T-shirt", dateOfExpense, new BigDecimal(10), payment);
         theAccount.registerExpense(exp);
 
-        exp = new Expense(clothing, "T-shirt", DateTime.newDate(2013, 4, 1), new BigDecimal(10), payment);
+        baseDateOfExpense.add(Calendar.DAY_OF_MONTH, 4);
+        dateOfExpense = baseDateOfExpense.getTime();
+        
+        exp = new Expense(clothing, "calças", dateOfExpense, new BigDecimal(150), payment);
         theAccount.registerExpense(exp);
 
-        exp = new Expense(transport, "passe Metro", DateTime.newDate(2013, 3, 1), new BigDecimal(35), payment);
+        baseDateOfExpense.add(Calendar.DAY_OF_MONTH, -30);
+        dateOfExpense = baseDateOfExpense.getTime();
+        
+        exp = new Expense(transport, "passe Metro", dateOfExpense, new BigDecimal(35), payment);
         theAccount.registerExpense(exp);
                 
         repoAccount.save(theAccount);
