@@ -14,14 +14,12 @@ import java.math.BigDecimal;
  *
  * @author losa
  */
-public class RegistertSavingGoalController extends BaseController {
+public class RegisterSavingGoalController extends BaseController {
 
-    public void registerSavingGoal(String desctarget, BigDecimal totaltargetammount) {
-        SavingPlanRepository repo;
+    public void registerSavingGoal(String targetDescription, BigDecimal targetAmount) {
+        SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
 
-        repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
-
-        SavingGoal savingGoal = new SavingGoal(desctarget, totaltargetammount);
+        SavingGoal savingGoal = new SavingGoal(targetDescription, targetAmount);
 
         SavingPlan savingsplan = repo.theSavingPlan();
         savingsplan.registerSavingGoal(savingGoal);
