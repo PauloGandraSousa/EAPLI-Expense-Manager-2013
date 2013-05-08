@@ -72,6 +72,7 @@ public class ConfigureAlertLimitsUI extends BaseForm {
         AlertLimitType[] types = controller.getAlertLimitTypes();
         int size = types.length;
         System.out.println("Choose Alert Limit Type to Set its YELLOW and RED  Limits (0 to finish):");
+        // TODO for consistency purposes, this block of code should use the ListWidget
         int i = 0;
         int op;
         for (AlertLimitType alLimType : types) {

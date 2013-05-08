@@ -11,14 +11,13 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
+
 
 /**
  *
  * @author mcn
  */
 @Entity
-@Inheritance
 public class AlertLimitExpenditure extends AlertLimit  {
 
       protected BigDecimal limitYellow;
