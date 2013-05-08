@@ -129,7 +129,7 @@ public class MainMenu extends BaseUI {
                 new ShowUiAction(new RegisterInitialBalanceUI())));
         
         menu.addMenuItem(
-                new MenuItem(0, "Return", new ReturnAction()));
+                new MenuItem(0, "Return ", new ReturnAction()));
 
         return menu;
     }
