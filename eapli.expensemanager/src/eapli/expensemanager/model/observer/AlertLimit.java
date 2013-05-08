@@ -5,6 +5,7 @@
 package eapli.expensemanager.model.observer;
 
 
+import eapli.expensemanager.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.io.Serializable;
@@ -23,47 +24,46 @@ import javax.persistence.Inheritance;
  */
 @Entity
 @Inheritance
-public class AlertLimit implements Serializable {
-      @Id
-      @GeneratedValue(strategy = GenerationType.IDENTITY)
-      protected int id;
-      @Enumerated(EnumType.STRING)
-      protected AlertLimitType alertType;
+public class AlertLimit implements Serializable, ActiveRecord{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected int id;
+    @Enumerated(EnumType.STRING)
+    protected AlertLimitType alertType;
 
-      public AlertLimit() {
+    public AlertLimit() {
+    }
+
+    public AlertLimit(AlertLimitType alertType) {
+
+        this.alertType = alertType;
+
+    }
+
+     public int getId() {
+            return id;
+      }
+    
+
+    @Override
+    public String toString() {
+        String str = "Alert Type:" + alertType;
+        return str;
+    }
+
+    public static List<AlertLimit> loadAll() {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        return repo.all();
+    }
+
+    public static AlertLimit findByKey(int key) {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        return repo.findByKey(key);
+    }
+
+           @Override
+      public void save() {
       }
 
-
-        public AlertLimit( AlertLimitType alertType) {
-           
-            this.alertType = alertType;
-
-      }
-        
-        
-      @Override
-      public String toString() {
-             String str ="Alert Type:" + alertType;
-      
-            return str;
-      }
-
-
-
-
-      public static List<AlertLimit> loadAll() {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            return repo.all();
-      }
-
-      public static AlertLimit findByKey(int key) {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            return repo.findByKey(key);
-      }
-
-
-
-
-      
 }

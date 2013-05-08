@@ -10,7 +10,6 @@ import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
 import eapli.expensemanager.model.observer.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -32,9 +31,9 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       public AlertLimit findByKey(int key) {
             return super.read(key);
       }
-
+      
       @Override
-      public AlertLimitExpenditure update(int key, BigDecimal yellow, BigDecimal red) {
+      public AlertLimitExpenditure update(AlertLimitExpenditure al) {
             EntityManager em = getEntityManager();
             assert em != null;
             EntityTransaction tx = em.getTransaction();
@@ -42,9 +41,9 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             AlertLimitExpenditure temp = null;
             try {
                   tx.begin();
-                  temp = (AlertLimitExpenditure)em.find(entityClass, key);
-                  temp.setLimitYellow(yellow);
-                  temp.setLimitRed(red);
+                  temp = (AlertLimitExpenditure)em.find(entityClass, al.getId());
+                  temp.setLimitYellow(al.getLimitYellow());
+                  temp.setLimitRed(al.getLimitRed());
                   tx.commit();
             } catch (PersistenceException ex) {
                   
@@ -54,9 +53,9 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             return temp;
       }
 
-      
-       @Override
-      public AlertLimitByExpenseType update(int key, double yellow, double red) {
+        
+      @Override
+      public AlertLimitByExpenseType update(AlertLimitByExpenseType al) {
             EntityManager em = getEntityManager();
             assert em != null;
             EntityTransaction tx = em.getTransaction();
@@ -64,9 +63,9 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             AlertLimitByExpenseType temp = null;
             try {
                   tx.begin();
-                  temp = (AlertLimitByExpenseType)em.find(entityClass, key);
-                  temp.setPercentLimitRed(yellow);
-                  temp.setPercentLimitYellow(red);
+                  temp = (AlertLimitByExpenseType)em.find(entityClass, al.getId());
+                  temp.setPercentLimitRed(al.getPercentLimitRed());
+                  temp.setPercentLimitYellow(al.getPercentLimitYellow());
                   tx.commit();
             } catch (PersistenceException ex) {
                   
@@ -101,6 +100,5 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       public void save(AlertLimitByExpenseType alertLimit) {
             super.save(alertLimit);
       }
-
-     
+      
 }

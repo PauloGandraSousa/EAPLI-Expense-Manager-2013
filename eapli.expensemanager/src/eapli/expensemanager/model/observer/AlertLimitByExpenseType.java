@@ -5,7 +5,6 @@
 package eapli.expensemanager.model.observer;
 
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.util.List;
@@ -17,7 +16,7 @@ import javax.persistence.OneToOne;
  * @author mcn
  */
 @Entity
-public class AlertLimitByExpenseType extends AlertLimit implements ActiveRecord {
+public class AlertLimitByExpenseType extends AlertLimit {
 
       private double percentLimitYellow;
       private double percentLimitRed;
@@ -25,6 +24,14 @@ public class AlertLimitByExpenseType extends AlertLimit implements ActiveRecord 
       private ExpenseType expenseType;
 
       public AlertLimitByExpenseType() {
+      }
+
+      public double getPercentLimitYellow() {
+            return percentLimitYellow;
+      }
+
+      public double getPercentLimitRed() {
+            return percentLimitRed;
       }
 
       public AlertLimitByExpenseType(AlertLimitType alertType, double percentLimitYellow, double percentLimitRed, ExpenseType eT) {
@@ -62,14 +69,16 @@ public class AlertLimitByExpenseType extends AlertLimit implements ActiveRecord 
             return list.get(0);
       }
 
+      public void updateLimits(double yellow, double red) {
+            this.percentLimitYellow=yellow;
+            this.percentLimitRed=red;
+            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+            repo.update(this);
+      }
+
       @Override
       public void save() {
             AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
             repo.save(this);
-      }
-
-      public void update(double yellow, double red) {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            repo.update(id, yellow, red);
       }
 }

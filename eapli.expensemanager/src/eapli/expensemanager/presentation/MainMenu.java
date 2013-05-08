@@ -152,14 +152,14 @@ public class MainMenu extends BaseUI {
 
         menu.addMenuItem(
                 new MenuItem(REGISTER_SAVING_GOAL_OPTION, "Register Saving Goal",
-                new ShowUiAction(new RegisterGoalSavingUI())));
+                new ShowUiAction(new RegisterSavingGoalUI())));
 
         menu.addMenuItem(new MenuSeparator());
 
         //mcn : Alert Limits  - OBSERVER PATTERN 
         menu.addMenuItem(
                 new MenuItem(SETTING_ALERT_LIMITS_OPTION, "Setting alert limits",
-                new ShowUiAction(new AlertLimitsConfigUI())));
+                new ShowUiAction(new ConfigureAlertLimitsUI())));
 
         menu.addMenuItem(new MenuSeparator());
         
@@ -252,7 +252,7 @@ public class MainMenu extends BaseUI {
                 listPaymentMethodsUI.show();
                 break;
             case REGISTER_SAVING_GOAL_OPTION:
-                RegisterGoalSavingUI registergoalsavingUI = new RegisterGoalSavingUI();
+                RegisterSavingGoalUI registergoalsavingUI = new RegisterSavingGoalUI();
                 registergoalsavingUI.show();
                 break;
             default:
