@@ -25,4 +25,7 @@ public interface RepositoryFactory {
 
     public PaymentMeanRepository paymentMeanRepository();
     
+    //mcn:    OBSERVER pattern
+    AlertLimitRepository alertLimitRepository();
+    
 }

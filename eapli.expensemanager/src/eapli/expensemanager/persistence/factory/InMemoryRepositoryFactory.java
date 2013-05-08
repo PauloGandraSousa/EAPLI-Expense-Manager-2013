@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.persistence.factory;
 
+import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
@@ -54,4 +55,9 @@ public class InMemoryRepositoryFactory implements RepositoryFactory {
     public PaymentMeanRepository paymentMeanRepository() {
         return new eapli.expensemanager.persistence.inmemory.PaymentMeanRepositoryImpl();
     }
+
+      @Override
+      public AlertLimitRepository alertLimitRepository() {
+            throw new UnsupportedOperationException("Not supported yet.");
+      }
 }
