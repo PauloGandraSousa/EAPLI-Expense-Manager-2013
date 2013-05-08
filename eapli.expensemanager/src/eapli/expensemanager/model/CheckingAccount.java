@@ -95,6 +95,13 @@ public class CheckingAccount implements Serializable {
         classifyMovementAsExpense(expense);
         classifyExpense(expense);
     }
+    
+    public void registerSavingDeposit(SavingDeposit savingDeposit) 
+    {
+        addMovement(savingDeposit);
+    }
+    
+    
 
     private void classifyMovementAsExpense(Expense expense) {
         expenses.add(expense);
