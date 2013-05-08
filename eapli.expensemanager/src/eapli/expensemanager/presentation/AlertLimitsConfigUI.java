@@ -52,8 +52,10 @@ public class AlertLimitsConfigUI extends BaseForm {
 
                         case LIMITDEVIATIONBYEXPTYPE:
                               ExpenseType eT = chooseExpenseType();
-                              System.out.println("Limit values as percentage in [0..1]");
-                              settingLimitsExpType(alertType, eT);
+                              if (eT != null) {
+                                    System.out.println("Limit values as percentage in [0..1]");
+                                    settingLimitsExpType(alertType, eT);
+                              }
                               break;
 
                         case LIMITMINIMUMBALANCE:
@@ -96,7 +98,10 @@ public class AlertLimitsConfigUI extends BaseForm {
                         System.out.println(i + " : " + expT.getDescription());
                   }
                   int eT = Console.readOption(1, sizeET, 0);
-                  return list.get(eT - 1);
+                  if (eT != 0) {
+                        return list.get(eT - 1);
+                  }
+                  return null;
             }
       }
 
@@ -108,14 +113,14 @@ public class AlertLimitsConfigUI extends BaseForm {
                   controller.registerAlertLimitExpenditure(code, yellowLimit, redLimit);
             } else {
 
-        if (Console.readBoolean("Update limit values?(y/n)")) {
+                  if (Console.readBoolean("Update limit values?(y/n)")) {
                         readLimitsExpenditure();
                         controller.updateAlertLimitExpenditure(aLM, yellowLimit, redLimit);
                   }
             }
       }
 
-      private void settingLimitsExpType(AlertLimitType code, ExpenseType eT){
+      private void settingLimitsExpType(AlertLimitType code, ExpenseType eT) {
             AlertLimitByExpenseType aLD =
                     (AlertLimitByExpenseType) showCurrentAlertLimitsByExpenseType(eT);
             if (aLD == null) {
@@ -137,17 +142,17 @@ public class AlertLimitsConfigUI extends BaseForm {
                   if (redLimit <= yellowLimit) {
                         System.out.println("ERROR Yellow Limit > Red Limit. Repeat Please");
                   }
-            } while (redLimit <=yellowLimit);
+            } while (redLimit <= yellowLimit);
       }
-      
-       private void readLimitsPercent() {
+
+      private void readLimitsPercent() {
             do {
                   yellowLimit = Console.readDouble("Yellow Limit");
                   redLimit = Console.readDouble("Red Limit");
                   if (redLimit <= yellowLimit) {
                         System.out.println("ERROR: Limits in [0..1] and  Yellow Limit > Red Limit. Repeat Please");
                   }
-            } while (yellowLimit<0||yellowLimit >1|| redLimit<0||redLimit >1||redLimit <=yellowLimit);
+            } while (yellowLimit < 0 || yellowLimit > 1 || redLimit < 0 || redLimit > 1 || redLimit <= yellowLimit);
       }
 
       private AlertLimitExpenditure showCurrentAlertLimitsByType(AlertLimitType alertType) {
