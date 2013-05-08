@@ -6,7 +6,6 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterPaymentMeanController;
-import eapli.framework.Controller;
 import eapli.util.Console;
 import java.util.Calendar;
 
@@ -33,6 +32,10 @@ class RegisterPaymentMeanUI extends BaseForm {
 
     @Override
     protected boolean doShow() {
+        
+        // TODO consider using a menu (wth Action) for this instead of being hardcoded
+        // in the UI
+        
         //System.out.println("1. Cash");
         System.out.println("2. Credit card");
         System.out.println("3. Debit card");

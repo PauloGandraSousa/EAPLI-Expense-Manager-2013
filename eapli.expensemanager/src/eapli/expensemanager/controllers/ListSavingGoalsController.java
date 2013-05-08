@@ -14,15 +14,11 @@ import java.util.List;
  *
  * @author AJS
  */
-public class ListSavingGoalsController extends BaseController 
-{
+public class ListSavingGoalsController extends BaseController {
 
-    public List<SavingGoal> getSavingGoals() 
-    {
+    public List<SavingGoal> getSavingGoals() {
         SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
-        SavingPlan savingPlan = repo.theSavingPlan(); 
+        SavingPlan savingPlan = repo.theSavingPlan();
         return savingPlan.getSavingGoals();
-    }    
-
-    
+    }
 }

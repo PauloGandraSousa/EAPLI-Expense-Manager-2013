@@ -16,14 +16,15 @@
     <class>eapli.expensemanager.model.Movement</class>
     <class>eapli.expensemanager.model.Payment</class>
     <class>eapli.expensemanager.model.PaymentMean</class>
-    <class>eapli.expensemanager.model.SavingsPlan</class>
     <class>eapli.expensemanager.model.SavingGoal</class>
     <class>eapli.expensemanager.model.Saving</class>
     <class>eapli.expensemanager.model.MovementType</class>
     <class>eapli.expensemanager.model.observer.AlertLimit</class>
     <class>eapli.expensemanager.model.observer.AlertLimitByExpenseType</class>
     <class>eapli.expensemanager.model.observer.AlertLimitExpenditure</class>
-    <class>eapli.expensemanager.model.observer.AlertLimitPercentValues</class>
+    <class>eapli.expensemanager.model.SavingDeposit</class>
+    <class>eapli.expensemanager.model.SavingPlan</class>
+    <class>eapli.expensemanager.model.SavingWithdraw</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:../db/expensemanager"/>
       <property name="javax.persistence.jdbc.password" value=""/>

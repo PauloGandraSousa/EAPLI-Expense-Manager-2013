@@ -54,7 +54,6 @@ class ListExpensesUIPerTypeGUIChart extends ListExpensesUIPerTypeChart {
 
         demo.doShow();
 
-
         return true;
     }
 

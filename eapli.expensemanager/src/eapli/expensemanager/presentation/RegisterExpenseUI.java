@@ -5,11 +5,9 @@
 package eapli.expensemanager.presentation;
 
 import eapli.framework.presentation.ListWidget;
-import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterExpenseController;
 import eapli.expensemanager.model.Cheque;
-import eapli.expensemanager.model.ChequePayment;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
@@ -70,18 +68,18 @@ class RegisterExpenseUI extends BaseForm {
 
     private Payment readPaymentMean() {
         System.out.println("-- PAYMENT MEANS --");
-        List<PaymentMean> methods = controller.getPaymentMeans();
+        List<PaymentMean> paymentMeans = controller.getPaymentMeans();
         // FIX use ListWidget to avoid code duplication
         int position = 1;
-        for (PaymentMean method : methods) {
+        for (PaymentMean method : paymentMeans) {
             System.out.println(position + ". " + method.getDescription());
             position++;
         }
-        int option = Console.readOption(1, methods.size(), 0);
-        PaymentMean method = methods.get(option-1);
+        int option = Console.readOption(1, paymentMeans.size(), 0);
+        PaymentMean method = paymentMeans.get(option-1);
         
         // TODO should the UI ask for a Payment object or call different 
-        // registerXXX methods on the controller, i.e., registerExpensePaidwithCheque
+        // registerXXX paymentMeans on the controller, i.e., registerExpensePaidwithCheque
         // or registerExpensePaidWithCash, etc...
         Payment payment;
         if (method.getClass() == Cheque.class) {
