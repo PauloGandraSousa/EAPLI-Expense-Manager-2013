@@ -4,25 +4,23 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.presentation.ListWidget;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterExpenseController;
 import eapli.expensemanager.model.Cheque;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
+import eapli.framework.presentation.SelectWidget;
 import eapli.util.Console;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-class RegisterExpenseUI extends BaseForm {
+class RegisterExpenseUI extends RegisterMovementBaseUI {
 
-    ListWidget widget;
+    SelectWidget widget;
 
     @Override
     public String headline() {
@@ -31,11 +29,8 @@ class RegisterExpenseUI extends BaseForm {
 
     @Override
     public boolean doShow() {
-        // TODO remove duplicate code with RegisterIncomeUI
-        String what = Console.readLine("What:");
-        Date date = Console.readDate("When (dd-MM-yyyy):");
-        double value = Console.readDouble("How much:");
-        BigDecimal amount = new BigDecimal(value);
+        readGeneralData();
+
         ExpenseType expenseType = readExpenseType();
         
         // TODO should the UI create a Payment object?
@@ -58,10 +53,11 @@ class RegisterExpenseUI extends BaseForm {
     private ExpenseType readExpenseType() {
         System.out.println("-- EXPENSE TYPES --");
         List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
-        // TODO create SelectWidget to list and select an option
-        widget = new ListWidget(listExpenseTypes, new ExpenseTypeListVisitor());
+
+        widget = new SelectWidget(listExpenseTypes, new ExpenseTypeListVisitor());
         widget.show();
-        int option = Console.readOption(1, listExpenseTypes.size(), 0);
+        int option = widget.selectedOption();
+        
         ExpenseType expenseType = listExpenseTypes.get(option-1);
         return expenseType;
     }

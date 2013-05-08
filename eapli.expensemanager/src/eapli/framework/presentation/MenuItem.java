@@ -16,7 +16,7 @@ public class MenuItem {
     Action action;
     
     public MenuItem(int option, String text, Action action) {
-        if (action == null) {
+        if (text == null || action == null) {
             throw new IllegalArgumentException();
         }
         this.option = option;
