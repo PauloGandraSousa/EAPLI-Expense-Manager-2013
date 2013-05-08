@@ -151,7 +151,7 @@ public class MainMenu extends BaseUI {
 
         menu.addMenuItem(
                 new MenuItem(REGISTER_SAVING_GOAL_OPTION, "Register Saving Goal",
-                new ShowUiAction(new RegisterGoalSavingUI())));
+                new ShowUiAction(new RegisterSavingGoalUI())));
 
         menu.addMenuItem(new MenuSeparator());
         
@@ -243,7 +243,7 @@ public class MainMenu extends BaseUI {
                 listPaymentMethodsUI.show();
                 break;
             case REGISTER_SAVING_GOAL_OPTION:
-                RegisterGoalSavingUI registergoalsavingUI = new RegisterGoalSavingUI();
+                RegisterSavingGoalUI registergoalsavingUI = new RegisterSavingGoalUI();
                 registergoalsavingUI.show();
                 break;
             default:

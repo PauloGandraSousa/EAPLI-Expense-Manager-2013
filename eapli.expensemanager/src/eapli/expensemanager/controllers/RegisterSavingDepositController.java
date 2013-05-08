@@ -19,18 +19,15 @@ import java.util.List;
  *
  * @author ajs
  */
-public class RegisterSavingDepositController extends BaseController {
+public class RegisterSavingDepositController extends BaseController 
+{
 
-    public RegisterSavingDepositController() {
+    public RegisterSavingDepositController() 
+    {
     }
 
-   
-            
     public void registerSavingDeposit(SavingGoal goal, Date date, BigDecimal amount, String description) 
     {
-        
-        
-        
         CheckingAccountRepository checkingAccountRepository = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount checkingAccount = checkingAccountRepository.theAccount(); 
         
@@ -47,24 +44,6 @@ public class RegisterSavingDepositController extends BaseController {
             savingPlanRepository.save(savingPlan);
             checkingAccountRepository.save(checkingAccount);
         }
-        
-            
-        
-        
-        //savingPlan.registerSavingDeposit(savingDeposit,goal);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //registar deposito no savingPlan 
-        
-        
-        
     }
 
     public List<SavingGoal> getSavingGoals() 

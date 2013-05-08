@@ -14,9 +14,9 @@ import java.math.BigDecimal;
  *
  * @author losa
  */
-public class RegisterTargetSavingController extends BaseController {
+public class RegistertSavingGoalController extends BaseController {
 
-    public void registerTargetSaving(String desctarget, BigDecimal totaltargetammount) {
+    public void registerSavingGoal(String desctarget, BigDecimal totaltargetammount) {
         SavingPlanRepository repo;
 
         repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
