@@ -5,10 +5,8 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.observer.AlertLimit;
 import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitPercentValues;
 import eapli.expensemanager.model.observer.AlertLimitType;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
@@ -52,12 +50,12 @@ public class AlertLimitsConfigController  extends BaseController{
       }
        
 
-      public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimit, double yellow, double red){
-            alertLimit.update(yellow,red);
+      public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red){
+            alertLimitExpenditure.update(yellow,red);
       }
       
-         public void updateAlertLimitPercentValues(AlertLimitPercentValues alertLimit, double yellow, double red){
-            alertLimit.update(yellow,red);
+         public void updateAlertLimitPercentValues(AlertLimitByExpenseType alertLimitByExpenseType, double yellow, double red){
+            alertLimitByExpenseType.update(yellow,red);
       }
       
       

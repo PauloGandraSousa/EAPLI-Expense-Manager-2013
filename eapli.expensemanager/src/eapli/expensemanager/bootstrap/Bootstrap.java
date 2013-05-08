@@ -54,7 +54,7 @@ public class Bootstrap {
         ensureTheAccountExists();
         ensureDefaultExpenseTypesExist();
         ensureCashEurExists();
-        ensureSavingsPlanExists();
+//        ensureSavingsPlanExists();
     }
 
     private void ensureTheAccountExists() {

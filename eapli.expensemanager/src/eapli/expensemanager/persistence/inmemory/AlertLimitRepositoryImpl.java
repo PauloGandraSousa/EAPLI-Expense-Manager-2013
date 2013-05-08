@@ -8,7 +8,6 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.observer.AlertLimit;
 import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitPercentValues;
 import eapli.expensemanager.model.observer.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import java.math.BigDecimal;
@@ -43,7 +42,7 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
       }
 
       @Override
-      public AlertLimitPercentValues update(int key, double yellow, double red) {
+      public AlertLimitByExpenseType update(int key, double yellow, double red) {
             throw new UnsupportedOperationException("Not supported yet.");
       }
 

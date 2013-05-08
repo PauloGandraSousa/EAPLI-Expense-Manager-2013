@@ -115,7 +115,7 @@ public class AlertLimitsConfigUI extends BaseForm {
             }
       }
 
-      private void settingLimitsExpType(AlertLimitType code, ExpenseType eT) {
+      private void settingLimitsExpType(AlertLimitType code, ExpenseType eT){
             AlertLimitByExpenseType aLD =
                     (AlertLimitByExpenseType) showCurrentAlertLimitsByExpenseType(eT);
             if (aLD == null) {

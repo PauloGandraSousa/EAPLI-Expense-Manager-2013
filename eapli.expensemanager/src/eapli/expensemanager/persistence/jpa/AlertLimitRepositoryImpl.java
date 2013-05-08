@@ -8,7 +8,6 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.observer.AlertLimit;
 import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitPercentValues;
 import eapli.expensemanager.model.observer.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import java.math.BigDecimal;
@@ -28,11 +27,6 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       public List<AlertLimit> all() {
             return super.all();
       }
-
-//      @Override
-//      public AlertLimit save(AlertLimit alertLimit) {
-//            return super.save(alertLimit);
-//      }
 
       @Override
       public AlertLimit findByKey(int key) {
@@ -62,15 +56,15 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
 
       
        @Override
-      public AlertLimitPercentValues update(int key, double yellow, double red) {
+      public AlertLimitByExpenseType update(int key, double yellow, double red) {
             EntityManager em = getEntityManager();
             assert em != null;
             EntityTransaction tx = em.getTransaction();
 
-            AlertLimitPercentValues temp = null;
+            AlertLimitByExpenseType temp = null;
             try {
                   tx.begin();
-                  temp = (AlertLimitPercentValues)em.find(entityClass, key);
+                  temp = (AlertLimitByExpenseType)em.find(entityClass, key);
                   temp.setPercentLimitRed(yellow);
                   temp.setPercentLimitYellow(red);
                   tx.commit();

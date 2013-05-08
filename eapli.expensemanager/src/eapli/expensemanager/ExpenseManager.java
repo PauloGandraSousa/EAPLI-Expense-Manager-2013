@@ -5,6 +5,7 @@
 package eapli.expensemanager;
 
 import eapli.expensemanager.bootstrap.Bootstrap;
+import eapli.expensemanager.bootstrap.SomeDefaultAlertLimitBootstrap;
 import eapli.expensemanager.bootstrap.SomeExpensesBootstrap;
 import eapli.expensemanager.presentation.MainMenu;
 import java.io.FileInputStream;
@@ -60,5 +61,7 @@ public class ExpenseManager {
         Bootstrap referenceDataBootstrap = new Bootstrap();
         
         SomeExpensesBootstrap sampleExpensesBootstrap = new SomeExpensesBootstrap();
+        
+        SomeDefaultAlertLimitBootstrap defaultAlertLimits= new  SomeDefaultAlertLimitBootstrap();
     }
 }

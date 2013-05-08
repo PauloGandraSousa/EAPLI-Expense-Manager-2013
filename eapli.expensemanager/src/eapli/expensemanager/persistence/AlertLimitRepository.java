@@ -8,7 +8,6 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.observer.AlertLimit;
 import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitPercentValues;
 import eapli.expensemanager.model.observer.AlertLimitType;
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,7 +26,7 @@ public interface AlertLimitRepository {
 
       AlertLimitExpenditure update(int key, BigDecimal yellow, BigDecimal red);
 
-      AlertLimitPercentValues update(int key, double yellow, double red);
+      AlertLimitByExpenseType update(int key, double yellow, double red);
 
       AlertLimit findByKey(int i);
 
