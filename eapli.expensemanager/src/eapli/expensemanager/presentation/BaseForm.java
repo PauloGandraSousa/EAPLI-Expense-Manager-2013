@@ -37,5 +37,10 @@ public abstract class BaseForm extends BaseUI {
         System.out.print("this month: ");
         System.out.print(NumberFormat.getCurrencyInstance().format( baseController().getThisMonthExpenditure()));
         System.out.println(" | ");
+        
+        // By Rocha - 08-05-2013
+        System.out.print("Balance: ");
+        System.out.print(NumberFormat.getCurrencyInstance().format( baseController().getBalance()));
+        System.out.println(" | ");
     }
 }

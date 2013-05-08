@@ -23,6 +23,7 @@ public class PersistenceFactory {
         // TODO should the application properties exist in other class than the 
         // ExpensEManager to avoid the dependency to that class?
         String factoryClassName = ExpenseManager.getApplicationProperties().getProperty("persistence.repositoryFactory");
+           
         try {
             return (RepositoryFactory) Class.forName(factoryClassName).newInstance();
         } catch (ClassNotFoundException ex) {

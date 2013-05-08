@@ -16,8 +16,10 @@ import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
@@ -42,6 +44,8 @@ public class CheckingAccount implements Serializable {
     @JoinTable(name = "CheckingAccount_Incomes")
     private List<Income> incomes;
     
+     @OneToOne (cascade=CascadeType.MERGE)
+    private InitialBalance initialBalance;
     
     //@ManyToMany
 //    @ElementCollection(fetch = FetchType.EAGER)
@@ -185,5 +189,27 @@ public class CheckingAccount implements Serializable {
         return true;
     }
     
+      // By Rocha 08/05/2013
+    public BigDecimal getBalance() {
+        BigDecimal i = new BigDecimal(0);
+        if (initialBalance != null ) {
+            i = initialBalance.getValue(); 
+        }
+                        
+        return totalEarnings().subtract(totalExpenditure()).add(i);
+    }
+    
+    
+    public void registerInitialBalance(InitialBalance initial) {
+        if (initial == null || initialBalance != null ) {
+            throw new IllegalArgumentException();
+        };
+    }
+    
+    //Not used yet... ToDo
+    public boolean HaveInitialBalance() {
+        return initialBalance != null;
+    
+    }
     
 }

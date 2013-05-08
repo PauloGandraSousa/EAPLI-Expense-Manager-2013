@@ -37,6 +37,7 @@ public class MainMenu extends BaseUI {
     final int REGISTER_PAYMENT_METHOD_OPTION = 40;
     final int LIST_PAYMENT_METHODS_OPTION = 41;
     final int REGISTER_SAVING_GOAL_OPTION = 51;
+    final byte REGISTER_INITIAL_BALANCE_OPTION = 60;
     final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
     final int MASTER_TABLES_OPTION = 200;
@@ -124,6 +125,10 @@ public class MainMenu extends BaseUI {
                 new ShowUiAction(new ListPaymentMeansUI())));
 
         menu.addMenuItem(
+                new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
+                new ShowUiAction(new RegisterInitialBalanceUI())));
+        
+        menu.addMenuItem(
                 new MenuItem(0, "Return", new ReturnAction()));
 
         return menu;
@@ -163,7 +168,12 @@ public class MainMenu extends BaseUI {
 
         menu.addMenuItem(new MenuSeparator());
         
-        
+        menu.addMenuItem(
+                new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
+                new ShowUiAction(new RegisterInitialBalanceUI())));
+ 
+        menu.addMenuItem(new MenuSeparator());
+ 
         menu.addMenuItem(
                 new SubMenu(LISTINGS_OPTION, buildListingsMenu()));
 

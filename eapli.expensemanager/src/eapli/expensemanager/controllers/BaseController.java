@@ -4,7 +4,9 @@
  */
 package eapli.expensemanager.controllers;
 
+import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.ExpenseRecord;
+import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.framework.Controller;
@@ -52,4 +54,13 @@ public abstract class BaseController implements Controller {
         ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         return repo.expenditureOfMonth(DateTime.currentYear(), DateTime.currentMonth());        
     }
+    
+     //By Rocha in 08/05/2013
+     public BigDecimal getBalance() {
+         
+        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
+        CheckingAccount account = repo.theAccount(); 
+         
+        return account.getBalance();
+}
 }
