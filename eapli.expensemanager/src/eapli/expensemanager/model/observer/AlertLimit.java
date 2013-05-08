@@ -64,6 +64,8 @@ public class AlertLimit implements Serializable, ActiveRecord{
 
            @Override
       public void save() {
+          AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+            repo.save(this);
       }
 
 }

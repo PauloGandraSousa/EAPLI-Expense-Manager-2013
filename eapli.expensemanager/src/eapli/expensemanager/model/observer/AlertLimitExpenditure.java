@@ -87,10 +87,4 @@ public class AlertLimitExpenditure extends AlertLimit  {
             return list.get(0);
       }
 
-      // TODO should be at the super class
-      @Override
-      public void save() {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            repo.save(this);
-      }
 }

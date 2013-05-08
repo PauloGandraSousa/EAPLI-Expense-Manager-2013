@@ -100,5 +100,13 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       public void save(AlertLimitByExpenseType alertLimit) {
             super.save(alertLimit);
       }
+
+      
+      @Override
+      public AlertLimit save(AlertLimit alertLimit) {
+             return super.save(alertLimit);
+      }
+
+
       
 }

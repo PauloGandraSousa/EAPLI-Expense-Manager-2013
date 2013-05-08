@@ -9,7 +9,6 @@ import eapli.expensemanager.model.observer.AlertLimit;
 import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
 import eapli.expensemanager.model.observer.AlertLimitType;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -19,6 +18,7 @@ import java.util.List;
 public interface AlertLimitRepository {
 
       List<AlertLimit> all();
+      AlertLimit save(AlertLimit  alertLimit);
 
       void save(AlertLimitByExpenseType alertLimit);
       

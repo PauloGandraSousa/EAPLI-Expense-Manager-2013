@@ -75,10 +75,4 @@ public class AlertLimitByExpenseType extends AlertLimit {
             AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
             repo.update(this);
       }
-//TODO move super
-      @Override
-      public void save() {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            repo.save(this);
-      }
     }
