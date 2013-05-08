@@ -20,12 +20,16 @@
     <class>eapli.expensemanager.model.SavingGoal</class>
     <class>eapli.expensemanager.model.Saving</class>
     <class>eapli.expensemanager.model.MovementType</class>
+    <class>eapli.expensemanager.model.observer.AlertLimit</class>
+    <class>eapli.expensemanager.model.observer.AlertLimitByExpenseType</class>
+    <class>eapli.expensemanager.model.observer.AlertLimitExpenditure</class>
+    <class>eapli.expensemanager.model.observer.AlertLimitPercentValues</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:../db/expensemanager"/>
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
       <property name="javax.persistence.jdbc.user" value=""/>
-      <property name="eclipselink.ddl-generation" value="create-tables"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

@@ -37,6 +37,7 @@ public class MainMenu extends BaseUI {
     final int REGISTER_PAYMENT_METHOD_OPTION = 40;
     final int LIST_PAYMENT_METHODS_OPTION = 41;
     final int REGISTER_SAVING_GOAL_OPTION = 51;
+    final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
     final int MASTER_TABLES_OPTION = 200;
 
@@ -154,6 +155,14 @@ public class MainMenu extends BaseUI {
                 new ShowUiAction(new RegisterSavingGoalUI())));
 
         menu.addMenuItem(new MenuSeparator());
+
+        //mcn : Alert Limits  - OBSERVER PATTERN 
+        menu.addMenuItem(
+                new MenuItem(SETTING_ALERT_LIMITS_OPTION, "Setting alert limits",
+                new ShowUiAction(new AlertLimitsConfigUI())));
+
+        menu.addMenuItem(new MenuSeparator());
+        
         
         menu.addMenuItem(
                 new SubMenu(LISTINGS_OPTION, buildListingsMenu()));

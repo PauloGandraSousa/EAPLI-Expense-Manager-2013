@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.persistence.factory;
 
+import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
@@ -54,4 +55,9 @@ public class JpaRepositoryFactory implements RepositoryFactory {
     public PaymentMeanRepository paymentMeanRepository() {
         return new eapli.expensemanager.persistence.jpa.PaymentMeanRepositoryImpl();
     }
+
+      @Override
+      public AlertLimitRepository alertLimitRepository() {
+            return new eapli.expensemanager.persistence.jpa.AlertLimitRepositoryImpl();
+      }
 }
