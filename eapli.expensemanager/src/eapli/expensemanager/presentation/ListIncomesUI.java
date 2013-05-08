@@ -4,13 +4,10 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListIncomesController;
-import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
 import eapli.framework.presentation.ListWidget;
-import java.util.List;
 
 /**
  *

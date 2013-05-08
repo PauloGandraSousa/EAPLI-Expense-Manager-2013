@@ -4,10 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.presentation.BaseUI;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegistertSavingGoalController;
-import eapli.expensemanager.model.ExpenseType;
 import eapli.util.Console;
 import java.math.BigDecimal;
 

@@ -5,9 +5,6 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.ListExpensesPerTypeController;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Para se criar o UI para os agregadores de despesa, existe a possibilidade de

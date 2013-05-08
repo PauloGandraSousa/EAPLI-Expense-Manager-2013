@@ -4,7 +4,6 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.IncomeType;
 import eapli.framework.Visitor;
 

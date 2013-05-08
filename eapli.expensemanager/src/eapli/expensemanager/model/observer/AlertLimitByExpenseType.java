@@ -49,6 +49,7 @@ public class AlertLimitByExpenseType extends AlertLimitPercentValues implements 
         return str;
     }
 
+    // TODO should be at the super class
     @Override
     public void save() {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();

@@ -50,6 +50,9 @@ public class RegisterSavingWithdrawController extends BaseController {
     }
 
     public List<SavingGoal> getSavingGoals() {
+        // TODO should a controller create other controller objects?
+        // to avoid duplication we migth encapsulate this method in another 
+        // class which is not a controller
         return new ListSavingGoalsController().getSavingGoals();
     }
 }

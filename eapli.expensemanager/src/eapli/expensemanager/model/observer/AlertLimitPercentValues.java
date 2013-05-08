@@ -12,6 +12,7 @@ import javax.persistence.Entity;
  *
  * @author mcn
  */
+// TODO for consistency purposes shouldn't this class be an Active Record?
 @Entity
 public class AlertLimitPercentValues extends AlertLimit {
 
