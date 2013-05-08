@@ -5,10 +5,8 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.observer.AlertLimit;
 import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
 import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitPercentValues;
 import eapli.expensemanager.model.observer.AlertLimitType;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
@@ -18,10 +16,9 @@ import java.util.List;
  *
  * @author mcn
  */
-// TODO refactor rename the class to a more verb oriented name, e.g, ConfigureAlertLimitsController
-public class AlertLimitsConfigController extends BaseController {
-
-    public AlertLimitType[] getAlertLimitTypes() {
+public class ConfigureAlertLimitsController extends BaseController {
+      
+      public AlertLimitType[] getAlertLimitTypes() {
         return AlertLimitType.values();
     }
 
@@ -47,11 +44,11 @@ public class AlertLimitsConfigController extends BaseController {
         new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT).save();
     }
 
-    public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimit, double yellow, double red) {
-        alertLimit.update(yellow, red);
+    public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red) {
+        alertLimitExpenditure.updateLimits(yellow, red);
     }
 
-    public void updateAlertLimitPercentValues(AlertLimitPercentValues alertLimit, double yellow, double red) {
-        alertLimit.update(yellow, red);
+    public void updateAlertLimitByExpenseType(AlertLimitByExpenseType alertLimitByExpenseType, double yellow, double red) {
+        alertLimitByExpenseType.updateLimits(yellow, red);
     }
 }

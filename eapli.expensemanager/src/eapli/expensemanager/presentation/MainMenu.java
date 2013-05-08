@@ -159,7 +159,7 @@ public class MainMenu extends BaseUI {
         //mcn : Alert Limits  - OBSERVER PATTERN 
         menu.addMenuItem(
                 new MenuItem(SETTING_ALERT_LIMITS_OPTION, "Setting alert limits",
-                new ShowUiAction(new AlertLimitsConfigUI())));
+                new ShowUiAction(new ConfigureAlertLimitsUI())));
 
         menu.addMenuItem(new MenuSeparator());
         

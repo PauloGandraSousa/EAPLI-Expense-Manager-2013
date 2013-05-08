@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.model.observer;
 
+
+import eapli.expensemanager.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.io.Serializable;
@@ -22,7 +24,7 @@ import javax.persistence.Inheritance;
  */
 @Entity
 @Inheritance
-public class AlertLimit implements Serializable {
+public class AlertLimit implements Serializable, ActiveRecord{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +41,14 @@ public class AlertLimit implements Serializable {
 
     }
 
+     public int getId() {
+            return id;
+      }
+    
+
     @Override
     public String toString() {
         String str = "Alert Type:" + alertType;
-
         return str;
     }
 
@@ -55,4 +61,11 @@ public class AlertLimit implements Serializable {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
         return repo.findByKey(key);
     }
+
+           @Override
+      public void save() {
+          AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+            repo.save(this);
+      }
+
 }
