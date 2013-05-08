@@ -101,7 +101,10 @@ public class CheckingAccount implements Serializable {
         addMovement(savingDeposit);
     }
     
-    
+    public void registerSavingWithdraw(SavingWithdraw savingWithdraw) 
+    {
+        addMovement(savingWithdraw);
+    }    
 
     private void classifyMovementAsExpense(Expense expense) {
         expenses.add(expense);
