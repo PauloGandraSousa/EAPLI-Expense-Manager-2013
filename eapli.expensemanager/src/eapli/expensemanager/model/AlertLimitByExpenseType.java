@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.model.observer;
+package eapli.expensemanager.model;
 
+import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
@@ -56,13 +57,13 @@ public class AlertLimitByExpenseType extends AlertLimit {
       @Override
       public String toString() {
             String str = super.toString()
-                    + "\nYellow Limit:" + percentLimitYellow + "%" + "\nRed Limit:" + percentLimitRed + "%\nExpenseType:" + expenseType.getDescription();
+                    + "\nYellow Limit:" + percentLimitYellow *100+ "%" + "\nRed Limit:" + percentLimitRed*100 + "%\nExpenseType:" + expenseType.getDescription();
             return str;
       }
 
       public static AlertLimitByExpenseType findByExpenseType(ExpenseType eT) {
             AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            List<AlertLimitByExpenseType> list = repo.findByET(eT);
+            List<AlertLimitByExpenseType> list = repo.findAlertLimitsByExpenseType(eT);
             if (list.isEmpty()) {
                   return null;
             }

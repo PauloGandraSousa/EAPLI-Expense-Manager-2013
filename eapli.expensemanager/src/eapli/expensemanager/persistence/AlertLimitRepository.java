@@ -5,10 +5,10 @@
 package eapli.expensemanager.persistence;
 
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.observer.AlertLimit;
-import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
-import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitType;
+import eapli.expensemanager.model.AlertLimit;
+import eapli.expensemanager.model.AlertLimitByExpenseType;
+import eapli.expensemanager.model.AlertLimitExpenditure;
+import eapli.expensemanager.model.AlertLimitType;
 import java.util.List;
 
 /**
@@ -17,23 +17,18 @@ import java.util.List;
  */
 public interface AlertLimitRepository {
 
-    List<AlertLimit> all();
-
-    AlertLimit save(AlertLimit alertLimit);
+      List<AlertLimit> all();
+      
+      AlertLimit save(AlertLimit  alertLimit);
 
     // TODO does it make sense for this API to have save() and update()
-    void save(AlertLimitByExpenseType alertLimit);
+       AlertLimitExpenditure update(AlertLimitExpenditure a);
 
-    void save(AlertLimitExpenditure alertLimit);
+      AlertLimitByExpenseType update( AlertLimitByExpenseType a);
+     
+      AlertLimit findByKey(int i);
 
-    AlertLimitExpenditure update(AlertLimitExpenditure a);
+      List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
 
-    AlertLimitByExpenseType update(AlertLimitByExpenseType a);
-
-    AlertLimit findByKey(int i);
-
-    List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
-
-    // TODO refactor to a more meaningfull name
-    List<AlertLimitByExpenseType> findByET(ExpenseType eT);
+      List<AlertLimitByExpenseType> findAlertLimitsByExpenseType(ExpenseType eT);
 }

@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ import javax.persistence.Transient;
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class CheckingAccount implements Serializable {
+public class CheckingAccount extends Observable implements Serializable {
 
     @Id
     @GeneratedValue
@@ -106,6 +107,10 @@ public class CheckingAccount implements Serializable {
         addMovement(expense);
         classifyMovementAsExpense(expense);
         classifyExpense(expense);
+         // ObserverPattern   - Cria um evento e notifica Observers
+        this.setChanged();
+        ExpenseRegisteredEvent expenseRegisteredEvent= new ExpenseRegisteredEvent(expense);
+        this.notifyObservers(expenseRegisteredEvent);
     }
 
     public void registerSavingDeposit(SavingDeposit savingDeposit) throws InsufficientBalanceException {

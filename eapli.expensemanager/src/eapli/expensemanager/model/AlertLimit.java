@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.model.observer;
+package eapli.expensemanager.model;
 
 import eapli.expensemanager.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.AlertLimitRepository;
@@ -40,9 +40,14 @@ public class AlertLimit implements Serializable, ActiveRecord {
 
     }
 
-    public int getId() {
-        return id;
-    }
+     public int getId() {
+            return id;
+      }
+
+      public AlertLimitType getAlertType() {
+            return alertType;
+      }
+    
 
     @Override
     public String toString() {
