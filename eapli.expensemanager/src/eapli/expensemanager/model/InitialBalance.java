@@ -17,28 +17,27 @@ import javax.persistence.Temporal;
  * @author arocha
  */
 @Entity
-public class InitialBalance implements Serializable{
+public class InitialBalance implements Serializable {
+    // TODO why does class needs an Id?
     @Id
     @GeneratedValue
-     Long id;
+    Long id;
+    // TODO "data" is not a meaningfull name in this context (at least in english ;-)
+    // consider refactoring to "asOf"
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data = new Date();
     // TODO - verify if there are movements before this date
-    
-     BigDecimal initialValue;
+    BigDecimal initialValue;
 
-   public InitialBalance() {
+    public InitialBalance() {
     }
 
-    public InitialBalance( Date data,BigDecimal initialValue) {
+    public InitialBalance(Date data, BigDecimal initialValue) {
         this.initialValue = initialValue;
         this.data = data;
     }
 
-    public BigDecimal getValue(){
+    public BigDecimal getValue() {
         return initialValue;
     }
-    
-
 }
-

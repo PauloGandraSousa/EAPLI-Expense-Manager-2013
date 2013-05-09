@@ -124,6 +124,7 @@ public class MainMenu extends BaseUI {
                 new MenuItem(LIST_PAYMENT_METHODS_OPTION, "List payment methods",
                 new ShowUiAction(new ListPaymentMeansUI())));
 
+        // TODO should we have the same option in more than one menu?
         menu.addMenuItem(
                 new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
                 new ShowUiAction(new RegisterInitialBalanceUI())));
@@ -161,13 +162,10 @@ public class MainMenu extends BaseUI {
 
         menu.addMenuItem(new MenuSeparator());
 
-        //mcn : Alert Limits  - OBSERVER PATTERN 
         menu.addMenuItem(
                 new MenuItem(SETTING_ALERT_LIMITS_OPTION, "Setting alert limits",
                 new ShowUiAction(new ConfigureAlertLimitsUI())));
 
-        menu.addMenuItem(new MenuSeparator());
-        
         menu.addMenuItem(
                 new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
                 new ShowUiAction(new RegisterInitialBalanceUI())));

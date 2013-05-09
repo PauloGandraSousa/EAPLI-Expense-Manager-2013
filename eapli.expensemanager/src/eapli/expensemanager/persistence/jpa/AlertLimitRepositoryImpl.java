@@ -22,91 +22,90 @@ import javax.persistence.Query;
  */
 public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer> implements AlertLimitRepository {
 
-      @Override
-      public List<AlertLimit> all() {
-            return super.all();
-      }
+    @Override
+    public List<AlertLimit> all() {
+        return super.all();
+    }
 
-      @Override
-      public AlertLimit findByKey(int key) {
-            return super.read(key);
-      }
-      
-      @Override
-      public AlertLimitExpenditure update(AlertLimitExpenditure al) {
-            EntityManager em = getEntityManager();
-            assert em != null;
-            EntityTransaction tx = em.getTransaction();
+    @Override
+    public AlertLimit findByKey(int key) {
+        return super.read(key);
+    }
 
-            AlertLimitExpenditure temp = null;
-            try {
-                  tx.begin();
-                  temp = (AlertLimitExpenditure)em.find(entityClass, al.getId());
-                  temp.setLimitYellow(al.getLimitYellow());
-                  temp.setLimitRed(al.getLimitRed());
-                  tx.commit();
-            } catch (PersistenceException ex) {
-                  
-            } finally {
-                  em.close();
-            }
-            return temp;
-      }
+    @Override
+    public AlertLimitExpenditure update(AlertLimitExpenditure al) {
+        EntityManager em = getEntityManager();
+        assert em != null;
+        EntityTransaction tx = em.getTransaction();
 
-        
-      @Override
-      public AlertLimitByExpenseType update(AlertLimitByExpenseType al) {
-            EntityManager em = getEntityManager();
-            assert em != null;
-            EntityTransaction tx = em.getTransaction();
+        AlertLimitExpenditure temp = null;
+        try {
+            tx.begin();
+            // TODO why are we searching for the object if we already receive it?
+            temp = (AlertLimitExpenditure) em.find(entityClass, al.getId());
+            temp.setLimitYellow(al.getLimitYellow());
+            temp.setLimitRed(al.getLimitRed());
+            tx.commit();
+        } catch (PersistenceException ex) {
+            //FIX this is suppressing the exception it should never happen
+            // either we catch and handle it or rethrow it
+        } finally {
+            em.close();
+        }
+        return temp;
+    }
 
-            AlertLimitByExpenseType temp = null;
-            try {
-                  tx.begin();
-                  temp = (AlertLimitByExpenseType)em.find(entityClass, al.getId());
-                  temp.setPercentLimitRed(al.getPercentLimitRed());
-                  temp.setPercentLimitYellow(al.getPercentLimitYellow());
-                  tx.commit();
-            } catch (PersistenceException ex) {
-                  
-            } finally {
-                  em.close();
-            }
-            return temp;
-      }
+    @Override
+    public AlertLimitByExpenseType update(AlertLimitByExpenseType al) {
+        EntityManager em = getEntityManager();
+        assert em != null;
+        EntityTransaction tx = em.getTransaction();
 
-      @Override
-      public List<AlertLimitExpenditure> findByAlertType(AlertLimitType aLertType) {
-             EntityManager em = getEntityManager();
-            Query q = em.createQuery("SELECT e FROM AlertLimit e WHERE e.alertType = :aLertT");
-            q.setParameter("aLertT", aLertType);
-            return q.getResultList();
-      }
+        AlertLimitByExpenseType temp = null;
+        try {
+            tx.begin();
+            // TODO why are we searching for the object if we already receive it?
+            temp = (AlertLimitByExpenseType) em.find(entityClass, al.getId());
+            temp.setPercentLimitRed(al.getPercentLimitRed());
+            temp.setPercentLimitYellow(al.getPercentLimitYellow());
+            tx.commit();
+        } catch (PersistenceException ex) {
+            //FIX this is suppressing the exception it should never happen
+            // either we catch and handle it or rethrow it
+        } finally {
+            em.close();
+        }
+        return temp;
+    }
 
-      @Override
-      public List<AlertLimitByExpenseType> findByET(ExpenseType eT) {
-            EntityManager em = getEntityManager();
-            Query q = em.createQuery("SELECT e FROM AlertLimitByExpenseType e WHERE e.expenseType= :eT");
-            q.setParameter("eT", eT);
-            return q.getResultList();
-      }
+    @Override
+    public List<AlertLimitExpenditure> findByAlertType(AlertLimitType aLertType) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT e FROM AlertLimit e WHERE e.alertType = :aLertT");
+        q.setParameter("aLertT", aLertType);
+        return q.getResultList();
+    }
 
-      @Override
-      public void save(AlertLimitExpenditure alertLimit) {
-            super.save(alertLimit);
-      }
+    @Override
+    public List<AlertLimitByExpenseType> findByET(ExpenseType eT) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT e FROM AlertLimitByExpenseType e WHERE e.expenseType= :eT");
+        q.setParameter("eT", eT);
+        return q.getResultList();
+    }
 
-      @Override
-      public void save(AlertLimitByExpenseType alertLimit) {
-            super.save(alertLimit);
-      }
+    @Override
+    public void save(AlertLimitExpenditure alertLimit) {
+        super.save(alertLimit);
+    }
 
-      
-      @Override
-      public AlertLimit save(AlertLimit alertLimit) {
-             return super.save(alertLimit);
-      }
+    @Override
+    public void save(AlertLimitByExpenseType alertLimit) {
+        super.save(alertLimit);
+    }
 
-
-      
+    @Override
+    public AlertLimit save(AlertLimit alertLimit) {
+        return super.save(alertLimit);
+    }
 }

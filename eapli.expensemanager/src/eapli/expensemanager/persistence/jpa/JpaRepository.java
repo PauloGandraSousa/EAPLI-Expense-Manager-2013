@@ -29,8 +29,12 @@ public abstract class JpaRepository<T, PK extends Serializable> {
     @PersistenceUnit
     static protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("eapli.expensemanagerPU");
 
+    EntityManager entityManager; // = emf.createEntityManager();
+    
     protected EntityManager getEntityManager() {
-        EntityManager entityManager = emf.createEntityManager();
+        if (entityManager == null || !entityManager.isOpen()) {
+            entityManager = emf.createEntityManager();
+        }
         return entityManager;
     }
     
