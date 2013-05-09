@@ -31,8 +31,8 @@ public class CheckingAccount implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
-    private String owner;
-    private BigDecimal balance;
+    //private String owner;
+    //private BigDecimal balance;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "CheckingAccount_Movements")
     private List<Movement> movements;
@@ -99,13 +99,19 @@ public class CheckingAccount implements Serializable {
         return sum;
     }
 
-    public void registerExpense(Expense expense) {
+    public void registerExpense(Expense expense) throws InsufficientBalanceException {
+        if (!hasEnoughBalance(expense.getAmount())) {
+            throw new InsufficientBalanceException();
+        }
         addMovement(expense);
         classifyMovementAsExpense(expense);
         classifyExpense(expense);
     }
 
-    public void registerSavingDeposit(SavingDeposit savingDeposit) {
+    public void registerSavingDeposit(SavingDeposit savingDeposit) throws InsufficientBalanceException {
+        if (!hasEnoughBalance(savingDeposit.getAmount())) {
+            throw new InsufficientBalanceException();
+        }
         addMovement(savingDeposit);
     }
 
@@ -180,19 +186,15 @@ public class CheckingAccount implements Serializable {
         movements.add(movement);
     }
 
-    //AJS: determina se existe valor suficiente para gastar numa despesa ou transferência
-    // para poupança
-    // TODO what is the purpose of this method on the public API of the class?
-    public boolean enoughBalance(BigDecimal amount) {
+    private boolean hasEnoughBalance(BigDecimal amount) {
         // return 1 if bigger
-        if (amount.compareTo(balance) == 1) {
+        if (amount.compareTo(getBalance()) == 1) {
             return false;
         }
 
         return true;
     }
 
-    // By Rocha 08/05/2013
     public BigDecimal getBalance() {
         BigDecimal i = new BigDecimal(0);
         if (initialBalance != null) {
@@ -205,13 +207,12 @@ public class CheckingAccount implements Serializable {
     public void registerInitialBalance(InitialBalance initial) {
         if (initial == null || initialBalance != null) {
             throw new IllegalArgumentException();
-        };
+        }
         initialBalance = initial;
     }
 
-    //Not used yet... ToDo
-    // TODO what is the purpose of this method on the public API of the class?
-    public boolean HaveInitialBalance() {
+    // TODO should this method exist or not?
+    public boolean hasInitialBalance() {
         return initialBalance != null;
     }
 }

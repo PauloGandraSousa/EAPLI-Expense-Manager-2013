@@ -6,46 +6,49 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterSavingDepositController;
+import eapli.expensemanager.model.InsufficientBalanceException;
 import eapli.expensemanager.model.SavingGoal;
 import eapli.framework.presentation.SelectWidget;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author AJS
  */
-public class RegisterSavingDepositUI extends RegisterMovementBaseUI
-{
+public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
+
     SelectWidget widget;
 
     @Override
-    public String headline()
-    {
+    public String headline() {
         return "REGISTER AN SAVING DEPOSIT";
     }
 
     @Override
-    public boolean doShow()
-    {
+    public boolean doShow() {
         // FIX this code is duplicated with RegisterSavingWithdrawUI
         SavingGoal savingGoal = readSavingGoal();
         readGeneralData();
-        controller.registerSavingDeposit(savingGoal, date, amount, what);
-        System.out.println("\nSaving Deposit recorded!");
+        try {
+            controller.registerSavingDeposit(savingGoal, date, amount, what);
+            System.out.println("\nSaving Deposit recorded!");
+        } catch (InsufficientBalanceException ex) {
+            Logger.getLogger(RegisterSavingDepositUI.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("unable to register a saving due to unsufficien balance");
+        }
         return true;
     }
-
     RegisterSavingDepositController controller = new RegisterSavingDepositController();
 
     @Override
-    protected BaseController controller()
-    {
+    protected BaseController controller() {
         return controller;
     }
 
     // FIX this code is duplicated with RegisterSavingWithdrawUI
-    private SavingGoal readSavingGoal()
-    {
+    private SavingGoal readSavingGoal() {
         System.out.println("-- SAVING GOAL --");
         List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 

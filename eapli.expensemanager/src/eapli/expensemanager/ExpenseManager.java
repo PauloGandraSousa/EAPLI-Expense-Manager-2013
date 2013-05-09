@@ -32,15 +32,14 @@ public class ExpenseManager {
         MainMenu menu = new MainMenu();
         menu.mainLoop();
     }
-
     private static Properties applicationProperties = new Properties();
-    
+
     public static Properties getApplicationProperties() {
         return applicationProperties;
     }
-    
+
     private static void loadProperties() {
-         try {
+        try {
             applicationProperties.load(new FileInputStream("./src/eapli/expensemanager/expensemanager.properties"));
 
             //load a properties file from class path, inside static method
@@ -60,11 +59,11 @@ public class ExpenseManager {
 
     private static void doBootstrap() {
         Bootstrap referenceDataBootstrap = new Bootstrap();
-        
-        SomeExpensesBootstrap sampleExpensesBootstrap = new SomeExpensesBootstrap();
-        
+
         SomeIncomesBootstrap sampleIncomesBootstrap = new SomeIncomesBootstrap();
-        
-        SomeDefaultAlertLimitBootstrap defaultAlertLimits= new  SomeDefaultAlertLimitBootstrap();
+
+        SomeExpensesBootstrap sampleExpensesBootstrap = new SomeExpensesBootstrap();
+
+        SomeDefaultAlertLimitBootstrap defaultAlertLimits = new SomeDefaultAlertLimitBootstrap();
     }
 }

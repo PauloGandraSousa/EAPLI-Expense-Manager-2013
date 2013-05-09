@@ -9,6 +9,7 @@ import eapli.expensemanager.model.Cheque;
 import eapli.expensemanager.model.ChequePayment;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.model.InsufficientBalanceException;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
@@ -30,17 +31,17 @@ public class RegisterExpenseController extends BaseController {
         Payment payment = new Payment(mean);
         return payment;
     }
-    
+
     public ChequePayment createChequePayment(Cheque mean, String checkNumber) {
         ChequePayment payment = new ChequePayment(mean, checkNumber);
         return payment;
     }
-            
-    public void registerExpense(String what, Date date, BigDecimal amount, ExpenseType expenseType, Payment payment) {
+
+    public void registerExpense(String what, Date date, BigDecimal amount, ExpenseType expenseType, Payment payment) throws InsufficientBalanceException {
         Expense expense = new Expense(expenseType, what, date, amount, payment);
         //ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
-        CheckingAccount account = repo.theAccount(); 
+        CheckingAccount account = repo.theAccount();
         account.registerExpense(expense);
         repo.save(account);
     }
