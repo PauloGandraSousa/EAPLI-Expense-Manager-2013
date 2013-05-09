@@ -16,7 +16,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -59,15 +58,15 @@ public class CheckingAccount implements Serializable {
 
     /**
      * checks if the object already has an id assigned by the persistence layer
-     * eventough this is a public method if should not be used by code other than 
-     * the persistence layer
-     * 
-     * @return 
+     * eventough this is a public method if should not be used by code other
+     * than the persistence layer
+     *
+     * @return
      */
     public boolean hasId() {
         return id != null;
     }
-    
+
     public BigDecimal totalExpenditure() {
         return sumAmount(getExpenses());
     }

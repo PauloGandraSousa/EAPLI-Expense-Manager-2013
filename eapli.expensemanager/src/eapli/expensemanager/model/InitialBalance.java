@@ -19,11 +19,13 @@ import javax.persistence.Temporal;
 @Entity
 public class InitialBalance implements Serializable {
     // TODO why does class needs an Id?
+
     @Id
     @GeneratedValue
     Long id;
     // TODO "data" is not a meaningfull name in this context (at least in english ;-)
-    // consider refactoring to "asOf"
+    // consider refactoring to "asOf" or "referenceDate"
+    // FIX "data" is a SQL reserved keyword
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date data = new Date();
     // TODO - verify if there are movements before this date
