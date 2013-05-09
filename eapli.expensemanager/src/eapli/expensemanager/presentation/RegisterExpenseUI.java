@@ -98,6 +98,8 @@ public class RegisterExpenseUI extends BaseForm implements Observer{
         
         return payment;
     }
+    
+    // Observer pattern
           @Override
       public void update(Observable o, Object arg) {
           AlertEvent al=(AlertEvent)arg;

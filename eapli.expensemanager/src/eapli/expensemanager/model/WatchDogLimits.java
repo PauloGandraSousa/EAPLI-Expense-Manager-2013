@@ -9,9 +9,7 @@ import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -71,8 +69,8 @@ public class WatchDogLimits extends Observable implements Observer {
             }
             BigDecimal yellow = alertLimit.getLimitYellow();
             BigDecimal red = alertLimit.getLimitRed();
-BigDecimal amount=expense.getAmount();
-expenditure=expenditure.add(amount);
+            BigDecimal amount = expense.getAmount();
+            expenditure = expenditure.add(amount);
             AlertEvent alert = null;
             int level1 = compare(expenditure, yellow, red);
             switch (level1) {
@@ -95,14 +93,14 @@ expenditure=expenditure.add(amount);
 
             CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
             CheckingAccount account = repo.theAccount();
-            
+
 //      Obter total despesas
-            
-              BigDecimal average=new BigDecimal(30);
-              
-              
-              BigDecimal amount=expenseRegisteredEvent.getAmount();
-              
+
+            BigDecimal average = new BigDecimal(30);
+
+
+            BigDecimal amount = expenseRegisteredEvent.getAmount();
+
 //            total=total.add(amount);
 //            BigDecimal average = total.divide(new BigDecimal(list.size()+1));
             double red = alertLimitET.getPercentLimitRed();
@@ -110,7 +108,7 @@ expenditure=expenditure.add(amount);
 
             BigDecimal yellowLim = average.multiply(new BigDecimal(yellow));
             BigDecimal redLim = average.multiply(new BigDecimal(red));
-          
+
             AlertEventByExpenseType alertEvent = buildAlertEventByExpenseType(alertLimitET, amount, yellowLim, redLim, eT);
             return alertEvent;
       }

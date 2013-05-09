@@ -95,7 +95,7 @@ public class CheckingAccount extends Observable implements Serializable {
         addMovement(expense);
         classifyMovementAsExpense(expense);
         classifyExpense(expense);
-         // mcn:   ObserverPattern   - Cria um evento e notifica Observers
+         // ObserverPattern   - Cria um evento e notifica Observers
         this.setChanged();
         ExpenseRegisteredEvent expenseRegisteredEvent= new ExpenseRegisteredEvent(expense);
         this.notifyObservers(expenseRegisteredEvent);
