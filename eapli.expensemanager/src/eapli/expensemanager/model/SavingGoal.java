@@ -78,6 +78,15 @@ public class SavingGoal implements Serializable {
         return str;
     }
 
+    
+    //ajs p/ o visitor
+    public String getDescription() 
+    {
+        String str = goal + " Target Amount:" + targetAmount.setScale(2) + " Actual Savings:" + getActualSavings().setScale(2);
+        return str;
+    }
+    
+    
     /**
      * @return the actualSavings
      */
@@ -86,7 +95,7 @@ public class SavingGoal implements Serializable {
     }
 
     // TODO what is the purpose of this method on the public API of the class?
-    public boolean enoughSavings(BigDecimal amount) {
+    private boolean enoughSavings(BigDecimal amount) {
         // return 1 if bigger
         if (amount.compareTo(actualSavings) == 1) {
             return false;

@@ -4,36 +4,54 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.presentation.ListWidget;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterSavingWithdrawController;
+import eapli.expensemanager.model.SavingGoal;
+import eapli.framework.presentation.SelectWidget;
+import java.util.List;
 
 /**
  *
- * @author ajs
+ * @author AJS
  */
-class RegisterSavingWithdrawUI extends BaseForm {
-
-    ListWidget widget;
+public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI
+{
+    SelectWidget widget;
 
     @Override
-    public String headline() {
+    public String headline()
+    {
         return "REGISTER AN SAVING WITHDRAW";
     }
 
     @Override
-    public boolean doShow() {
-
-
+    public boolean doShow()
+    {
+        SavingGoal savingGoal = readSavingGoal();
+        readGeneralData();
+        controller.registerSavingWithdraw(savingGoal, date, amount, what);
+        System.out.println("\nSaving Withdraw recorded!");
         return true;
     }
-    
+
     RegisterSavingWithdrawController controller = new RegisterSavingWithdrawController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController controller()
+    {
         return controller;
     }
 
-}
+    private SavingGoal readSavingGoal()
+    {
+        System.out.println("-- SAVING GOAL --");
+        List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 
+        widget = new SelectWidget(listSavingGoal, new SavingGoalVisitor());
+        widget.show();
+        int option = widget.selectedOption();
+
+        SavingGoal savingGoal = listSavingGoal.get(option - 1);
+        return savingGoal;
+    }
+}
