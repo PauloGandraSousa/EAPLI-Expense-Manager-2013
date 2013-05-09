@@ -28,6 +28,7 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI
     @Override
     public boolean doShow()
     {
+        // FIX this code is duplicated with RegisterSavingWithdrawUI
         SavingGoal savingGoal = readSavingGoal();
         readGeneralData();
         controller.registerSavingDeposit(savingGoal, date, amount, what);
@@ -43,6 +44,7 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI
         return controller;
     }
 
+    // FIX this code is duplicated with RegisterSavingWithdrawUI
     private SavingGoal readSavingGoal()
     {
         System.out.println("-- SAVING GOAL --");

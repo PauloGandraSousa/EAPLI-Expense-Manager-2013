@@ -69,6 +69,7 @@ public class Bootstrap {
         }
     }
 
+    // FIX this method is not called and as such the Savings Plan does not exist
     private void ensureSavingsPlanExists() {
         SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
         try {

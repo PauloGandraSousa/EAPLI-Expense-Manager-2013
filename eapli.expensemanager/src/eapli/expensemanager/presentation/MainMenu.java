@@ -40,8 +40,12 @@ public class MainMenu extends BaseUI {
     final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
     final int MASTER_TABLES_OPTION = 200;    
-    final int EXPORT_MOVEMENTS_TO_XML = 80;
-    final int EXPORT_MOVEMENTS_TO_CSV = 81;
+    final int EXPORT_MOVEMENTS_TO_XML = 81;
+    final int EXPORT_MOVEMENTS_TO_CSV = 82;
+    
+    final int REGISTER_SAVING_DEPOSIT_OPTION=70;
+    final int REGISTER_SAVING_WITHDRAW_OPTION=80;
+    
 
     public MainMenu() {
     }
@@ -67,7 +71,8 @@ public class MainMenu extends BaseUI {
         return "EXPENSE MANAGER";
     }
 
-    private boolean showMenuUsingCompositeAndCommand() {
+    private boolean showMenuUsingCompositeAndCommand()
+    {
         Menu menu = buildMainMenu();
         return menu.show();
     }
@@ -160,6 +165,18 @@ public class MainMenu extends BaseUI {
         menu.addMenuItem(
                 new MenuItem(REGISTER_SAVING_GOAL_OPTION, "Register Saving Goal",
                 new ShowUiAction(new RegisterSavingGoalUI())));
+
+        menu.addMenuItem(new MenuSeparator());
+
+        menu.addMenuItem(
+                new MenuItem(REGISTER_SAVING_DEPOSIT_OPTION, "Register Saving Deposit",
+                new ShowUiAction(new RegisterSavingDepositUI())));
+
+        menu.addMenuItem(
+                new MenuItem(REGISTER_SAVING_WITHDRAW_OPTION, "Register Saving Withdraw",
+                new ShowUiAction(new RegisterSavingWithdrawUI())));
+
+
 
         menu.addMenuItem(new MenuSeparator());
 
