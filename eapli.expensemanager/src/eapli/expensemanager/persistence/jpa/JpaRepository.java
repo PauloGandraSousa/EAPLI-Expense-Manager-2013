@@ -28,16 +28,14 @@ public abstract class JpaRepository<T, PK extends Serializable> {
 
     @PersistenceUnit
     static protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("eapli.expensemanagerPU");
-
     EntityManager entityManager; // = emf.createEntityManager();
-    
+
     protected EntityManager getEntityManager() {
         if (entityManager == null || !entityManager.isOpen()) {
             entityManager = emf.createEntityManager();
         }
         return entityManager;
     }
-    
     protected Class<T> entityClass;
 
     public JpaRepository() {
@@ -60,7 +58,7 @@ public abstract class JpaRepository<T, PK extends Serializable> {
     public T findById(PK id) {
         return read(id);
     }
-    
+
     public T update(T t) {
         return this.getEntityManager().merge(t);
     }
@@ -74,7 +72,7 @@ public abstract class JpaRepository<T, PK extends Serializable> {
     public long size() {
         return getCount();
     }
-    
+
     public long getCount() {
         return (Long) getEntityManager().createQuery(
                 "SELECT COUNT(*) FROM " + entityClass.getSimpleName())
@@ -90,18 +88,18 @@ public abstract class JpaRepository<T, PK extends Serializable> {
 
     /**
      * inserts or updates an entity
-     * 
-     * check http://blog.xebia.com/2009/03/23/jpa-implementation-patterns-saving-detached-entities/
+     *
+     * check
+     * http://blog.xebia.com/2009/03/23/jpa-implementation-patterns-saving-detached-entities/
      * for a discussion on saveOrUpdate() behaviour and merge()
      *
      * @param entity
      * @return the persisted entity - migth be a diferent object than the
      * parameter
-     * 
-     * FAM[2013-04-29] - comentei a linha  tx.rollback();
-     * 	   Lançava a seguinte exceção:
-     * 	   Exception in thread "main" java.lang.IllegalStateException:
-     * 	   Exception Description: No transaction is currently active
+     *
+     * FAM[2013-04-29] - comentei a linha tx.rollback(); Lançava a seguinte
+     * exceção: Exception in thread "main" java.lang.IllegalStateException:
+     * Exception Description: No transaction is currently active
      */
     public T save(T entity) {
         if (entity == null) {
@@ -118,7 +116,6 @@ public abstract class JpaRepository<T, PK extends Serializable> {
                 em.persist(entity);
                 tx.commit();
             } catch (PersistenceException ex) {
-//                tx.rollback();
                 // we need to set up a new transaction if persist raises an exception
                 tx = em.getTransaction();
                 tx.begin();

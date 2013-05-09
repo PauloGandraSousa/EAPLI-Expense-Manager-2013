@@ -20,25 +20,34 @@ public class ExportMovementsToXmlUI extends BaseForm {
         return controller;
     }
 
+    // FIX remove this method as it is not used and the base class defines
+    // the doShow() method should be overriden
     public void run() {
         System.out.println("-- EXPORT MOVEMENTS TO XML --");
         String xmlMovements = controller.getMovementsInXml();
 //        System.out.println(xmlMovements);
         System.out.println(prettyFormat(xmlMovements));
     }
-    
+
     @Override
     public boolean doShow() {
         String xmlMovements = controller.getMovementsInXml();
         System.out.println(prettyFormat(xmlMovements));
         System.out.println("= = = = = = = = = = =");
         System.out.println(xmlMovements);
-        
+
         return true;
     }
 
-    // http://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java
-    
+    /**
+     *
+     * based in code from
+     * http://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java
+     *
+     * @param input
+     * @param indent
+     * @return
+     */
     public String prettyFormat(String input, int indent) {
         try {
             Source xmlInput = new StreamSource(new StringReader(input));
@@ -61,6 +70,6 @@ public class ExportMovementsToXmlUI extends BaseForm {
 
     @Override
     public String headline() {
-        return "EXPORT MOVEMENTS TO XML";    
+        return "EXPORT MOVEMENTS TO XML";
     }
 }
