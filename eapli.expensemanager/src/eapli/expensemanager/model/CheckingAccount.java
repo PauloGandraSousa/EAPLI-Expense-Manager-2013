@@ -187,7 +187,7 @@ public class CheckingAccount implements Serializable {
     }
 
     private boolean hasEnoughBalance(BigDecimal amount) {
-        // return 1 if bigger
+        // FIX the comparison should be done from the getBalance object to the amount object
         if (amount.compareTo(getBalance()) == 1) {
             return false;
         }
