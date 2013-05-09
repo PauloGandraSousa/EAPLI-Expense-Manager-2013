@@ -28,7 +28,8 @@ public interface AlertLimitRepository {
      
       AlertLimit findByKey(int i);
 
-      List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
+      //List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
+AlertLimit findByAlertType(AlertLimitType a);
 
-      List<AlertLimitByExpenseType> findAlertLimitsByExpenseType(ExpenseType eT);
+   AlertLimit findAlertLimitsByExpenseType(ExpenseType eT);
 }

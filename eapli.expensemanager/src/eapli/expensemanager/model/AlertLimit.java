@@ -71,5 +71,14 @@ public class AlertLimit implements Serializable, ActiveRecord{
           AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
             repo.save(this);
       }
+           public static  AlertLimit findByAlertType(AlertLimitType al ) {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        return repo.findByAlertType(al);
+    }
+           
+                  public static AlertLimit findAlertLimisByExpenseTpe(ExpenseType eT) {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        return repo.findAlertLimitsByExpenseType(eT);
+    }
 
 }

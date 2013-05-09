@@ -32,31 +32,30 @@ public class WatchDogLimits extends Observable implements Observer {
                   switch (alertLimType) {
                         case LIMITWEEKEXPENDITURE:
                         case LIMITMONTHEXPENDITURE:
-                              List<AlertLimitExpenditure> list1 = alertLimitRepo.findByAlertType(alertLimType);
-                              if (list1.size() == 1) {
-                                    AlertLimitExpenditure alertLimit = list1.get(0);
-                                    BigDecimal amount = expense.getAmount();
+                             AlertLimit alertLimit =AlertLimit.findByAlertType(alertLimType);
+                              if (alertLimit!=null) {
                                     AlertEvent alert = buildAlertEvent(alertLimit, expense);
                                     notifyObservers(alert);
                               }
                               break;
                         case LIMITDEVIATIONBYEXPTYPE:
                               ExpenseType eT = expense.getExpenseType();
-                              List<AlertLimitByExpenseType> list = alertLimitRepo.findAlertLimitsByExpenseType(eT);
-                              if (list.size() == 1) {
-                                    AlertLimitByExpenseType alertLimitET = list.get(0);
+                              AlertLimit alertLimitET= alertLimitRepo.findAlertLimitsByExpenseType(eT);
+                              if (alertLimitET!=null){
                                     AlertEventByExpenseType alertEventByET = buildAlertEventAverageDeviationByExpenseType(expense, alertLimitET);
                                     notifyObservers(alertEventByET);
                               }
-
                               break;
                         case LIMITMINIMUMBALANCE:
+                              
+                              
+                              
                               break;
                   }
             }
       }
 
-      private AlertEvent buildAlertEvent(AlertLimitExpenditure alertLimit, ExpenseRegisteredEvent expense) {
+    private AlertEvent buildAlertEvent(AlertLimit alertLimit, ExpenseRegisteredEvent expense) {
             int year = expense.getYearOcurred();
             ExpenseRepository expensesRepo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
             BigDecimal expenditure;
@@ -67,11 +66,14 @@ public class WatchDogLimits extends Observable implements Observer {
                   int month = expense.getMonthOccurred();
                   expenditure = expensesRepo.expenditureOfMonth(year, month);
             }
-            BigDecimal yellow = alertLimit.getLimitYellow();
-            BigDecimal red = alertLimit.getLimitRed();
+            AlertEvent alert = null;
+            
+            if(alertLimit.getClass()==AlertLimitExpenditure.class){ 
+            BigDecimal yellow = ((AlertLimitExpenditure)alertLimit).getLimitYellow();
+            BigDecimal red = ((AlertLimitExpenditure)alertLimit).getLimitRed();
             BigDecimal amount = expense.getAmount();
             expenditure = expenditure.add(amount);
-            AlertEvent alert = null;
+            
             int level1 = compare(expenditure, yellow, red);
             switch (level1) {
                   case 0:
@@ -85,10 +87,12 @@ public class WatchDogLimits extends Observable implements Observer {
                         alert = new AlertEvent(alertLimit.getAlertType().getDescription(), yellow, red, expenditure, "RED");
                         break;
             }
-            return alert;
+            
       }
+            return alert;
+    }
 
-      private AlertEventByExpenseType buildAlertEventAverageDeviationByExpenseType(ExpenseRegisteredEvent expenseRegisteredEvent, AlertLimitByExpenseType alertLimitET) {
+      private AlertEventByExpenseType buildAlertEventAverageDeviationByExpenseType(ExpenseRegisteredEvent expenseRegisteredEvent, AlertLimit alertLimitET) {
             ExpenseType eT = expenseRegisteredEvent.getExpenseType();
 
             CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
@@ -103,8 +107,8 @@ public class WatchDogLimits extends Observable implements Observer {
 
 //            total=total.add(amount);
 //            BigDecimal average = total.divide(new BigDecimal(list.size()+1));
-            double red = alertLimitET.getPercentLimitRed();
-            double yellow = alertLimitET.getPercentLimitYellow();
+            double red = ((AlertLimitByExpenseType)alertLimitET).getPercentLimitRed();
+            double yellow = ((AlertLimitByExpenseType)alertLimitET).getPercentLimitYellow();
 
             BigDecimal yellowLim = average.multiply(new BigDecimal(yellow));
             BigDecimal redLim = average.multiply(new BigDecimal(red));

@@ -29,17 +29,7 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
             throw new UnsupportedOperationException("Not supported yet.");
       }
 
-    
-      @Override
-      public List<AlertLimitByExpenseType> findAlertLimitsByExpenseType(ExpenseType eT) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
 
-
-      @Override
-      public List<AlertLimitExpenditure> findByAlertType(AlertLimitType a) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
 
       @Override
       public AlertLimitExpenditure update(AlertLimitExpenditure a) {
@@ -55,4 +45,15 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
       public AlertLimit save(AlertLimit alertLimit) {
             throw new UnsupportedOperationException("Not supported yet.");
       }
-}
+
+      @Override
+      public AlertLimit findByAlertType(AlertLimitType a) {
+            throw new UnsupportedOperationException("Not supported yet.");
+      }
+
+      @Override
+      public AlertLimit findAlertLimitsByExpenseType(ExpenseType eT) {
+            throw new UnsupportedOperationException("Not supported yet.");
+      }
+      
+      }

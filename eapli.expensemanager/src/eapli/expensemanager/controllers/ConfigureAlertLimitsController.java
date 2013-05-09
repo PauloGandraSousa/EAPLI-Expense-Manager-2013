@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.controllers;
 
+import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitExpenditure;
@@ -26,14 +27,15 @@ public class ConfigureAlertLimitsController extends BaseController {
         return PersistenceFactory.buildPersistenceFactory().expenseTypeRepository().all();
     }
 
-    public AlertLimitExpenditure findAlertLimitByType(AlertLimitType aLertType) {
-        AlertLimitExpenditure alertLimits = AlertLimitExpenditure.findByAlertType(aLertType);
-        return alertLimits;
+    public AlertLimit findAlertLimitByType(AlertLimitType aLertType) {
+        AlertLimit alertLimit = AlertLimit.findByAlertType(aLertType);
+       return alertLimit;
+        
     }
 
-    public AlertLimitByExpenseType findAlertLimitByExpType(ExpenseType eT) {
-        AlertLimitByExpenseType alertLimits = AlertLimitByExpenseType.findByExpenseType(eT);
-        return alertLimits;
+    public AlertLimit findAlertLimitByExpType(ExpenseType eT) {
+        AlertLimit alertLimit = AlertLimitByExpenseType.findAlertLimisByExpenseTpe(eT);
+        return alertLimit;
     }
 
     public void registerAlertLimitExpenditure(AlertLimitType alertType, double yellowLimit, double redLimit) {
@@ -43,6 +45,7 @@ public class ConfigureAlertLimitsController extends BaseController {
     public void registerAlertLimitByExpenseType(AlertLimitType alertType, double yellowLimit, double redLimit, ExpenseType eT) {
         new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT).save();
     }
+    
 
     public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red) {
         alertLimitExpenditure.updateLimits(yellow, red);
