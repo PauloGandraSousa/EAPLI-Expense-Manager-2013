@@ -43,4 +43,13 @@ public abstract class MovementType implements Serializable {
     public String getDescription() {
         return description;
     }
+     
+    public String toXml() {
+        return "<description>" + description + "</description>" ;
+    }  
+    
+    public String toCsv() {
+        return description + "," ;
+    }
+    
 }

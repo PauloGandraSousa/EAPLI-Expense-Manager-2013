@@ -41,4 +41,17 @@ public class Expense extends Movement {
     public ExpenseType getExpenseType() {
         return type;
     }
+      
+    @Override
+    public String toXml() {
+        return "<expense>" + super.toXml() + 
+                type.toXml() +
+                payment.toXml() + "</expense>";
+    }
+ 
+    @Override
+    public String toCsv() {
+        return "Expense," + super.toCsv() +
+                type.toCsv() + payment.toCsv();
+    }
 }

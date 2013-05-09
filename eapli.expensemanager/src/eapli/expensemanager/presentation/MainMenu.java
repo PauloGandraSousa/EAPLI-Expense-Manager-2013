@@ -19,8 +19,7 @@ import eapli.util.Console;
  *
  * @author Paulo Gandra Sousa
  */
-public class MainMenu extends BaseUI
-{
+public class MainMenu extends BaseUI {
 
     final int EXIT_OPTION = 0;
     final int REGISTER_EXPENSE_OPTION = 1;
@@ -40,19 +39,19 @@ public class MainMenu extends BaseUI
     final byte REGISTER_INITIAL_BALANCE_OPTION = 60;
     final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
-    final int MASTER_TABLES_OPTION = 200;
+    final int MASTER_TABLES_OPTION = 200;    
+    final int EXPORT_MOVEMENTS_TO_XML = 81;
+    final int EXPORT_MOVEMENTS_TO_CSV = 82;
     
     final int REGISTER_SAVING_DEPOSIT_OPTION=70;
     final int REGISTER_SAVING_WITHDRAW_OPTION=80;
     
 
-    public MainMenu()
-    {
+    public MainMenu() {
     }
 
     @Override
-    public boolean show()
-    {
+    public boolean show() {
         drawFormTitle();
         return doShow();
     }
@@ -62,15 +61,13 @@ public class MainMenu extends BaseUI
      * @return true if the user selected the exit option
      */
     @Override
-    public boolean doShow()
-    {
+    public boolean doShow() {
         //return showMenuOldStyle();
         return showMenuUsingCompositeAndCommand();
     }
 
     @Override
-    public String headline()
-    {
+    public String headline() {
         return "EXPENSE MANAGER";
     }
 
@@ -80,8 +77,7 @@ public class MainMenu extends BaseUI
         return menu.show();
     }
 
-    private Menu buildListingsMenu()
-    {
+    private Menu buildListingsMenu() {
         Menu menu = new Menu("Listings...");
 
         // use a generic "show UI" action
@@ -106,11 +102,10 @@ public class MainMenu extends BaseUI
 
         return menu;
     }
-
-    private Menu buildMasterTablesMenu()
-    {
+    
+    private Menu buildMasterTablesMenu() {
         Menu menu = new Menu("Master tables...");
-
+        
         menu.addMenuItem(
                 new MenuItem(REGISTER_EXPENSE_TYPE_OPTION, "Register an expense type",
                 new ShowUiAction(new RegisterExpenseTypeUI())));
@@ -139,25 +134,22 @@ public class MainMenu extends BaseUI
         menu.addMenuItem(
                 new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
                 new ShowUiAction(new RegisterInitialBalanceUI())));
-
+        
         menu.addMenuItem(
                 new MenuItem(0, "Return ", new ReturnAction()));
 
         return menu;
     }
 
-    private Menu buildMainMenu()
-    {
+    private Menu buildMainMenu() {
         Menu menu = new Menu();
 
         // add a menu item and create an "anonynous class" action 
         menu.addMenuItem(
                 new MenuItem(REGISTER_EXPENSE_OPTION, "Register an expense",
-                new Action()
-        {
+                new Action() {
             @Override
-            public boolean execute()
-            {
+            public boolean execute() {
                 RegisterExpenseUI registerExpenseUI = new RegisterExpenseUI();
                 registerExpenseUI.show();
                 return false;
@@ -196,8 +188,16 @@ public class MainMenu extends BaseUI
                 new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
                 new ShowUiAction(new RegisterInitialBalanceUI())));
 
+        menu.addMenuItem(
+                new MenuItem(EXPORT_MOVEMENTS_TO_XML, "Export Movements to XML",
+                new ShowUiAction(new ExportMovementsToXmlUI())));
+  
+        menu.addMenuItem(
+                new MenuItem(EXPORT_MOVEMENTS_TO_CSV, "Export Movements to CSV",
+                new ShowUiAction(new ExportMovementsToCsvUI())));
+        
         menu.addMenuItem(new MenuSeparator());
-
+ 
         menu.addMenuItem(
                 new SubMenu(LISTINGS_OPTION, buildListingsMenu()));
 
@@ -210,8 +210,7 @@ public class MainMenu extends BaseUI
         return menu;
     }
 
-    private boolean showMenuOldStyle()
-    {
+    private boolean showMenuOldStyle() {
         System.out.println(REGISTER_EXPENSE_OPTION + ". Register an expense");
         System.out.println(LIST_EXPENSES_OPTION + ". List expenses");
         System.out.println(REGISTER_INCOME_OPTION + ". Register an income");
@@ -231,8 +230,7 @@ public class MainMenu extends BaseUI
         System.out.println("0. Exit\n\n");
 
         int option = Console.readInteger("Please choose an option");
-        switch (option)
-        {
+        switch (option) {
             case EXIT_OPTION:
                 break;
             case REGISTER_EXPENSE_OPTION:
@@ -299,8 +297,7 @@ public class MainMenu extends BaseUI
     }
 
     @Override
-    protected Controller controller()
-    {
+    protected Controller controller() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

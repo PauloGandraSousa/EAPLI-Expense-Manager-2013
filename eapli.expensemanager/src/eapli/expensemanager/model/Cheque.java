@@ -42,4 +42,13 @@ public class Cheque extends PaymentMean {
     public String getDescription() {
         return "Cheque " + chequeBooksName;
     }
+        
+    public String toXml() {
+        return "<bank>" + bank + "</bank><accountNumber>" +
+                accountNumber +  "</accountNumber>";
+    }
+    
+    public String toCsv() {
+        return "Cheque,," + bank + ",,,," + accountNumber +  ",";
+    }
 }
