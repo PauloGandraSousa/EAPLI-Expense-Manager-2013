@@ -1,0 +1,1 @@
+6.	Consulta de gastos mensais – o utilizador pode consultar uma listagem de todos os gastos de um dado mês com agrupamento por tipo de despesas
