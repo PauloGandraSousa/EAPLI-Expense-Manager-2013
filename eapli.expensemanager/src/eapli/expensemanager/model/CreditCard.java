@@ -27,4 +27,14 @@ public class CreditCard extends Card {
     public String getDescription() {
         return "Credit Card" + cardName;
     }
+    
+    @Override
+    public String toXml() {
+        return "<creditCard>" + super.toXml() + "</creditCard>";
+    }    
+    
+    @Override
+    public String toCsv() {
+        return "CreditCard," + super.toCsv();
+    }
 }

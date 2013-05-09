@@ -92,6 +92,11 @@ see "domain with persistence.pptx"
 --------------------------------------------------------------------------
 ##7) initial balance of the account
 --------------------------------------------------------------------------
+UC 11 - Register Initial Balance
+Há várias hipóteses para fazer isto, optei por criar uma classe “InitialBalance” que tem o valor
+ do saldo inicial e uma data de referência que podemos mais tarde usar para validar para, por exemplo, que não existam movimentos inferiores a esta data. Esta classe é private da CheckingAccount e tem uma relação OneToOne.
+Esta alternativa tem a vantagem de ser simples de implementar e ao mesmo tempo poder facilmente crescer. Tem também a vantagem de com a data introduzida podermos fazer algum controlo dos movimentos introduzidos, bem como a possibilidade de num dado momento passar movimentos a histórico e guardar o saldo nessa data.
+Outras hipóteses: por exemplo ter apenas uma atributo valorInicial ou  "simular" o saldo inicial através de um movimento.
 
 
 --------------------------------------------------------------------------
@@ -157,6 +162,16 @@ this can be another strategy
 RegisterExpenseController create a ListExpenseTypeController?
 
 
+---------------------------------------------------------------------------
+GetBalance
+---------------------------------------------------------------------------
+Regra de negócio obviamente no checkingAccount;
+Não há redundância, é calculado sempre que necessário;
+- Mono / Multiutilizador?
+- Cálculo sempre ou cria redundancia? Perfomance versus Redundancia?
+- atributo ( + desempenho; - consistencia)
+- calculado (-desempenho; + consistencia)
+- saldos à data (-requer uma classe específica; +desempenho; + consistência)
 
 
 --------------------------------------------------------------------------

@@ -31,4 +31,12 @@ public class Payment implements Serializable {
     public Payment(PaymentMean method) {
         this.method = method;
     }
+    
+    public String toXml() {
+        return "<payment>" + method.toXml() + "</payment>";
+    } 
+    
+    public String toCsv() {
+        return method.toCsv();
+    }
 }

@@ -25,4 +25,13 @@ public class ChequePayment extends Payment {
         super(method);
         this.chequeNumber = chequeNumber;
     }
+       
+    public String toXml() {
+        return "<payment> + paymentMeans.toXml()" +
+                "<chequeNumber> + chequeNumber + </chequeNumber></payment>";
+    }
+      
+    public String toCsv() {
+        return super.toCsv() + "," + chequeNumber;
+    }
 }
