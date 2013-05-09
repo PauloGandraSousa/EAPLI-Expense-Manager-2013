@@ -207,8 +207,8 @@ public class CheckingAccount implements Serializable {
         if (initial == null || initialBalance != null) {
             throw new IllegalArgumentException();
         };
-        // TODO shouldn't there be an assignment to initial balance? i.e.,
-        // initialBalance = initial;
+        // ToDo shouldn't there be an assignment to initial balance? i.e.,
+         initialBalance = initial;
     }
 
     //Not used yet... ToDo
