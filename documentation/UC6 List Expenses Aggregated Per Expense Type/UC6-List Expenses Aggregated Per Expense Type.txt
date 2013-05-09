@@ -1,0 +1,83 @@
+title UC6: Listagem de despesas agregadas por tipo de despesa [Total]
+
+User -> + "ui:ListExpenseUIPerTypeConsole": doShow()
+
+"ui:ListExpenseUIPerTypeConsole" -> +"ctl:ListExpensesPerTypeController" : getExpensesClassifiefByExpenseType()
+
+"ctl:ListExpensesPerTypeController" -> +"PersistenceFactory" : buildPersistenceFactory() 
+
+"PersistenceFactory" -> "RepositoryFactory" : create()
+
+"PersistenceFactory" -> -"ctl:ListExpensesPerTypeController":
+
+"ctl:ListExpensesPerTypeController" -> +"RepositoryFactory" : checkingAccountRepository() 
+
+"RepositoryFactory" -> "repo:CheckingAccountRepository" : create()
+
+"RepositoryFactory" -> -"ctl:ListExpensesPerTypeController": repo
+
+"ctl:ListExpensesPerTypeController" -> +"repo:CheckingAccountRepository" : theAccount()
+
+"repo:CheckingAccountRepository" -> "account:CheckingAccount" : create()
+
+"repo:CheckingAccountRepository" -> -"ctl:ListExpensesPerTypeController" : account
+
+"ctl:ListExpensesPerTypeController" -> +"account:CheckingAccount" : getExpensesClassifiedByExpenseType()
+
+"account:CheckingAccount" -> "account:CheckingAccount" : reclassifyMovements()
+
+"account:CheckingAccount" -> "movementsList:MovementsList" : create()
+
+note right of "account:CheckingAccount"
+Checking Account deverá obter a 
+lista de Types ou deverá ser o controller?
+end note
+
+loop for each expenseType in ExpenseTypes
+
+"account:CheckingAccount"->"expenseList:List<<Expense>>":create()
+
+loop for each expense in Expenses
+
+alt expense isType(ExpenseType)
+    "account:CheckingAccount"->"expenseList:List<<Expense>>":add(expense)
+
+end
+
+note right of "account:CheckingAccount"
+obtém somatório de despesas
+end note    
+
+end
+
+"account:CheckingAccount" -> "movementsList:MovementsList":addExpenseByTypeSum(expenseType, sum)
+
+"account:CheckingAccount" -> "movementsList:MovementsList":addExpenseListByTypeValues(expenseList, sum)
+
+end
+
+"account:CheckingAccount" -> "ctl:ListExpensesPerTypeController" : movementsList
+
+"ctl:ListExpensesPerTypeController"->-"ui:ListExpenseUIPerTypeConsole" : movementsList
+
+"ui:ListExpenseUIPerTypeConsole" -> +"movementsList:MovementsList" :getExpenseTypeValues()
+
+"movementsList:MovementsList"->"map:Map<ExpenseType, List<Expense>>":
+
+"movementsList:MovementsList" -> -"ui:ListExpenseUIPerTypeConsole" :map
+
+"ui:ListExpenseUIPerTypeConsole"->+"map:Map<ExpenseType, List<Expense>>":entrySet()
+
+"map:Map<ExpenseType, List<Expense>>"->"entrySet:Set<ExpenseType, List<Expense>>":
+
+"map:Map<ExpenseType, List<Expense>>"-> -"ui:ListExpenseUIPerTypeConsole":entrySet
+
+loop for entry in entrySet
+
+"ui:ListExpenseUIPerTypeConsole"->"ui:ListExpenseUIPerTypeConsole": showExpenseType(entry.getKey())
+
+loop for expense in entry.getValue()
+"ui:ListExpenseUIPerTypeConsole"->"ui:ListExpenseUIPerTypeConsole": showExpense(expense)
+end
+    
+end

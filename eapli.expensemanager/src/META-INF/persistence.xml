@@ -28,6 +28,7 @@
     <class>eapli.expensemanager.model.AlertLimit</class>
     <class>eapli.expensemanager.model.AlertLimitByExpenseType</class>
     <class>eapli.expensemanager.model.AlertLimitExpenditure</class>
+    <class>eapli.expensemanager.model.InitialBalance</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:h2:../db/expensemanager"/>
       <property name="javax.persistence.jdbc.password" value=""/>

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Locale;
 import javax.persistence.Entity;
 
-
 /**
  *
  * @author mcn
@@ -60,25 +59,24 @@ public class AlertLimitExpenditure extends AlertLimit  {
             return str;
       }
 
-      // FIX this method is to DB oriented. it migth make sense to have it as a business
-      // method mut should have a more busines oriented name (e.g., updateLimits)
-      // and NOT call any repository methods
       public void updateLimits(double limitYellow, double limitRed) {
 
             BigDecimal yellow = new BigDecimal(limitYellow);
             BigDecimal red = new BigDecimal(limitRed);
-            this.limitYellow=yellow;
-            this.limitRed=red;
+        this.limitYellow = yellow;
+        this.limitRed = red;
+        // FIX this method should NOT call any repository methods but rely on the 
+        // client code to call the object's save() method
             AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
             repo.update(this);
       }
-      
+
 //            @Override
 //      public void update() {
 //            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
 //            repo.update(this);
 //      }
-
+    
       public static AlertLimitExpenditure findByAlertType(AlertLimitType aLertType) {
             AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
             List<AlertLimitExpenditure> list = repo.findByAlertType(aLertType);
@@ -87,5 +85,4 @@ public class AlertLimitExpenditure extends AlertLimit  {
             }
             return list.get(0);
       }
-
 }

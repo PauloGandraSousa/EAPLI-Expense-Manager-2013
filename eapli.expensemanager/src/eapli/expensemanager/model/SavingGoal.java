@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,84 +22,94 @@ import javax.persistence.Temporal;
  * @author losa
  */
 @Entity
-public class SavingGoal implements Serializable
-{
+public class SavingGoal implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
+    
+    // TODO what is he purpose of this field? the expected date of conclusion for the goal?
+    // if so, the name should be more explicit
     private Date ocurred = new Date();
-    /**
-     * modified AJS
-     */
+    
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Movement> listSaving = new ArrayList();
+    private List<Movement> savings = new ArrayList<Movement>();
     private String goal;
-    private BigDecimal goalammount;
-    private BigDecimal actualsavings;
+    private BigDecimal targetAmount;
+    private BigDecimal actualSavings;
 
-    public SavingGoal()
-    {
+    public SavingGoal() {
     }
 
-    public SavingGoal(String desctarget, BigDecimal goalammount, BigDecimal actualsavings, Date ocurred)
-    {
-        goal = desctarget;
-        this.goalammount = goalammount;
-        this.actualsavings = actualsavings;
+    // TODO what is the meaning of creating a goal with already an "actual savings" amount?
+    public SavingGoal(String targetDescription, BigDecimal targetAmount, BigDecimal actualsavings, Date ocurred) {
+        goal = targetDescription;
+        this.targetAmount = targetAmount;
+        this.actualSavings = actualsavings;
         this.ocurred = ocurred;
     }
 
-    public SavingGoal(String goal, BigDecimal goalammount)
-    {
+    public SavingGoal(String goal, BigDecimal targetAmount) {
         this.goal = goal;
-        this.goalammount = goalammount;
+        this.targetAmount = targetAmount;
     }
 
-    public boolean registerSavingWithdraw(SavingWithdraw saving)
-    {
+    public boolean registerSavingWithdraw(SavingWithdraw saving) {
         //return 1 if bigger
-        if (saving.getAmount().compareTo(actualsavings) == 1)
-        {
+        if (saving.getAmount().compareTo(actualSavings) == 1) {
+            // TODO should throw a busines exception instead of return true/false
             return false;
         }
 
-        listSaving.add(saving);
-        actualsavings.subtract(saving.getAmount());
+        savings.add(saving);
+        actualSavings = actualSavings.subtract(saving.getAmount());
         return true;
-
     }
 
-    public void registerSavingDeposit(SavingDeposit saving)
-    {
-        listSaving.add(saving);
-        actualsavings.add(saving.getAmount());
+    public void registerSavingDeposit(SavingDeposit saving) {
+        savings.add(saving);
+        actualSavings = actualSavings.add(saving.getAmount());
     }
 
     @Override
-    public String toString()
-    {
-        String str = goal + goalammount.setScale(2) + getActualsavings().setScale(2) + ocurred;
+    public String toString() {
+        String str = goal + targetAmount.setScale(2) + getActualSavings().setScale(2) + ocurred;
         return str;
     }
 
-    /**
-     * @return the actualsavings
-     */
-    public BigDecimal getActualsavings()
+    
+    //ajs p/ o visitor
+    public String getDescription() 
     {
-        return actualsavings;
+        String str = goal + " Target Amount:" + targetAmount.setScale(2) + " Actual Savings:" + getActualSavings().setScale(2);
+        return str;
     }
     
     
-    public boolean enoughSavings(BigDecimal amount)
-    {
+    /**
+     * @return the actualSavings
+     */
+    public BigDecimal getActualSavings() {
+        return actualSavings;
+    }
+
+    // TODO what is the purpose of this method on the public API of the class?
+    public boolean enoughSavings(BigDecimal amount) {
         // return 1 if bigger
-        if(amount.compareTo(actualsavings)==1)
+        if (amount.compareTo(actualSavings) == 1) {
             return false;
-        
+        }
+
         return true;
     }
     
+    /**
+     * check if we already have the desired target amount
+     * 
+     * @return 
+     */
+    public boolean isGoalFulfiled() {
+        return  actualSavings.compareTo(targetAmount) >= 0 ;
+    }
 }

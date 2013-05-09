@@ -11,7 +11,7 @@ import eapli.expensemanager.persistence.IncomeRepository;
  *
  * @author Paulo Gandra Sousa
  */
-public class IncomeRepositoryImpl extends JpaRepository<Income, String> implements IncomeRepository {
+public class IncomeRepositoryImpl extends JpaRepository<Income, Long> implements IncomeRepository {
 
     
 }

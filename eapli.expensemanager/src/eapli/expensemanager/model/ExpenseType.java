@@ -19,4 +19,13 @@ public class ExpenseType extends MovementType {
     public ExpenseType(String key, String description) {
         super(key, description);
     }
+    
+    @Override
+    public String toString() {
+        return "Expense Type: "  + super.toString();
+    }
+       
+    public String toXml() {
+        return "<expenseType>" + super.toXml() + "</expenseType>" ;
+    }
 }

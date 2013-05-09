@@ -90,6 +90,7 @@ public class ExpenseRepositoryImpl extends JpaRepository<Expense, Long> implemen
         return balance;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Expense> between(Date start, Date end) {
         EntityManager em = getEntityManager();

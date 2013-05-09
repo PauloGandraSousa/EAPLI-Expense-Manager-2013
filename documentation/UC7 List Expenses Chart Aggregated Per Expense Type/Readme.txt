@@ -1,0 +1,1 @@
+7.	Consulta de gastos mensais em formato gráfico – o utilizador pode consultar os gastos de um dado mês agrupado por tipo de despesas num gráfico de barras

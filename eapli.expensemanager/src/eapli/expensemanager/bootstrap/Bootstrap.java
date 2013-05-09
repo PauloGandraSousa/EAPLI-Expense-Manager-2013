@@ -7,10 +7,11 @@ package eapli.expensemanager.bootstrap;
 import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.model.IncomeType;
 import eapli.expensemanager.model.SavingPlan;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
-import eapli.expensemanager.persistence.PaymentMeanRepository;
+import eapli.expensemanager.persistence.IncomeTypeRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.util.Date;
@@ -67,6 +68,7 @@ public class Bootstrap {
         }
     }
 
+    // FIX this method is not called and as such the Savings Plan does not exist
     private void ensureSavingsPlanExists() {
         SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
         try {
@@ -78,13 +80,29 @@ public class Bootstrap {
     }
     
     public final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
-    public final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
+    private final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
     public final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
-    public final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
+    private final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
 
     private void ensureDefaultExpenseTypesExist() {
         ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
         ensureClothingExpenseTypeExists(repo);
         ensureTransportsExpenseTypeExists(repo);
+    }
+    
+    private void ensureDefaultIncomeTypesExist() {
+        IncomeTypeRepository repo = PersistenceFactory.buildPersistenceFactory().incomeTypeRepository();
+        ensureSalaryIncomeTypeExists(repo);
+    }
+
+    public static final String SALARY_INCOME_TYPE = "Sal.";
+    private static final String SALARY_INCOME_TYPE_DESC = "Salary";
+    
+    private void ensureSalaryIncomeTypeExists(IncomeTypeRepository repo) {
+        IncomeType salary = repo.findForName(SALARY_INCOME_TYPE);
+        if (salary == null) {
+            salary = new IncomeType(SALARY_INCOME_TYPE, SALARY_INCOME_TYPE_DESC);
+            repo.save(salary);
+        }
     }
 }

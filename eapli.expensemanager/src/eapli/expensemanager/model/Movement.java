@@ -23,7 +23,8 @@ import javax.persistence.Temporal;
  * @author Paulo Gandra Sousa
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE) // TODO check if single table inheritance is the best strategy
+// TODO check if single table inheritance is the best strategy
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
 public abstract class Movement implements Serializable {
 
     @Id
@@ -80,4 +81,24 @@ public abstract class Movement implements Serializable {
     public Date getDateOcurred() {
         return dateOcurred;
     }
+        
+    public String toXml() {
+        return "<description>" + description + "</description>" + 
+                "<amount>" + amount + "</amount>" + 
+                "<dateOcurred>" + dateToString(dateOcurred) + "</dateOcurred>";
+    }
+    
+    private String dateToString(Date date) {
+        Calendar cal = DateTime.dateToCalendar(date);
+        String dateString = cal.get(Calendar.DAY_OF_MONTH) + "-";
+        dateString += cal.get(Calendar.MONTH)+1 + "-";
+        dateString += cal.get(Calendar.YEAR);
+        return dateString;
+    }
+    
+    public String toCsv() {
+        return description + "," + amount + "," +
+                dateToString(dateOcurred) + ",";
+    }
+    
 }

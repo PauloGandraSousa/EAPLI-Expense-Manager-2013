@@ -15,19 +15,23 @@ public class ListWidget<T> {
 
     List<T> source;
     Visitor<T> visitor;
-    
+
     public ListWidget(List<T> source, Visitor<T> visitor) {
         this.source = source;
         this.visitor = visitor;
     }
     
+    int position = 0;
+
     public void show() {
-        int position = 1;
         for (T et : source) {
+            position++;
             System.out.print(position + ". ");
             visitor.visit(et);
-            position++;
         }
     }
 
+    protected int numberOfPositions() {
+        return position;
+    }
 }

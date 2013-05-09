@@ -6,7 +6,6 @@ package eapli.expensemanager.presentation;
 
 import eapli.framework.ReturnAction;
 import eapli.framework.presentation.BaseUI;
-import eapli.expensemanager.controllers.BaseController;
 import eapli.framework.Action;
 import eapli.framework.Controller;
 import eapli.framework.presentation.Menu;
@@ -37,9 +36,16 @@ public class MainMenu extends BaseUI {
     final int REGISTER_PAYMENT_METHOD_OPTION = 40;
     final int LIST_PAYMENT_METHODS_OPTION = 41;
     final int REGISTER_SAVING_GOAL_OPTION = 51;
+    final byte REGISTER_INITIAL_BALANCE_OPTION = 60;
     final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
-    final int MASTER_TABLES_OPTION = 200;
+    final int MASTER_TABLES_OPTION = 200;    
+    final int EXPORT_MOVEMENTS_TO_XML = 81;
+    final int EXPORT_MOVEMENTS_TO_CSV = 82;
+    
+    final int REGISTER_SAVING_DEPOSIT_OPTION=70;
+    final int REGISTER_SAVING_WITHDRAW_OPTION=80;
+    
 
     public MainMenu() {
     }
@@ -65,7 +71,8 @@ public class MainMenu extends BaseUI {
         return "EXPENSE MANAGER";
     }
 
-    private boolean showMenuUsingCompositeAndCommand() {
+    private boolean showMenuUsingCompositeAndCommand()
+    {
         Menu menu = buildMainMenu();
         return menu.show();
     }
@@ -123,8 +130,13 @@ public class MainMenu extends BaseUI {
                 new MenuItem(LIST_PAYMENT_METHODS_OPTION, "List payment methods",
                 new ShowUiAction(new ListPaymentMeansUI())));
 
+        // TODO should we have the same option in more than one menu?
         menu.addMenuItem(
-                new MenuItem(0, "Return", new ReturnAction()));
+                new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
+                new ShowUiAction(new RegisterInitialBalanceUI())));
+        
+        menu.addMenuItem(
+                new MenuItem(0, "Return ", new ReturnAction()));
 
         return menu;
     }
@@ -156,14 +168,36 @@ public class MainMenu extends BaseUI {
 
         menu.addMenuItem(new MenuSeparator());
 
-        //mcn : Alert Limits  - OBSERVER PATTERN 
+        menu.addMenuItem(
+                new MenuItem(REGISTER_SAVING_DEPOSIT_OPTION, "Register Saving Deposit",
+                new ShowUiAction(new RegisterSavingDepositUI())));
+
+        menu.addMenuItem(
+                new MenuItem(REGISTER_SAVING_WITHDRAW_OPTION, "Register Saving Withdraw",
+                new ShowUiAction(new RegisterSavingWithdrawUI())));
+
+
+
+        menu.addMenuItem(new MenuSeparator());
+
         menu.addMenuItem(
                 new MenuItem(SETTING_ALERT_LIMITS_OPTION, "Setting alert limits",
                 new ShowUiAction(new ConfigureAlertLimitsUI())));
 
+        menu.addMenuItem(
+                new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
+                new ShowUiAction(new RegisterInitialBalanceUI())));
+
+        menu.addMenuItem(
+                new MenuItem(EXPORT_MOVEMENTS_TO_XML, "Export Movements to XML",
+                new ShowUiAction(new ExportMovementsToXmlUI())));
+  
+        menu.addMenuItem(
+                new MenuItem(EXPORT_MOVEMENTS_TO_CSV, "Export Movements to CSV",
+                new ShowUiAction(new ExportMovementsToCsvUI())));
+        
         menu.addMenuItem(new MenuSeparator());
-        
-        
+ 
         menu.addMenuItem(
                 new SubMenu(LISTINGS_OPTION, buildListingsMenu()));
 

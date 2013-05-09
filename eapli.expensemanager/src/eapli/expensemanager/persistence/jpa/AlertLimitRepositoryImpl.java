@@ -31,7 +31,7 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       public AlertLimit findByKey(int key) {
             return super.read(key);
       }
-      
+
       @Override
       public AlertLimitExpenditure update(AlertLimitExpenditure al) {
             EntityManager em = getEntityManager();
@@ -41,19 +41,20 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             AlertLimitExpenditure temp = null;
             try {
                   tx.begin();
-                  temp = (AlertLimitExpenditure)em.find(entityClass, al.getId());
+            // TODO why are we searching for the object if we already receive it?
+            temp = (AlertLimitExpenditure) em.find(entityClass, al.getId());
                   temp.setLimitYellow(al.getLimitYellow());
                   temp.setLimitRed(al.getLimitRed());
                   tx.commit();
             } catch (PersistenceException ex) {
-                  
+            //FIX this is suppressing the exception it should never happen
+            // either we catch and handle it or rethrow it
             } finally {
                   em.close();
             }
             return temp;
       }
 
-        
       @Override
       public AlertLimitByExpenseType update(AlertLimitByExpenseType al) {
             EntityManager em = getEntityManager();
@@ -63,12 +64,14 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             AlertLimitByExpenseType temp = null;
             try {
                   tx.begin();
-                  temp = (AlertLimitByExpenseType)em.find(entityClass, al.getId());
+            // TODO why are we searching for the object if we already receive it?
+            temp = (AlertLimitByExpenseType) em.find(entityClass, al.getId());
                   temp.setPercentLimitRed(al.getPercentLimitRed());
                   temp.setPercentLimitYellow(al.getPercentLimitYellow());
                   tx.commit();
             } catch (PersistenceException ex) {
-                  
+            //FIX this is suppressing the exception it should never happen
+            // either we catch and handle it or rethrow it
             } finally {
                   em.close();
             }
@@ -91,12 +94,10 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             return q.getResultList();
       }
 
-      
       @Override
       public AlertLimit save(AlertLimit alertLimit){
-            return super.save(alertLimit);
+        return super.save(alertLimit);
       }
 
-
-      
+ 
 }

@@ -55,6 +55,4 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
       public AlertLimit save(AlertLimit alertLimit) {
             throw new UnsupportedOperationException("Not supported yet.");
       }
-
-      
 }

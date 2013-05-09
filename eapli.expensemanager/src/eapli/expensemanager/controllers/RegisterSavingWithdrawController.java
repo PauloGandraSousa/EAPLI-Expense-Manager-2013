@@ -5,7 +5,6 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.CheckingAccount;
-import eapli.expensemanager.model.SavingDeposit;
 import eapli.expensemanager.model.SavingGoal;
 import eapli.expensemanager.model.SavingPlan;
 import eapli.expensemanager.model.SavingWithdraw;
@@ -40,7 +39,9 @@ public class RegisterSavingWithdrawController extends BaseController {
 
             SavingWithdraw savingWithdraw = new SavingWithdraw(description, date, amount);
 
-
+            // TODO should we call two different register methods or shuld the 
+            // operation be encapsulated inside the "main" object?
+            // where do we draw the line in our aggregates?
             savingPlan.registerSavingWithdraw(savingWithdraw, goal);
             checkingAccount.registerSavingWithdraw(savingWithdraw);
 
@@ -49,6 +50,7 @@ public class RegisterSavingWithdrawController extends BaseController {
         }
     }
 
+    // TODO avoid duplication with RegisterSavingDepositController
     public List<SavingGoal> getSavingGoals() {
         // TODO should a controller create other controller objects?
         // to avoid duplication we migth encapsulate this method in another 

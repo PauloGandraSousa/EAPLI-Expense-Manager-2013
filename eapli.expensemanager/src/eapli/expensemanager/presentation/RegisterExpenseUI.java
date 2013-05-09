@@ -4,7 +4,6 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.presentation.ListWidget;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterExpenseController;
 import eapli.expensemanager.model.Cheque;
@@ -12,9 +11,8 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
 import eapli.expensemanager.model.AlertEvent;
+import eapli.framework.presentation.SelectWidget;
 import eapli.util.Console;
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,9 +21,9 @@ import java.util.Observer;
  *
  * @author Paulo Gandra Sousa
  */
-public class RegisterExpenseUI extends BaseForm implements Observer{
+class RegisterExpenseUI extends RegisterMovementBaseUI implements Observer {
 
-    ListWidget widget;
+    SelectWidget<ExpenseType> expenseTypesSelectWidget;
 
     @Override
     public String headline() {
@@ -34,11 +32,8 @@ public class RegisterExpenseUI extends BaseForm implements Observer{
 
     @Override
     public boolean doShow() {
-        // TODO remove duplicate code with RegisterIncomeUI
-        String what = Console.readLine("What:");
-        Date date = Console.readDate("When (dd-MM-yyyy):");
-        double value = Console.readDouble("How much:");
-        BigDecimal amount = new BigDecimal(value);
+        readGeneralData();
+
         ExpenseType expenseType = readExpenseType();
         
         // TODO should the UI create a Payment object?
@@ -64,10 +59,11 @@ public class RegisterExpenseUI extends BaseForm implements Observer{
     private ExpenseType readExpenseType() {
         System.out.println("-- EXPENSE TYPES --");
         List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
-        // TODO create SelectWidget to list and select an option
-        widget = new ListWidget(listExpenseTypes, new ExpenseTypeListVisitor());
-        widget.show();
-        int option = Console.readOption(1, listExpenseTypes.size(), 0);
+
+        expenseTypesSelectWidget = new SelectWidget<ExpenseType>(listExpenseTypes, new ExpenseTypeListVisitor());
+        expenseTypesSelectWidget.show();
+        int option = expenseTypesSelectWidget.selectedOption();
+        
         ExpenseType expenseType = listExpenseTypes.get(option-1);
         return expenseType;
     }

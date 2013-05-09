@@ -7,6 +7,7 @@ package eapli.expensemanager;
 import eapli.expensemanager.bootstrap.Bootstrap;
 import eapli.expensemanager.bootstrap.SomeDefaultAlertLimitBootstrap;
 import eapli.expensemanager.bootstrap.SomeExpensesBootstrap;
+import eapli.expensemanager.bootstrap.SomeIncomesBootstrap;
 import eapli.expensemanager.presentation.MainMenu;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -61,6 +62,8 @@ public class ExpenseManager {
         Bootstrap referenceDataBootstrap = new Bootstrap();
         
         SomeExpensesBootstrap sampleExpensesBootstrap = new SomeExpensesBootstrap();
+        
+        SomeIncomesBootstrap sampleIncomesBootstrap = new SomeIncomesBootstrap();
         
         SomeDefaultAlertLimitBootstrap defaultAlertLimits= new  SomeDefaultAlertLimitBootstrap();
     }

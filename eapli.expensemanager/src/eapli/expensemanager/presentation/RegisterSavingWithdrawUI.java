@@ -4,17 +4,19 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.presentation.ListWidget;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterSavingWithdrawController;
+import eapli.expensemanager.model.SavingGoal;
+import eapli.framework.presentation.SelectWidget;
+import java.util.List;
 
 /**
  *
- * @author ajs
+ * @author AJS
  */
-class RegisterSavingWithdrawUI extends BaseForm {
+public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
 
-    ListWidget widget;
+    SelectWidget widget;
 
     @Override
     public String headline() {
@@ -23,8 +25,12 @@ class RegisterSavingWithdrawUI extends BaseForm {
 
     @Override
     public boolean doShow() {
+        // FIX this code is duplicated with RegisterSavingDepositUI
+        SavingGoal savingGoal = readSavingGoal();
+        readGeneralData();
 
-
+        controller.registerSavingWithdraw(savingGoal, date, amount, what);
+        System.out.println("\nSaving Withdraw recorded!");
         return true;
     }
     
@@ -35,5 +41,16 @@ class RegisterSavingWithdrawUI extends BaseForm {
         return controller;
     }
 
-}
+    // FIX this code is duplicated with RegisterSavingDepositUI
+    private SavingGoal readSavingGoal() {
+        System.out.println("-- SAVING GOAL --");
+        List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 
+        widget = new SelectWidget(listSavingGoal, new SavingGoalVisitor());
+        widget.show();
+        int option = widget.selectedOption();
+
+        SavingGoal savingGoal = listSavingGoal.get(option - 1);
+        return savingGoal;
+    }
+}

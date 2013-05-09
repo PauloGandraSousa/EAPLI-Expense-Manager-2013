@@ -39,6 +39,9 @@ public class RegisterSavingDepositController extends BaseController
             SavingPlanRepository savingPlanRepository = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
             SavingPlan savingPlan = savingPlanRepository.theSavingPlan(); 
         
+            // TODO should we call two different register methods or shuld the 
+            // operation be encapsulated inside the "main" object?
+            // where do we draw the line in our aggregates?
             savingPlan.registerSavingDeposit(savingDeposit,goal);
             checkingAccount.registerSavingDeposit(savingDeposit);
                         
@@ -47,6 +50,7 @@ public class RegisterSavingDepositController extends BaseController
         }
     }
 
+    // TODO avoid duplication with RegisterSavingWithdrawController
     public List<SavingGoal> getSavingGoals() 
     {
         // TODO should a controller create other controller objects?

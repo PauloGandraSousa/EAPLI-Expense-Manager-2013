@@ -8,6 +8,8 @@ import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import java.util.Collection;
 import java.util.Iterator;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 /**
  *
@@ -36,5 +38,26 @@ public class CheckingAccountRepositoryImpl extends JpaRepository<CheckingAccount
         //caso apenas tenha sido retornado um objecto, obter esse objecto e retorná-lo 
         Iterator<CheckingAccount> iterator = accounts.iterator();
         return iterator.next();
+    }
+
+    @Override
+    public CheckingAccount save(CheckingAccount account) {
+        if (account == null) {
+            throw new IllegalArgumentException();
+        }
+
+        EntityManager em = getEntityManager();
+        assert em != null;
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        if (account.hasId()) {
+            account = update(account);
+        } else {
+            account = create(account);
+        }
+        tx.commit();
+        em.close();
+
+        return account;
     }
 }

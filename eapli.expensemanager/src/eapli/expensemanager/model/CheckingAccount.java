@@ -19,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
@@ -42,8 +43,8 @@ public class CheckingAccount extends Observable implements Serializable {
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "CheckingAccount_Incomes")
     private List<Income> incomes;
-    
-    
+    @OneToOne(cascade = CascadeType.MERGE)
+    private InitialBalance initialBalance;
     //@ManyToMany
 //    @ElementCollection(fetch = FetchType.EAGER)
 //    @CollectionTable(name = "CheckingAccount_Expenses_by_ExpenseType")
@@ -54,9 +55,17 @@ public class CheckingAccount extends Observable implements Serializable {
 
     public CheckingAccount() {
         expensesByType = new HashMap<ExpenseType, List<Expense>>();
+    }
 
-        // TODO load initial balance
-        //balance = new BigDecimal(0);
+    /**
+     * checks if the object already has an id assigned by the persistence layer
+     * eventough this is a public method if should not be used by code other
+     * than the persistence layer
+     *
+     * @return
+     */
+    public boolean hasId() {
+        return id != null;
     }
 
     public BigDecimal totalExpenditure() {
@@ -100,16 +109,14 @@ public class CheckingAccount extends Observable implements Serializable {
         ExpenseRegisteredEvent expenseRegisteredEvent= new ExpenseRegisteredEvent(expense);
         this.notifyObservers(expenseRegisteredEvent);
     }
-    
-    public void registerSavingDeposit(SavingDeposit savingDeposit) 
-    {
+
+    public void registerSavingDeposit(SavingDeposit savingDeposit) {
         addMovement(savingDeposit);
     }
-    
-    public void registerSavingWithdraw(SavingWithdraw savingWithdraw) 
-    {
+
+    public void registerSavingWithdraw(SavingWithdraw savingWithdraw) {
         addMovement(savingWithdraw);
-    }    
+    }
 
     private void classifyMovementAsExpense(Expense expense) {
         expenses.add(expense);
@@ -177,18 +184,39 @@ public class CheckingAccount extends Observable implements Serializable {
 
         movements.add(movement);
     }
-    
-    
+
     //AJS: determina se existe valor suficiente para gastar numa despesa ou transferência
     // para poupança
-    public boolean enoughBalance(BigDecimal amount)
-    {
+    // TODO what is the purpose of this method on the public API of the class?
+    public boolean enoughBalance(BigDecimal amount) {
         // return 1 if bigger
-        if(amount.compareTo(balance)==1)
+        if (amount.compareTo(balance) == 1) {
             return false;
-        
+        }
+
         return true;
     }
-    
-    
+
+    // By Rocha 08/05/2013
+    public BigDecimal getBalance() {
+        BigDecimal i = new BigDecimal(0);
+        if (initialBalance != null) {
+            i = initialBalance.getValue();
+        }
+
+        return totalEarnings().subtract(totalExpenditure()).add(i);
+    }
+
+    public void registerInitialBalance(InitialBalance initial) {
+        if (initial == null || initialBalance != null) {
+            throw new IllegalArgumentException();
+        };
+        initialBalance = initial;
+    }
+
+    //Not used yet... ToDo
+    // TODO what is the purpose of this method on the public API of the class?
+    public boolean HaveInitialBalance() {
+        return initialBalance != null;
+    }
 }

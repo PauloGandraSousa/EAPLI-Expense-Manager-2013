@@ -6,19 +6,16 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterIncomeTypeController;
-import eapli.util.Console;
 
 /**
  *
  * @author Paulo Gandra de Sousa
  */
-public class RegisterIncomeTypeUI extends BaseForm {
+public class RegisterIncomeTypeUI extends RegisterMovementTypeBaseUI {
 
     @Override
     public boolean doShow() {
-        // FIX remove code duplicate with RegisterExpenseType
-        String shortName = Console.readLine("Short name:");
-        String descr = Console.readLine("Description:");
+        readGeneralData();
 
         controller.registerIncomeType(shortName, descr);
 
