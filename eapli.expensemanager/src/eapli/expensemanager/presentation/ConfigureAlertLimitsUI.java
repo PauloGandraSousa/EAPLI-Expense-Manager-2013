@@ -6,9 +6,9 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.ConfigureAlertLimitsController;
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
-import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitType;
+import eapli.expensemanager.model.AlertLimitByExpenseType;
+import eapli.expensemanager.model.AlertLimitExpenditure;
+import eapli.expensemanager.model.AlertLimitType;
 import eapli.framework.Controller;
 import eapli.util.Console;
 import java.util.List;

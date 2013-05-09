@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.model.observer;
+package eapli.expensemanager.model;
 
+import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
@@ -34,7 +35,7 @@ public class AlertLimitExpenditure extends AlertLimit  {
             return limitRed;
       }
 
-      public AlertLimitExpenditure(AlertLimitType alertType, BigDecimal limitYellow, BigDecimal limitRed) {
+      public AlertLimitExpenditure(AlertLimitType alertType, BigDecimal limitYellow, BigDecimal limitRed){
             super(alertType);
             this.limitYellow = limitYellow;
             this.limitRed = limitRed;

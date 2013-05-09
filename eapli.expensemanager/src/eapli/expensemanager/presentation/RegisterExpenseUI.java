@@ -11,16 +11,19 @@ import eapli.expensemanager.model.Cheque;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
+import eapli.expensemanager.model.AlertEvent;
 import eapli.util.Console;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-class RegisterExpenseUI extends BaseForm {
+public class RegisterExpenseUI extends BaseForm implements Observer{
 
     ListWidget widget;
 
@@ -40,6 +43,9 @@ class RegisterExpenseUI extends BaseForm {
         
         // TODO should the UI create a Payment object?
         Payment method = readPaymentMean();        
+        
+          // mcn: delegar no controller o pedido de registo de Observador de WatchDogLimits 
+            controller.addObserverWatchDogLimits(this);
 
         controller.registerExpense(what, date, amount, expenseType, method);
 
@@ -92,4 +98,13 @@ class RegisterExpenseUI extends BaseForm {
         
         return payment;
     }
+          @Override
+      public void update(Observable o, Object arg) {
+          AlertEvent al=(AlertEvent)arg;
+            System.out.println("************************************ALERT*****************************");
+            System.out.println(al);
+            System.out.println("**********************************************************************");
+
+      }
+    
 }

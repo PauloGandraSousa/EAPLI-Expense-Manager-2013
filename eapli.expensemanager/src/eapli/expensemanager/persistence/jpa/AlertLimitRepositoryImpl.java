@@ -5,10 +5,10 @@
 package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.observer.AlertLimit;
-import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
-import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitType;
+import eapli.expensemanager.model.AlertLimit;
+import eapli.expensemanager.model.AlertLimitByExpenseType;
+import eapli.expensemanager.model.AlertLimitExpenditure;
+import eapli.expensemanager.model.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -84,27 +84,17 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       }
 
       @Override
-      public List<AlertLimitByExpenseType> findByET(ExpenseType eT) {
+      public List<AlertLimitByExpenseType> findAlertLimitsByExpenseType(ExpenseType eT) {
             EntityManager em = getEntityManager();
             Query q = em.createQuery("SELECT e FROM AlertLimitByExpenseType e WHERE e.expenseType= :eT");
             q.setParameter("eT", eT);
             return q.getResultList();
       }
 
-      @Override
-      public void save(AlertLimitExpenditure alertLimit) {
-            super.save(alertLimit);
-      }
-
-      @Override
-      public void save(AlertLimitByExpenseType alertLimit) {
-            super.save(alertLimit);
-      }
-
       
       @Override
-      public AlertLimit save(AlertLimit alertLimit) {
-             return super.save(alertLimit);
+      public AlertLimit save(AlertLimit alertLimit){
+            return super.save(alertLimit);
       }
 
 

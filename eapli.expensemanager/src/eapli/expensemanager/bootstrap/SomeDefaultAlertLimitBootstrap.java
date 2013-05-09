@@ -5,8 +5,8 @@
 package eapli.expensemanager.bootstrap;
 
 
-import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitType;
+import eapli.expensemanager.model.AlertLimitExpenditure;
+import eapli.expensemanager.model.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public class SomeDefaultAlertLimitBootstrap {
                   for (AlertLimitType alertLimitType : types) {
                         switch (alertLimitType) {
                               case LIMITWEEKEXPENDITURE:
-                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
+                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {                                     
                                           repo.save(new AlertLimitExpenditure(alertLimitType, LIMITWEEKYELLOW, LIMITWEEKRED));
                                     }
                                     break;
