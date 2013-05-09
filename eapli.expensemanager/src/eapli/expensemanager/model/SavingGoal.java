@@ -95,7 +95,7 @@ public class SavingGoal implements Serializable {
     }
 
     // TODO what is the purpose of this method on the public API of the class?
-    private boolean enoughSavings(BigDecimal amount) {
+    public boolean enoughSavings(BigDecimal amount) {
         // return 1 if bigger
         if (amount.compareTo(actualSavings) == 1) {
             return false;
