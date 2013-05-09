@@ -145,6 +145,7 @@ public abstract class JpaRepository<T, PK extends Serializable> {
 //        return all;
     }
 
+    @SuppressWarnings("unchecked")
     public List<T> match(String where) {
         EntityManager em = getEntityManager();
         assert em != null;

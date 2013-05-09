@@ -17,26 +17,23 @@ import java.util.List;
  */
 public interface AlertLimitRepository {
 
-      List<AlertLimit> all();
-      AlertLimit save(AlertLimit  alertLimit);
+    List<AlertLimit> all();
 
-      void save(AlertLimitByExpenseType alertLimit);
-      
-      void save(AlertLimitExpenditure alertLimit);
+    AlertLimit save(AlertLimit alertLimit);
 
-      // FIX repository interface should deal with objects not individual attributes
-//      AlertLimitExpenditure update(int key, BigDecimal yellow, BigDecimal red);
-       AlertLimitExpenditure update(AlertLimitExpenditure a);
+    // TODO does it make sense for this API to have save() and update()
+    void save(AlertLimitByExpenseType alertLimit);
 
-      // FIX repository interface should deal with objects not individual attributes
-      //AlertLimitByExpenseType update(int key, double yellow, double red);
-      AlertLimitByExpenseType update( AlertLimitByExpenseType a);
-     
+    void save(AlertLimitExpenditure alertLimit);
 
-      AlertLimit findByKey(int i);
+    AlertLimitExpenditure update(AlertLimitExpenditure a);
 
-      List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
+    AlertLimitByExpenseType update(AlertLimitByExpenseType a);
 
-      // TODO refactor to a more meaningfull name
-      List<AlertLimitByExpenseType> findByET(ExpenseType eT);
+    AlertLimit findByKey(int i);
+
+    List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
+
+    // TODO refactor to a more meaningfull name
+    List<AlertLimitByExpenseType> findByET(ExpenseType eT);
 }

@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceException;
 
 /**
  *
@@ -41,6 +40,7 @@ public class CheckingAccountRepositoryImpl extends JpaRepository<CheckingAccount
         return iterator.next();
     }
 
+    @Override
     public CheckingAccount save(CheckingAccount account) {
         if (account == null) {
             throw new IllegalArgumentException();

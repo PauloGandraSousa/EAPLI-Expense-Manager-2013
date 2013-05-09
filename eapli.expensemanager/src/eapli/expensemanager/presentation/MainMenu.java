@@ -6,7 +6,6 @@ package eapli.expensemanager.presentation;
 
 import eapli.framework.ReturnAction;
 import eapli.framework.presentation.BaseUI;
-import eapli.expensemanager.controllers.BaseController;
 import eapli.framework.Action;
 import eapli.framework.Controller;
 import eapli.framework.presentation.Menu;

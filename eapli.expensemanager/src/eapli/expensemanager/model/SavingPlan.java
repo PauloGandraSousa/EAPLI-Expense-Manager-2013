@@ -20,48 +20,43 @@ import javax.persistence.Temporal;
  * @author losa
  */
 @Entity
-public class SavingPlan implements Serializable
-{
+public class SavingPlan implements Serializable {
 
     @Id
     @GeneratedValue
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
+    // TODO what is the meaning of this field?
+    // FIX should follow naming conventions
     private Date InicialDate;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<SavingGoal> listSavingGoal;
+    private List<SavingGoal> savingGoals;
 
-    public SavingPlan()
-    {
-        listSavingGoal = new ArrayList<SavingGoal>();
+    public SavingPlan() {
+        savingGoals = new ArrayList<SavingGoal>();
     }
 
-    public SavingPlan(Date d)
-    {
+    public SavingPlan(Date d) {
         InicialDate = d;
     }
 
-    public SavingGoal registerSavingGoal(SavingGoal savingGoal)
-    {
-        listSavingGoal.add(savingGoal);
+    public SavingGoal registerSavingGoal(SavingGoal savingGoal) {
+        savingGoals.add(savingGoal);
         return savingGoal;
     }
 
-    
     // TODO:AJS: isto deveria trabalhar com indices da lista e não com objectivos propriamente ditos
-    public void registerSavingDeposit(SavingDeposit s, SavingGoal goal1)
-    {
+    // TODO this method does not change the state of the object. is this the best place for it to be?
+    public void registerSavingDeposit(SavingDeposit s, SavingGoal goal1) {
         goal1.registerSavingDeposit(s);
     }
 
-    public void registerSavingWithdraw(SavingWithdraw s, SavingGoal goal1)
-    {
+    // TODO this method does not change the state of the object. is this the best place for it to be?
+    public void registerSavingWithdraw(SavingWithdraw s, SavingGoal goal1) {
         goal1.registerSavingWithdraw(s);
     }
-    
-    public List<SavingGoal> getSavingGoals()
-    {
-        return listSavingGoal;
+
+    public List<SavingGoal> getSavingGoals() {
+        return savingGoals;
     }
-    
 }

@@ -12,7 +12,6 @@ import eapli.expensemanager.model.SavingPlan;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.IncomeTypeRepository;
-import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.util.Date;

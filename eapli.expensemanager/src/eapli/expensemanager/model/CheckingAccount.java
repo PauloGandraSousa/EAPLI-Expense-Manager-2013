@@ -55,9 +55,6 @@ public class CheckingAccount implements Serializable {
 
     public CheckingAccount() {
         expensesByType = new HashMap<ExpenseType, List<Expense>>();
-
-        // TODO load initial balance
-        //balance = new BigDecimal(0);
     }
 
     /**
@@ -218,6 +215,5 @@ public class CheckingAccount implements Serializable {
     // TODO what is the purpose of this method on the public API of the class?
     public boolean HaveInitialBalance() {
         return initialBalance != null;
-
     }
 }

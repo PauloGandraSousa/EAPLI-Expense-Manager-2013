@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.model;
 
-import java.io.Serializable;
+import eapli.util.Validations;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
@@ -29,7 +29,11 @@ public abstract class Card extends PaymentMean {
     }
     
     public Card(String cardName, String bank, String cardNumber, String nameOnCard, Calendar validUntil) {
-        // TODO perform validations
+        if (Validations.isNullOrEmpty(cardName) || Validations.isNullOrEmpty(bank) ||
+            Validations.isNullOrEmpty(cardNumber) || Validations.isNullOrEmpty(nameOnCard) ||
+                validUntil == null) {
+            throw new IllegalArgumentException();
+        }
         
         this.cardName = cardName;
         this.bank = bank;
