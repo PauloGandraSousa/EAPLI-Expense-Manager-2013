@@ -39,4 +39,14 @@ public class Cash extends PaymentMean {
     public String getDescription() {
         return "Cash " + currency;
     }
+    
+    @Override
+    public String toXml() {
+        return "<currency>" + EUR + "</currency>";
+    }
+        
+    @Override
+    public String toCsv() {
+        return "Cash," + ",,,,," + EUR + ",,";
+    }
 }

@@ -37,5 +37,30 @@ public abstract class Card extends PaymentMean {
         this.nameOnCard = nameOnCard;
         this.validUntil = validUntil;        
     }
+       
+    @Override
+    public String toXml() {
+        return "<cardName>" + cardName + "</cardName>" +
+                "<bank>" + bank + "</bank>" +
+                "<cardNumber>" + cardNumber + "</cardNumber>" +
+                "<nameOnCard>" + nameOnCard + "</nameOnCard>" +
+                "<validUntil>" + calendarToString(validUntil) + "</validUntil>";
+    }
+     
+    private String calendarToString(Calendar cal) {
+        String dateString = cal.get(Calendar.DAY_OF_MONTH) + "-";
+        dateString += cal.get(Calendar.MONTH)+1 + "-";
+        dateString += cal.get(Calendar.YEAR);
+        return dateString;
+    }
+    
+    @Override
+    public String toCsv() {
+        return cardName + "," +
+                bank + "," +
+                cardNumber + "," +
+                nameOnCard + "," +
+                calendarToString(validUntil) + ",,,";
+    }
 
 }

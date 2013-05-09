@@ -28,4 +28,14 @@ public class DebitCard extends Card {
     public String getDescription() {
         return "debit Card" + cardName;
     }
+        
+    @Override
+    public String toXml() {
+        return "<debitCard>" + super.toXml() + "</debitCard>";
+    }
+        
+    @Override
+    public String toCsv() {
+        return "DebitCard," + super.toCsv();
+    }
 }

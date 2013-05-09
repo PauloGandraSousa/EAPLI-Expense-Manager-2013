@@ -6,7 +6,6 @@ package eapli.expensemanager.presentation;
 
 import eapli.framework.ReturnAction;
 import eapli.framework.presentation.BaseUI;
-import eapli.expensemanager.controllers.BaseController;
 import eapli.framework.Action;
 import eapli.framework.Controller;
 import eapli.framework.presentation.Menu;
@@ -40,7 +39,9 @@ public class MainMenu extends BaseUI {
     final byte REGISTER_INITIAL_BALANCE_OPTION = 60;
     final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
-    final int MASTER_TABLES_OPTION = 200;
+    final int MASTER_TABLES_OPTION = 200;    
+    final int EXPORT_MOVEMENTS_TO_XML = 80;
+    final int EXPORT_MOVEMENTS_TO_CSV = 81;
 
     public MainMenu() {
     }
@@ -169,7 +170,15 @@ public class MainMenu extends BaseUI {
         menu.addMenuItem(
                 new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
                 new ShowUiAction(new RegisterInitialBalanceUI())));
- 
+
+        menu.addMenuItem(
+                new MenuItem(EXPORT_MOVEMENTS_TO_XML, "Export Movements to XML",
+                new ShowUiAction(new ExportMovementsToXmlUI())));
+  
+        menu.addMenuItem(
+                new MenuItem(EXPORT_MOVEMENTS_TO_CSV, "Export Movements to CSV",
+                new ShowUiAction(new ExportMovementsToCsvUI())));
+        
         menu.addMenuItem(new MenuSeparator());
  
         menu.addMenuItem(

@@ -47,4 +47,8 @@ public abstract class PaymentMean implements ActiveRecord, Serializable {
     }
     
     abstract public String getDescription() ;
+    
+    public abstract String toXml();
+    
+    public abstract String toCsv();
 }
