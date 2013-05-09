@@ -20,7 +20,7 @@ import java.util.List;
  */
 class RegisterExpenseUI extends RegisterMovementBaseUI {
 
-    SelectWidget widget;
+    SelectWidget<ExpenseType> expenseTypesSelectWidget;
 
     @Override
     public String headline() {
@@ -54,9 +54,9 @@ class RegisterExpenseUI extends RegisterMovementBaseUI {
         System.out.println("-- EXPENSE TYPES --");
         List<ExpenseType> listExpenseTypes = controller.getExpenseTypes();
 
-        widget = new SelectWidget(listExpenseTypes, new ExpenseTypeListVisitor());
-        widget.show();
-        int option = widget.selectedOption();
+        expenseTypesSelectWidget = new SelectWidget<ExpenseType>(listExpenseTypes, new ExpenseTypeListVisitor());
+        expenseTypesSelectWidget.show();
+        int option = expenseTypesSelectWidget.selectedOption();
         
         ExpenseType expenseType = listExpenseTypes.get(option-1);
         return expenseType;

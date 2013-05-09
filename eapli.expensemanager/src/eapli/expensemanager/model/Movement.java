@@ -23,7 +23,8 @@ import javax.persistence.Temporal;
  * @author Paulo Gandra Sousa
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE) // TODO check if single table inheritance is the best strategy
+// TODO check if single table inheritance is the best strategy
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
 public abstract class Movement implements Serializable {
 
     @Id

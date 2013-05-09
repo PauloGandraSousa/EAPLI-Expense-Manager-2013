@@ -21,7 +21,7 @@ class RegisterIncomeUI extends RegisterMovementBaseUI {
         return controller;
     }
     RegisterIncomeController controller = new RegisterIncomeController();
-    SelectWidget widget;
+    SelectWidget<IncomeType> incomeTypesSelectWidget;
 
     @Override
     public boolean doShow() {
@@ -39,8 +39,8 @@ class RegisterIncomeUI extends RegisterMovementBaseUI {
     IncomeType readIncomeType() {
         System.out.println("-- INCOME TYPES --");
         List<IncomeType> listIncomeTypes = controller.getIncomeTypes();
-        widget = new SelectWidget(listIncomeTypes, new IncomeTypeListVisitor());
-        int option = widget.selectedOption();
+        incomeTypesSelectWidget = new SelectWidget<IncomeType>(listIncomeTypes, new IncomeTypeListVisitor());
+        int option = incomeTypesSelectWidget.selectedOption();
 
         return listIncomeTypes.get(option - 1);
     }

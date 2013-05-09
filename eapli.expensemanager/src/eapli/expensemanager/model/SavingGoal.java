@@ -34,7 +34,7 @@ public class SavingGoal implements Serializable {
     private Date ocurred = new Date();
     
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Movement> savings = new ArrayList();
+    private List<Movement> savings = new ArrayList<Movement>();
     private String goal;
     private BigDecimal targetAmount;
     private BigDecimal actualSavings;

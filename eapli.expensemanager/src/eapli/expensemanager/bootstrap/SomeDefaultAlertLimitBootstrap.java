@@ -32,7 +32,10 @@ public class SomeDefaultAlertLimitBootstrap {
                         if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
                             // TODO if alerts are Active Records, from the outside 
                             // we should not call repository methods but the object's
-                            // save method
+                            // save method, i.e.,
+                            //
+                            // AlertLimitExpenditure limit = new AlertLimitExpenditure(alertLimitType, LIMITWEEKYELLOW, LIMITWEEKRED);
+                            // limit.save();
                             repo.save(new AlertLimitExpenditure(alertLimitType, LIMITWEEKYELLOW, LIMITWEEKRED));
                         }
                         break;
@@ -40,7 +43,10 @@ public class SomeDefaultAlertLimitBootstrap {
                         if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
                             // TODO if alerts are Active Records, from the outside 
                             // we should not call repository methods but the object's
-                            // save method
+                            // save method, i.e., 
+                            //
+                            // AlertLimitExpenditure limit = new AlertLimitExpenditure(alertLimitType, LIMITMONTHYELLOW, LIMITMONTHRED);
+                            // limit.save();
                             repo.save(new AlertLimitExpenditure(alertLimitType, LIMITMONTHYELLOW, LIMITMONTHRED));
                         }
                         break;
