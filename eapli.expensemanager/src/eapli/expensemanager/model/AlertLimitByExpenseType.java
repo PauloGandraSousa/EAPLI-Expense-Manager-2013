@@ -57,7 +57,7 @@ public class AlertLimitByExpenseType extends AlertLimit {
       @Override
       public String toString() {
             String str = super.toString()
-                    + "\nYellow Limit:" + percentLimitYellow *100+ "%" + "\nRed Limit:" + percentLimitRed*100 + "%\nExpenseType:" + expenseType.getDescription();
+                    + "\nYellow Limit- Average deviation:" + percentLimitYellow *100+ "%" + "\nRed Limit: Average deviation:" + percentLimitRed*100 + "%\nExpenseType:" + expenseType.getDescription();
             return str;
       }
 

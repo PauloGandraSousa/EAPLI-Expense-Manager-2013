@@ -25,6 +25,7 @@ public interface AlertLimitRepository {
        AlertLimitExpenditure update(AlertLimitExpenditure a);
 
       AlertLimitByExpenseType update( AlertLimitByExpenseType a);
+    //  void update(AlertLimit al);
      
       AlertLimit findByKey(int i);
 

@@ -4,12 +4,11 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.expensemanager.model.AlertLimit;
+
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
 import javax.persistence.Entity;
 
