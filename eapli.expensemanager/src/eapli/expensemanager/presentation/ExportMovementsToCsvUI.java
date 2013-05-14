@@ -8,7 +8,7 @@ public class ExportMovementsToCsvUI extends BaseForm {
     private ExportMovementsController controller = new ExportMovementsController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

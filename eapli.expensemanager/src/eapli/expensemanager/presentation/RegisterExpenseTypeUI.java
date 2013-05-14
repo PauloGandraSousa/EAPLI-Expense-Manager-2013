@@ -26,7 +26,7 @@ public class RegisterExpenseTypeUI extends RegisterMovementTypeBaseUI {
     RegisterExpenseTypeController controller = new RegisterExpenseTypeController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

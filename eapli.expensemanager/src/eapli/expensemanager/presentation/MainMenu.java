@@ -39,13 +39,11 @@ public class MainMenu extends BaseUI {
     final byte REGISTER_INITIAL_BALANCE_OPTION = 60;
     final int SETTING_ALERT_LIMITS_OPTION = 90;
     final int LISTINGS_OPTION = 100;
-    final int MASTER_TABLES_OPTION = 200;    
+    final int MASTER_TABLES_OPTION = 200;
     final int EXPORT_MOVEMENTS_TO_XML = 81;
     final int EXPORT_MOVEMENTS_TO_CSV = 82;
-    
-    final int REGISTER_SAVING_DEPOSIT_OPTION=70;
-    final int REGISTER_SAVING_WITHDRAW_OPTION=80;
-    
+    final int REGISTER_SAVING_DEPOSIT_OPTION = 70;
+    final int REGISTER_SAVING_WITHDRAW_OPTION = 80;
 
     public MainMenu() {
     }
@@ -71,8 +69,7 @@ public class MainMenu extends BaseUI {
         return "EXPENSE MANAGER";
     }
 
-    private boolean showMenuUsingCompositeAndCommand()
-    {
+    private boolean showMenuUsingCompositeAndCommand() {
         Menu menu = buildMainMenu();
         return menu.show();
     }
@@ -102,10 +99,10 @@ public class MainMenu extends BaseUI {
 
         return menu;
     }
-    
+
     private Menu buildMasterTablesMenu() {
         Menu menu = new Menu("Master tables...");
-        
+
         menu.addMenuItem(
                 new MenuItem(REGISTER_EXPENSE_TYPE_OPTION, "Register an expense type",
                 new ShowUiAction(new RegisterExpenseTypeUI())));
@@ -134,7 +131,7 @@ public class MainMenu extends BaseUI {
         menu.addMenuItem(
                 new MenuItem(REGISTER_INITIAL_BALANCE_OPTION, "Register Initial Balance",
                 new ShowUiAction(new RegisterInitialBalanceUI())));
-        
+
         menu.addMenuItem(
                 new MenuItem(0, "Return ", new ReturnAction()));
 
@@ -191,13 +188,13 @@ public class MainMenu extends BaseUI {
         menu.addMenuItem(
                 new MenuItem(EXPORT_MOVEMENTS_TO_XML, "Export Movements to XML",
                 new ShowUiAction(new ExportMovementsToXmlUI())));
-  
+
         menu.addMenuItem(
                 new MenuItem(EXPORT_MOVEMENTS_TO_CSV, "Export Movements to CSV",
                 new ShowUiAction(new ExportMovementsToCsvUI())));
-        
+
         menu.addMenuItem(new MenuSeparator());
- 
+
         menu.addMenuItem(
                 new SubMenu(LISTINGS_OPTION, buildListingsMenu()));
 
@@ -297,7 +294,7 @@ public class MainMenu extends BaseUI {
     }
 
     @Override
-    protected Controller controller() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected Controller getController() {
+        throw new UnsupportedOperationException("Should NEVER happen.");
     }
 }

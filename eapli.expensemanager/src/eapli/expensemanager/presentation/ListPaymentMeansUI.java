@@ -19,7 +19,7 @@ class ListPaymentMeansUI extends BaseForm {
     ListWidget<PaymentMean> widget;
     
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

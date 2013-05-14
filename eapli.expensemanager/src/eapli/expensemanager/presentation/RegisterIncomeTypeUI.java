@@ -27,7 +27,7 @@ public class RegisterIncomeTypeUI extends RegisterMovementTypeBaseUI {
     RegisterIncomeTypeController controller = new RegisterIncomeTypeController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

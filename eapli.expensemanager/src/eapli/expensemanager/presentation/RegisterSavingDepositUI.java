@@ -43,7 +43,7 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
     RegisterSavingDepositController controller = new RegisterSavingDepositController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

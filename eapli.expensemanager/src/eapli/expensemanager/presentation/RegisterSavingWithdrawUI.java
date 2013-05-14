@@ -37,7 +37,7 @@ public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
     RegisterSavingWithdrawController controller = new RegisterSavingWithdrawController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

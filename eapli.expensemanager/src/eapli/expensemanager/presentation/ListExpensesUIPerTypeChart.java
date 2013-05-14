@@ -18,9 +18,9 @@ import eapli.expensemanager.controllers.ListExpensesPerTypeController;
 abstract class ListExpensesUIPerTypeChart extends ListExpensesUI {
 
     /**
-     * Poderia ter criado um set controller no ListExpensesUI, mas isso
+     * Poderia ter criado um set getController no ListExpensesUI, mas isso
      * desvirtuava o conceito de ui ligado a um único controlador. Sendo assim,
-     * adoptei a opção de crira um atributo privado que tem o controller
+     * adoptei a opção de crira um atributo privado que tem o getController
      * necessário. <p>Quem faz o cálculo dos agrupados? UI, Controller ou
      * CheckingAccount?</p>
      */

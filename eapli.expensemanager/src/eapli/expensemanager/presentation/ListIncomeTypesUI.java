@@ -19,7 +19,7 @@ class ListIncomeTypesUI extends BaseForm {
     ListWidget<IncomeType> widget;
     
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

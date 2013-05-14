@@ -18,7 +18,7 @@ class ListExpensesUI extends BaseForm {
     private ListExpensesController controller = new ListExpensesController();
     
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

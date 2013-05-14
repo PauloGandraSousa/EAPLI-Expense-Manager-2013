@@ -15,7 +15,7 @@ import java.text.NumberFormat;
 public abstract class BaseForm extends BaseUI {
     
     protected BaseController baseController() {
-        return (BaseController) controller();
+        return (BaseController) getController();
     }
             
     @Override

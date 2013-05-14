@@ -18,7 +18,7 @@ public class RegisterSavingGoalUI extends BaseForm {
     RegisterSavingGoalController controller = new RegisterSavingGoalController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

@@ -33,7 +33,7 @@ public class RegisterInitialBalanceUI extends BaseForm {
     RegisterInitialBalanceController controller = new RegisterInitialBalanceController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

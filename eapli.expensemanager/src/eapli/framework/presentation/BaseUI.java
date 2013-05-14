@@ -11,37 +11,37 @@ import eapli.framework.Controller;
  * @author Paulo Gandra Sousa
  */
 public abstract class BaseUI {
+
     public static final String SEPARATOR = "+---------------------------------------------------------------------------------+";
-    public static final String    BORDER = "+=================================================================================+";
-    
+    public static final String BORDER = "+=================================================================================+";
+
     /**
-     * derived classes should provide the controller object
-     * 
+     * derived classes should provide the getController object
+     *
      * an example of the Factory Method and Template Method patterns
-     * 
-     * @return 
+     *
+     * @return the controller of the derived UI
      */
-    protected abstract Controller controller();
-    
+    protected abstract Controller getController();
+
     /**
-     * derived classes should override this method to perform the actual rendering
-     * of the UI
-     * 
+     * derived classes should override this method to perform the actual
+     * rendering of the UI
+     *
      * follows the Template Method pattern
-     * 
-     * @return 
+     *
+     * @return
      */
     protected abstract boolean doShow();
-    
+
     /**
-     * derived classes should override this method to provide the title of the 
+     * derived classes should override this method to provide the title of the
      * "window"
-     * 
-     * @return 
+     *
+     * @return
      */
     public abstract String headline();
-    
-    
+
     public void mainLoop() {
         boolean wantsToExit;
         do {
@@ -54,7 +54,7 @@ public abstract class BaseUI {
         boolean wantsToExit = doShow();
         drawFormBorder();
         //Console.waitForKey("Press any key.");
-        
+
         return wantsToExit;
     }
 
@@ -74,7 +74,7 @@ public abstract class BaseUI {
     }
 
     protected void drawFormTitle(String title) {
-        String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.substring(4+title.length());
+        String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.substring(4 + title.length());
         System.out.println(titleBorder);
     }
 }

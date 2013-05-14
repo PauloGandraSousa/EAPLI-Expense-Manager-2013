@@ -19,7 +19,7 @@ class ListExpenseTypesUI extends BaseForm {
     ListWidget<ExpenseType> widget;
             
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

@@ -26,7 +26,7 @@ class RegisterPaymentMeanUI extends BaseForm {
     RegisterPaymentMeanController controller = new RegisterPaymentMeanController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

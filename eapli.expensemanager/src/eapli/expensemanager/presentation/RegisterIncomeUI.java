@@ -17,7 +17,7 @@ import java.util.List;
 class RegisterIncomeUI extends RegisterMovementBaseUI {
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
     RegisterIncomeController controller = new RegisterIncomeController();

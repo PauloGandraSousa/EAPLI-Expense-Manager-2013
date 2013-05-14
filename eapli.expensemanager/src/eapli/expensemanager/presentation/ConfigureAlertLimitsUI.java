@@ -29,7 +29,7 @@ public class ConfigureAlertLimitsUI extends BaseForm {
     }
 
     @Override
-    protected Controller controller() {
+    protected Controller getController() {
         return controller;
     }
 
