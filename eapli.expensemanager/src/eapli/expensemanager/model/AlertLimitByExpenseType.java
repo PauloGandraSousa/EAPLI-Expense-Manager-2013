@@ -27,19 +27,19 @@ public class AlertLimitByExpenseType extends AlertLimit {
       public AlertLimitByExpenseType() {
       }
 
+      public AlertLimitByExpenseType(AlertLimitType alertType, double percentLimitYellow, double percentLimitRed, ExpenseType eT) {
+            super(alertType);
+            this.percentLimitYellow = percentLimitYellow;
+            this.percentLimitRed = percentLimitRed;
+            this.expenseType = eT;
+      }
+      
       public double getPercentLimitYellow() {
             return percentLimitYellow;
       }
 
       public double getPercentLimitRed() {
             return percentLimitRed;
-      }
-
-      public AlertLimitByExpenseType(AlertLimitType alertType, double percentLimitYellow, double percentLimitRed, ExpenseType eT) {
-            super(alertType);
-            this.percentLimitYellow = percentLimitYellow;
-            this.percentLimitRed = percentLimitRed;
-            this.expenseType = eT;
       }
 
       public void setPercentLimitYellow(double percentLimitYellow) {
@@ -57,18 +57,10 @@ public class AlertLimitByExpenseType extends AlertLimit {
       @Override
       public String toString() {
             String str = super.toString()
-                    + "\nYellow Limit:" + percentLimitYellow *100+ "%" + "\nRed Limit:" + percentLimitRed*100 + "%\nExpenseType:" + expenseType.getDescription();
+                    + "\nYellow Limit- Average deviation:" + percentLimitYellow *100+ "%" + "\nRed Limit: Average deviation:" + percentLimitRed*100 + "%\nExpenseType:" + expenseType.getDescription();
             return str;
       }
 
-      public static AlertLimitByExpenseType findByExpenseType(ExpenseType eT) {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            List<AlertLimitByExpenseType> list = repo.findAlertLimitsByExpenseType(eT);
-            if (list.isEmpty()) {
-                  return null;
-            }
-            return list.get(0);
-      }
 
       public void updateLimits(double yellow, double red) {
             this.percentLimitYellow=yellow;

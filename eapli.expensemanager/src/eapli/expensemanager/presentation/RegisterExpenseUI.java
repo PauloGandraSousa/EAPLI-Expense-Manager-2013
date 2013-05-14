@@ -42,15 +42,14 @@ class RegisterExpenseUI extends RegisterMovementBaseUI implements Observer {
         // TODO should the UI create a Payment object?
         Payment method = readPaymentMean();
 
-        //mcn: delegar no getController o pedido de registo de Observador de WatchDogLimits
-        controller.addObserverWatchDogLimits(this);
+        // Delegate in controller my register as Observador Limits in this process
+        controller.addObserverRegisterExpense(this);
         try {
             controller.registerExpense(what, date, amount, expenseType, method);
             System.out.println("\nExpense recorded!");
         } catch (InsufficientBalanceException ex) {
             System.out.println("Unable to register expense due to insufficient balance");
         }
-
         return true;
     }
     private final RegisterExpenseController controller = new RegisterExpenseController();

@@ -79,25 +79,36 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       }
 
       @Override
-      public List<AlertLimitExpenditure> findByAlertType(AlertLimitType aLertType) {
-             EntityManager em = getEntityManager();
-            Query q = em.createQuery("SELECT e FROM AlertLimit e WHERE e.alertType = :aLertT");
-            q.setParameter("aLertT", aLertType);
-            return q.getResultList();
+      public AlertLimit save(AlertLimit alertLimit) {
+            return super.save(alertLimit);
       }
 
       @Override
-      public List<AlertLimitByExpenseType> findAlertLimitsByExpenseType(ExpenseType eT) {
+      public AlertLimit findByAlertType(AlertLimitType a) {
+            EntityManager em = getEntityManager();
+            Query q = em.createQuery("SELECT e FROM AlertLimit e WHERE e.alertType = :aLertT");
+            q.setParameter("aLertT", a);
+            List<AlertLimit> list = q.getResultList();
+            if (list.isEmpty()) {
+
+                  return null;
+            }
+            return list.get(0);
+      }
+
+      @Override
+      public AlertLimit findAlertLimitsByExpenseType(ExpenseType eT) {
+
             EntityManager em = getEntityManager();
             Query q = em.createQuery("SELECT e FROM AlertLimitByExpenseType e WHERE e.expenseType= :eT");
             q.setParameter("eT", eT);
-            return q.getResultList();
+            List<AlertLimit> list = q.getResultList();
+            if (list.isEmpty()) {
+
+                  return null;
+            }
+            return list.get(0);
       }
 
-      @Override
-      public AlertLimit save(AlertLimit alertLimit){
-        return super.save(alertLimit);
-      }
 
- 
-}
+      }

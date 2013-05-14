@@ -4,12 +4,11 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.expensemanager.model.AlertLimit;
+
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
-import java.util.List;
 import java.util.Locale;
 import javax.persistence.Entity;
 
@@ -26,20 +25,20 @@ public class AlertLimitExpenditure extends AlertLimit  {
       public AlertLimitExpenditure() {
       }
 
-      public BigDecimal getLimitYellow() {
+      public AlertLimitExpenditure(AlertLimitType alertType, BigDecimal limitYellow, BigDecimal limitRed){
+            super(alertType);
+            this.limitYellow = limitYellow;
+            this.limitRed = limitRed;
+      }
+     
+           public BigDecimal getLimitYellow() {
             return limitYellow;
       }
 
       public BigDecimal getLimitRed() {
             return limitRed;
       }
-
-      public AlertLimitExpenditure(AlertLimitType alertType, BigDecimal limitYellow, BigDecimal limitRed){
-            super(alertType);
-            this.limitYellow = limitYellow;
-            this.limitRed = limitRed;
-      }
-
+      
       public void setLimitYellow(BigDecimal limitYellow) {
             this.limitYellow = limitYellow;
       }
@@ -71,18 +70,4 @@ public class AlertLimitExpenditure extends AlertLimit  {
             repo.update(this);
       }
 
-//            @Override
-//      public void update() {
-//            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-//            repo.update(this);
-//      }
-    
-      public static AlertLimitExpenditure findByAlertType(AlertLimitType aLertType) {
-            AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            List<AlertLimitExpenditure> list = repo.findByAlertType(aLertType);
-            if (list.isEmpty()) {
-                  return null;
-            }
-            return list.get(0);
-      }
 }

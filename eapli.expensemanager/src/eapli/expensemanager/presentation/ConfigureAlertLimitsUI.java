@@ -5,6 +5,7 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.ConfigureAlertLimitsController;
+import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitExpenditure;
@@ -127,8 +128,7 @@ public class ConfigureAlertLimitsUI extends BaseForm {
     
 
     private void settingLimitsExpType(AlertLimitType code, ExpenseType eT) {
-        AlertLimitByExpenseType aLD =
-                (AlertLimitByExpenseType) showCurrentAlertLimitsByExpenseType(eT);
+        AlertLimitByExpenseType aLD =showCurrentAlertLimitsByExpenseType(eT);
         if (aLD == null) {
             System.out.println("Set limits:");
             readLimitsPercent();
@@ -164,11 +164,11 @@ public class ConfigureAlertLimitsUI extends BaseForm {
       }
 
       private AlertLimitExpenditure showCurrentAlertLimitsByType(AlertLimitType alertType) {
-            AlertLimitExpenditure alertLimits = controller.findAlertLimitByType(alertType);
-            if (alertLimits != null) {
+            AlertLimit alertLimit = controller.findAlertLimitByType(alertType);
+            if (alertLimit != null) {
                   System.out.println("Current alert limits");
-                  System.out.println(alertLimits);
-                  return alertLimits;
+                  System.out.println(alertLimit);
+                  return (AlertLimitExpenditure) alertLimit;
             } else {
                   System.out.println("No alert limits set");
                   return null;
@@ -178,11 +178,11 @@ public class ConfigureAlertLimitsUI extends BaseForm {
       
       
     private AlertLimitByExpenseType showCurrentAlertLimitsByExpenseType(ExpenseType eT) {
-        AlertLimitByExpenseType alertLimits = controller.findAlertLimitByExpType(eT);
-        if (alertLimits != null) {
+        AlertLimit alertLimit = controller.findAlertLimitByExpType(eT);
+        if (alertLimit != null) {
             System.out.println("Current alert limits");
-            System.out.println(alertLimits);
-            return alertLimits;
+            System.out.println(alertLimit);
+            return (AlertLimitByExpenseType) alertLimit;
         } else {
             System.out.println("No alert limits set");
             return null;

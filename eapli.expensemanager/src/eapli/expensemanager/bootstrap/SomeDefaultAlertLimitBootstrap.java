@@ -4,7 +4,6 @@
  */
 package eapli.expensemanager.bootstrap;
 
-import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitExpenditure;
 import eapli.expensemanager.model.AlertLimitType;
@@ -36,8 +35,8 @@ public class SomeDefaultAlertLimitBootstrap {
                   for (AlertLimitType alertLimitType : types) {
                         switch (alertLimitType) {
                               case LIMITWEEKEXPENDITURE:
-                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
-                                          AlertLimitExpenditure alertLimitWeekExpenditure = new AlertLimitExpenditure(alertLimitType, LIMITWEEKYELLOW, LIMITWEEKRED);
+                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType)==null){
+                                         AlertLimitExpenditure alertLimitWeekExpenditure = new AlertLimitExpenditure(alertLimitType, LIMITWEEKYELLOW, LIMITWEEKRED);
                                           alertLimitWeekExpenditure.save();
                                     }
                                     break;
