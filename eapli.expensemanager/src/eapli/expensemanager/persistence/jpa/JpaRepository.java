@@ -27,16 +27,8 @@ import javax.persistence.Query;
 public abstract class JpaRepository<T, PK extends Serializable> {
 
     @PersistenceUnit
-    static protected EntityManagerFactory emf = Persistence.createEntityManagerFactory("eapli.expensemanagerPU");
+    static private EntityManagerFactory emf = Persistence.createEntityManagerFactory("eapli.expensemanagerPU");
     EntityManager entityManager; // = emf.createEntityManager();
-
-    protected EntityManager getEntityManager() {
-        if (entityManager == null || !entityManager.isOpen()) {
-            entityManager = emf.createEntityManager();
-        }
-        return entityManager;
-    }
-    protected Class<T> entityClass;
 
     public JpaRepository() {
         ParameterizedType genericSuperclass = (ParameterizedType) getClass()
@@ -45,9 +37,9 @@ public abstract class JpaRepository<T, PK extends Serializable> {
                 .getActualTypeArguments()[0];
     }
 
-    public T create(T t) {
-        this.getEntityManager().persist(t);
-        return t;
+    public T create(T entity) {
+        this.getEntityManager().persist(entity);
+        return entity;
     }
 
     public T read(PK id) {
@@ -59,16 +51,16 @@ public abstract class JpaRepository<T, PK extends Serializable> {
         return read(id);
     }
 
-    public T update(T t) {
-        return this.getEntityManager().merge(t);
+    public T update(T entity) {
+        return this.getEntityManager().merge(entity);
     }
 
-    public void delete(T t) {
-        t = this.getEntityManager().merge(t);
-        this.getEntityManager().remove(t);
+    public void delete(T entity) {
+        entity = this.getEntityManager().merge(entity);
+        this.getEntityManager().remove(entity);
     }
 
-    // alias to getCount();
+    // alias to getCount(); to make a more fluente interface
     public long size() {
         return getCount();
     }
@@ -96,10 +88,6 @@ public abstract class JpaRepository<T, PK extends Serializable> {
      * @param entity
      * @return the persisted entity - migth be a diferent object than the
      * parameter
-     *
-     * FAM[2013-04-29] - comentei a linha tx.rollback(); Lançava a seguinte
-     * exceção: Exception in thread "main" java.lang.IllegalStateException:
-     * Exception Description: No transaction is currently active
      */
     public T save(T entity) {
         if (entity == null) {
@@ -152,4 +140,12 @@ public abstract class JpaRepository<T, PK extends Serializable> {
         List<T> some = q.getResultList();
         return some;
     }
+
+    protected EntityManager getEntityManager() {
+        if (entityManager == null || !entityManager.isOpen()) {
+            entityManager = emf.createEntityManager();
+        }
+        return entityManager;
+    }
+    protected Class<T> entityClass;
 }

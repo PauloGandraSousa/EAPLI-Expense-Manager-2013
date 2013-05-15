@@ -18,8 +18,8 @@ import javax.persistence.Entity;
 @Entity
 public class AlertLimitExpenditure extends AlertLimit {
 
-    protected BigDecimal limitYellow;
-    protected BigDecimal limitRed;
+    private BigDecimal limitYellow;
+    private BigDecimal limitRed;
 
     public AlertLimitExpenditure() {
     }

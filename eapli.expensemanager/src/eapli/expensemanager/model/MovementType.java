@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import eapli.util.Validations;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,23 +13,22 @@ import javax.persistence.InheritanceType;
 
 /**
  * a base class for factoring out the common parts of ExpenseType and IncomeType
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class MovementType implements Serializable {
-    @Id
-    String shortName;
-    String description;
 
-    protected MovementType(){}
-    
+    @Id
+    private String shortName;
+    private String description;
+
+    protected MovementType() {
+    }
+
     public MovementType(String key, String description) {
-        if (key == null || description == null) {
-            throw new IllegalArgumentException();
-        }
-        if (key.trim().length() == 0) {
+        if (Validations.isNullOrEmpty(key) || description == null) {
             throw new IllegalArgumentException();
         }
 
@@ -43,13 +43,12 @@ public abstract class MovementType implements Serializable {
     public String getDescription() {
         return description;
     }
-     
+
     public String toXml() {
-        return "<description>" + description + "</description>" ;
-    }  
-    
-    public String toCsv() {
-        return description + "," ;
+        return "<description>" + description + "</description>";
     }
-    
+
+    public String toCsv() {
+        return description + ",";
+    }
 }

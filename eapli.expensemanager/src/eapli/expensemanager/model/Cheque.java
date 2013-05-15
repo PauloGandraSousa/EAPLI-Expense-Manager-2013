@@ -17,9 +17,9 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cheque extends PaymentMean {
 
-    String chequeBooksName;
-    String bank;
-    String accountNumber;
+    private String chequeBooksName;
+    private String bank;
+    private String accountNumber;
 
     protected Cheque() {
     }

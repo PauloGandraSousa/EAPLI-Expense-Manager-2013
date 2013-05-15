@@ -12,7 +12,7 @@ import java.util.Locale;
  *
  * @author mcn
  */
-public class AlertEvent {
+public abstract class AlertEvent {
 
     private String alertDescription;
     private BigDecimal value;
@@ -29,6 +29,5 @@ public class AlertEvent {
         NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
         double value1 = this.value.doubleValue();
         return "ALERT LEVEL:" + level + "\nDescription:" + alertDescription + "\nCurrent Value:" + n.format(value1);
-
     }
 }

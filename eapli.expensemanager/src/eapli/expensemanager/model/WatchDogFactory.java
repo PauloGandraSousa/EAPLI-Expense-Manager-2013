@@ -13,25 +13,25 @@ import java.util.Observer;
  */
 public class WatchDogFactory {
 
-      private static WatchDogFactory instance = null;
+    private static WatchDogFactory instance = null;
 
-      private WatchDogFactory() {
-      }
+    private WatchDogFactory() {
+    }
 
-      public static WatchDogFactory getInstance() {
-            if (instance == null) {
-                  instance = new WatchDogFactory();
-            }
-            return instance;
-      }
+    public static WatchDogFactory getInstance() {
+        if (instance == null) {
+            instance = new WatchDogFactory();
+        }
+        return instance;
+    }
 
-      public WatchDogLimits buildWatchDogLimits(Observer obs) {
-            WatchDogLimits watchDog = new WatchDogLimits();
-            watchDog.addObserver(obs);
-            return watchDog;
-      }
+    public WatchDogLimits buildWatchDogLimits(Observer obs) {
+        WatchDogLimits watchDog = new WatchDogLimits();
+        watchDog.addObserver(obs);
+        return watchDog;
+    }
 
-      public Observable buildWatchDogSavings(Observer obs) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
+    public Observable buildWatchDogSavings(Observer obs) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

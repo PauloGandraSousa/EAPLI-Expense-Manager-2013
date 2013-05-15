@@ -18,8 +18,10 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class InitialBalance implements Serializable {
-    // TODO why does class needs an Id?
+    // TODO should this class be an inner class of the chekcingAccount instead of
+    // a public class in the package
 
+    // TODO why does this class needs an Id?
     @Id
     @GeneratedValue
     Long id;

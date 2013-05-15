@@ -17,19 +17,18 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 
 /**
- * the base movement class.
- * to be extended for concrete movement types such as Expense or Income
- * 
+ * the base movement class. to be extended for concrete movement types such as
+ * Expense or Income
+ *
  * @author Paulo Gandra Sousa
  */
 @Entity
-// TODO check if single table inheritance is the best strategy
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Movement implements Serializable {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOcurred;
@@ -81,24 +80,23 @@ public abstract class Movement implements Serializable {
     public Date getDateOcurred() {
         return dateOcurred;
     }
-        
+
     public String toXml() {
-        return "<description>" + description + "</description>" + 
-                "<amount>" + amount + "</amount>" + 
-                "<dateOcurred>" + dateToString(dateOcurred) + "</dateOcurred>";
+        return "<description>" + description + "</description>"
+                + "<amount>" + amount + "</amount>"
+                + "<dateOcurred>" + dateToString(dateOcurred) + "</dateOcurred>";
     }
-    
+
     private String dateToString(Date date) {
         Calendar cal = DateTime.dateToCalendar(date);
         String dateString = cal.get(Calendar.DAY_OF_MONTH) + "-";
-        dateString += cal.get(Calendar.MONTH)+1 + "-";
+        dateString += cal.get(Calendar.MONTH) + 1 + "-";
         dateString += cal.get(Calendar.YEAR);
         return dateString;
     }
-    
+
     public String toCsv() {
-        return description + "," + amount + "," +
-                dateToString(dateOcurred) + ",";
+        return description + "," + amount + ","
+                + dateToString(dateOcurred) + ",";
     }
-    
 }

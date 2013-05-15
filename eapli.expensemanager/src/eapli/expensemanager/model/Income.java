@@ -18,7 +18,7 @@ import javax.persistence.CascadeType;
 public class Income extends Movement {
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    IncomeType type;
+    private IncomeType type;
 
     public Income() {
     }

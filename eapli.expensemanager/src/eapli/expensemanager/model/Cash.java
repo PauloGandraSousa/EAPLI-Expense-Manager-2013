@@ -19,7 +19,7 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cash extends PaymentMean {
 
-    String currency;
+    private String currency;
     public static final String EUR = "EUR";
 
     public Cash() {

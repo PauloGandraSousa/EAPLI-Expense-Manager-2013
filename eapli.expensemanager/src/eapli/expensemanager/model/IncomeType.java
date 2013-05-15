@@ -13,7 +13,8 @@ import javax.persistence.Entity;
 @Entity
 public class IncomeType extends MovementType {
 
-    protected IncomeType() {
+    public IncomeType() {
+        super();
     }
 
     public IncomeType(String key, String description) {

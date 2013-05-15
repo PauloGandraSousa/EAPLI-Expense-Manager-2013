@@ -4,8 +4,6 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.expensemanager.model.AlertLimit;
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.util.List;
@@ -19,7 +17,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class AlertLimitByExpenseType extends AlertLimit {
 
-    public static final int ONE_HUNDRED = 100;
+    private static final int ONE_HUNDRED = 100;
     private double percentLimitYellow;
     private double percentLimitRed;
     @OneToOne

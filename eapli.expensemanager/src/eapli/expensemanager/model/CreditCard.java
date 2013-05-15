@@ -14,25 +14,26 @@ import javax.persistence.InheritanceType;
  * @author Paulo Gandra Sousa
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class CreditCard extends Card {
 
     public CreditCard() {
     }
+
     public CreditCard(String cardName, String bank, String cardNumber, String name, Calendar validUntil) {
         super(cardName, bank, cardNumber, name, validUntil);
     }
-    
+
     @Override
     public String getDescription() {
         return "Credit Card" + cardName;
     }
-    
+
     @Override
     public String toXml() {
         return "<creditCard>" + super.toXml() + "</creditCard>";
-    }    
-    
+    }
+
     @Override
     public String toCsv() {
         return "CreditCard," + super.toCsv();

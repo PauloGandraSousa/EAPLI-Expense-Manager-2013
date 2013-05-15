@@ -40,14 +40,6 @@ public class SavingGoal implements Serializable {
     public SavingGoal() {
     }
 
-    // TODO what is the meaning of creating a goal with already an "actual savings" amount?
-    public SavingGoal(String targetDescription, BigDecimal targetAmount, BigDecimal actualsavings, Date ocurred) {
-        goal = targetDescription;
-        this.targetAmount = targetAmount;
-        this.actualSavings = actualsavings;
-        this.ocurred = ocurred;
-    }
-
     public SavingGoal(String goal, BigDecimal targetAmount) {
         this.goal = goal;
         this.targetAmount = targetAmount;

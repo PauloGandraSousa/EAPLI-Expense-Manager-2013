@@ -4,16 +4,32 @@
  */
 package eapli.expensemanager.model;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Paulo Gandra Sousa
  */
 public class InsufficientBalanceException extends Exception {
 
-    public InsufficientBalanceException() {
+    public InsufficientBalanceException(BigDecimal currentBalance, BigDecimal expectedSpend) {
+        this.currentBalance = currentBalance;
+        this.expectedSpend = expectedSpend;
     }
-    // TODO exception classes should provide aditonal inforation than the base class
-    // TODO add attributes for
-    // current balance
-    // expected spend
+    private BigDecimal currentBalance;
+    private BigDecimal expectedSpend;
+
+    /**
+     * @return the currentBalance
+     */
+    public BigDecimal getCurrentBalance() {
+        return currentBalance;
+    }
+
+    /**
+     * @return the expectedSpend
+     */
+    public BigDecimal getExpectedSpend() {
+        return expectedSpend;
+    }
 }

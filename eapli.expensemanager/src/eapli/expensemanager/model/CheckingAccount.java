@@ -102,7 +102,7 @@ public class CheckingAccount extends Observable implements Serializable {
 
     public void registerExpense(Expense expense) throws InsufficientBalanceException {
         if (!hasEnoughBalance(expense.getAmount())) {
-            throw new InsufficientBalanceException();
+            throw new InsufficientBalanceException(getBalance(), expense.getAmount());
         }
         addMovement(expense);
         classifyMovementAsExpense(expense);
@@ -115,7 +115,7 @@ public class CheckingAccount extends Observable implements Serializable {
 
     public void registerSavingDeposit(SavingDeposit savingDeposit) throws InsufficientBalanceException {
         if (!hasEnoughBalance(savingDeposit.getAmount())) {
-            throw new InsufficientBalanceException();
+            throw new InsufficientBalanceException(getBalance(), savingDeposit.getAmount());
         }
         addMovement(savingDeposit);
     }
@@ -192,7 +192,8 @@ public class CheckingAccount extends Observable implements Serializable {
     }
 
     private boolean hasEnoughBalance(BigDecimal amount) {
-        // FIX the comparison should be done from the getBalance object to the amount object
+        // TODO given the name of the method is would be more logic to make the
+        // comparison from the getBalance object to the amount object
         if (amount.compareTo(getBalance()) == 1) {
             return false;
         }
@@ -200,24 +201,31 @@ public class CheckingAccount extends Observable implements Serializable {
         return true;
     }
 
+    /**
+     * get the current balance of the account
+     *
+     * @return
+     */
     public BigDecimal getBalance() {
         BigDecimal i = new BigDecimal(0);
         if (initialBalance != null) {
             i = initialBalance.getValue();
         }
 
+        /* calculates the balance of the account.
+         * alternatively, the balance could be a persistent attribute allways up to-date
+         */
         return totalEarnings().subtract(totalExpenditure()).add(i);
     }
 
     public void registerInitialBalance(InitialBalance initial) {
-        if (initial == null || initialBalance != null) {
+        if (initial == null || hasInitialBalance()) {
             throw new IllegalArgumentException();
         }
         initialBalance = initial;
     }
 
-    // TODO should this method exist or not?
-    public boolean hasInitialBalance() {
+    private boolean hasInitialBalance() {
         return initialBalance != null;
     }
 }
