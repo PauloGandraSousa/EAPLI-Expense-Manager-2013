@@ -12,19 +12,19 @@ public enum AlertLimitType {
       /**
        * Limit week expenditure
        */
-      LIMITWEEKEXPENDITURE(1, "Alert limit of weekly expenditure"),
+      LIMIT_WEEK_EXPENDITURE(1, "Alert limit of weekly expenditure"),
       /**
        * Limit month expenditure
        */
-      LIMITMONTHEXPENDITURE(2, "Alert limit of monthly expenditure"),
+      LIMIT_MONTH_EXPENDITURE(2, "Alert limit of monthly expenditure"),
       /**
        * Limit of deviation from average by expense type
        */
-      LIMITDEVIATIONBYEXPTYPE(3, "Alert limit of deviation from average expenditure by expense type"),
+      LIMIT_DEVIATION_BY_EXPENSE_TYPE(3, "Alert limit of deviation from average expenditure by expense type"),
       /**
        * Limit of minimum balance
        */
-      LIMITMINIMUMBALANCE(4, "Alert limit of minimum balance");
+      LIMIT_MINIMUM_BALANCE(4, "Alert limit of minimum balance");
       
       /**
        * instance attributes.

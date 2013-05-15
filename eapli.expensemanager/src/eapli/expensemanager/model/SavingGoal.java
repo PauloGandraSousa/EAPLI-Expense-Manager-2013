@@ -28,11 +28,9 @@ public class SavingGoal implements Serializable {
     @GeneratedValue
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
-    
-    // TODO what is he purpose of this field? the expected date of conclusion for the goal?
+    // TODO what is the purpose of this field? the expected date of conclusion for the goal?
     // if so, the name should be more explicit
     private Date ocurred = new Date();
-    
     @OneToMany(cascade = CascadeType.ALL)
     private List<Movement> savings = new ArrayList<Movement>();
     private String goal;
@@ -53,6 +51,7 @@ public class SavingGoal implements Serializable {
     public SavingGoal(String goal, BigDecimal targetAmount) {
         this.goal = goal;
         this.targetAmount = targetAmount;
+        this.actualSavings = new BigDecimal(0);
     }
 
     public boolean registerSavingWithdraw(SavingWithdraw saving) {
@@ -78,15 +77,12 @@ public class SavingGoal implements Serializable {
         return str;
     }
 
-    
     //ajs p/ o visitor
-    public String getDescription() 
-    {
+    public String getDescription() {
         String str = goal + " Target Amount:" + targetAmount.setScale(2) + " Actual Savings:" + getActualSavings().setScale(2);
         return str;
     }
-    
-    
+
     /**
      * @return the actualSavings
      */
@@ -103,13 +99,13 @@ public class SavingGoal implements Serializable {
 
         return true;
     }
-    
+
     /**
      * check if we already have the desired target amount
-     * 
-     * @return 
+     *
+     * @return
      */
     public boolean isGoalFulfiled() {
-        return  actualSavings.compareTo(targetAmount) >= 0 ;
+        return actualSavings.compareTo(targetAmount) >= 0;
     }
 }

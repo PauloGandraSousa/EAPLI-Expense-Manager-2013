@@ -19,53 +19,55 @@ import java.util.List;
  */
 public class SomeDefaultAlertLimitBootstrap {
 
-      private final BigDecimal LIMITWEEKYELLOW = new BigDecimal(100);
-      private final BigDecimal LIMITWEEKRED = new BigDecimal(500);
-      private final BigDecimal LIMITMONTHYELLOW = new BigDecimal(600);
-      private final BigDecimal LIMITMONTHRED = new BigDecimal(2000);
-      private final double LIMITDEVIATIONYELLOW = 0.1;
-      private final double LIMITDEVIATIONRED = 0.5;
-      private final BigDecimal LIMITBALANCEYELLOW = new BigDecimal(600);
-      private final BigDecimal LIMITBALANCERED = new BigDecimal(2000);
+    private final BigDecimal LIMIT_WEEK_YELLOW = new BigDecimal(100);
+    private final BigDecimal LIMIT_WEEK_RED = new BigDecimal(500);
+    private final BigDecimal LIMIT_MONTH_YELLOW = new BigDecimal(600);
+    private final BigDecimal LIMIT_MONTH_RED = new BigDecimal(2000);
+    private final double LIMIT_DEVIATION_YELLOW = 0.1;
+    private final double LIMIT_DEVIATION_RED = 0.5;
+    private final BigDecimal LIMIT_BALANCE_YELLOW = new BigDecimal(600);
+    private final BigDecimal LIMIT_BALANCE_RED = new BigDecimal(2000);
 
-      public SomeDefaultAlertLimitBootstrap() {
-            AlertLimitType[] types = AlertLimitType.values();
-            int size = types.length;
-            if (size > 0) {
-                  for (AlertLimitType alertLimitType : types) {
-                        switch (alertLimitType) {
-                              case LIMITWEEKEXPENDITURE:
-                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType)==null){
-                                         AlertLimitExpenditure alertLimitWeekExpenditure = new AlertLimitExpenditure(alertLimitType, LIMITWEEKYELLOW, LIMITWEEKRED);
-                                          alertLimitWeekExpenditure.save();
-                                    }
-                                    break;
-                              case LIMITMONTHEXPENDITURE:
-                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
-                                          AlertLimitExpenditure alertLimitMonthExpenditure = new AlertLimitExpenditure(alertLimitType, LIMITMONTHYELLOW, LIMITMONTHRED);
-                                          alertLimitMonthExpenditure.save();
-                                    }
-                                    break;
+    public SomeDefaultAlertLimitBootstrap() {
+        AlertLimitType[] types = AlertLimitType.values();
+        if (types.length == 0) {
+            return;
+        }
 
-                              case LIMITDEVIATIONBYEXPTYPE:
-                                    ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
-                                    List<ExpenseType> list = repo.all();
-                                    AlertLimitByExpenseType alertLimitET;
-                                    for (ExpenseType eT : list) {
-                                          alertLimitET = new AlertLimitByExpenseType(alertLimitType, LIMITDEVIATIONYELLOW, LIMITDEVIATIONRED, eT);
-                                          alertLimitET.save();
-                                    }
-                                    break;
+        for (AlertLimitType alertLimitType : types) {
+            switch (alertLimitType) {
+                case LIMIT_WEEK_EXPENDITURE:
+                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
+                        AlertLimitExpenditure alertLimitWeekExpenditure = new AlertLimitExpenditure(alertLimitType, LIMIT_WEEK_YELLOW, LIMIT_WEEK_RED);
+                        alertLimitWeekExpenditure.save();
+                    }
+                    break;
 
-                              case LIMITMINIMUMBALANCE:
-                                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
-                                          AlertLimitExpenditure alertLimitMonthExpenditure = new AlertLimitExpenditure(alertLimitType, LIMITMONTHYELLOW, LIMITMONTHRED);
-                                          alertLimitMonthExpenditure.save();
+                case LIMIT_MONTH_EXPENDITURE:
+                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
+                        AlertLimitExpenditure alertLimitMonthExpenditure = new AlertLimitExpenditure(alertLimitType, LIMIT_MONTH_YELLOW, LIMIT_MONTH_RED);
+                        alertLimitMonthExpenditure.save();
+                    }
+                    break;
 
-                                    }
-                                    break;
-                        }
-                  }
+                case LIMIT_DEVIATION_BY_EXPENSE_TYPE:
+                    ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
+                    List<ExpenseType> list = repo.all();
+                    AlertLimitByExpenseType alertLimitET;
+                    for (ExpenseType eT : list) {
+                        alertLimitET = new AlertLimitByExpenseType(alertLimitType, LIMIT_DEVIATION_YELLOW, LIMIT_DEVIATION_RED, eT);
+                        alertLimitET.save();
+                    }
+                    break;
+
+                case LIMIT_MINIMUM_BALANCE:
+                    if (AlertLimitExpenditure.findByAlertType(alertLimitType) == null) {
+                        AlertLimitExpenditure alertLimitMonthExpenditure = new AlertLimitExpenditure(alertLimitType, LIMIT_MONTH_YELLOW, LIMIT_MONTH_RED);
+                        alertLimitMonthExpenditure.save();
+
+                    }
+                    break;
             }
-      }
+        }
+    }
 }

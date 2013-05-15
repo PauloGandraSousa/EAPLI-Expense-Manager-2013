@@ -55,7 +55,7 @@ public class Bootstrap {
         ensureTheAccountExists();
         ensureDefaultExpenseTypesExist();
         ensureCashEurExists();
-//        ensureSavingsPlanExists();
+        ensureSavingsPlanExists();
     }
 
     private void ensureTheAccountExists() {
@@ -68,7 +68,6 @@ public class Bootstrap {
         }
     }
 
-    // FIX this method is not called and as such the Savings Plan does not exist
     private void ensureSavingsPlanExists() {
         SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
         try {
@@ -78,7 +77,6 @@ public class Bootstrap {
             repo.save(theSavingPlan);
         }
     }
-    
     public final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
     private final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
     public final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
@@ -89,15 +87,14 @@ public class Bootstrap {
         ensureClothingExpenseTypeExists(repo);
         ensureTransportsExpenseTypeExists(repo);
     }
-    
+
     private void ensureDefaultIncomeTypesExist() {
         IncomeTypeRepository repo = PersistenceFactory.buildPersistenceFactory().incomeTypeRepository();
         ensureSalaryIncomeTypeExists(repo);
     }
-
     public static final String SALARY_INCOME_TYPE = "Sal.";
     private static final String SALARY_INCOME_TYPE_DESC = "Salary";
-    
+
     private void ensureSalaryIncomeTypeExists(IncomeTypeRepository repo) {
         IncomeType salary = repo.findForName(SALARY_INCOME_TYPE);
         if (salary == null) {

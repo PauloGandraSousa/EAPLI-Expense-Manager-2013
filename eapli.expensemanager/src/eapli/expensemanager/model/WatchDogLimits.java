@@ -32,15 +32,15 @@ public class WatchDogLimits extends Observable implements Observer {
             AlertLimitType[] types = AlertLimitType.values();
             for (AlertLimitType alertLimType : types) {
                   switch (alertLimType) {
-                        case LIMITWEEKEXPENDITURE:
-                        case LIMITMONTHEXPENDITURE:
+                        case LIMIT_WEEK_EXPENDITURE:
+                        case LIMIT_MONTH_EXPENDITURE:
                               AlertLimitExpenditure alertLimit =(AlertLimitExpenditure) AlertLimit.findByAlertType(alertLimType);
                               if (alertLimit != null) {
                                     AlertEvent alert = buildAlertEvent(alertLimit, expense);
                                     notifyObservers(alert);
                               }
                               break;
-                        case LIMITDEVIATIONBYEXPTYPE:
+                        case LIMIT_DEVIATION_BY_EXPENSE_TYPE:
                               ExpenseType eT = expense.getExpenseType();
                               AlertLimitByExpenseType alertLimitET =(AlertLimitByExpenseType) alertLimitRepo.findAlertLimitsByExpenseType(eT);
                               if (alertLimitET != null) {
@@ -48,7 +48,7 @@ public class WatchDogLimits extends Observable implements Observer {
                                     notifyObservers(alertEventByET);
                               }
                               break;
-                        case LIMITMINIMUMBALANCE:
+                        case LIMIT_MINIMUM_BALANCE:
                               AlertLimitExpenditure alertLimitBalance = (AlertLimitExpenditure)AlertLimit.findByAlertType(alertLimType);
                               if (alertLimitBalance != null) {
                                     AlertEvent alert = buildAlertBalanceEvent(alertLimitBalance, expense);

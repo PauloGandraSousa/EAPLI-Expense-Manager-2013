@@ -30,6 +30,9 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
     public boolean doShow() {
         // FIX this code is duplicated with RegisterSavingWithdrawUI
         SavingGoal savingGoal = readSavingGoal();
+        if (savingGoal == null) {
+            return true;
+        }
         readGeneralData();
         try {
             controller.registerSavingDeposit(savingGoal, date, amount, what);
@@ -55,6 +58,9 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
         widget = new SelectWidget(listSavingGoal, new SavingGoalVisitor());
         widget.show();
         int option = widget.selectedOption();
+        if (option == 0) {
+            return null;
+        }
 
         SavingGoal savingGoal = listSavingGoal.get(option - 1);
         return savingGoal;

@@ -41,17 +41,17 @@ public class ConfigureAlertLimitsUI extends BaseForm {
         while (alertType != null) {
 
             switch (alertType) {
-                case LIMITWEEKEXPENDITURE:
+                case LIMIT_WEEK_EXPENDITURE:
                     System.out.println(alertType.getDescription());
                     settingLimits(alertType);
                     break;
 
-                case LIMITMONTHEXPENDITURE:
+                case LIMIT_MONTH_EXPENDITURE:
                     System.out.println(alertType.getDescription());
                     settingLimits(alertType);
                     break;
 
-                        case LIMITDEVIATIONBYEXPTYPE:
+                        case LIMIT_DEVIATION_BY_EXPENSE_TYPE:
                               ExpenseType eT = chooseExpenseType();
                               if (eT != null) {
                                     System.out.println("Limit values as percentage in [0..1]");
@@ -59,7 +59,7 @@ public class ConfigureAlertLimitsUI extends BaseForm {
                               }
                               break;
 
-                case LIMITMINIMUMBALANCE:
+                case LIMIT_MINIMUM_BALANCE:
                     System.out.println(alertType.getDescription());
                     settingLimits(alertType);
                     break;
