@@ -27,16 +27,15 @@ public class Income extends Movement {
         super(description, dateOccurred, amount);
         this.type = type;
     }
-    
+
     @Override
     public String toXml() {
-        return "<income>" + super.toXml() + 
-                type.toXml() + "</income>";
+        return "<income>" + super.toXml()
+                + type.toXml() + "</income>";
     }
-    
+
     @Override
     public String toCsv() {
         return "Income," + super.toCsv() + type.toCsv() + ",,,,,,,,";
     }
-
 }

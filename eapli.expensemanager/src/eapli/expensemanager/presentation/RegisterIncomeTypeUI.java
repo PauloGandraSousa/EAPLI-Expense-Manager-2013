@@ -20,11 +20,10 @@ public class RegisterIncomeTypeUI extends RegisterMovementTypeBaseUI {
         controller.registerIncomeType(shortName, descr);
 
         System.out.println("\nIncome type recorded!");
-        
+
         return true;
     }
-    
-    RegisterIncomeTypeController controller = new RegisterIncomeTypeController();
+    private RegisterIncomeTypeController controller = new RegisterIncomeTypeController();
 
     @Override
     protected BaseController getController() {

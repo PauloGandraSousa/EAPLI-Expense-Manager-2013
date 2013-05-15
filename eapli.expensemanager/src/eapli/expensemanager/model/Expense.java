@@ -17,14 +17,15 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Expense extends Movement {
+
     @ManyToOne(cascade = CascadeType.MERGE)
     private ExpenseType type;
-    
     @ManyToOne(cascade = CascadeType.MERGE)
     private Payment payment;
-    
-    protected Expense() {}
-    
+
+    protected Expense() {
+    }
+
     public Expense(ExpenseType type, String description, Date dateOccurred, BigDecimal amount, Payment payment) {
         super(description, dateOccurred, amount);
         if (type == null || payment == null) {
@@ -33,7 +34,7 @@ public class Expense extends Movement {
         this.type = type;
         this.payment = payment;
     }
-    
+
     public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount, Payment payment) {
         this(type, description, DateTime.newDate(year, month, day), amount, payment);
     }
@@ -41,17 +42,17 @@ public class Expense extends Movement {
     public ExpenseType getExpenseType() {
         return type;
     }
-      
+
     @Override
     public String toXml() {
-        return "<expense>" + super.toXml() + 
-                type.toXml() +
-                payment.toXml() + "</expense>";
+        return "<expense>" + super.toXml()
+                + type.toXml()
+                + payment.toXml() + "</expense>";
     }
- 
+
     @Override
     public String toCsv() {
-        return "Expense," + super.toCsv() +
-                type.toCsv() + payment.toCsv();
+        return "Expense," + super.toCsv()
+                + type.toCsv() + payment.toCsv();
     }
 }

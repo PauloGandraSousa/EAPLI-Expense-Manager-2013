@@ -20,5 +20,4 @@ class PaymentMeanListVisitor implements Visitor<PaymentMean> {
     public void visit(PaymentMean visited) {
         System.out.println(visited.getDescription());
     }
-    
 }

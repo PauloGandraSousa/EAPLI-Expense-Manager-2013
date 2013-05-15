@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  */
 public class RegisterSavingGoalUI extends BaseForm {
 
-    RegisterSavingGoalController controller = new RegisterSavingGoalController();
+    private RegisterSavingGoalController controller = new RegisterSavingGoalController();
 
     @Override
     protected BaseController getController() {
@@ -24,14 +24,14 @@ public class RegisterSavingGoalUI extends BaseForm {
 
     @Override
     public boolean doShow() {
-        String tagetDescription = Console.readLine("Description of new Target");
+        String targetDescription = Console.readLine("Description of new Target");
         double value = Console.readDouble("Target Ammount");
         BigDecimal targetAmount = new BigDecimal(value);
-        
-        controller.registerSavingGoal(tagetDescription, targetAmount);
+
+        controller.registerSavingGoal(targetDescription, targetAmount);
 
         System.out.println("\nSaving Goal registered.");
-        
+
         return true;
     }
 

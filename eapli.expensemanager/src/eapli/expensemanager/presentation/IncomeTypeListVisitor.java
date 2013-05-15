@@ -8,15 +8,15 @@ import eapli.expensemanager.model.IncomeType;
 import eapli.framework.Visitor;
 
 /**
- * an implementation of the Visitor pattern for listing objects of type ExpenseType
- * 
+ * an implementation of the Visitor pattern for listing objects of type
+ * ExpenseType
+ *
  * @author Paulo Gandra Sousa
  */
-public class IncomeTypeListVisitor implements Visitor<IncomeType>{
+public class IncomeTypeListVisitor implements Visitor<IncomeType> {
 
     @Override
     public void visit(IncomeType visited) {
         System.out.println(visited.getDescription());
     }
-    
 }

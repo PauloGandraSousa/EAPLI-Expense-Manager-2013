@@ -90,8 +90,8 @@ public class CheckingAccount extends Observable implements Serializable {
      */
     //TODO: NMB: verificar se faz algum sentido passar para público ou se deviamos
     //criar outro método ou fazer de outra forma qualquer
-    // FIX de um ponto de vista de API desta classe não faz sentido existir este 
-    // método como public.  
+    // FIXME de um ponto de vista de API desta classe não faz sentido existir este
+    // método como public.
     public BigDecimal sumAmount(List<? extends Movement> theMovements) {
         BigDecimal sum = new BigDecimal(0);
         for (Movement e : theMovements) {
@@ -107,9 +107,9 @@ public class CheckingAccount extends Observable implements Serializable {
         addMovement(expense);
         classifyMovementAsExpense(expense);
         classifyExpense(expense);
-         // ObserverPattern   - Cria um evento e notifica Observers
+        // ObserverPattern   - Cria um evento e notifica Observers
         this.setChanged();
-        ExpenseRegisteredEvent expenseRegisteredEvent= new ExpenseRegisteredEvent(expense);
+        ExpenseRegisteredEvent expenseRegisteredEvent = new ExpenseRegisteredEvent(expense);
         this.notifyObservers(expenseRegisteredEvent);
     }
 

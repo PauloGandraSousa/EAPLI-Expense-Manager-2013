@@ -17,15 +17,17 @@ import java.util.logging.Logger;
 /**
  *
  * @author Paulo Gandra Sousa
- * 
+ *
  * based on code form Nuno Silva
  */
-public class Console {
+public /*static*/ class Console {
+
+    private Console() {
+    }
 
     static public String readLine(String prompt) {
         try {
             System.out.println(prompt);
-
             InputStreamReader converter = new InputStreamReader(System.in);
             BufferedReader in = new BufferedReader(converter);
 
@@ -40,7 +42,6 @@ public class Console {
         do {
             try {
                 String strInt = readLine(prompt);
-
                 int valor = Integer.parseInt(strInt);
 
                 return valor;
@@ -54,7 +55,6 @@ public class Console {
         do {
             try {
                 String strBool = readLine(prompt).toLowerCase();
-
                 if (strBool.equals("s") || strBool.equals("y")) {
                     return true;
                 } else if (strBool.equals("n")) {
@@ -68,22 +68,20 @@ public class Console {
 
     static public int readOption(int low, int high, int exit) {
         int option;
-        do
-        {
+        do {
             option = Console.readInteger("Introduza opção: ");
-            if (option == exit)
+            if (option == exit) {
                 break;
+            }
         } while (option < low || option > high);
         return option;
     }
-    
+
     static public Date readDate(String prompt) {
         do {
             try {
                 String strDate = readLine(prompt);
-
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-
                 Date date = df.parse(strDate);
 
                 return date;
@@ -97,9 +95,7 @@ public class Console {
         do {
             try {
                 String strDate = readLine(prompt);
-
                 SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-
                 Calendar date = DateTime.dateToCalendar(df.parse(strDate));
 
                 return date;
@@ -113,7 +109,6 @@ public class Console {
         do {
             try {
                 String input = readLine(prompt);
-
                 double valor = Double.parseDouble(input);
 
                 return valor;
@@ -126,9 +121,9 @@ public class Console {
     public static void waitForKey(String prompt) {
         System.out.println(prompt);
         try {
-        System.in.read();
-        } catch(IOException ex) {
-                Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);            
+            System.in.read();
+        } catch (IOException ex) {
+            Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

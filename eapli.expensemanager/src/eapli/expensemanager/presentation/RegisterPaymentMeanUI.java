@@ -22,7 +22,6 @@ class RegisterPaymentMeanUI extends BaseForm {
     Calendar validUntil;
     String chequeBookName;
     String accountNumber;
-    
     RegisterPaymentMeanController controller = new RegisterPaymentMeanController();
 
     @Override
@@ -32,10 +31,10 @@ class RegisterPaymentMeanUI extends BaseForm {
 
     @Override
     protected boolean doShow() {
-        
+
         // TODO consider using a menu (wth Action) for this instead of being hardcoded
         // in the UI
-        
+
         //System.out.println("1. Cash");
         System.out.println("2. Credit card");
         System.out.println("3. Debit card");

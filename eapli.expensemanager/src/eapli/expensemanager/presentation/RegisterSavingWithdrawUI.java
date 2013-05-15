@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
 
-    SelectWidget widget;
+    private SelectWidget<SavingGoal> widget;
 
     @Override
     public String headline() {
-        return "REGISTER AN SAVING WITHDRAW";
+        return "REGISTER A SAVING WITHDRAW";
     }
 
     @Override
@@ -33,7 +33,6 @@ public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
         System.out.println("\nSaving Withdraw recorded!");
         return true;
     }
-    
     RegisterSavingWithdrawController controller = new RegisterSavingWithdrawController();
 
     @Override
@@ -46,7 +45,7 @@ public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
         System.out.println("-- SAVING GOAL --");
         List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 
-        widget = new SelectWidget(listSavingGoal, new SavingGoalVisitor());
+        widget = new SelectWidget<SavingGoal>(listSavingGoal, new SavingGoalVisitor());
         widget.show();
         int option = widget.selectedOption();
 

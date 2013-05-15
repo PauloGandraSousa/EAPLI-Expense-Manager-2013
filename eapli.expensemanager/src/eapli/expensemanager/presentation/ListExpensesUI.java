@@ -16,24 +16,23 @@ import eapli.framework.presentation.ListWidget;
 class ListExpensesUI extends BaseForm {
 
     private ListExpensesController controller = new ListExpensesController();
-    
+
     @Override
     protected BaseController getController() {
         return controller;
     }
-
     ListWidget<Expense> widget;
-            
+
     @Override
     public boolean doShow() {
         widget = new ListWidget<Expense>(controller.getExpenses(), new ExpenseListVisitor());
         widget.show();
-        
+
         return true;
     }
 
     @Override
     public String headline() {
-        return "LIST EXPENSES";    
+        return "LIST EXPENSES";
     }
 }

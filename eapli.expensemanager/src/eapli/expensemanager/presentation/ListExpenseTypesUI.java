@@ -16,8 +16,8 @@ import eapli.expensemanager.model.ExpenseType;
 class ListExpenseTypesUI extends BaseForm {
 
     private ListExpenseTypesController controller = new ListExpenseTypesController();
-    ListWidget<ExpenseType> widget;
-            
+    private ListWidget<ExpenseType> widget;
+
     @Override
     protected BaseController getController() {
         return controller;
@@ -32,7 +32,6 @@ class ListExpenseTypesUI extends BaseForm {
 
     @Override
     public String headline() {
-        return "LIST EXPENSE TYPES";    
+        return "LIST EXPENSE TYPES";
     }
-
 }

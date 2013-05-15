@@ -17,5 +17,4 @@ public class ExitWithMessageAction implements Action {
         System.out.println("Bye, bye.");
         return true;
     }
-    
 }

@@ -13,11 +13,11 @@ import java.text.NumberFormat;
  * @author Paulo Gandra Sousa
  */
 public abstract class BaseForm extends BaseUI {
-    
+
     protected BaseController baseController() {
         return (BaseController) getController();
     }
-            
+
     @Override
     public boolean show() {
         drawFormTitle();
@@ -25,20 +25,20 @@ public abstract class BaseForm extends BaseUI {
         showBalances();
         drawFormBorder();
         //Console.waitForKey("Press any key.");
-        
+
         return wantsToExit;
     }
-    
+
     protected void showBalances() {
         drawFormSeparator();
         System.out.print("| expenditure - this week: ");
-        System.out.print(NumberFormat.getCurrencyInstance().format( baseController().getThisWeekExpenditure()));
+        System.out.print(NumberFormat.getCurrencyInstance().format(baseController().getThisWeekExpenditure()));
         System.out.print(" - ");
         System.out.print("this month: ");
-        System.out.print(NumberFormat.getCurrencyInstance().format( baseController().getThisMonthExpenditure()));
+        System.out.print(NumberFormat.getCurrencyInstance().format(baseController().getThisMonthExpenditure()));
         System.out.print(" | ");
         System.out.print("Balance: ");
-        System.out.print(NumberFormat.getCurrencyInstance().format( baseController().getBalance()));
+        System.out.print(NumberFormat.getCurrencyInstance().format(baseController().getBalance()));
         System.out.println(" | ");
     }
 }

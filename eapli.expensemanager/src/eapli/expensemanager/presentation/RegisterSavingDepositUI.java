@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
 
-    SelectWidget widget;
+    private SelectWidget<SavingGoal> widget;
 
     @Override
     public String headline() {
@@ -43,7 +43,7 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
         }
         return true;
     }
-    RegisterSavingDepositController controller = new RegisterSavingDepositController();
+    private RegisterSavingDepositController controller = new RegisterSavingDepositController();
 
     @Override
     protected BaseController getController() {
@@ -52,10 +52,10 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
 
     // FIX this code is duplicated with RegisterSavingWithdrawUI
     private SavingGoal readSavingGoal() {
-        System.out.println("-- SAVING GOAL --");
+        System.out.println("-- SAVING GOALS --");
         List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 
-        widget = new SelectWidget(listSavingGoal, new SavingGoalVisitor());
+        widget = new SelectWidget<SavingGoal>(listSavingGoal, new SavingGoalVisitor());
         widget.show();
         int option = widget.selectedOption();
         if (option == 0) {

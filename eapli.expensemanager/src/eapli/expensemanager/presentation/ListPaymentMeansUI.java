@@ -15,9 +15,9 @@ import eapli.expensemanager.model.PaymentMean;
  */
 class ListPaymentMeansUI extends BaseForm {
 
-    ListPaymentMeansController controller = new ListPaymentMeansController();
-    ListWidget<PaymentMean> widget;
-    
+    private ListPaymentMeansController controller = new ListPaymentMeansController();
+    private ListWidget<PaymentMean> widget;
+
     @Override
     protected BaseController getController() {
         return controller;
@@ -27,7 +27,7 @@ class ListPaymentMeansUI extends BaseForm {
     protected boolean doShow() {
         widget = new ListWidget<PaymentMean>(controller.getPaymentMeans(), new PaymentMeanListVisitor());
         widget.show();
-        
+
         return true;
     }
 
@@ -35,5 +35,4 @@ class ListPaymentMeansUI extends BaseForm {
     public String headline() {
         return "LIST PAYMENT METHODS";
     }
-    
 }

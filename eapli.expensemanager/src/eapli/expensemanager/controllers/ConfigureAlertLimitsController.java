@@ -34,7 +34,7 @@ public class ConfigureAlertLimitsController extends BaseController {
     }
 
     public AlertLimit findAlertLimitByExpType(ExpenseType eT) {
-        AlertLimit alertLimit = AlertLimitByExpenseType.findAlertLimisByExpenseTpe(eT);
+        AlertLimit alertLimit = AlertLimitByExpenseType.findAlertLimitsByExpenseType(eT);
         return alertLimit;
     }
 

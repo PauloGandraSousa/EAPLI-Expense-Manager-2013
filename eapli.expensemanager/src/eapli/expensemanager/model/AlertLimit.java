@@ -35,19 +35,16 @@ public class AlertLimit implements Serializable, ActiveRecord {
     }
 
     public AlertLimit(AlertLimitType alertType) {
-
         this.alertType = alertType;
-
     }
 
-     public int getId() {
-            return id;
-      }
+    public int getId() {
+        return id;
+    }
 
-      public AlertLimitType getAlertType() {
-            return alertType;
-      }
-    
+    public AlertLimitType getAlertType() {
+        return alertType;
+    }
 
     @Override
     public String toString() {
@@ -65,20 +62,19 @@ public class AlertLimit implements Serializable, ActiveRecord {
         return repo.findByKey(key);
     }
 
-           @Override
-      public void save() {
-          AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            repo.save(this);
-      }
-           public static  AlertLimit findByAlertType(AlertLimitType al ) {
+    @Override
+    public void save() {
+        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
+        repo.save(this);
+    }
+
+    public static AlertLimit findByAlertType(AlertLimitType al) {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
         return repo.findByAlertType(al);
     }
-           
-                  public static AlertLimit findAlertLimisByExpenseTpe(ExpenseType eT) {
+
+    public static AlertLimit findAlertLimitsByExpenseType(ExpenseType eT) {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
         return repo.findAlertLimitsByExpenseType(eT);
     }
-           
-
 }

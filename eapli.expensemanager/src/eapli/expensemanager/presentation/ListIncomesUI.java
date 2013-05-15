@@ -15,9 +15,9 @@ import eapli.framework.presentation.ListWidget;
  */
 class ListIncomesUI extends BaseForm {
 
-    ListIncomesController controller = new ListIncomesController();
-    ListWidget<Income> widget;
-    
+    private ListIncomesController controller = new ListIncomesController();
+    private ListWidget<Income> widget;
+
     @Override
     protected BaseController getController() {
         return controller;
@@ -28,7 +28,6 @@ class ListIncomesUI extends BaseForm {
         widget = new ListWidget<Income>(controller.getIncomes(), new IncomeListVisitor());
         widget.show();
 
-        
         return true;
     }
 
@@ -36,5 +35,4 @@ class ListIncomesUI extends BaseForm {
     public String headline() {
         return "LIST INCOMES";
     }
-    
 }

@@ -16,8 +16,8 @@ import eapli.expensemanager.model.IncomeType;
 class ListIncomeTypesUI extends BaseForm {
 
     private ListIncomeTypesController controller = new ListIncomeTypesController();
-    ListWidget<IncomeType> widget;
-    
+    private ListWidget<IncomeType> widget;
+
     @Override
     protected BaseController getController() {
         return controller;
@@ -27,12 +27,12 @@ class ListIncomeTypesUI extends BaseForm {
     public boolean doShow() {
         widget = new ListWidget<IncomeType>(controller.getIncomeTypes(), new IncomeTypeListVisitor());
         widget.show();
-        
+
         return true;
     }
 
     @Override
     public String headline() {
-        return "LIST INCOME TYPES";    
+        return "LIST INCOME TYPES";
     }
 }

@@ -12,8 +12,8 @@ import eapli.util.Console;
  */
 public abstract class RegisterMovementTypeBaseUI extends BaseForm {
 
-    String shortName;
-    String descr;
+    protected String shortName;
+    protected String descr;
 
     protected void readGeneralData() {
         shortName = Console.readLine("Short name:");

@@ -13,14 +13,10 @@ import eapli.framework.Visitor;
  */
 class ExpenseListVisitor implements Visitor<Expense> {
 
-    public ExpenseListVisitor() {
-    }
-
     @Override
     public void visit(Expense visited) {
-            System.out.print(visited.getDateOcurred() + " ");
-            System.out.print(visited.getAmount() + " ");
-            System.out.println(visited.getDescription());
+        System.out.print(visited.getDateOcurred() + " ");
+        System.out.print(visited.getAmount() + " ");
+        System.out.println(visited.getDescription());
     }
-    
 }

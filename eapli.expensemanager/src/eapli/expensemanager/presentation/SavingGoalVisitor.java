@@ -4,7 +4,6 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.SavingGoal;
 import eapli.framework.Visitor;
 
@@ -12,12 +11,10 @@ import eapli.framework.Visitor;
  *
  * @author AJS
  */
-public class SavingGoalVisitor implements Visitor<SavingGoal>{
+public class SavingGoalVisitor implements Visitor<SavingGoal> {
 
     @Override
-    public void visit(SavingGoal visited) 
-    {
+    public void visit(SavingGoal visited) {
         System.out.println(visited.getDescription());
     }
-    
 }

@@ -14,22 +14,21 @@ import java.util.Locale;
  */
 public class AlertEvent {
 
-      private String alertDescription;
-      private BigDecimal value;
-      private String level;
+    private String alertDescription;
+    private BigDecimal value;
+    private String level;
 
+    public AlertEvent(String alertDescription, BigDecimal value, String level) {
+        this.alertDescription = alertDescription;
+        this.level = level;
+        this.value = value;
+    }
 
-      public AlertEvent(String alertDescription,  BigDecimal value, String level) {
-            this.alertDescription = alertDescription;
-            this.level=level;
-            this.value=value;
-      }
+    @Override
+    public String toString() {
+        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+        double value1 = this.value.doubleValue();
+        return "ALERT LEVEL:" + level + "\nDescription:" + alertDescription + "\nCurrent Value:" + n.format(value1);
 
-      @Override
-      public String toString() {
-            NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
-            double value1 = this.value.doubleValue();
-            return   "ALERT LEVEL:" + level +"\nDescription:" +alertDescription + "\nCurrent Value:" + n.format(value1);
-
-      }
+    }
 }

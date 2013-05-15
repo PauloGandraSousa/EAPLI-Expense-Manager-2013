@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 class RegisterExpenseUI extends RegisterMovementBaseUI implements Observer {
 
-    SelectWidget<ExpenseType> expenseTypesSelectWidget;
+    private SelectWidget<ExpenseType> expenseTypesSelectWidget;
 
     @Override
     public String headline() {
@@ -38,9 +38,15 @@ class RegisterExpenseUI extends RegisterMovementBaseUI implements Observer {
         readGeneralData();
 
         ExpenseType expenseType = readExpenseType();
+        if (expenseType == null) {
+            return true;
+        }
 
         // TODO should the UI create a Payment object?
         Payment method = readPaymentMean();
+        if (method == null) {
+            return true;
+        }
 
         // Delegate in controller my register as Observador Limits in this process
         controller.addObserverRegisterExpense(this);
@@ -66,7 +72,9 @@ class RegisterExpenseUI extends RegisterMovementBaseUI implements Observer {
         expenseTypesSelectWidget = new SelectWidget<ExpenseType>(listExpenseTypes, new ExpenseTypeListVisitor());
         expenseTypesSelectWidget.show();
         int option = expenseTypesSelectWidget.selectedOption();
-
+        if (option == 0) {
+            return null;
+        }
         ExpenseType expenseType = listExpenseTypes.get(option - 1);
         return expenseType;
     }
@@ -81,6 +89,9 @@ class RegisterExpenseUI extends RegisterMovementBaseUI implements Observer {
             position++;
         }
         int option = Console.readOption(1, paymentMeans.size(), 0);
+        if (option == 0) {
+            return null;
+        }
         PaymentMean method = paymentMeans.get(option - 1);
 
         // TODO should the UI ask for a Payment object or call different 
