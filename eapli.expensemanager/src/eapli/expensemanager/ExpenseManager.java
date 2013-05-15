@@ -12,12 +12,17 @@ import eapli.expensemanager.presentation.MainMenu;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseManager {
+public final class ExpenseManager {
+
+    private ExpenseManager() {
+    }
 
     /**
      * @param args the command line arguments
@@ -39,8 +44,10 @@ public class ExpenseManager {
     }
 
     private static void loadProperties() {
+        FileInputStream propertiesStream = null;
         try {
-            applicationProperties.load(new FileInputStream("./src/eapli/expensemanager/expensemanager.properties"));
+            propertiesStream = new FileInputStream("./src/eapli/expensemanager/expensemanager.properties");
+            applicationProperties.load(propertiesStream);
 
             //load a properties file from class path, inside static method
 //            ClassLoader loader = ExpenseManager.class.getClassLoader();
@@ -53,16 +60,24 @@ public class ExpenseManager {
             //default values
             applicationProperties.setProperty("persistence.repositoryFactory", "eapli.expensemanager.persistence.JpaRepositoryFactory");
 
-            ex.printStackTrace();
+            Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (propertiesStream != null) {
+                try {
+                    propertiesStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }
 
     private static void doBootstrap() {
-        Bootstrap referenceDataBootstrap = new Bootstrap();
+        Bootstrap referenceData = new Bootstrap();
 
-        SomeIncomesBootstrap sampleIncomesBootstrap = new SomeIncomesBootstrap();
+        SomeIncomesBootstrap sampleIncomes = new SomeIncomesBootstrap();
 
-        SomeExpensesBootstrap sampleExpensesBootstrap = new SomeExpensesBootstrap();
+        SomeExpensesBootstrap sampleExpenses = new SomeExpensesBootstrap();
 
         SomeDefaultAlertLimitBootstrap defaultAlertLimits = new SomeDefaultAlertLimitBootstrap();
     }

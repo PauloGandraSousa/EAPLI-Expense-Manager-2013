@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.persistence.factory;
+package eapli.expensemanager.persistence.jpa;
 
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.CheckingAccountRepository;

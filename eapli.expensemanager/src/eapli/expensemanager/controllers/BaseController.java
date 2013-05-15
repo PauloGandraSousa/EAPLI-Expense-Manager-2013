@@ -57,7 +57,6 @@ public abstract class BaseController implements Controller {
         return repo.expenditureOfMonth(DateTime.currentYear(), DateTime.currentMonth());
     }
 
-    //By Rocha in 08/05/2013
     public BigDecimal getBalance() {
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();

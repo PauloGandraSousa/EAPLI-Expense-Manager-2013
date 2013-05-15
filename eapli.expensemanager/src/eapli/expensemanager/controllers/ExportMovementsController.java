@@ -25,6 +25,7 @@ public class ExportMovementsController extends BaseController {
         // FIX CSV/XML export : consider using the builder and visitor pattern together with a strategy
         String xml = "<movements>";
         for (int i = 0; i < listMovements.size(); i++) {
+            // FIX dont use += with strings specially in a for loop
             xml += listMovements.get(i).toXml() + "\n";
         }
         xml += "</movements>";
@@ -38,6 +39,7 @@ public class ExportMovementsController extends BaseController {
         // FIX CSV/XML export : consider using the builder and visitr pattern together with a strategy
         String csv = "";
         for (int i = 0; i < listMovements.size(); i++) {
+            // FIX dont use += with strings specially in a for loop
             csv += listMovements.get(i).toCsv() + "\n";
         }
         return csv;

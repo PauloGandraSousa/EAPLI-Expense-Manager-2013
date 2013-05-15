@@ -18,8 +18,8 @@ import java.util.List;
  * @author mcn
  */
 public class ConfigureAlertLimitsController extends BaseController {
-      
-      public AlertLimitType[] getAlertLimitTypes() {
+
+    public AlertLimitType[] getAlertLimitTypes() {
         return AlertLimitType.values();
     }
 
@@ -29,8 +29,8 @@ public class ConfigureAlertLimitsController extends BaseController {
 
     public AlertLimit findAlertLimitByType(AlertLimitType aLertType) {
         AlertLimit alertLimit = AlertLimit.findByAlertType(aLertType);
-       return alertLimit;
-        
+        return alertLimit;
+
     }
 
     public AlertLimit findAlertLimitByExpType(ExpenseType eT) {
@@ -45,7 +45,6 @@ public class ConfigureAlertLimitsController extends BaseController {
     public void registerAlertLimitByExpenseType(AlertLimitType alertType, double yellowLimit, double redLimit, ExpenseType eT) {
         new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT).save();
     }
-    
 
     public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red) {
         alertLimitExpenditure.updateLimits(yellow, red);
