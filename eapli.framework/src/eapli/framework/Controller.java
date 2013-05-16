@@ -6,9 +6,8 @@ package eapli.framework;
 
 /**
  * the base controller class for all controllers
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 public interface Controller {
-   
 }

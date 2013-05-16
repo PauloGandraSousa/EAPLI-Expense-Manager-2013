@@ -12,9 +12,9 @@ import eapli.framework.Action;
  */
 public class ShowUiAction implements Action {
 
-    BaseUI ui;
+    AbstractUI ui;
     
-    public ShowUiAction(BaseUI ui) {
+    public ShowUiAction(AbstractUI ui) {
         this.ui = ui;
     }
     

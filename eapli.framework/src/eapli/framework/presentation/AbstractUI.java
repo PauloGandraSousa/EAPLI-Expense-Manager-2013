@@ -10,7 +10,7 @@ import eapli.framework.Controller;
  *
  * @author Paulo Gandra Sousa
  */
-public abstract class BaseUI {
+public abstract class AbstractUI {
 
     public static final String SEPARATOR = "+---------------------------------------------------------------------------------+";
     public static final String BORDER = "+=================================================================================+";
