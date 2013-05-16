@@ -13,7 +13,7 @@ import eapli.expensemanager.model.IncomeType;
  *
  * @author Paulo Gandra Sousa
  */
-class ListIncomeTypesUI extends BaseForm {
+class ListIncomeTypesUI extends BaseUI {
 
     private ListIncomeTypesController controller = new ListIncomeTypesController();
     private ListWidget<IncomeType> widget;

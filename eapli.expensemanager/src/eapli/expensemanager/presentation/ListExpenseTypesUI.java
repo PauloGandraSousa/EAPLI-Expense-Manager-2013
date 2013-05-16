@@ -13,7 +13,7 @@ import eapli.expensemanager.model.ExpenseType;
  *
  * @author Paulo Gandra Sousa
  */
-class ListExpenseTypesUI extends BaseForm {
+class ListExpenseTypesUI extends BaseUI {
 
     private ListExpenseTypesController controller = new ListExpenseTypesController();
     private ListWidget<ExpenseType> widget;

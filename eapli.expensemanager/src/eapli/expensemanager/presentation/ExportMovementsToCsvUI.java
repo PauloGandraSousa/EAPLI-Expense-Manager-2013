@@ -3,7 +3,7 @@ package eapli.expensemanager.presentation;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ExportMovementsController;
 
-public class ExportMovementsToCsvUI extends BaseForm {
+public class ExportMovementsToCsvUI extends BaseUI {
 
     private ExportMovementsController controller = new ExportMovementsController();
 

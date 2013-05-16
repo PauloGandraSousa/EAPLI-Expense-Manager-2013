@@ -10,7 +10,7 @@ import eapli.util.Console;
  *
  * @author Paulo Gandra Sousa
  */
-public abstract class RegisterMovementTypeBaseUI extends BaseForm {
+public abstract class RegisterMovementTypeBaseUI extends BaseUI {
 
     protected String shortName;
     protected String descr;

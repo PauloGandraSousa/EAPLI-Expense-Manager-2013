@@ -11,7 +11,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-public class ExportMovementsToXmlUI extends BaseForm {
+public class ExportMovementsToXmlUI extends BaseUI {
 
     private ExportMovementsController controller = new ExportMovementsController();
 

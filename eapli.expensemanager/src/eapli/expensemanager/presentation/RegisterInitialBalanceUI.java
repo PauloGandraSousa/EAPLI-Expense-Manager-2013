@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * @author arocha
  */
-public class RegisterInitialBalanceUI extends BaseForm {
+public class RegisterInitialBalanceUI extends BaseUI {
 
     @Override
     public boolean doShow() {

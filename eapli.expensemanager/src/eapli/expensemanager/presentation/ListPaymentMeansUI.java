@@ -13,7 +13,7 @@ import eapli.expensemanager.model.PaymentMean;
  *
  * @author Paulo Gandra Sousa
  */
-class ListPaymentMeansUI extends BaseForm {
+class ListPaymentMeansUI extends BaseUI {
 
     private ListPaymentMeansController controller = new ListPaymentMeansController();
     private ListWidget<PaymentMean> widget;

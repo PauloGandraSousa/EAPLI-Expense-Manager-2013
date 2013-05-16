@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  *
  * @author losa
  */
-public class RegisterSavingGoalUI extends BaseForm {
+public class RegisterSavingGoalUI extends BaseUI {
 
     private RegisterSavingGoalController controller = new RegisterSavingGoalController();
 

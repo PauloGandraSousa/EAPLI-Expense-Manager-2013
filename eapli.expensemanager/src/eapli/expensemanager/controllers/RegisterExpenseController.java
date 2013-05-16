@@ -16,7 +16,7 @@ import eapli.expensemanager.model.WatchDogLimits;
 import eapli.expensemanager.model.WatchDogFactory;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
-import eapli.expensemanager.presentation.BaseForm;
+import eapli.expensemanager.presentation.BaseUI;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

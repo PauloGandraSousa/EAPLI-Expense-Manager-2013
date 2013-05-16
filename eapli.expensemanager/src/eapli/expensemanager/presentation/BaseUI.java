@@ -12,7 +12,7 @@ import java.text.NumberFormat;
  *
  * @author Paulo Gandra Sousa
  */
-public abstract class BaseForm extends BaseUI {
+public abstract class BaseUI extends AbstractUI {
 
     protected BaseController baseController() {
         return (BaseController) getController();

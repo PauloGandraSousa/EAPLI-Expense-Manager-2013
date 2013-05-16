@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Paulo Gandra Sousa
  */
-public abstract class RegisterMovementBaseUI extends BaseForm {
+public abstract class RegisterMovementBaseUI extends BaseUI {
 
     String what;
     Date date;

@@ -13,7 +13,7 @@ import java.util.Calendar;
  *
  * @author Paulo Gandra Sousa
  */
-class RegisterPaymentMeanUI extends BaseForm {
+class RegisterPaymentMeanUI extends BaseUI {
 
     String cardName;
     String bank;

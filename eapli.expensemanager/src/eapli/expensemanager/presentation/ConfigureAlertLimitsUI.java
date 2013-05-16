@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author mcn
  */
-public class ConfigureAlertLimitsUI extends BaseForm {
+public class ConfigureAlertLimitsUI extends BaseUI {
 
     private double redLimit;
     private double yellowLimit;
@@ -26,7 +26,7 @@ public class ConfigureAlertLimitsUI extends BaseForm {
 
     @Override
     public String headline() {
-        return "SETTING ALERT LIMITS";
+        return "SET ALERT LIMITS";
     }
 
     @Override

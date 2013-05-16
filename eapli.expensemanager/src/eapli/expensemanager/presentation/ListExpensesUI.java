@@ -13,7 +13,7 @@ import eapli.framework.presentation.ListWidget;
  *
  * @author Paulo Gandra Sousa
  */
-class ListExpensesUI extends BaseForm {
+class ListExpensesUI extends BaseUI {
 
     private ListExpensesController controller = new ListExpensesController();
 

@@ -5,7 +5,7 @@
 package eapli.expensemanager.presentation;
 
 import eapli.framework.ReturnAction;
-import eapli.framework.presentation.BaseUI;
+import eapli.framework.presentation.AbstractUI;
 import eapli.framework.Action;
 import eapli.framework.Controller;
 import eapli.framework.presentation.Menu;
@@ -19,7 +19,7 @@ import eapli.util.Console;
  *
  * @author Paulo Gandra Sousa
  */
-public class MainMenu extends BaseUI {
+public class MainMenu extends AbstractUI {
 
     final int EXIT_OPTION = 0;
     final int REGISTER_EXPENSE_OPTION = 1;
