@@ -11,26 +11,56 @@ import java.math.RoundingMode;
  *
  * @author Paulo Gandra Sousa
  */
-public class Math {
+public final class Math {
+
+    private Math() {
+    }
+
     /**
      * determines if a number is odd
-     * 
+     *
      * @param i
-     * @return 
+     * @return
      */
-    public static boolean isOdd(int i) { return i % 2 != 0; }
-    
-    public static boolean isEven(int i) { return i % 2 == 0; }
-    
-    public static int addOne(int n) { return n+1; }
-    
-    public static int subtractOne ( int i)
-    {
-        return i-1;
-        
+    public static boolean isOdd(int i) {
+        return i % 2 != 0;
     }
-    
-        /**
+
+    public static boolean isEven(int i) {
+        return i % 2 == 0;
+    }
+
+    public static int addOne(int n) {
+        return n + 1;
+    }
+
+    public static int subtractOne(int i) {
+        return i - 1;
+
+    }
+
+    /**
+     * checks whether an int is prime or not.
+     * http://www.mkyong.com/java/how-to-determine-a-prime-number-in-java/
+     *
+     * @param n
+     * @return
+     */
+    public static boolean isPrime(int n) {
+        //check if n is a multiple of 2
+        if (n % 2 == 0) {
+            return false;
+        }
+        //if not, then just check the odds
+        for (int i = 3; i * i <= n; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Permite efectuar a conversão de um valor para outra escala
      *
      * @param oldMin - exemplo 0
