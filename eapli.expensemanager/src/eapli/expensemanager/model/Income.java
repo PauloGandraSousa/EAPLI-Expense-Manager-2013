@@ -17,7 +17,11 @@ import javax.persistence.CascadeType;
 @Entity
 public class Income extends Movement {
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@ManyToOne(cascade = CascadeType.MERGE)
     private IncomeType type;
 
     public Income() {

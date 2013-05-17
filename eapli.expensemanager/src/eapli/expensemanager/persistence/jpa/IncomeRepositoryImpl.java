@@ -8,10 +8,10 @@ import eapli.expensemanager.model.Income;
 import eapli.expensemanager.persistence.IncomeRepository;
 
 /**
- *
+ * 
  * @author Paulo Gandra Sousa
  */
-public class IncomeRepositoryImpl extends JpaRepository<Income, Long> implements IncomeRepository {
+public class IncomeRepositoryImpl extends JpaRepository<Income, Long> implements
+		IncomeRepository {
 
-    
 }

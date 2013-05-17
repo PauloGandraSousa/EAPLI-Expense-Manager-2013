@@ -17,7 +17,12 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class DebitCard extends Card {
 
-    public DebitCard() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DebitCard() {
     }
 
     public DebitCard(String cardName, String bank, String cardNumber, String name, Calendar validUntil) {

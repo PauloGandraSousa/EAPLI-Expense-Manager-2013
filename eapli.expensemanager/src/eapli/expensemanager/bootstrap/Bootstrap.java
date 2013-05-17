@@ -44,7 +44,7 @@ public class Bootstrap {
 
     private void ensureCashEurExists() {
         try {
-            Cash cashEur = Cash.loadEUR();
+            Cash.loadEUR();
         } catch (NoResultException ex) {
             Cash cashEur = new Cash(Cash.EUR);
             cashEur.save();
@@ -54,6 +54,7 @@ public class Bootstrap {
     public Bootstrap() {
         ensureTheAccountExists();
         ensureDefaultExpenseTypesExist();
+        ensureDefaultIncomeTypesExist();
         ensureCashEurExists();
         ensureSavingsPlanExists();
     }
@@ -61,7 +62,7 @@ public class Bootstrap {
     private void ensureTheAccountExists() {
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         try {
-            CheckingAccount theAccount = repo.theAccount();
+            repo.theAccount();
         } catch (IllegalStateException ex) {
             CheckingAccount theAccount = new CheckingAccount();
             repo.save(theAccount);
@@ -71,7 +72,7 @@ public class Bootstrap {
     private void ensureSavingsPlanExists() {
         SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
         try {
-            SavingPlan theSavingPlan = repo.theSavingPlan();
+            repo.theSavingPlan();
         } catch (IllegalStateException ex) {
             SavingPlan theSavingPlan = new SavingPlan(new Date());
             repo.save(theSavingPlan);

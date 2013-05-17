@@ -16,7 +16,12 @@ import javax.persistence.Entity;
 @Entity
 public class SavingDeposit extends Movement {
 
-    protected SavingDeposit() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected SavingDeposit() {
     }
 
     public SavingDeposit(String description, Date dateOccurred, BigDecimal amount) {

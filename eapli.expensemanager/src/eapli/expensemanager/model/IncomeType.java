@@ -13,7 +13,12 @@ import javax.persistence.Entity;
 @Entity
 public class IncomeType extends MovementType {
 
-    public IncomeType() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public IncomeType() {
         super();
     }
 

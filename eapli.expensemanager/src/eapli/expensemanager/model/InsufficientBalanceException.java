@@ -12,7 +12,12 @@ import java.math.BigDecimal;
  */
 public class InsufficientBalanceException extends Exception {
 
-    public InsufficientBalanceException(BigDecimal currentBalance, BigDecimal expectedSpend) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public InsufficientBalanceException(BigDecimal currentBalance, BigDecimal expectedSpend) {
         this.currentBalance = currentBalance;
         this.expectedSpend = expectedSpend;
     }

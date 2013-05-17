@@ -6,7 +6,6 @@ package eapli.expensemanager.model;
 
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -17,7 +16,11 @@ import javax.persistence.OneToOne;
 @Entity
 public class AlertLimitByExpenseType extends AlertLimit {
 
-    private static final int ONE_HUNDRED = 100;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int ONE_HUNDRED = 100;
     private double percentLimitYellow;
     private double percentLimitRed;
     @OneToOne

@@ -73,12 +73,12 @@ public final class ExpenseManager {
     }
 
     private static void doBootstrap() {
-        Bootstrap referenceData = new Bootstrap();
+        new Bootstrap();
 
-        SomeIncomesBootstrap sampleIncomes = new SomeIncomesBootstrap();
+        new SomeIncomesBootstrap();
 
-        SomeExpensesBootstrap sampleExpenses = new SomeExpensesBootstrap();
+        new SomeExpensesBootstrap();
 
-        SomeDefaultAlertLimitBootstrap defaultAlertLimits = new SomeDefaultAlertLimitBootstrap();
+        new SomeDefaultAlertLimitBootstrap();
     }
 }

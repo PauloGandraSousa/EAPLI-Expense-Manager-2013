@@ -16,62 +16,63 @@ import eapli.expensemanager.model.WatchDogLimits;
 import eapli.expensemanager.model.WatchDogFactory;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
-import eapli.expensemanager.presentation.BaseUI;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Observer;
 
 /**
- *
+ * 
  * @author Paulo Gandra Sousa
  */
 public class RegisterExpenseController extends BaseController {
 
-      WatchDogLimits watchDog;
-      
-    public RegisterExpenseController() {
-          
-    }
+	WatchDogLimits watchDog;
 
-    public Payment createPayment(PaymentMean mean) {
-        Payment payment = new Payment(mean);
-        return payment;
-    }
+	public RegisterExpenseController() {
+	}
 
-    public ChequePayment createChequePayment(Cheque mean, String checkNumber) {
-        ChequePayment payment = new ChequePayment(mean, checkNumber);
-        return payment;
-    }
+	public Payment createPayment(PaymentMean mean) {
+		Payment payment = new Payment(mean);
+		return payment;
+	}
 
-    public void registerExpense(String what, Date date, BigDecimal amount, ExpenseType expenseType, Payment payment) throws InsufficientBalanceException {
-        Expense expense = new Expense(expenseType, what, date, amount, payment);
-        //ExpenseRepository repo = PersistenceRegistry.instance().expenseRepository();
-        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
-        CheckingAccount account = repo.theAccount();
-         // OBSERVER PATTERN: Register WatchDogLimits as account observer 
-        account.addObserver(watchDog);
-        account.registerExpense(expense);
-        repo.save(account);
-    }
+	public ChequePayment createChequePayment(Cheque mean, String checkNumber) {
+		ChequePayment payment = new ChequePayment(mean, checkNumber);
+		return payment;
+	}
 
-    public List<ExpenseType> getExpenseTypes() {
-        // use the existing controller to avoid duplication
-        ListExpenseTypesController listExpenseTypesController = new ListExpenseTypesController();
-        return listExpenseTypesController.getExpenseTypes();
-    }
+	public void registerExpense(String what, Date date, BigDecimal amount,
+			ExpenseType expenseType, Payment payment)
+			throws InsufficientBalanceException {
+		Expense expense = new Expense(expenseType, what, date, amount, payment);
+		// ExpenseRepository repo =
+		// PersistenceRegistry.instance().expenseRepository();
+		CheckingAccountRepository repo = PersistenceFactory
+				.buildPersistenceFactory().checkingAccountRepository();
+		CheckingAccount account = repo.theAccount();
+		// OBSERVER PATTERN: Register WatchDogLimits as account observer
+		account.addObserver(watchDog);
+		account.registerExpense(expense);
+		repo.save(account);
+	}
 
-    public List<PaymentMean> getPaymentMeans() {
-        ListPaymentMeansController listPaymentMeansController = new ListPaymentMeansController();
-        return listPaymentMeansController.getPaymentMeans();
-    }
-    
-    // OBSERVER pattern : Delegate in ObserverFactory to register UI as observer
-    public void addObserverRegisterExpense(Observer ui){
+	public List<ExpenseType> getExpenseTypes() {
+		// use the existing controller to avoid duplication
+		ListExpenseTypesController listExpenseTypesController = new ListExpenseTypesController();
+		return listExpenseTypesController.getExpenseTypes();
+	}
 
-        watchDog=WatchDogFactory.getInstance().buildWatchDogLimits(ui);
-          
-    }
+	public List<PaymentMean> getPaymentMeans() {
+		ListPaymentMeansController listPaymentMeansController = new ListPaymentMeansController();
+		return listPaymentMeansController.getPaymentMeans();
+	}
 
-    
+	// OBSERVER pattern : Delegate in ObserverFactory to register UI as observer
+	public void addObserverRegisterExpense(Observer ui) {
+
+		watchDog = WatchDogFactory.getInstance().buildWatchDogLimits(ui);
+
+	}
+
 }

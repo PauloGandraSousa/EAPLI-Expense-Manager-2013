@@ -18,7 +18,11 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Expense extends Movement {
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@ManyToOne(cascade = CascadeType.MERGE)
     private ExpenseType type;
     @ManyToOne(cascade = CascadeType.MERGE)
     private Payment payment;

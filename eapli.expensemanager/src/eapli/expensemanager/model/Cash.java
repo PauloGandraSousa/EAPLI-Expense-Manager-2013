@@ -6,7 +6,6 @@ package eapli.expensemanager.model;
 
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,7 +18,11 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cash extends PaymentMean {
 
-    private String currency;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String currency;
     public static final String EUR = "EUR";
 
     public Cash() {

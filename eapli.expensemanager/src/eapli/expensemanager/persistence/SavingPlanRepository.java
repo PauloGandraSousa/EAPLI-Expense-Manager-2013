@@ -12,7 +12,7 @@ import eapli.expensemanager.model.SavingPlan;
  */
 public interface SavingPlanRepository {
 
-    public SavingPlan theSavingPlan();
+    SavingPlan theSavingPlan();
 
-    public SavingPlan save(SavingPlan savingPlan);
+    SavingPlan save(SavingPlan savingPlan);
 }

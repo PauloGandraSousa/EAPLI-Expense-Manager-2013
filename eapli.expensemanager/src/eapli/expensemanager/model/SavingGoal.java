@@ -24,7 +24,11 @@ import javax.persistence.Temporal;
 @Entity
 public class SavingGoal implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)

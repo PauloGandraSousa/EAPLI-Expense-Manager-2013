@@ -14,8 +14,8 @@ import java.util.List;
 public interface IncomeTypeRepository {
 
     IncomeType save(IncomeType incomeType);
-    
+
     IncomeType findForName(String shortDescription);
 
-    public List<IncomeType> all();
+    List<IncomeType> all();
 }

@@ -17,7 +17,11 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cheque extends PaymentMean {
 
-    private String chequeBooksName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String chequeBooksName;
     private String bank;
     private String accountNumber;
 

@@ -19,7 +19,11 @@ import javax.persistence.Temporal;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Card extends PaymentMean {
 
-    String cardName;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String cardName;
     String bank;
     String cardNumber;
     String nameOnCard;

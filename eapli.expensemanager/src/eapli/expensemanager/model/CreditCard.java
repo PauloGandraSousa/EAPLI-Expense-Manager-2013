@@ -17,7 +17,12 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class CreditCard extends Card {
 
-    public CreditCard() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public CreditCard() {
     }
 
     public CreditCard(String cardName, String bank, String cardNumber, String name, Calendar validUntil) {

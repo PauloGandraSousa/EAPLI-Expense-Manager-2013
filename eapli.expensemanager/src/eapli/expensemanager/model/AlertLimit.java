@@ -25,7 +25,11 @@ import javax.persistence.Inheritance;
 @Inheritance
 public class AlertLimit implements Serializable, ActiveRecord {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
     @Enumerated(EnumType.STRING)

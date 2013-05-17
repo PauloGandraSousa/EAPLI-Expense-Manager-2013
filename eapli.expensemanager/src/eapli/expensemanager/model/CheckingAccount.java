@@ -29,7 +29,11 @@ import javax.persistence.Transient;
 @Entity
 public class CheckingAccount extends Observable implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue
     private Long id;
     //private String owner;

@@ -17,20 +17,20 @@ import java.util.List;
  */
 public interface AlertLimitRepository {
 
-      List<AlertLimit> all();
-      
-      AlertLimit save(AlertLimit  alertLimit);
+    List<AlertLimit> all();
+
+    AlertLimit save(AlertLimit alertLimit);
 
     // TODO does it make sense for this API to have save() and update()
-       AlertLimitExpenditure update(AlertLimitExpenditure a);
+    AlertLimitExpenditure update(AlertLimitExpenditure a);
 
-      AlertLimitByExpenseType update( AlertLimitByExpenseType a);
+    AlertLimitByExpenseType update(AlertLimitByExpenseType a);
     //  void update(AlertLimit al);
-     
-      AlertLimit findByKey(int i);
 
-      //List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
-AlertLimit findByAlertType(AlertLimitType a);
+    AlertLimit findByKey(int i);
 
-   AlertLimit findAlertLimitsByExpenseType(ExpenseType eT);
+    //List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
+    AlertLimit findByAlertType(AlertLimitType a);
+
+    AlertLimit findAlertLimitsByExpenseType(ExpenseType eT);
 }

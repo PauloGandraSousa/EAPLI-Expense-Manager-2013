@@ -18,7 +18,11 @@ import javax.persistence.Entity;
 @Entity
 public class AlertLimitExpenditure extends AlertLimit {
 
-    private BigDecimal limitYellow;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private BigDecimal limitYellow;
     private BigDecimal limitRed;
 
     public AlertLimitExpenditure() {

@@ -5,7 +5,6 @@
 package eapli.expensemanager.model;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 /**
  *
@@ -14,7 +13,12 @@ import javax.persistence.Id;
 @Entity
 public class ExpenseType extends MovementType {
 
-    protected ExpenseType() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected ExpenseType() {
     }
 
     public ExpenseType(String key, String description) {

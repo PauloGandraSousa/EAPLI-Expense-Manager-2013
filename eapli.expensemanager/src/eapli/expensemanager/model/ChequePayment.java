@@ -4,7 +4,6 @@
  */
 package eapli.expensemanager.model;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -17,7 +16,11 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class ChequePayment extends Payment {
 
-    private String chequeNumber;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String chequeNumber;
 
     public ChequePayment() {
     }

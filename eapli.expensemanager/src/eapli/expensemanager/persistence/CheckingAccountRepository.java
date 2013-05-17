@@ -18,7 +18,7 @@ public interface CheckingAccountRepository {
      *
      * @return the one and only account
      */
-    public CheckingAccount theAccount();
+    CheckingAccount theAccount();
 
-    public CheckingAccount save(CheckingAccount account);
+    CheckingAccount save(CheckingAccount account);
 }

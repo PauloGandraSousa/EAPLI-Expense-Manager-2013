@@ -21,7 +21,11 @@ public class InitialBalance implements Serializable {
     // TODO should this class be an inner class of the chekcingAccount instead of
     // a public class in the package
 
-    // TODO why does this class needs an Id?
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// TODO why does this class needs an Id?
     @Id
     @GeneratedValue
     Long id;

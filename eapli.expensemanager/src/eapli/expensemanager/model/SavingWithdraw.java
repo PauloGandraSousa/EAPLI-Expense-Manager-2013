@@ -16,7 +16,12 @@ import javax.persistence.Entity;
 @Entity
 public class SavingWithdraw extends Movement {
 
-    protected SavingWithdraw() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected SavingWithdraw() {
     }
 
     public SavingWithdraw(String description, Date dateOccurred, BigDecimal amount) {
