@@ -33,6 +33,6 @@ public class AlertEventByExpenseType extends AlertEvent {
 
         double average1 = this.average.doubleValue();
         return "Expense Tpe:" + expenseType.getDescription() + "\n" + super.toString() + "\nAverage:" + n.format(average1)
-                + " Limit Yellow Deviation:" + yellow * 10 + "% Limit Red Deviation:" + red * 10 + "% ";
+                + " Limit Yellow Deviation:" + yellow * 100 + "% Limit Red Deviation:" + red * 100 + "% ";
     }
 }

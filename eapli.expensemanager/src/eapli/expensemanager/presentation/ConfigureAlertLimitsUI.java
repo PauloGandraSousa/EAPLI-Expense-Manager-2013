@@ -155,8 +155,8 @@ public class ConfigureAlertLimitsUI extends BaseUI {
 	private void readLimitsPercent() {
 		boolean flag = true;
 		while (flag) {
-			yellowLimit = Console.readDouble("Yellow Limit");
-			redLimit = Console.readDouble("Red Limit");
+			yellowLimit = Console.readDouble("Yellow Limit (average deviation in [0..1])");
+			redLimit = Console.readDouble("Red Limit(average deviation in [0..1])");
 			flag = yellowLimit < 0 || yellowLimit > 1 || redLimit < 0
 					|| redLimit > 1 || redLimit <= yellowLimit;
 			if (flag) {

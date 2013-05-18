@@ -103,4 +103,21 @@ public abstract class Movement implements Serializable {
         return description + "," + amount + ","
                 + dateToString(dateOcurred) + ",";
     }
+    
+    public boolean ocurredInMonth( int year, int month){
+          int monthOcurred=DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
+          int yearOcurred=DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+          if(monthOcurred==month && yearOcurred==year){
+                return true;
+          }
+          return false;
+    }
+    public boolean ocurredInWeek(int year,int week ){
+          int weekOcurred=DateTime.dateToCalendar(dateOcurred).getWeekYear();
+          int yearOcurred=DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+          if(weekOcurred==week && yearOcurred==year){
+                return true;
+          }
+          return false;
+    }
 }

@@ -6,6 +6,7 @@ package eapli.expensemanager.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -232,4 +233,43 @@ public class CheckingAccount extends Observable implements Serializable {
     private boolean hasInitialBalance() {
         return initialBalance != null;
     }
+    
+     public BigDecimal averageExpenditureByExpenseType(ExpenseType expenseType){
+          BigDecimal average=BigDecimal.ZERO;
+          reClassifyMovements();
+          Map<ExpenseType, List<Expense>> map=expensesByType;
+          List<Expense> list=null;
+           for (Map.Entry<ExpenseType, List<Expense>> entry : map.entrySet()) {
+                  if (entry.getKey().getId().equalsIgnoreCase(expenseType.getId())) {
+                        list=entry.getValue();
+                        break;
+                  }
+            }
+          if (list.isEmpty()){
+           return average;
+          }
+          return sumAmount(list).divide(new BigDecimal(list.size()),2, RoundingMode.UP);
+    }
+    
+    public BigDecimal expenditureOfMonth(int year, int month) {
+          BigDecimal total=BigDecimal.ZERO;
+          for(Expense expense:expenses){
+                if(expense.ocurredInMonth(year, month)){
+                      total=total.add(expense.getAmount());
+                }
+          }
+          return total;
+
+    } 
+    public BigDecimal expenditureOfWeek(int year, int week) {
+          BigDecimal total=BigDecimal.ZERO;
+          for(Expense expense:expenses){
+                if(expense.ocurredInWeek(year, week)){
+                      total=total.add(expense.getAmount());
+                }
+          }
+          return total;
+
+    } 
+    
 }
