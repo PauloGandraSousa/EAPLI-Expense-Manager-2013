@@ -27,10 +27,10 @@ import javax.persistence.Temporal;
 public abstract class Movement implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue
     private Long id;
     private String description;
@@ -103,21 +103,40 @@ public abstract class Movement implements Serializable {
         return description + "," + amount + ","
                 + dateToString(dateOcurred) + ",";
     }
-    
-    public boolean ocurredInMonth( int year, int month){
-          int monthOcurred=DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
-          int yearOcurred=DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
-          if(monthOcurred==month && yearOcurred==year){
-                return true;
-          }
-          return false;
+
+    public boolean ocurredInMonth(int year, int month) {
+        int monthOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
+        int yearOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+
+        return (monthOcurred == month && yearOcurred == year ? true : false);
     }
-    public boolean ocurredInWeek(int year,int week ){
-          int weekOcurred=DateTime.dateToCalendar(dateOcurred).getWeekYear();
-          int yearOcurred=DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
-          if(weekOcurred==week && yearOcurred==year){
-                return true;
-          }
-          return false;
+
+    public boolean ocurredInWeek(int year, int week) {
+        int weekOcurred = DateTime.weekNumber(dateOcurred);
+        int yearOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+
+        return (weekOcurred == week && yearOcurred == year ? true : false);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Movement other = (Movement) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 }

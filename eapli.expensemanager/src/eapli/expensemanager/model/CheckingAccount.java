@@ -31,10 +31,10 @@ import javax.persistence.Transient;
 public class CheckingAccount extends Observable implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue
     private Long id;
     //private String owner;
@@ -59,7 +59,15 @@ public class CheckingAccount extends Observable implements Serializable {
     private Map<ExpenseType, List<Expense>> expensesByType;
 
     public CheckingAccount() {
-        expensesByType = new HashMap<ExpenseType, List<Expense>>();
+        super();
+    }
+
+    private Map<ExpenseType, List<Expense>> getExpensesByType() {
+        if (expensesByType == null) {
+            expensesByType = new HashMap<ExpenseType, List<Expense>>();
+            reClassifyMovements();
+        }
+        return expensesByType;
     }
 
     /**
@@ -134,16 +142,14 @@ public class CheckingAccount extends Observable implements Serializable {
     }
 
     /**
-     * NMB[2013-04-18] Changed the method so that it could also sum the total of
-     * expenses in the list
      *
      * @param expense
      */
     private void classifyExpense(Expense expense) {
-        List<Expense> theExpenses = expensesByType.get(expense.getExpenseType());
+        List<Expense> theExpenses = getExpensesByType().get(expense.getExpenseType());
         if (theExpenses == null) {
             theExpenses = new ArrayList<Expense>();
-            expensesByType.put(expense.getExpenseType(), theExpenses);
+            getExpensesByType().put(expense.getExpenseType(), theExpenses);
         }
         theExpenses.add(expense);
     }
@@ -178,14 +184,7 @@ public class CheckingAccount extends Observable implements Serializable {
     }
 
     public Map<ExpenseType, List<Expense>> getExpensesClassifiedByExpenseType() {
-        /*
-         * NMB:o problema de ter este reclassificador é que obriga sempre a obter
-         * todos  registos que se encontrem na base de dados
-         */
-        //TODO: verificar se é para manter o reClassifyMovements ou se a pesquisa
-        //é sempre feita ondemand. Tentei colocar no construtor mas não funciona
-        reClassifyMovements();
-        return Collections.unmodifiableMap(expensesByType);
+        return Collections.unmodifiableMap(getExpensesByType());
     }
 
     private void addMovement(Movement movement) throws IllegalArgumentException {
@@ -233,43 +232,33 @@ public class CheckingAccount extends Observable implements Serializable {
     private boolean hasInitialBalance() {
         return initialBalance != null;
     }
-    
-     public BigDecimal averageExpenditureByExpenseType(ExpenseType expenseType){
-          BigDecimal average=BigDecimal.ZERO;
-          reClassifyMovements();
-          Map<ExpenseType, List<Expense>> map=expensesByType;
-          List<Expense> list=null;
-           for (Map.Entry<ExpenseType, List<Expense>> entry : map.entrySet()) {
-                  if (entry.getKey().getId().equalsIgnoreCase(expenseType.getId())) {
-                        list=entry.getValue();
-                        break;
-                  }
-            }
-          if (list.isEmpty()){
-           return average;
-          }
-          return sumAmount(list).divide(new BigDecimal(list.size()),2, RoundingMode.UP);
+
+    public BigDecimal averageExpenditure(ExpenseType expenseType) {
+        List<Expense> expenses = getExpensesByType().get(expenseType);
+        if (expenses == null || expenses.isEmpty()) {
+            return BigDecimal.ZERO;
+        }
+        return sumAmount(expenses).divide(new BigDecimal(expenses.size()), 2, RoundingMode.UP);
     }
-    
+
     public BigDecimal expenditureOfMonth(int year, int month) {
-          BigDecimal total=BigDecimal.ZERO;
-          for(Expense expense:expenses){
-                if(expense.ocurredInMonth(year, month)){
-                      total=total.add(expense.getAmount());
-                }
-          }
-          return total;
+        BigDecimal total = BigDecimal.ZERO;
+        for (Expense expense : expenses) {
+            if (expense.ocurredInMonth(year, month)) {
+                total = total.add(expense.getAmount());
+            }
+        }
+        return total;
+    }
 
-    } 
     public BigDecimal expenditureOfWeek(int year, int week) {
-          BigDecimal total=BigDecimal.ZERO;
-          for(Expense expense:expenses){
-                if(expense.ocurredInWeek(year, week)){
-                      total=total.add(expense.getAmount());
-                }
-          }
-          return total;
+        BigDecimal total = BigDecimal.ZERO;
+        for (Expense expense : expenses) {
+            if (expense.ocurredInWeek(year, week)) {
+                total = total.add(expense.getAmount());
+            }
+        }
+        return total;
 
-    } 
-    
+    }
 }
