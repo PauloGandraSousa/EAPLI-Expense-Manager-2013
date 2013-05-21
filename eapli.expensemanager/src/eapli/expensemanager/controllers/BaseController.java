@@ -36,8 +36,8 @@ public abstract class BaseController implements Controller {
         ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         int year = DateTime.currentYear();
         int week = DateTime.currentWeekNumber();
-        Date start = DateTime.firstDateOfWeek(year, week).getTime();
-        Date end = DateTime.lastDateOfWeek(year, week).getTime();
+        Date start = DateTime.beginningOfWeek(year, week).getTime();
+        Date end = DateTime.endOfWeek(year, week).getTime();
 
         ExpenseRecord expenseRecord = new ExpenseRecord(repo.between(start, end));
         return expenseRecord.getExpenditure();
