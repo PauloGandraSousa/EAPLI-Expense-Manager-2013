@@ -18,6 +18,9 @@ import java.util.logging.Logger;
  */
 public /* static */ class DateTime {
 
+    private DateTime() {
+    }
+
     public static Calendar today() {
         Calendar today = new GregorianCalendar();
         return today;
@@ -48,11 +51,31 @@ public /* static */ class DateTime {
         date.set(Calendar.WEEK_OF_YEAR, week);
         return date;
     }
-    
+
     public static Calendar lastDateOfWeek(int year, int week) {
         Calendar date = firstDateOfWeek(year, week);
         date.add(Calendar.DATE, 6);
         return date;
+    }
+
+    public static Calendar lastDayOfCurrentMonth() {
+        Calendar lastDay = today();
+        int last = lastDay.getActualMaximum(Calendar.DAY_OF_MONTH);
+        lastDay.set(Calendar.DAY_OF_MONTH, last);
+        return lastDay;
+    }
+
+    public static Calendar lastDayOfMonth(Calendar reference) {
+        Calendar lastDay = new GregorianCalendar();
+        lastDay.setTime(reference.getTime());
+        int last = lastDay.getActualMaximum(Calendar.DAY_OF_MONTH);
+        lastDay.set(Calendar.DAY_OF_MONTH, last);
+        return lastDay;
+    }
+    
+    public static Calendar lastDayOfMonth(int year, int month) {
+        Calendar date = new GregorianCalendar(year, month - 1, 1);
+        return lastDayOfMonth(date);
     }
 
     public static int currentYear() {
@@ -61,23 +84,23 @@ public /* static */ class DateTime {
 
     /**
      * returns the current month of the year
-     * 
+     *
      * @return current month (1 - 12) of the year
      */
     public static int currentMonth() {
-        return today().get(Calendar.MONTH) + 1 ;
+        return today().get(Calendar.MONTH) + 1;
     }
 
     /**
      * Creates a new Calendar object set to a specific date
-     * 
+     *
      * @param year the year
      * @param month the month (1 - 12)
      * @param day the day of the month
-     * @return 
+     * @return
      */
     public static Calendar newCalendarDate(int year, int month, int day) {
-        Calendar date = new GregorianCalendar(year, month-1, day);
+        Calendar date = new GregorianCalendar(year, month - 1, day);
         return date;
     }
 
