@@ -16,26 +16,25 @@ import java.util.logging.Logger;
  *
  * @author Paulo Gandra Sousa
  */
-public /* static */ class DateTime {
+public final /* static */ class DateTime {
 
     private DateTime() {
     }
 
     public static Calendar today() {
-        Calendar today = new GregorianCalendar();
-        return today;
+        return new GregorianCalendar();
     }
 
-    public static int weekNumber(Calendar date) {
+    public static int weekNumber(final Calendar date) {
         return date.get(Calendar.WEEK_OF_YEAR);
     }
 
-    public static int weekNumber(Date date) {
+    public static int weekNumber(final Date date) {
         return weekNumber(dateToCalendar(date));
     }
 
-    public static Calendar dateToCalendar(Date date) {
-        Calendar cal = Calendar.getInstance();
+    public static Calendar dateToCalendar(final Date date) {
+        final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return cal;
     }
@@ -44,38 +43,36 @@ public /* static */ class DateTime {
         return weekNumber(today());
     }
 
-    public static Calendar firstDateOfWeek(int year, int week) {
-        Calendar date = new GregorianCalendar();
+    public static Calendar beginningOfWeek(final int year, final int week) {
+        final Calendar date = new GregorianCalendar();
         date.clear();
         date.set(Calendar.YEAR, year);
         date.set(Calendar.WEEK_OF_YEAR, week);
         return date;
     }
+    private static final int DAYS_TILL_END_OF_WEEK = 6;
 
-    public static Calendar lastDateOfWeek(int year, int week) {
-        Calendar date = firstDateOfWeek(year, week);
-        date.add(Calendar.DATE, 6);
+    public static Calendar endOfWeek(final int year, final int week) {
+        final Calendar date = beginningOfWeek(year, week);
+        date.add(Calendar.DATE, DAYS_TILL_END_OF_WEEK);
         return date;
     }
 
-    public static Calendar lastDayOfCurrentMonth() {
-        Calendar lastDay = today();
-        int last = lastDay.getActualMaximum(Calendar.DAY_OF_MONTH);
+    public static Calendar endOfCurrentMonth() {
+        return endOfMonth(today());
+    }
+
+    public static Calendar endOfMonth(final Calendar reference) {
+        final Calendar lastDay = new GregorianCalendar();
+        lastDay.setTime(reference.getTime());
+        final int last = lastDay.getActualMaximum(Calendar.DAY_OF_MONTH);
         lastDay.set(Calendar.DAY_OF_MONTH, last);
         return lastDay;
     }
 
-    public static Calendar lastDayOfMonth(Calendar reference) {
-        Calendar lastDay = new GregorianCalendar();
-        lastDay.setTime(reference.getTime());
-        int last = lastDay.getActualMaximum(Calendar.DAY_OF_MONTH);
-        lastDay.set(Calendar.DAY_OF_MONTH, last);
-        return lastDay;
-    }
-    
-    public static Calendar lastDayOfMonth(int year, int month) {
+    public static Calendar endOfMonth(int year, int month) {
         Calendar date = new GregorianCalendar(year, month - 1, 1);
-        return lastDayOfMonth(date);
+        return endOfMonth(date);
     }
 
     public static int currentYear() {
@@ -97,11 +94,11 @@ public /* static */ class DateTime {
      * @param year the year
      * @param month the month (1 - 12)
      * @param day the day of the month
-     * @return
+     * @return a newly create Calendar object
      */
-    public static Calendar newCalendarDate(int year, int month, int day) {
-        Calendar date = new GregorianCalendar(year, month - 1, day);
-        return date;
+    public static Calendar newCalendar(final int year, final int month,
+                                       final int day) {
+        return new GregorianCalendar(year, month - 1, day);
     }
 
     public static Date newDate(int year, int month, int day) {
@@ -116,7 +113,8 @@ public /* static */ class DateTime {
             Date date = df.parse(aDateString);
             return date;
         } catch (ParseException ex) {
-            Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Console.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         return null;
     }

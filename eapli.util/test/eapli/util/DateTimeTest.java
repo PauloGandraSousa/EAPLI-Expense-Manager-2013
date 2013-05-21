@@ -56,7 +56,7 @@ public class DateTimeTest {
     @Test
     public void testWeekNumber() {
         System.out.println("weekNumber");
-        Calendar date = DateTime.newCalendarDate(2013, 01, 01);
+        Calendar date = DateTime.newCalendar(2013, 01, 01);
         int expResult = 1;
         int result = DateTime.weekNumber(date);
         assertEquals(expResult, result);
@@ -76,7 +76,7 @@ public class DateTimeTest {
     }
 
     /**
-     * Test of newCalendarDate method, of class DateTime.
+     * Test of newCalendar method, of class DateTime.
      */
     @Test
     public void testNewCalendarDate() {
@@ -85,7 +85,7 @@ public class DateTimeTest {
         int month = 0;
         int day = 0;
         Calendar expResult = null;
-        Calendar result = DateTime.newCalendarDate(year, month, day);
+        Calendar result = DateTime.newCalendar(year, month, day);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
