@@ -158,7 +158,7 @@ public class ConfigureAlertLimitsUI extends BaseUI {
 
       private AlertLimitExpenditure showCurrentAlertLimitsByType(
               AlertLimitType alertType) {
-            AlertLimit alertLimit = controller.findAlertLimitByType(alertType);
+            AlertLimit alertLimit = controller.findByAlertType(alertType);
             if (alertLimit != null) {
                   System.out.println("Current alert limits");
                   System.out.println(alertLimit);
@@ -172,7 +172,7 @@ public class ConfigureAlertLimitsUI extends BaseUI {
 
       private AlertLimitByExpenseType showCurrentAlertLimitsByExpenseType(
               ExpenseType eT) {
-            AlertLimit alertLimit = controller.findAlertLimitByExpType(eT);
+            AlertLimit alertLimit = controller.findByExpenseType(eT);
             if (alertLimit != null) {
                   System.out.println("Current alert limits");
                   System.out.println(alertLimit);

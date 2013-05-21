@@ -40,7 +40,7 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
       }
 
       @Override
-      public AlertLimit findAlertLimitsByExpenseType(ExpenseType eT) {
+      public AlertLimit findByExpenseType(ExpenseType eT) {
             throw new UnsupportedOperationException("Not supported yet.");
       }
 

@@ -33,10 +33,10 @@ public abstract class BaseUI extends AbstractUI {
         drawFormSeparator();
         System.out.print("| expenditure - this week: ");
         final NumberFormat currencyFormater = NumberFormat.getCurrencyInstance();
-        System.out.print(currencyFormater.format(baseController().getThisWeekExpenditure()));
+        System.out.print(currencyFormater.format(baseController().getCurrentWeekExpenditure()));
         System.out.print(" - ");
         System.out.print("this month: ");
-        System.out.print(currencyFormater.format(baseController().getThisMonthExpenditure()));
+        System.out.print(currencyFormater.format(baseController().getCurrentMonthExpenditure()));
         System.out.print(" | ");
         System.out.print("Balance: ");
         System.out.print(currencyFormater.format(baseController().getBalance()));

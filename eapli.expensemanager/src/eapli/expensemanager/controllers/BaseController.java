@@ -32,7 +32,7 @@ public abstract class BaseController implements Controller {
      *
      * @return the total expenditure of the current week
      */
-    public BigDecimal getThisWeekExpenditure() {
+    public BigDecimal getCurrentWeekExpenditure() {
         ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         int year = DateTime.currentYear();
         int week = DateTime.currentWeekNumber();
@@ -52,14 +52,14 @@ public abstract class BaseController implements Controller {
      *
      * @return the total expenditure of the current month
      */
-    public BigDecimal getThisMonthExpenditure() {
+    public BigDecimal getCurrentMonthExpenditure() {
         ExpenseRepository repo = PersistenceFactory.buildPersistenceFactory().expenseRepository();
         return repo.expenditureOfMonth(DateTime.currentYear(), DateTime.currentMonth());
     }
 
     public BigDecimal getBalance() {
-        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
-        CheckingAccount account = repo.theAccount();
+        final CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
+        final CheckingAccount account = repo.theAccount();
 
         return account.getBalance();
     }

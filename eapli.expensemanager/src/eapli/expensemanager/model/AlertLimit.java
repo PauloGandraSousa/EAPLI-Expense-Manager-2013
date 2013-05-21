@@ -26,10 +26,10 @@ import javax.persistence.Inheritance;
 public class AlertLimit implements Serializable, ActiveRecord {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
     @Enumerated(EnumType.STRING)
@@ -62,23 +62,48 @@ public class AlertLimit implements Serializable, ActiveRecord {
         repo.save(this);
     }
 
+    /**
+     * get all limits
+     *
+     * active record method
+     *
+     * @return
+     */
     public static List<AlertLimit> loadAll() {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
         return repo.all();
     }
 
+    /**
+     * finds a specific limit by its key
+     *
+     * @param key
+     * @return
+     */
     public static AlertLimit findByKey(int key) {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
         return repo.findByKey(key);
     }
 
+    /**
+     * find a specific limit based on its Alert Type
+     *
+     * @param al
+     * @return
+     */
     public static AlertLimit findByAlertType(AlertLimitType al) {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
         return repo.findByAlertType(al);
     }
 
-    public static AlertLimit findAlertLimitsByExpenseType(ExpenseType eT) {
+    /**
+     * finds a specific limit based on the Expense Type
+     *
+     * @param eT
+     * @return
+     */
+    public static AlertLimit findByExpenseType(ExpenseType eT) {
         AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-        return repo.findAlertLimitsByExpenseType(eT);
+        return repo.findByExpenseType(eT);
     }
 }

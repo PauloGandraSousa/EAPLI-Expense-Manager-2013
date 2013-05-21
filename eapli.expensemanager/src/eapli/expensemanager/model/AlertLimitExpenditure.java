@@ -19,10 +19,10 @@ import javax.persistence.Entity;
 public class AlertLimitExpenditure extends AlertLimit {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private BigDecimal limitYellow;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private BigDecimal limitYellow;
     private BigDecimal limitRed;
 
     public AlertLimitExpenditure() {
@@ -65,9 +65,5 @@ public class AlertLimitExpenditure extends AlertLimit {
         BigDecimal red = new BigDecimal(limitRed);
         this.limitYellow = yellow;
         this.limitRed = red;
-        // FIX this method should NOT call any repository methods but rely on the
-        // client code to call the object's save() method
-        AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-        repo.update(this);
     }
 }

@@ -27,30 +27,31 @@ public class ConfigureAlertLimitsController extends BaseController {
         return PersistenceFactory.buildPersistenceFactory().expenseTypeRepository().all();
     }
 
-    public AlertLimit findAlertLimitByType(AlertLimitType aLertType) {
-        AlertLimit alertLimit = AlertLimit.findByAlertType(aLertType);
-        return alertLimit;
-
+    public AlertLimit findByAlertType(AlertLimitType aLertType) {
+        return AlertLimit.findByAlertType(aLertType);
     }
 
-    public AlertLimit findAlertLimitByExpType(ExpenseType eT) {
-        AlertLimit alertLimit = AlertLimitByExpenseType.findAlertLimitsByExpenseType(eT);
-        return alertLimit;
+    public AlertLimit findByExpenseType(ExpenseType eT) {
+        return AlertLimitByExpenseType.findByExpenseType(eT);
     }
 
     public void registerAlertLimitExpenditure(AlertLimitType alertType, double yellowLimit, double redLimit) {
-        new AlertLimitExpenditure(alertType, new BigDecimal(yellowLimit), new BigDecimal(redLimit)).save();
+        AlertLimitExpenditure limit = new AlertLimitExpenditure(alertType, new BigDecimal(yellowLimit), new BigDecimal(redLimit));
+        limit.save();
     }
 
     public void registerAlertLimitByExpenseType(AlertLimitType alertType, double yellowLimit, double redLimit, ExpenseType eT) {
-        new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT).save();
+        AlertLimitByExpenseType limit = new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT);
+        limit.save();
     }
 
     public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red) {
         alertLimitExpenditure.updateLimits(yellow, red);
+        alertLimitExpenditure.save();
     }
 
     public void updateAlertLimitByExpenseType(AlertLimitByExpenseType alertLimitByExpenseType, double yellow, double red) {
         alertLimitByExpenseType.updateLimits(yellow, red);
+        alertLimitByExpenseType.save();
     }
 }

@@ -98,7 +98,7 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       }
 
       @Override
-      public AlertLimit findAlertLimitsByExpenseType(ExpenseType eT) {
+      public AlertLimit findByExpenseType(ExpenseType eT) {
 
             EntityManager em = getEntityManager();
             Query q = em

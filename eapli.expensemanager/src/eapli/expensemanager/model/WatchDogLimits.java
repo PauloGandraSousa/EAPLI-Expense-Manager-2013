@@ -42,7 +42,7 @@ public class WatchDogLimits extends Observable implements Observer {
                     break;
                 case LIMIT_DEVIATION_BY_EXPENSE_TYPE:
                     ExpenseType eT = expense.getExpenseType();
-                    AlertLimitByExpenseType alertLimitET = (AlertLimitByExpenseType) alertLimitRepo.findAlertLimitsByExpenseType(eT);
+                    AlertLimitByExpenseType alertLimitET = (AlertLimitByExpenseType) alertLimitRepo.findByExpenseType(eT);
                     if (alertLimitET != null) {
                         AlertEventByExpenseType alertEventByET = buildAlertEventAverageDeviationByExpenseType(expense, alertLimitET);
                         notifyObservers(alertEventByET);
