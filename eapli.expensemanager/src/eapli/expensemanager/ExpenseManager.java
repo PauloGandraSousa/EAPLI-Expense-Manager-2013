@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager;
 
-import eapli.expensemanager.bootstrap.Bootstrap;
+import eapli.expensemanager.bootstrap.ReferenceDataBootstrap;
 import eapli.expensemanager.bootstrap.SomeDefaultAlertLimitBootstrap;
 import eapli.expensemanager.bootstrap.SomeExpensesBootstrap;
 import eapli.expensemanager.bootstrap.SomeIncomesBootstrap;
@@ -34,7 +34,7 @@ public final class ExpenseManager {
         // the next line should be removed for "production" ready deployment
         doBootstrap();
 
-        MainMenu menu = new MainMenu();
+        final MainMenu menu = new MainMenu();
         menu.mainLoop();
     }
     private static Properties applicationProperties = new Properties();
@@ -58,7 +58,8 @@ public final class ExpenseManager {
 
         } catch (IOException ex) {
             //default values
-            applicationProperties.setProperty("persistence.repositoryFactory", "eapli.expensemanager.persistence.JpaRepositoryFactory");
+            applicationProperties.setProperty("persistence.repositoryFactory",
+                    "eapli.expensemanager.persistence.JpaRepositoryFactory");
 
             Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -73,12 +74,12 @@ public final class ExpenseManager {
     }
 
     private static void doBootstrap() {
-        new Bootstrap();
+        new ReferenceDataBootstrap().bootstrap();
 
-        new SomeIncomesBootstrap();
+        new SomeIncomesBootstrap().bootstrap();
 
-        new SomeExpensesBootstrap();
+        new SomeExpensesBootstrap().bootstrap();
 
-        new SomeDefaultAlertLimitBootstrap();
+        new SomeDefaultAlertLimitBootstrap().bootstrap();
     }
 }

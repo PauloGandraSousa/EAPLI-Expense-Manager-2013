@@ -23,15 +23,16 @@ import java.util.Date;
  *
  * @author Paulo Gandra Sousa
  */
-public class SomeExpensesBootstrap {
+public class SomeExpensesBootstrap implements Bootstrap {
 
-    public SomeExpensesBootstrap() {
+    @Override
+    public void bootstrap() {
         CheckingAccountRepository repoAccount = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount theAccount = repoAccount.theAccount();
 
         ExpenseTypeRepository repoExpenseType = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
-        ExpenseType clothing = repoExpenseType.findForName(Bootstrap.CLOTHING_EXPENSE_TYPE);
-        ExpenseType transport = repoExpenseType.findForName(Bootstrap.TRANSPORTS_EXPENSE_TYPE);
+        ExpenseType clothing = repoExpenseType.findForName(ReferenceDataBootstrap.CLOTHING_EXPENSE_TYPE);
+        ExpenseType transport = repoExpenseType.findForName(ReferenceDataBootstrap.TRANSPORTS_EXPENSE_TYPE);
 
         PaymentMeanRepository repoPaymentMethod = PersistenceFactory.buildPersistenceFactory().paymentMeanRepository();
         Cash cashEur = repoPaymentMethod.getCash(Cash.EUR);
