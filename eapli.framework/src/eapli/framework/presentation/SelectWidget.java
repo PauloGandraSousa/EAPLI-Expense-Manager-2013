@@ -4,7 +4,7 @@
  */
 package eapli.framework.presentation;
 
-import eapli.framework.Visitor;
+import eapli.framework.visitor.Visitor;
 import eapli.util.Console;
 import java.util.List;
 

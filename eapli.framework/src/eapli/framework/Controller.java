@@ -5,7 +5,7 @@
 package eapli.framework;
 
 /**
- * the base controller class for all controllers
+ * the interface for all controllers
  *
  * @author Paulo Gandra Sousa
  */

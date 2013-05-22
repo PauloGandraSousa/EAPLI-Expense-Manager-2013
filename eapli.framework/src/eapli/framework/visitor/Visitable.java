@@ -2,17 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.framework;
+package eapli.framework.visitor;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public class ReturnAction implements Action {
+public interface Visitable<T> {
 
-    @Override
-    public boolean execute() {
-        return true;
-    }
-    
+    void accept(Visitor<T> visitor);
 }

@@ -4,7 +4,7 @@
  */
 package eapli.framework.presentation;
 
-import eapli.framework.NullAction;
+import eapli.framework.actions.NullAction;
 
 /**
  *

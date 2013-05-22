@@ -1,4 +1,4 @@
-package eapli.framework;
+package eapli.framework.model;
 
 import java.math.BigInteger;
 import java.util.Currency;
