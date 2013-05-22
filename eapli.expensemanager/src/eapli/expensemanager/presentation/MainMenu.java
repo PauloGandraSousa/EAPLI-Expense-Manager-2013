@@ -4,9 +4,9 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.Action;
+import eapli.framework.actions.Action;
 import eapli.framework.Controller;
-import eapli.framework.ReturnAction;
+import eapli.framework.actions.ReturnAction;
 import eapli.framework.presentation.AbstractUI;
 import eapli.framework.presentation.Menu;
 import eapli.framework.presentation.MenuItem;
