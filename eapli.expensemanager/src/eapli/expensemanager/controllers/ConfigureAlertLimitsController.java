@@ -47,11 +47,15 @@ public class ConfigureAlertLimitsController extends BaseController {
 
     public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red) {
         alertLimitExpenditure.updateLimits(yellow, red);
-        alertLimitExpenditure.save();
+        //Does not work because Entity is detached 
+        //alertLimitExpenditure.save();
+        alertLimitExpenditure.update();
     }
 
     public void updateAlertLimitByExpenseType(AlertLimitByExpenseType alertLimitByExpenseType, double yellow, double red) {
         alertLimitByExpenseType.updateLimits(yellow, red);
-        alertLimitByExpenseType.save();
+        //Does not work because Entity is detached 
+        //alertLimitByExpenseType.save();
+        alertLimitByExpenseType.update();
     }
 }

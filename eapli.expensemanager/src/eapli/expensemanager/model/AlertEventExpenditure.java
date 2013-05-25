@@ -17,7 +17,7 @@ public class AlertEventExpenditure extends AlertEvent {
     private BigDecimal yellow;
     private BigDecimal red;
 
-    public AlertEventExpenditure(String alertTypeDescription, BigDecimal yellow, BigDecimal red, BigDecimal value, String level) {
+    public AlertEventExpenditure(String alertTypeDescription, BigDecimal yellow, BigDecimal red, BigDecimal value, String  level) {
         super(alertTypeDescription, value, level);
         this.yellow = yellow;
         this.red = red;

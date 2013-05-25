@@ -44,9 +44,12 @@ public class ConfigureAlertLimitsUI extends BaseUI {
                   switch (alertType) {
                         case LIMIT_WEEK_EXPENDITURE:
                         case LIMIT_MONTH_EXPENDITURE:
-                        case LIMIT_MINIMUM_BALANCE:
                               System.out.println(alertType.getDescription());
                               settingLimits(alertType);
+                              break;
+                        case LIMIT_MINIMUM_BALANCE:
+                              System.out.println(alertType.getDescription());
+                              settingLimitsBalance(alertType);
                               break;
                         case LIMIT_DEVIATION_BY_EXPENSE_TYPE:
                               ExpenseType eT = chooseExpenseType();
@@ -115,6 +118,24 @@ public class ConfigureAlertLimitsUI extends BaseUI {
             }
       }
 
+      
+       private void settingLimitsBalance(AlertLimitType code) {
+            AlertLimitExpenditure aLM = showCurrentAlertLimitsByType(code);
+            if (aLM == null) {
+                  System.out.println("Set limits:");
+                  readLimitsBalance();
+                  controller.registerAlertLimitExpenditure(code, yellowLimit,
+                          redLimit);
+            } else {
+
+                  if (Console.readBoolean("Update limit values?(y/n)")) {
+                        readLimitsBalance();
+                        controller.updateAlertLimitExpenditure(aLM, yellowLimit,
+                                redLimit);
+                  }
+            }
+      }
+
       private void settingLimitsExpType(AlertLimitType code, ExpenseType eT) {
             AlertLimitByExpenseType aLD = showCurrentAlertLimitsByExpenseType(eT);
             if (aLD == null) {
@@ -137,9 +158,19 @@ public class ConfigureAlertLimitsUI extends BaseUI {
                   redLimit = Console.readDouble("Red Limit");
                   if (redLimit <= yellowLimit) {
                         System.out
-                                .println("ERROR Yellow Limit > Red Limit. Repeat Please");
+                                .println("ERROR Yellow Limit must be < Red Limit. Repeat Please");
                   }
             } while (redLimit <= yellowLimit);
+      }
+       private void readLimitsBalance() {
+            do {
+                  yellowLimit = Console.readDouble("Yellow Limit");
+                  redLimit = Console.readDouble("Red Limit");
+                  if (redLimit >= yellowLimit) {
+                        System.out
+                                .println("ERROR Yellow Limit  must be > Red Limit. Repeat Please");
+                  }
+            } while (redLimit >= yellowLimit);
       }
 
       private void readLimitsPercent() {

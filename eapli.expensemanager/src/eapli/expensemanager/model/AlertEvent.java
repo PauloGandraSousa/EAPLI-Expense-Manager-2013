@@ -28,6 +28,6 @@ public abstract class AlertEvent {
     public String toString() {
         NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
         double value1 = this.value.doubleValue();
-        return "ALERT LEVEL:" + level + "\nDescription:" + alertDescription + "\nCurrent Value:" + n.format(value1);
+        return "Alert Level :"+level + "\nDescription:" + alertDescription + "\nCurrent Value:" + n.format(value1);
     }
 }

@@ -6,8 +6,6 @@ package eapli.expensemanager.persistence.inmemory;
 
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.AlertLimit;
-import eapli.expensemanager.model.AlertLimitByExpenseType;
-import eapli.expensemanager.model.AlertLimitExpenditure;
 import eapli.expensemanager.model.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import java.util.List;
@@ -44,14 +42,8 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
             throw new UnsupportedOperationException("Not supported yet.");
       }
 
-
       @Override
-      public AlertLimitExpenditure update(AlertLimitExpenditure a) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
-
-      @Override
-      public AlertLimitByExpenseType update(AlertLimitByExpenseType a) {
+      public AlertLimit updateAL(AlertLimit al) {
             throw new UnsupportedOperationException("Not supported yet.");
       }
       

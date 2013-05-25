@@ -26,8 +26,8 @@ public class SomeDefaultAlertLimitBootstrap implements Bootstrap {
 	private final BigDecimal LIMIT_MONTH_RED = new BigDecimal(2000);
 	private final double LIMIT_DEVIATION_YELLOW = 0.1;
 	private final double LIMIT_DEVIATION_RED = 0.5;
-	private final BigDecimal LIMIT_BALANCE_YELLOW = new BigDecimal(600);
-	private final BigDecimal LIMIT_BALANCE_RED = new BigDecimal(2000);
+	private final BigDecimal LIMIT_BALANCE_YELLOW = new BigDecimal(1000);
+	private final BigDecimal LIMIT_BALANCE_RED = new BigDecimal(500);
 
 	@Override
 	public void bootstrap() {

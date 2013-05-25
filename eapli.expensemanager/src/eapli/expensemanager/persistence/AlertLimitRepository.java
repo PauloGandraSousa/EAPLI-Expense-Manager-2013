@@ -21,16 +21,11 @@ public interface AlertLimitRepository {
 
     AlertLimit save(AlertLimit alertLimit);
 
-    // TODO does it make sense for this API to have save() and update()
-    AlertLimitExpenditure update(AlertLimitExpenditure a);
-
-    AlertLimitByExpenseType update(AlertLimitByExpenseType a);
-    //  void update(AlertLimit al);
-
     AlertLimit findByKey(int i);
 
-    //List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
     AlertLimit findByAlertType(AlertLimitType a);
 
     AlertLimit findByExpenseType(ExpenseType eT);
+    
+    AlertLimit updateAL(AlertLimit al);
 }

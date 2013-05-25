@@ -30,54 +30,6 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
       }
 
       @Override
-      public AlertLimitExpenditure update(AlertLimitExpenditure al) {
-            EntityManager em = getEntityManager();
-            assert em != null;
-            EntityTransaction tx = em.getTransaction();
-
-            AlertLimitExpenditure temp = null;
-            try {
-                  tx.begin();
-                  // TODO why are we searching for the object if we already receive
-                  // it?
-                  temp = (AlertLimitExpenditure) em.find(entityClass, al.getId());
-                  temp.setLimitYellow(al.getLimitYellow());
-                  temp.setLimitRed(al.getLimitRed());
-                  tx.commit();
-            } catch (PersistenceException ex) {
-                  // FIX this is suppressing the exception it should never happen
-                  // either we catch and handle it or rethrow it
-            } finally {
-                  em.close();
-            }
-            return temp;
-      }
-
-      @Override
-      public AlertLimitByExpenseType update(AlertLimitByExpenseType al) {
-            EntityManager em = getEntityManager();
-            assert em != null;
-            EntityTransaction tx = em.getTransaction();
-
-            AlertLimitByExpenseType temp = null;
-            try {
-                  tx.begin();
-                  // TODO why are we searching for the object if we already receive
-                  // it?
-                  temp = (AlertLimitByExpenseType) em.find(entityClass, al.getId());
-                  temp.setPercentLimitRed(al.getPercentLimitRed());
-                  temp.setPercentLimitYellow(al.getPercentLimitYellow());
-                  tx.commit();
-            } catch (PersistenceException ex) {
-                  // FIX this is suppressing the exception it should never happen
-                  // either we catch and handle it or rethrow it
-            } finally {
-                  em.close();
-            }
-            return temp;
-      }
-
-      @Override
       public AlertLimit save(AlertLimit alertLimit) {
             return super.save(alertLimit);
       }
@@ -91,7 +43,6 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             @SuppressWarnings("unchecked")
             List<AlertLimit> list = q.getResultList();
             if (list.isEmpty()) {
-
                   return null;
             }
             return list.get(0);
@@ -112,4 +63,36 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             }
             return list.get(0);
       }
+      
+      
+      @Override
+      public AlertLimit updateAL(AlertLimit al){
+            EntityManager em = getEntityManager();
+             
+            assert em != null;
+            EntityTransaction tx = em.getTransaction();
+
+            AlertLimit temp = null;
+            try {
+                  tx.begin();
+                  // Because entity is detached
+                  temp=em.merge(al);
+                  if( al instanceof AlertLimitExpenditure ){  
+                  ((AlertLimitExpenditure)temp).setLimitYellow(((AlertLimitExpenditure)al).getLimitYellow());
+                  ((AlertLimitExpenditure)temp).setLimitRed(((AlertLimitExpenditure)al).getLimitRed());
+                  }
+                  else{
+                         ((AlertLimitByExpenseType)temp).setPercentLimitYellow(((AlertLimitByExpenseType)al).getPercentLimitYellow());
+                  ((AlertLimitByExpenseType)temp).setPercentLimitRed(((AlertLimitByExpenseType)al).getPercentLimitRed());
+                  }            
+                  tx.commit();
+            } catch (PersistenceException ex) {
+                  // FIXE 
+                  throw new IllegalStateException();
+            } finally {
+                  em.close();
+            }
+            return temp;       
+      }
+      
 }
