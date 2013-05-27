@@ -1,0 +1,55 @@
+Formato CSV - Comma-Separated Values
+
+Análise dos campos necessários guardar no documento csv:
+
+campos de Movement:
+	String DTYPE: Expense, Income		- 1
+	String description:			- 2
+	BigDecimal amount:			- 3
+	Date dateOcurred:			- 4
+
+	ExpenseType expenseType;
+		->  MovementType
+	IncomeType incomeType;
+		-> MovementType
+			-> String description;	- 5
+
+	Payment payment;
+		-> PaymentMeans.DTYPE: CreditCard, DebitCard, Cash, Cheque	- 6
+			-> Card
+				String cardName;			- 7
+				String bank;			- 8
+				String cardNumber;			- 9
+				String nameOnCard;			- 10
+				Calendar validUntil;			- 11
+					-> CreditCard
+					-> DebitCard
+			-> Cash
+				String currency;			- 12
+			-> Cheque
+				String bank;
+				String accountNumber;		- 13
+				-> String chequeNumber;		- 14
+
+
+
+campos CSV de Movement:
+	String DTYPE: Expense, Income
+	String Movement.Description:
+	BigDecimal Amount:
+	Date dateOcurred:
+	String MovementType.Description
+	PaymentMeans.DTYPE: CreditCard, DebitCard, Cash, Cheque
+	String cardName;
+	String bank;
+	String cardNumber;
+	String nameOnCard
+	Calendar validUntil
+	String currency
+	String accountNumber
+	String chequeNumber
+
+campos de cada linha CSV:
+Movement.DTYPE, Movement.Description, Amount, DateOcurred, MovementType.Description,
+PaymentMeans.DTYPE, CardName, Bank, CardNumber, NameOnCard, ValidUntil, Currency, AccountNumber, ChequeNumber
+

@@ -1,0 +1,69 @@
+Elemento movement (expense):
+<movement>
+	<expense>					ou <income>
+		<description>
+		<amount>
+		<dateOcurred>
+		<expenseType>
+			<description>
+		</expenseType>
+		<payment>
+			<paymentMeans>
+				<creditcard> 		ou < debitcard > ou <cash> ou <cheque>
+					<cardName>
+					<bank>
+					<cardNumber>
+					<nameOnCard>
+					<validUntil>
+				</creditcard>
+			</paymentMeans>
+		</payment>
+	</expense>
+</movement>
+
+
+Elemento payment (debitCard):
+		<payment>
+			<paymentMeans>
+				<debitcard>
+					<cardName>
+					<bank>
+					<cardNumber>
+					<nameOnCard>
+					<validUntil>
+				</debitcard >
+			</paymentMeans>
+		</payment>
+
+Elemento payment (cash):
+		<payment>
+			<paymentMeans>
+				<cash>
+					<currency>  . . .  </currency>
+				</cash >
+			</paymentMeans>
+		</payment>
+
+Elemento payment (cheque):
+		<payment>
+			<paymentMeans>
+				<cheque>
+					<bank>
+					<accountNumber>
+				</cheque >
+			</paymentMeans>
+			<chequeNumber> …  </chequeNumber>
+		</payment>
+
+Elemento movement (income):
+<movement>
+	<income>
+		<description>
+		<amount>
+		<dateOcurred>
+		<incomeType>
+			<description>
+		</incomeType>
+	</income>
+</movement>
+
