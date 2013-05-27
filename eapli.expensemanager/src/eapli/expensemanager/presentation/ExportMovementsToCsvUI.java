@@ -12,19 +12,11 @@ public class ExportMovementsToCsvUI extends BaseUI {
         return controller;
     }
 
-    // FIX remove this method as it is not used and the base class defines
-    // the doShow() method should be overriden
-    public void run() {
-        System.out.println("-- EXPORT MOVEMENTS TO CSV --");
-        String csvMovements = controller.getMovementsInCsv();
-        System.out.println(csvMovements);
-    }
-
     @Override
     public boolean doShow() {
-        String csvMovements = controller.getMovementsInCsv();
+        System.setProperty("ExportMovementsStrategy", "eapli.expensemanager.export.ExportMovementsCsv");
+        String csvMovements = controller.getExportString();
         System.out.println(csvMovements);
-
         return true;
     }
 

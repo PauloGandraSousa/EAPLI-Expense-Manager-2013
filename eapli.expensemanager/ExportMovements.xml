@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<movements>
+  <income>
+    <description>ordenado deste mês</description>
+    <amount>1000</amount>
+    <dateOcurred>27-5-2013</dateOcurred>
+    <incomeType>
+      <description>Salary</description>
+    </incomeType>
+  </income>
+<expense>
+    <description>calças</description>
+    <amount>150</amount>
+    <dateOcurred>31-5-2013</dateOcurred>
+    <expenseType>
+      <description>Clothing</description>
+    </expenseType>
+    <payment>
+      <currency>EUR</currency>
+    </payment>
+  </expense>
+<expense>
+    <description>sapatilhas</description>
+    <amount>100</amount>
+    <dateOcurred>27-5-2013</dateOcurred>
+    <expenseType>
+      <description>Clothing</description>
+    </expenseType>
+    <payment>
+      <currency>EUR</currency>
+    </payment>
+  </expense>
+<expense>
+    <description>T-shirt</description>
+    <amount>10</amount>
+    <dateOcurred>27-5-2013</dateOcurred>
+    <expenseType>
+      <description>Clothing</description>
+    </expenseType>
+    <payment>
+      <currency>EUR</currency>
+    </payment>
+  </expense>
+<expense>
+    <description>passe Metro</description>
+    <amount>35</amount>
+    <dateOcurred>1-5-2013</dateOcurred>
+    <expenseType>
+      <description>Transports</description>
+    </expenseType>
+    <payment>
+      <currency>EUR</currency>
+    </payment>
+  </expense>
+</movements>
