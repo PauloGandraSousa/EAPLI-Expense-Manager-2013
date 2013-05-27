@@ -1,0 +1,20 @@
+participant ExportMovementsToCsvUI as ExporToCsvUI
+participant ExportMovementsController as ExporContrl
+participant ExportMovementsFactory as Factory
+participant "exportMovements:IExportMovementsStrategy\n(ExportMovementsCsv)" as IExport
+participant CheckingAccountRepository as Account
+
+
+ExporToCsvUI -> ExporToCsvUI:System.setProperty("ExportMovementsStrategy", \n"eapli.expensemanager.export.ExportMovementsCsv")
+ExporToCsvUI -> ExporContrl: csv = getExportString()
+ExporContrl -> Factory: getInstance()
+ExporContrl -> Factory: exportMovements = getExportMovementsStrategy()
+Factory -> Factory: strClassName = \n System.getProperty("ExportMovementsStrategy")
+Factory --> ExporContrl:return (IExportMovementsStrategy) Class.forName(strClassName).newInstance();
+ExporContrl -> IExport: csv = getOutput()
+IExport -> IExport: csv = getMovementsInCsv()
+IExport -> Account: listMovements = getMovements()
+IExport -> IExport: save(csv, "ExportMovements.csv")
+IExport --> ExporContrl: csv
+ExporContrl --> ExporToCsvUI: csv
+ExporToCsvUI -> ExporToCsvUI: System.out.println(csv)

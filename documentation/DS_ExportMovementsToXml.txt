@@ -1,0 +1,23 @@
+participant ExportMovementsToXmlUI as ExporToXmlUI
+participant ExportMovementsController as ExporContrl
+participant ExportMovementsFactory as Factory
+participant "exportMovements:IExportMovementsStrategy\n(ExportMovementsXml)" as IExport
+participant CheckingAccountRepository as Account
+
+
+ExporToXmlUI -> ExporToXmlUI:System.setProperty("ExportMovementsStrategy", \n"eapli.expensemanager.export.ExportMovementsXml")
+ExporToXmlUI -> ExporContrl: xml = getExportString()
+ExporContrl -> Factory: getInstance()
+ExporContrl -> Factory: exportMovements = getExportMovementsStrategy()
+Factory -> Factory: strClassName = \n System.getProperty("ExportMovementsStrategy")
+Factory --> ExporContrl:return (IExportMovementsStrategy) Class.forName(strClassName).newInstance();
+
+ExporContrl -> IExport: xml = getOutput()
+IExport -> IExport: xmlMovements = getMovementsInXml()
+IExport -> IExport: getMovements()
+IExport -> Account: getMovements()
+IExport -> IExport: xml = prettyFormat(xmlMovements)
+IExport -> IExport: save(xml, "ExportMovements.xml")
+IExport --> ExporContrl: xml
+ExporContrl --> ExporToXmlUI: xml
+ExporToXmlUI -> ExporToXmlUI: System.out.println(xml)
