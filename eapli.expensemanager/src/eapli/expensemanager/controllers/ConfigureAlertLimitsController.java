@@ -24,7 +24,8 @@ public class ConfigureAlertLimitsController extends BaseController {
     }
 
     public List<ExpenseType> getAllExpenseTypes() {
-        return PersistenceFactory.buildPersistenceFactory().expenseTypeRepository().all();
+        return PersistenceFactory.buildPersistenceFactory().
+                expenseTypeRepository().all();
     }
 
     public AlertLimit findByAlertType(AlertLimitType aLertType) {
@@ -35,26 +36,36 @@ public class ConfigureAlertLimitsController extends BaseController {
         return AlertLimitByExpenseType.findByExpenseType(eT);
     }
 
-    public void registerAlertLimitExpenditure(AlertLimitType alertType, double yellowLimit, double redLimit) {
+    public void registerAlertLimitExpenditure(AlertLimitType alertType,
+                                              double yellowLimit,
+                                              double redLimit) {
         AlertLimitExpenditure limit = new AlertLimitExpenditure(alertType, new BigDecimal(yellowLimit), new BigDecimal(redLimit));
         limit.save();
     }
 
-    public void registerAlertLimitByExpenseType(AlertLimitType alertType, double yellowLimit, double redLimit, ExpenseType eT) {
+    public void registerAlertLimitByExpenseType(AlertLimitType alertType,
+                                                double yellowLimit,
+                                                double redLimit, ExpenseType eT) {
         AlertLimitByExpenseType limit = new AlertLimitByExpenseType(alertType, yellowLimit, redLimit, eT);
         limit.save();
     }
 
-    public void updateAlertLimitExpenditure(AlertLimitExpenditure alertLimitExpenditure, double yellow, double red) {
+    public void updateAlertLimitExpenditure(
+            AlertLimitExpenditure alertLimitExpenditure,
+            double yellow,
+            double red) {
         alertLimitExpenditure.updateLimits(yellow, red);
-        //Does not work because Entity is detached 
-        //alertLimitExpenditure.save();
-        alertLimitExpenditure.update();
+        //Does not work because Entity is detached
+        alertLimitExpenditure.save();
+        //alertLimitExpenditure.update();
     }
 
-    public void updateAlertLimitByExpenseType(AlertLimitByExpenseType alertLimitByExpenseType, double yellow, double red) {
+    public void updateAlertLimitByExpenseType(
+            AlertLimitByExpenseType alertLimitByExpenseType,
+            double yellow,
+            double red) {
         alertLimitByExpenseType.updateLimits(yellow, red);
-        //Does not work because Entity is detached 
+        //Does not work because Entity is detached
         //alertLimitByExpenseType.save();
         alertLimitByExpenseType.update();
     }

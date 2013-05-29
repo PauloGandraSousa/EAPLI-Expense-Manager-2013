@@ -24,75 +24,74 @@ import eapli.expensemanager.persistence.AlertLimitRepository;
  */
 public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer> implements AlertLimitRepository {
 
-      @Override
-      public AlertLimit findByKey(int key) {
-            return super.read(key);
-      }
+    @Override
+    public AlertLimit findByKey(int key) {
+        return super.read(key);
+    }
 
-      @Override
-      public AlertLimit save(AlertLimit alertLimit) {
-            return super.save(alertLimit);
-      }
+    @Override
+    public AlertLimit findByAlertType(AlertLimitType a) {
+        EntityManager em = getEntityManager();
+        Query q = em
+                .createQuery("SELECT e FROM AlertLimit e WHERE e.alertType = :aLertT");
+        q.setParameter("aLertT", a);
+        @SuppressWarnings("unchecked")
+        List<AlertLimit> list = q.getResultList();
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
-      @Override
-      public AlertLimit findByAlertType(AlertLimitType a) {
-            EntityManager em = getEntityManager();
-            Query q = em
-                    .createQuery("SELECT e FROM AlertLimit e WHERE e.alertType = :aLertT");
-            q.setParameter("aLertT", a);
-            @SuppressWarnings("unchecked")
-            List<AlertLimit> list = q.getResultList();
-            if (list.isEmpty()) {
-                  return null;
-            }
-            return list.get(0);
-      }
+    @Override
+    public AlertLimit findByExpenseType(ExpenseType eT) {
 
-      @Override
-      public AlertLimit findByExpenseType(ExpenseType eT) {
+        EntityManager em = getEntityManager();
+        Query q = em
+                .createQuery("SELECT e FROM AlertLimitByExpenseType e WHERE e.expenseType= :eT");
+        q.setParameter("eT", eT);
+        @SuppressWarnings("unchecked")
+        List<AlertLimit> list = q.getResultList();
+        if (list.isEmpty()) {
 
-            EntityManager em = getEntityManager();
-            Query q = em
-                    .createQuery("SELECT e FROM AlertLimitByExpenseType e WHERE e.expenseType= :eT");
-            q.setParameter("eT", eT);
-            @SuppressWarnings("unchecked")
-            List<AlertLimit> list = q.getResultList();
-            if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
-                  return null;
-            }
-            return list.get(0);
-      }
-      
-      
-      @Override
-      public AlertLimit updateAL(AlertLimit al){
-            EntityManager em = getEntityManager();
-             
-            assert em != null;
-            EntityTransaction tx = em.getTransaction();
+    @Override
+    public AlertLimit update(AlertLimit al) {
+        EntityManager em = getEntityManager();
 
-            AlertLimit temp = null;
-            try {
-                  tx.begin();
-                  // Because entity is detached
-                  temp=em.merge(al);
-                  if( al instanceof AlertLimitExpenditure ){  
-                  ((AlertLimitExpenditure)temp).setLimitYellow(((AlertLimitExpenditure)al).getLimitYellow());
-                  ((AlertLimitExpenditure)temp).setLimitRed(((AlertLimitExpenditure)al).getLimitRed());
-                  }
-                  else{
-                         ((AlertLimitByExpenseType)temp).setPercentLimitYellow(((AlertLimitByExpenseType)al).getPercentLimitYellow());
-                  ((AlertLimitByExpenseType)temp).setPercentLimitRed(((AlertLimitByExpenseType)al).getPercentLimitRed());
-                  }            
-                  tx.commit();
-            } catch (PersistenceException ex) {
-                  // FIXE 
-                  throw new IllegalStateException();
-            } finally {
-                  em.close();
-            }
-            return temp;       
-      }
-      
+        assert em != null;
+        EntityTransaction tx = em.getTransaction();
+
+        AlertLimit temp = null;
+        try {
+            tx.begin();
+            // Because entity is detached
+            temp = em.merge(al);
+//            if (al instanceof AlertLimitExpenditure) {
+//                ((AlertLimitExpenditure) temp).
+//                        setLimitYellow(((AlertLimitExpenditure) al).
+//                        getLimitYellow());
+//                ((AlertLimitExpenditure) temp).
+//                        setLimitRed(((AlertLimitExpenditure) al).getLimitRed());
+//            } else {
+//                ((AlertLimitByExpenseType) temp).
+//                        setPercentLimitYellow(((AlertLimitByExpenseType) al).
+//                        getPercentLimitYellow());
+//                ((AlertLimitByExpenseType) temp).
+//                        setPercentLimitRed(((AlertLimitByExpenseType) al).
+//                        getPercentLimitRed());
+//            }
+            tx.commit();
+        } catch (PersistenceException ex) {
+            // FIXE
+            throw new IllegalStateException();
+        } finally {
+            em.close();
+        }
+        return temp;
+    }
 }

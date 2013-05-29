@@ -115,7 +115,7 @@ public class AlertLimit implements Serializable, ActiveRecord {
        */
       public AlertLimit update() {
             AlertLimitRepository repo = PersistenceFactory.buildPersistenceFactory().alertLimitRepository();
-            AlertLimit lim = repo.updateAL(this);
+            AlertLimit lim = repo.update(this);
             return lim;
 
       }

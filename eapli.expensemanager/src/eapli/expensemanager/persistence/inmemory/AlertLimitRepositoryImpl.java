@@ -43,7 +43,7 @@ public class AlertLimitRepositoryImpl implements AlertLimitRepository{
       }
 
       @Override
-      public AlertLimit updateAL(AlertLimit al) {
+      public AlertLimit update(AlertLimit al) {
             throw new UnsupportedOperationException("Not supported yet.");
       }
       

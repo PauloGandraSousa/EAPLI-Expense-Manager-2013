@@ -29,13 +29,15 @@ public class ExportMovementsXml implements IExportMovementsStrategy {
     public String getOutput() {
         String xmlMovements = getMovementsInXml();
         String xml = prettyFormat(xmlMovements);
+        // FIXME this method is misleading as it is "geting" the output but as
+        // a side effect it saves it to a file
         save(xml, "ExportMovements.xml");
         return xml;
     }
 
     public String getMovementsInXml() {
         List<Movement> listMovements = getMovements();
-        // An alternative would be using the builder and visitor pattern
+        // TODO An alternative would be using the builder and visitor pattern
         StringBuilder xml = new StringBuilder("<movements>");
         for (int i = 0; i < listMovements.size(); i++) {
             xml.append(listMovements.get(i).toXml()).append("\n");
@@ -44,16 +46,17 @@ public class ExportMovementsXml implements IExportMovementsStrategy {
         return xml.toString();
     }
 
+    //FIXME this code is duplicated with ExportMovementsCsv
     public List<Movement> getMovements() {
         CheckingAccountRepository repo = PersistenceFactory
                 .buildPersistenceFactory().checkingAccountRepository();
         return repo.theAccount().getMovements();
     }
- 
+
     public String prettyFormat(String input) {
         return prettyFormat(input, 2);
     }
-    
+
     /**
      *
      * based in code from
@@ -68,7 +71,8 @@ public class ExportMovementsXml implements IExportMovementsStrategy {
             Source xmlInput = new StreamSource(new StringReader(input));
             StringWriter stringWriter = new StringWriter();
             StreamResult xmlOutput = new StreamResult(stringWriter);
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            TransformerFactory transformerFactory = TransformerFactory.
+                    newInstance();
             transformerFactory.setAttribute("indent-number", indent);
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -79,18 +83,18 @@ public class ExportMovementsXml implements IExportMovementsStrategy {
         }
     }
 
+    //FIXME this code is duplicated with ExportMovementsCsv
     public void save(String xml, String fileName) {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(fileName));
             writer.write(xml);
-        }
-        catch (IOException e) { }
-        finally {
+        } catch (IOException e) {
+        } finally {
             try {
-                writer.close( );
+                writer.close();
+            } catch (IOException e) {
             }
-            catch(IOException e) {}
-	}
+        }
     }
 }

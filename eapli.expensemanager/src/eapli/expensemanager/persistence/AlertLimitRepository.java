@@ -26,6 +26,9 @@ public interface AlertLimitRepository {
     AlertLimit findByAlertType(AlertLimitType a);
 
     AlertLimit findByExpenseType(ExpenseType eT);
-    
-    AlertLimit updateAL(AlertLimit al);
+
+    // FIXME the semantics we have for the save() method is "save or update", as
+    // such having an explicit update() method is confusing - we should be using
+    // save() instead
+    AlertLimit update(AlertLimit al);
 }

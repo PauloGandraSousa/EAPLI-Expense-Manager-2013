@@ -4,8 +4,6 @@
  */
 package eapli.expensemanager.export;
 
-import java.io.FileInputStream;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,26 +12,28 @@ import java.util.logging.Logger;
  * @author Fernando
  */
 public class ExportMovementsFactory {
-    
+
     private static ExportMovementsFactory instance = new ExportMovementsFactory();
-    
+
     private ExportMovementsFactory() {
     }
-    
+
     public static ExportMovementsFactory getInstance() {
         return instance;
     }
-    
+
     public IExportMovementsStrategy getExportMovementsStrategy() {
+        // TODO in this case it would be acceptable for the factory to receive a parameter
+        // in order to decide which factory to create as this will be a user decision
+        // and not a configuration setting
         String strClassName = System.getProperty("ExportMovementsStrategy");
         System.out.println("strClassName: " + strClassName);
         try {
-            return (IExportMovementsStrategy) Class.forName(strClassName).newInstance();
-        }
-        catch (Exception exc) {
+            return (IExportMovementsStrategy) Class.forName(strClassName).
+                    newInstance();
+        } catch (Exception exc) {
             Logger.getLogger("ExpenseManager").log(Level.SEVERE, null, exc);
             return null;
         }
     }
-    
 }
