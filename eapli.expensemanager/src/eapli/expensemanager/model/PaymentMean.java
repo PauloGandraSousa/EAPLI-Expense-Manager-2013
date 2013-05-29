@@ -30,10 +30,10 @@ import javax.persistence.InheritanceType;
 public abstract class PaymentMean implements ActiveRecord, Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
     @GeneratedValue
     Long id;
 
@@ -42,12 +42,14 @@ public abstract class PaymentMean implements ActiveRecord, Serializable {
 
     @Override
     public void save() {
-        PaymentMeanRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMeanRepository();
+        PaymentMeanRepository repo = PersistenceFactory.
+                buildPersistenceFactory().paymentMeanRepository();
         repo.save(this);
     }
 
     public static List<PaymentMean> loadAll() {
-        PaymentMeanRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMeanRepository();
+        PaymentMeanRepository repo = PersistenceFactory.
+                buildPersistenceFactory().paymentMeanRepository();
         return repo.all();
     }
 
