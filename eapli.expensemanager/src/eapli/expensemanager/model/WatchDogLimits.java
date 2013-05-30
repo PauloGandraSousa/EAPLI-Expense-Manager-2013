@@ -6,6 +6,10 @@ package eapli.expensemanager.model;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import eapli.expensemanager.model.events.AlertEvent;
+import eapli.expensemanager.model.events.AlertEventExpenditure;
+import eapli.expensemanager.model.events.ExpenseRegisteredEvent;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;

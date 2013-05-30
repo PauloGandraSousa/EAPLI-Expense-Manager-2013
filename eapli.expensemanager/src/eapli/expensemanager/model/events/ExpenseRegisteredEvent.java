@@ -2,8 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.model;
+package eapli.expensemanager.model.events;
 
+import eapli.expensemanager.model.AlertLimit;
+import eapli.expensemanager.model.AlertLimitByExpenseType;
+import eapli.expensemanager.model.AlertLimitExpenditure;
+import eapli.expensemanager.model.AlertLimitType;
+import eapli.expensemanager.model.CheckingAccount;
+import eapli.expensemanager.model.Expense;
+import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;

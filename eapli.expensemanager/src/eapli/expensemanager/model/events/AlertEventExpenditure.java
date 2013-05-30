@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.model;
+package eapli.expensemanager.model.events;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

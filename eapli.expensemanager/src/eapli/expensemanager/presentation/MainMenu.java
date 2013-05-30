@@ -4,8 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.actions.Action;
 import eapli.framework.Controller;
+import eapli.framework.actions.Action;
 import eapli.framework.actions.ReturnAction;
 import eapli.framework.presentation.AbstractUI;
 import eapli.framework.presentation.Menu;
@@ -182,6 +182,9 @@ public class MainMenu extends AbstractUI {
 		menu.addMenuItem(new MenuItem(EXPORT_MOVEMENTS_TO_CSV,
 				"Export Movements to CSV", new ShowUiAction(
 						new ExportMovementsToCsvUI())));
+
+		menu.addMenuItem(new MenuItem(500, "Export Movements",
+				new ShowUiAction(new ExportMovementsUI())));
 
 		menu.addMenuItem(new MenuSeparator());
 

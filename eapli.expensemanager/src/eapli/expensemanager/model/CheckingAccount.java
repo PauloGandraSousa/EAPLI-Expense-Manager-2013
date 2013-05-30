@@ -24,12 +24,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
+import eapli.expensemanager.model.events.ExpenseRegisteredEvent;
+import eapli.framework.visitor.Visitable;
+import eapli.framework.visitor.Visitor;
+
 /**
  * 
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class CheckingAccount extends Observable implements Serializable {
+public class CheckingAccount extends Observable implements Serializable,
+		Visitable<Expense> {
 
 	/**
      *
@@ -277,5 +282,12 @@ public class CheckingAccount extends Observable implements Serializable {
 			}
 		}
 		return total;
+	}
+
+	@Override
+	public void accept(Visitor<Expense> visitor) {
+		for (Expense anExpense : getExpenses()) {
+			visitor.visit(anExpense);
+		}
 	}
 }

@@ -5,7 +5,7 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.export.ExportMovementsFactory;
-import eapli.expensemanager.export.IExportMovementsStrategy;
+import eapli.expensemanager.export.ExportMovementsStrategy;
 
 /**
  * 
@@ -13,10 +13,18 @@ import eapli.expensemanager.export.IExportMovementsStrategy;
  */
 public class ExportMovementsController extends BaseController {
 
-    public String getExportString() {
-        ExportMovementsFactory exportMovementsFactory = ExportMovementsFactory.getInstance();
-        IExportMovementsStrategy exportMovements = exportMovementsFactory.getExportMovementsStrategy();
-        String output = exportMovements.getOutput();
-        return output;
-    }
+	public String getExportString() {
+		ExportMovementsFactory exportMovementsFactory = ExportMovementsFactory
+				.getInstance();
+		ExportMovementsStrategy exportMovements = exportMovementsFactory
+				.getExportMovementsStrategy();
+		String output = exportMovements.getOutput();
+		return output;
+	}
+
+	public void export(int format, String filename) {
+		ExportMovementsFactory factory = ExportMovementsFactory.getInstance();
+		ExportMovementsStrategy exportMovements = factory.getExporter(format);
+		exportMovements.export(filename);
+	}
 }

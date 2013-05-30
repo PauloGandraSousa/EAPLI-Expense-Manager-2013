@@ -10,12 +10,12 @@ import java.util.Observer;
 
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterExpenseController;
-import eapli.expensemanager.model.AlertEvent;
 import eapli.expensemanager.model.Cheque;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.InsufficientBalanceException;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
+import eapli.expensemanager.model.events.AlertEvent;
 import eapli.framework.presentation.SelectWidget;
 import eapli.util.Console;
 
