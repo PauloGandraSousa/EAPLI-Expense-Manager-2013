@@ -55,7 +55,7 @@ public class RegisterSavingDepositUI extends RegisterMovementBaseUI {
         System.out.println("-- SAVING GOALS --");
         List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 
-        widget = new SelectWidget<SavingGoal>(listSavingGoal, new SavingGoalVisitor());
+        widget = new SelectWidget<SavingGoal>(listSavingGoal, new SavingGoalListVisitor());
         widget.show();
         int option = widget.selectedOption();
         if (option == 0) {

@@ -9,5 +9,10 @@ package eapli.framework.visitor;
  * @author Paulo Gandra Sousa
  */
 public interface Visitor<T> {
+
     void visit(T visited);
+
+    public void beforeVisiting(T visited);
+
+    public void afterVisiting(T visited);
 }

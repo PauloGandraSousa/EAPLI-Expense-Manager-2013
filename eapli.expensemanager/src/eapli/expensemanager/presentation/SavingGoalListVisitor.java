@@ -11,10 +11,20 @@ import eapli.framework.visitor.Visitor;
  *
  * @author AJS
  */
-public class SavingGoalVisitor implements Visitor<SavingGoal> {
+public class SavingGoalListVisitor implements Visitor<SavingGoal> {
 
     @Override
     public void visit(SavingGoal visited) {
         System.out.println(visited.getDescription());
+    }
+
+    @Override
+    public void beforeVisiting(SavingGoal visited) {
+        //nothing to do
+    }
+
+    @Override
+    public void afterVisiting(SavingGoal visited) {
+        //nothing to do
     }
 }

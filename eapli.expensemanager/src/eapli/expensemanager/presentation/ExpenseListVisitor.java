@@ -19,4 +19,14 @@ class ExpenseListVisitor implements Visitor<Expense> {
         System.out.print(visited.getAmount() + " ");
         System.out.println(visited.getDescription());
     }
+
+    @Override
+    public void beforeVisiting(Expense visited) {
+        // nothing to do
+    }
+
+    @Override
+    public void afterVisiting(Expense visited) {
+        // nothing to do
+    }
 }

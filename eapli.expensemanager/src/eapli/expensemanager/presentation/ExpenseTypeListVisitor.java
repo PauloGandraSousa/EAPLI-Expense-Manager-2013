@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.framework.visitor.Visitor;
 
@@ -18,5 +19,15 @@ public class ExpenseTypeListVisitor implements Visitor<ExpenseType> {
     @Override
     public void visit(ExpenseType visited) {
         System.out.println(visited.getDescription());
+    }
+
+    @Override
+    public void beforeVisiting(ExpenseType visited) {
+        // nothing to do
+    }
+
+    @Override
+    public void afterVisiting(ExpenseType visited) {
+        // nothing to do
     }
 }

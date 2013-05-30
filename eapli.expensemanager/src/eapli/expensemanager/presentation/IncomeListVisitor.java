@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
 import eapli.framework.visitor.Visitor;
 
@@ -21,5 +22,15 @@ class IncomeListVisitor implements Visitor<Income> {
         System.out.print(visited.getDateOcurred() + " ");
         System.out.print(visited.getAmount() + " ");
         System.out.println(visited.getDescription());
+    }
+
+    @Override
+    public void beforeVisiting(Income visited) {
+        // nothing to do
+    }
+
+    @Override
+    public void afterVisiting(Income visited) {
+        // nothing to do
     }
 }
