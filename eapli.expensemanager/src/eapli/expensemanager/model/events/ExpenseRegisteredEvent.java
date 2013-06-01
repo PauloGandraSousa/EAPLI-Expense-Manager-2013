@@ -4,6 +4,8 @@
  */
 package eapli.expensemanager.model.events;
 
+import eapli.expensemanager.limits.AlertEventExpenditure;
+import eapli.expensemanager.limits.AlertEventByExpenseType;
 import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitExpenditure;

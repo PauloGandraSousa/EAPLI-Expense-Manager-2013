@@ -1,6 +1,6 @@
 package eapli.expensemanager.export;
 
-import java.io.BufferedWriter;
+import java.io.Writer;
 import java.io.IOException;
 
 import eapli.expensemanager.model.Expense;
@@ -8,11 +8,11 @@ import eapli.framework.visitor.Visitor;
 import eapli.util.DateTime;
 import eapli.util.Math;
 
-public class ExpenseExporterToCsvVisitor implements Visitor<Expense> {
+class ExpenseExporterToCsvVisitor implements Visitor<Expense> {
 
-    private final BufferedWriter writer;
+    private final Writer writer;
 
-    public ExpenseExporterToCsvVisitor(BufferedWriter writer) {
+    public ExpenseExporterToCsvVisitor(Writer writer) {
         this.writer = writer;
     }
 

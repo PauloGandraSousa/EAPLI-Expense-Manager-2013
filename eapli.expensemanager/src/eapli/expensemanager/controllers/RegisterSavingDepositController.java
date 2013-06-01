@@ -14,7 +14,7 @@ import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
-import eapli.expensemanager.model.InsufficientBalanceException;
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 
 /**
  *

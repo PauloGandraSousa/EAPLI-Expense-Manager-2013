@@ -8,7 +8,7 @@ import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.InsufficientBalanceException;
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;

@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;

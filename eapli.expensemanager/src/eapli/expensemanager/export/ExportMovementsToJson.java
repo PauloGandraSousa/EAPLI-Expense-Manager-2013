@@ -4,57 +4,47 @@
  */
 package eapli.expensemanager.export;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import eapli.expensemanager.model.CheckingAccount;
-import eapli.expensemanager.persistence.CheckingAccountRepository;
-import eapli.expensemanager.persistence.PersistenceFactory;
-import eapli.util.Files;
+import java.io.Writer;
+import eapli.expensemanager.model.Expense;
+import eapli.framework.visitor.Visitor;
 
 /**
  *
  * @author Fernando
  */
-public class ExportMovementsToJson implements ExportMovementsStrategy {
+class ExportMovementsToJson extends MovementsExporterBase {
 
     private static final String DOCUMENT_BEGIN = "{\nexpenses : [\n";
     private static final String DOCUMENT_END = "]\n}\n";
     private static final String JSON_EXTENSION = ".json";
 
     @Override
-    public void export(String filename) {
-        filename = Files.ensureExtension(filename, JSON_EXTENSION);
+    protected String fileExtension() {
+        return JSON_EXTENSION;
+    }
 
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new FileWriter(filename));
+    @Override
+    protected boolean hasHeader() {
+        return true;
+    }
 
-            CheckingAccountRepository repo = PersistenceFactory
-                    .buildPersistenceFactory().checkingAccountRepository();
-            CheckingAccount theAccount = repo.theAccount();
+    @Override
+    protected boolean hasFooter() {
+        return true;
+    }
 
-            writer.write(DOCUMENT_BEGIN);
+    @Override
+    protected String header() {
+        return DOCUMENT_BEGIN;
+    }
 
-            ExpenseExporterToJsonVisitor visitor = new ExpenseExporterToJsonVisitor(writer);
-            theAccount.accept(visitor);
+    @Override
+    protected String footer() {
+        return DOCUMENT_END;
+    }
 
-            writer.write(DOCUMENT_END);
-        } catch (IOException e) {
-            // FIXME don't silence the exception
-        } catch (RuntimeException e) {
-            if (e.getCause().getClass() == IOException.class) {
-                // FIXME don't silence the exception
-            } else {
-                throw e;
-            }
-        } finally {
-            try {
-                writer.close();
-            } catch (IOException e) {
-                // FIXME don't silence the exception
-            }
-        }
+    @Override
+    protected Visitor<Expense> visitor(Writer writer) {
+        return new ExpenseExporterToJsonVisitor(writer);
     }
 }

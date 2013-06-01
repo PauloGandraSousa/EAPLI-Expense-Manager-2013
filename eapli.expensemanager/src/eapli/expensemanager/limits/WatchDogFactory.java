@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.model;
+package eapli.expensemanager.limits;
 
 import java.util.Observable;
 import java.util.Observer;

@@ -6,7 +6,7 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterSavingDepositController;
-import eapli.expensemanager.model.InsufficientBalanceException;
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import eapli.expensemanager.model.SavingGoal;
 import eapli.framework.presentation.SelectWidget;
 import java.util.List;
