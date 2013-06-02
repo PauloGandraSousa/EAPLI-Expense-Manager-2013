@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.presentation;
+package eapli.expensemanager.presentation.visitors;
 
 import eapli.expensemanager.model.SavingGoal;
 import eapli.framework.visitor.Visitor;

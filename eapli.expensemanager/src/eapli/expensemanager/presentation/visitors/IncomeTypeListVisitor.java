@@ -2,10 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.presentation;
+package eapli.expensemanager.presentation.visitors;
 
-import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.model.IncomeType;
 import eapli.framework.visitor.Visitor;
 
 /**
@@ -14,20 +13,20 @@ import eapli.framework.visitor.Visitor;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseTypeListVisitor implements Visitor<ExpenseType> {
+public class IncomeTypeListVisitor implements Visitor<IncomeType> {
 
     @Override
-    public void visit(ExpenseType visited) {
+    public void visit(IncomeType visited) {
         System.out.println(visited.getDescription());
     }
 
     @Override
-    public void beforeVisiting(ExpenseType visited) {
+    public void beforeVisiting(IncomeType visited) {
         // nothing to do
     }
 
     @Override
-    public void afterVisiting(ExpenseType visited) {
+    public void afterVisiting(IncomeType visited) {
         // nothing to do
     }
 }

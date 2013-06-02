@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.visitors.ExpenseListVisitor;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListExpensesController;
 import eapli.expensemanager.model.Expense;

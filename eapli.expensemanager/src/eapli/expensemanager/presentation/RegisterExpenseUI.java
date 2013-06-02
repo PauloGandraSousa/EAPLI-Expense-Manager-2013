@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.visitors.ExpenseTypeListVisitor;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;

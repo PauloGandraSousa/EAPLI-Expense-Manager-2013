@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.visitors.SavingGoalListVisitor;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterSavingDepositController;
 import eapli.expensemanager.model.exceptions.InsufficientBalanceException;

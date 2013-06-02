@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.presentation;
+package eapli.expensemanager.presentation.visitors;
 
 import eapli.expensemanager.model.PaymentMean;
 import eapli.framework.visitor.Visitor;
@@ -11,7 +11,7 @@ import eapli.framework.visitor.Visitor;
  *
  * @author Paulo Gandra Sousa
  */
-class PaymentMeanListVisitor implements Visitor<PaymentMean> {
+public class PaymentMeanListVisitor implements Visitor<PaymentMean> {
 
     public PaymentMeanListVisitor() {
     }

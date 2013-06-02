@@ -22,7 +22,7 @@ import java.util.Map.Entry;
  *
  * @author Nuno Bettencourt
  */
-class ListExpensesUIPerTypeGUIChart extends ListExpensesUIPerTypeChart {
+class ListExpensesPerTypeGraphicalChartUI extends ListExpensesPerTypeChartBaseUI {
 
     /**
      * Lists all expense movements grouped by their type but it does not display

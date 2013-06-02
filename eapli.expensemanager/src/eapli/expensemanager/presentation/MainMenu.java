@@ -20,28 +20,35 @@ import eapli.framework.presentation.SubMenu;
  */
 public class MainMenu extends AbstractUI {
 
-    final int EXIT_OPTION = 0;
-    final int REGISTER_EXPENSE_OPTION = 1;
-    final int LIST_EXPENSES_OPTION = 2;
-    final int REGISTER_INCOME_OPTION = 3;
-    final int LIST_INCOMES_OPTION = 4;
-    final int LIST_EXPENSES_PER_TYPE_OPTION = 6;
-    final int LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION = 7;
-    final int LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION = 71;
-    final int REGISTER_EXPENSE_TYPE_OPTION = 20;
-    final int LIST_EXPENSE_TYPES_OPTION = 21;
-    final int REGISTER_INCOME_TYPE_OPTION = 30;
-    final int LIST_INCOME_TYPES_OPTION = 31;
-    final int REGISTER_PAYMENT_METHOD_OPTION = 40;
-    final int LIST_PAYMENT_METHODS_OPTION = 41;
-    final int REGISTER_SAVING_GOAL_OPTION = 51;
-    final byte REGISTER_INITIAL_BALANCE_OPTION = 60;
-    final int SETTING_ALERT_LIMITS_OPTION = 90;
-    final int LISTINGS_OPTION = 100;
-    final int MASTER_TABLES_OPTION = 200;
-    final int EXPORT_MOVEMENTS = 81;
-    final int REGISTER_SAVING_DEPOSIT_OPTION = 70;
-    final int REGISTER_SAVING_WITHDRAW_OPTION = 80;
+    private static final int EXIT_OPTION = 0;
+    // expenses & incomes
+    private static final int REGISTER_EXPENSE_OPTION = 1;
+    private static final int REGISTER_INCOME_OPTION = 3;
+    // saving plan
+    private static final int REGISTER_SAVING_GOAL_OPTION = 5;
+    // savings
+    private static final int REGISTER_SAVING_DEPOSIT_OPTION = 7;
+    private static final int REGISTER_SAVING_WITHDRAW_OPTION = 8;
+    // configuration
+    private static final int SET_ALERT_LIMITS_OPTION = 60;
+    private static final byte REGISTER_INITIAL_BALANCE_OPTION = 70;
+    // import & export
+    private static final int EXPORT_MOVEMENTS = 80;
+    // listings
+    private static final int LISTINGS_OPTION = 100;
+    private static final int LIST_EXPENSES_OPTION = 2;
+    private static final int LIST_INCOMES_OPTION = 4;
+    private static final int LIST_EXPENSES_PER_TYPE_OPTION = 6;
+    private static final int LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION = 7;
+    private static final int LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION = 8;
+    // master tables
+    private static final int MASTER_TABLES_OPTION = 200;
+    private static final int REGISTER_EXPENSE_TYPE_OPTION = 20;
+    private static final int LIST_EXPENSE_TYPES_OPTION = 21;
+    private static final int REGISTER_INCOME_TYPE_OPTION = 30;
+    private static final int LIST_INCOME_TYPES_OPTION = 31;
+    private static final int REGISTER_PAYMENT_METHOD_OPTION = 40;
+    private static final int LIST_PAYMENT_METHODS_OPTION = 41;
 
     public MainMenu() {
     }
@@ -82,13 +89,13 @@ public class MainMenu extends AbstractUI {
                                       new ShowUiAction(new ListIncomesUI())));
         menu.addMenuItem(new MenuItem(LIST_EXPENSES_PER_TYPE_OPTION,
                                       "List expenses per type", new ShowUiAction(
-                new ListExpensesUIPerTypeConsole())));
+                new ListExpensesPerTypeUI())));
         menu.addMenuItem(new MenuItem(LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION,
                                       "List expenses per type in text chart", new ShowUiAction(
-                new ListExpensesUIPerTypeTextChart())));
+                new ListExpensesPerTypeConsoleChartUI())));
         menu.addMenuItem(new MenuItem(LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION,
                                       "List expenses per type in GUI chart", new ShowUiAction(
-                new ListExpensesUIPerTypeGUIChart())));
+                new ListExpensesPerTypeGraphicalChartUI())));
 
         menu.addMenuItem(new MenuItem(0, "Return", new ReturnAction()));
 
@@ -166,8 +173,8 @@ public class MainMenu extends AbstractUI {
 
         menu.addMenuItem(new MenuSeparator());
 
-        menu.addMenuItem(new MenuItem(SETTING_ALERT_LIMITS_OPTION,
-                                      "Setting alert limits", new ShowUiAction(
+        menu.addMenuItem(new MenuItem(SET_ALERT_LIMITS_OPTION,
+                                      "Set/change alert limits", new ShowUiAction(
                 new ConfigureAlertLimitsUI())));
 
         menu.addMenuItem(new MenuItem(REGISTER_INITIAL_BALANCE_OPTION,
@@ -175,7 +182,7 @@ public class MainMenu extends AbstractUI {
                 new RegisterInitialBalanceUI())));
 
         menu.addMenuItem(new MenuItem(EXPORT_MOVEMENTS,
-                                      "Export Movements (CSV/XML)", new ShowUiAction(
+                                      "Export Movements (CSV/XML/JSON)", new ShowUiAction(
                 new ExportMovementsUI())));
 
         menu.addMenuItem(new MenuSeparator());
@@ -223,14 +230,14 @@ public class MainMenu extends AbstractUI {
      * ListExpensesUI listExpensesUI = new ListExpensesUI();
      * listExpensesUI.show(); break; case LIST_INCOMES_OPTION: ListIncomesUI
      * listIncomeUI = new ListIncomesUI(); listIncomeUI.show(); break; case
-     * LIST_EXPENSES_PER_TYPE_OPTION: ListExpensesUIPerTypeConsole
-     * listExpensesUIPerTypeConsole = new ListExpensesUIPerTypeConsole();
+     * LIST_EXPENSES_PER_TYPE_OPTION: ListExpensesPerTypeUI
+     * listExpensesUIPerTypeConsole = new ListExpensesPerTypeUI();
      * listExpensesUIPerTypeConsole.show(); break; case
-     * LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION: ListExpensesUIPerTypeTextChart
-     * listExpensesUIPerTypeChart = new ListExpensesUIPerTypeTextChart();
+     * LIST_EXPENSES_PER_TYPE_TEXT_CHART_OPTION: ListExpensesPerTypeConsoleChartUI
+     * listExpensesUIPerTypeChart = new ListExpensesPerTypeConsoleChartUI();
      * listExpensesUIPerTypeChart.show(); break; case
-     * LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION: ListExpensesUIPerTypeGUIChart
-     * listExpensesUIPerTypeGUIChart = new ListExpensesUIPerTypeGUIChart();
+     * LIST_EXPENSES_PER_TYPE_GUI_CHART_OPTION: ListExpensesPerTypeGraphicalChartUI
+     * listExpensesUIPerTypeGUIChart = new ListExpensesPerTypeGraphicalChartUI();
      * listExpensesUIPerTypeGUIChart.show(); break; case
      * REGISTER_EXPENSE_TYPE_OPTION: RegisterExpenseTypeUI registerExpenseTypeUI
      * = new RegisterExpenseTypeUI(); registerExpenseTypeUI.show(); break; case

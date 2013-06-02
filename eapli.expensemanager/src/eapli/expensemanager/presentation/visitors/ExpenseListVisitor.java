@@ -2,32 +2,31 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eapli.expensemanager.presentation;
+package eapli.expensemanager.presentation.visitors;
 
 import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.IncomeType;
 import eapli.framework.visitor.Visitor;
 
 /**
- * an implementation of the Visitor pattern for listing objects of type
- * ExpenseType
  *
  * @author Paulo Gandra Sousa
  */
-public class IncomeTypeListVisitor implements Visitor<IncomeType> {
+public class ExpenseListVisitor implements Visitor<Expense> {
 
     @Override
-    public void visit(IncomeType visited) {
+    public void visit(Expense visited) {
+        System.out.print(visited.getDateOcurred() + " ");
+        System.out.print(visited.getAmount() + " ");
         System.out.println(visited.getDescription());
     }
 
     @Override
-    public void beforeVisiting(IncomeType visited) {
+    public void beforeVisiting(Expense visited) {
         // nothing to do
     }
 
     @Override
-    public void afterVisiting(IncomeType visited) {
+    public void afterVisiting(Expense visited) {
         // nothing to do
     }
 }

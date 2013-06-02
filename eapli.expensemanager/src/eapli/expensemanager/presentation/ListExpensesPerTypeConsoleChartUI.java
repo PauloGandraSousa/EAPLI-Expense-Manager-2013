@@ -22,18 +22,7 @@ import java.util.Map.Entry;
  *
  * @author Nuno Bettencourt
  */
-class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
-
-    public void showExpenses(List<Expense> expenseList) {
-        int position = 1;
-        for (Expense expense : expenseList) {
-            System.out.print(position + ". ");
-            System.out.print(expense.getDateOcurred() + " ");
-            System.out.print(expense.getAmount() + " ");
-            System.out.println(expense.getDescription());
-            position++;
-        }
-    }
+class ListExpensesPerTypeConsoleChartUI extends ListExpensesPerTypeChartBaseUI {
 
     /**
      * Lists all expense movements grouped by their type it does not display
@@ -44,7 +33,8 @@ class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
     //TODO: NMB: pretende-se mostrar também tipos que não tenham movimentos?
     @Override
     public boolean doShow() {
-        Map<ExpenseType, List<Expense>> mapExpenses = getController().getExpensesClassifiedByExpenseType();
+        Map<ExpenseType, List<Expense>> mapExpenses = getController().
+                getExpensesClassifiedByExpenseType();
 
         //TODO: NMB: Verificar se esta conversão deve ser efectuada aqui ou se deve vir do controller
         Map<ExpenseType, BigDecimal> mapExpensesSum = new HashMap<ExpenseType, BigDecimal>();
@@ -60,8 +50,13 @@ class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
         }
         //TODO: NMB quem criar o somatório?
         for (Entry<ExpenseType, BigDecimal> entry : mapExpensesSum.entrySet()) {
-            BigDecimal expenseSumConverted = eapli.util.Math.simpleLinearConversion(BigDecimal.ZERO, maxExpense, BigDecimal.ZERO, BigDecimal.TEN, entry.getValue());
-            System.out.println(String.format("%-20s:", entry.getKey().getDescription() + "(" + entry.getValue() + ")") + String.format("%-" + expenseSumConverted.intValue() + "s", "").replace(' ', '*'));
+            BigDecimal expenseSumConverted = eapli.util.Math.
+                    simpleLinearConversion(BigDecimal.ZERO, maxExpense, BigDecimal.ZERO, BigDecimal.TEN, entry.
+                    getValue());
+            System.out.println(String.format("%-20s:", entry.getKey().
+                    getDescription() + "(" + entry.getValue() + ")") + String.
+                    format("%-" + expenseSumConverted.intValue() + "s", "").
+                    replace(' ', '*'));
         }
         return true;
     }

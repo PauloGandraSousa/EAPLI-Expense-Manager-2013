@@ -88,19 +88,19 @@ public class WatchDogLimits extends Observable implements Observer {
         return alert;
     }
 
-    public AlertEventExpenditure buildAlertBalanceEvent(BigDecimal balance,
+    public ExpenditureOverLimitAlertEvent buildAlertBalanceEvent(BigDecimal balance,
                                                         AlertLimitType alertType) {
         AlertLimitExpenditure alertLimit = (AlertLimitExpenditure) AlertLimit.
                 findByAlertType(alertType);
         if (alertLimit != null) {
             if (balance.compareTo(alertLimit.getLimitRed()) < 0) {
-                return new AlertEventExpenditure(alertLimit.getAlertType().
+                return new ExpenditureOverLimitAlertEvent(alertLimit.getAlertType().
                         getDescription(),
                                                  alertLimit.getLimitYellow(), alertLimit.
                         getLimitRed(), balance, "RED");
             }
             if (balance.compareTo(alertLimit.getLimitYellow()) < 0) {
-                return new AlertEventExpenditure(alertLimit.getAlertType().
+                return new ExpenditureOverLimitAlertEvent(alertLimit.getAlertType().
                         getDescription(),
                                                  alertLimit.getLimitYellow(), alertLimit.
                         getLimitRed(), balance, "YELLOW");

@@ -20,16 +20,14 @@ import java.util.Map.Entry;
  *
  * @author Nuno Bettencourt
  */
-class ListExpensesUIPerTypeConsole extends ListExpensesUI {
+class ListExpensesPerTypeUI extends BaseUI {
 
-    /**
-     * Poderia ter criado um set getController no ListExpensesUI, mas isso
-     * desvirtuava o conceito de ui ligado a um único controlador. Sendo assim,
-     * adoptei a opção de crira um atributo privado que tem o getController
-     * necessário. <p>Quem faz o cálculo dos agrupados? UI, Controller ou
-     * CheckingAccount?</p>
-     */
     private ListExpensesPerTypeController controller = new ListExpensesPerTypeController();
+
+    @Override
+    protected ListExpensesPerTypeController getController() {
+        return controller;
+    }
 
     private void showExpenses(List<Expense> expenseList) {
         int position = 1;
@@ -52,10 +50,12 @@ class ListExpensesUIPerTypeConsole extends ListExpensesUI {
     //TODO: NMB:pretende-se mostrar também tipos que não tenham movimentos?
     @Override
     public boolean doShow() {
-        Map<ExpenseType, List<Expense>> mapExpenses = controller.getExpensesClassifiedByExpenseType();
+        Map<ExpenseType, List<Expense>> mapExpenses = getController().
+                getExpensesClassifiedByExpenseType();
         for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
             System.out.print(entry.getKey().getDescription());
-            System.out.println("\tTotal amount:" + controller.sumAmount(entry.getValue()));
+            System.out.println("\tTotal amount:" + getController().
+                    sumAmount(entry.getValue()));
             showExpenses(entry.getValue());
         }
 

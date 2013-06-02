@@ -12,12 +12,14 @@ import java.util.Locale;
  *
  * @author mcn
  */
-public class AlertEventExpenditure extends AlertEvent {
+public class ExpenditureOverLimitAlertEvent extends AlertEvent {
 
     private BigDecimal yellow;
     private BigDecimal red;
 
-    public AlertEventExpenditure(String alertTypeDescription, BigDecimal yellow, BigDecimal red, BigDecimal value, String  level) {
+    public ExpenditureOverLimitAlertEvent(String alertTypeDescription,
+                                          BigDecimal yellow, BigDecimal red,
+                                          BigDecimal value, String level) {
         super(alertTypeDescription, value, level);
         this.yellow = yellow;
         this.red = red;
@@ -25,10 +27,11 @@ public class AlertEventExpenditure extends AlertEvent {
 
     @Override
     public String toString() {
-        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.getDefault());
         double yellow1 = this.yellow.doubleValue();
         double red1 = this.red.doubleValue();
 
-        return super.toString() + "\nLimit Yellow:" + n.format(yellow1) + "      Limit Red:" + n.format(red1);
+        return super.toString() + "\nLimit Yellow:" + n.format(yellow1) + "      Limit Red:" + n.
+                format(red1);
     }
 }

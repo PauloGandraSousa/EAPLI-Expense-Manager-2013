@@ -14,14 +14,16 @@ import eapli.expensemanager.model.ExpenseType;
  *
  * @author mcn
  */
-public class AlertEventByExpenseType extends AlertEvent {
+public class ExpenditureByExpenseTypeOverLimitAlertEvent extends AlertEvent {
 
     private BigDecimal average;
     private double yellow;
     private double red;
     private ExpenseType expenseType;
 
-    public AlertEventByExpenseType(String alertTypeDescription, double yellow, double red, BigDecimal value, BigDecimal average, String level, ExpenseType eT) {
+    public ExpenditureByExpenseTypeOverLimitAlertEvent(
+            String alertTypeDescription, double yellow, double red,
+            BigDecimal value, BigDecimal average, String level, ExpenseType eT) {
         super(alertTypeDescription, value, level);
         this.yellow = yellow;
         this.red = red;
@@ -31,10 +33,11 @@ public class AlertEventByExpenseType extends AlertEvent {
 
     @Override
     public String toString() {
-        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.getDefault());
 
         double average1 = this.average.doubleValue();
-        return "Expense Tpe:" + expenseType.getDescription() + "\n" + super.toString() + "\nAverage:" + n.format(average1)
+        return "Expense Type:" + expenseType.getDescription() + "\n" + super.
+                toString() + "\nAverage:" + n.format(average1)
                 + " Limit Yellow Deviation:" + yellow * 100 + "% Limit Red Deviation:" + red * 100 + "% ";
     }
 }

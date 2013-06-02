@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.visitors.IncomeTypeListVisitor;
 import eapli.expensemanager.controllers.RegisterIncomeController;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.model.IncomeType;

@@ -26,8 +26,9 @@ public abstract class AlertEvent {
 
     @Override
     public String toString() {
-        NumberFormat n = NumberFormat.getCurrencyInstance(Locale.FRANCE);
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.getDefault());
         double value1 = this.value.doubleValue();
-        return "Alert Level :"+level + "\nDescription:" + alertDescription + "\nCurrent Value:" + n.format(value1);
+        return "Alert Level :" + level + "\nDescription:" + alertDescription + "\nCurrent Value:" + formatter.
+                format(value1);
     }
 }

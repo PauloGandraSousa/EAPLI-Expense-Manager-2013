@@ -10,16 +10,16 @@ import java.util.Map;
 import eapli.expensemanager.model.ExpenseType;
 
 /**
- * 
+ *
  * @author nuno
  */
 public interface IChart {
 
-	public void setWindowTitle(String windowTitle);
+    public void setWindowTitle(String windowTitle);
 
-	public void setChartTitle(String chartTitle);
+    public void setChartTitle(String chartTitle);
 
-	public void setDataset(Map<ExpenseType, BigDecimal> mapExpenses);
+    public void setDataset(Map<ExpenseType, BigDecimal> mapExpenses);
 
-	public void doShow();
+    public void doShow();
 }
