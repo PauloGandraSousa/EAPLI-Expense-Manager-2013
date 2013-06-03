@@ -1,4 +1,4 @@
-Personal Expenses
+﻿Personal Expenses
 Polythecnic of Porto, School of Engineering
 #EAPLI [^1]
 =======================
@@ -8,6 +8,7 @@ techniques; as such, the overall application is not consistent in terms of desig
 for production ready code this would obvisously be a problem as we should strive for 
 consistency. in this case, it is acceptable as the inconsistencies are meant to provide
 samples of different valid approaches.
+
 
 several discussions migth be raised:
 1) which layers?
@@ -23,6 +24,24 @@ several discussions migth be raised:
 11) SavingsPlan + SavingsRecord OR Savings as a single aggregate composed of Goals and Goal composed of Savings?
 12) should the UI/controller create domain objects directly, e.g., Payment, ExpenseType
 13) how to reuse behavior betwen controllers, e.g., ListExpense, RegisterExpense?
+
+
+--------------------------------------------------------------------------
+Project structure
+--------------------------------------------------------------------------
+
+eapli.expensemanager.consoleapp
+	- presentation using console (and one GUI for charts :-). 
+	- Main class and properties
+eapli.expensemanager.bootstrap 
+	- bootstrap data. should be ignored on a "real" instalation
+eapli.expensemanager.core 
+	- use case controllers, model, and persistence
+
+eapli.framework
+	- framework classes (mainly interfaces)
+eapli.util
+	- generic utility classes for handling files, math, and console
 
 
 --------------------------------------------------------------------------
