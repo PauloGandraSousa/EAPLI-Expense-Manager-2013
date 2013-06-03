@@ -15,7 +15,6 @@ import eapli.expensemanager.persistence.IncomeTypeRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.util.Date;
-import javax.persistence.NoResultException;
 
 /**
  * this classes serves as bootstrap data loader. just to make sure some data
@@ -45,14 +44,15 @@ public class ReferenceDataBootstrap implements Bootstrap {
     private void ensureCashEurExists() {
         try {
             Cash.loadEUR();
-        } catch (NoResultException ex) {
+        } catch (IllegalStateException ex) {
             Cash cashEur = new Cash(Cash.EUR);
             cashEur.save();
         }
     }
 
     private void ensureTheAccountExists() {
-        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.
+                buildPersistenceFactory().checkingAccountRepository();
         try {
             repo.theAccount();
         } catch (IllegalStateException ex) {
@@ -62,7 +62,8 @@ public class ReferenceDataBootstrap implements Bootstrap {
     }
 
     private void ensureSavingsPlanExists() {
-        SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
+        SavingPlanRepository repo = PersistenceFactory.buildPersistenceFactory().
+                savingPlanRepository();
         try {
             repo.theSavingPlan();
         } catch (IllegalStateException ex) {
@@ -76,13 +77,15 @@ public class ReferenceDataBootstrap implements Bootstrap {
     private final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
 
     private void ensureDefaultExpenseTypesExist() {
-        ExpenseTypeRepository repo = PersistenceFactory.buildPersistenceFactory().expenseTypeRepository();
+        ExpenseTypeRepository repo = PersistenceFactory.
+                buildPersistenceFactory().expenseTypeRepository();
         ensureClothingExpenseTypeExists(repo);
         ensureTransportsExpenseTypeExists(repo);
     }
 
     private void ensureDefaultIncomeTypesExist() {
-        IncomeTypeRepository repo = PersistenceFactory.buildPersistenceFactory().incomeTypeRepository();
+        IncomeTypeRepository repo = PersistenceFactory.buildPersistenceFactory().
+                incomeTypeRepository();
         ensureSalaryIncomeTypeExists(repo);
     }
     public static final String SALARY_INCOME_TYPE = "Sal.";
