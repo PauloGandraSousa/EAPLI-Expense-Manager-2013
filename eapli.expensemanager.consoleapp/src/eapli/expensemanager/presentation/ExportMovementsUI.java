@@ -28,6 +28,9 @@ public class ExportMovementsUI extends BaseUI {
 		}
 
 		controller.export(option, filename);
+
+		System.out.println("Ficheiro gerado com sucesso");
+
 		return true;
 	}
 

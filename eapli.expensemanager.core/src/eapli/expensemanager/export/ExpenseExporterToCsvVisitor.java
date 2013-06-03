@@ -21,6 +21,9 @@ class ExpenseExporterToCsvVisitor implements Visitor<Expense> {
         // TODO this code is getting too much information from the expense
         // should use builder pattern
         try {
+            writer.write("expense, ");
+
+            // FIXME the code block is duplicated
             writer.write(DateTime.format(visited.getDateOcurred()));
             writer.write(",");
             writer.write(Math.format(visited.getAmount()));

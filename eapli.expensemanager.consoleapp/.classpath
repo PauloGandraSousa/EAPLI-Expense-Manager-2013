@@ -2,16 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="dist/eapli.expensemanager.consoleapp.jar"/>
-	<classpathentry kind="lib" path="dist/lib/eapli.expensemanager.bootstrap.jar"/>
-	<classpathentry kind="lib" path="dist/lib/eapli.expensemanager.core.jar"/>
-	<classpathentry kind="lib" path="dist/lib/eapli.framework.jar"/>
-	<classpathentry kind="lib" path="dist/lib/eapli.util.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/LIBs/jcommon-1.0.17.jar"/>
+	<classpathentry kind="lib" path="/LIBs/jfreechart-1.0.14.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/eapli.expensemanager.bootstrap"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eapli.expensemanager.core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eapli.framework"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eapli.util"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/eapli.expensemanager.bootstrap"/>
-	<classpathentry kind="lib" path="/LIBs/jcommon-1.0.17.jar"/>
-	<classpathentry kind="lib" path="/LIBs/jfreechart-1.0.14.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
