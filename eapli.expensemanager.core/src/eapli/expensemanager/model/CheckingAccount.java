@@ -4,11 +4,8 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.expensemanager.model.report.ExpensesReport;
-import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Observable;
 
 import javax.persistence.CascadeType;
@@ -30,6 +26,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import eapli.expensemanager.model.events.ExpenseRegisteredEvent;
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
+import eapli.expensemanager.model.report.ExpensesReport;
 import eapli.framework.visitor.Visitable;
 import eapli.framework.visitor.Visitor;
 
@@ -107,19 +105,11 @@ public class CheckingAccount extends Observable implements Serializable,
     }
 
     /**
-     * NMB[2013-04-18] - alterei o método para publico, de forma a conseguir
-     * invocar para um conjunto específico de movimentos a partir do controller
      *
      * @param theMovements
      * @return BigDecimal
      */
-    // TODO: NMB: verificar se faz algum sentido passar para público ou se
-    // deviamos
-    // criar outro método ou fazer de outra forma qualquer
-    // FIXME de um ponto de vista de API desta classe não faz sentido existir
-    // este
-    // método como public.
-    public BigDecimal sumAmount(List<? extends Movement> theMovements) {
+    private BigDecimal sumAmount(List<? extends Movement> theMovements) {
         BigDecimal sum = new BigDecimal(0);
         for (Movement e : theMovements) {
             sum = sum.add(e.getAmount());
@@ -209,24 +199,15 @@ public class CheckingAccount extends Observable implements Serializable,
         }
     }
 
-    public ExpensesReport getExpensesAggregatedByType(Date inicialPeriod, Date finalPeriod) {
+    public ExpensesReport getExpensesAggregatedByType(Date inicialPeriod,
+                                                      Date finalPeriod) {
 
         ExpensesReport expenseReport = new ExpensesReport();
-        Map<ExpenseType, BigDecimal> tempExpenseList = new HashMap();
 
         for (Expense expense : getExpenses()) {
             expenseReport.aggregate(expense);
-            BigDecimal tempSum = tempExpenseList.get(expense.getExpenseType());
-            if (tempSum == null) {
-                tempSum = new BigDecimal(BigInteger.ZERO);
-            }
-            tempSum = tempSum.add(expense.getAmount()); // REMARK: BigDecimal is immutable
-            tempExpenseList.put(expense.getExpenseType(), tempSum);
         }
 
-        for (Entry<ExpenseType, BigDecimal> entry : tempExpenseList.entrySet()) {
-            expenseReport.setAggregatedSum(entry.getKey(), entry.getValue());
-        }
         return expenseReport;
     }
 
@@ -282,12 +263,12 @@ public class CheckingAccount extends Observable implements Serializable,
     }
 
     public BigDecimal averageExpenditure(ExpenseType expenseType) {
-        List<Expense> expenses = getExpensesByType().get(expenseType);
-        if (expenses == null || expenses.isEmpty()) {
+        List<Expense> expensesOfType = getExpensesByType().get(expenseType);
+        if (expensesOfType == null || expensesOfType.isEmpty()) {
             return BigDecimal.ZERO;
         }
-        return sumAmount(expenses).divide(new BigDecimal(expenses.size()), 2,
-                                          RoundingMode.UP);
+        return sumAmount(expensesOfType).divide(new BigDecimal(expensesOfType.
+                size()), 2, RoundingMode.UP);
     }
 
     public BigDecimal expenditureOfMonth(int year, int month) {

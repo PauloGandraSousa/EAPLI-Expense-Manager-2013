@@ -4,13 +4,13 @@
  */
 package eapli.expensemanager.model.report;
 
-import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
+
+import eapli.expensemanager.model.Expense;
+import eapli.expensemanager.model.ExpenseType;
 
 /**
  *
@@ -18,9 +18,8 @@ import java.util.logging.Logger;
  */
 public class AggregatedExpenses {
 
-    ExpenseType expenseType = null;
     private BigDecimal sum = BigDecimal.ZERO;
-    List<Expense> expenses = new ArrayList();
+    List<Expense> expenses = new ArrayList<Expense>();
 
     /**
      * Add a movement to the list
@@ -29,6 +28,7 @@ public class AggregatedExpenses {
      */
     public void aggregate(Expense expense) {
         expenses.add(expense);
+        sum = sum.add(expense.getAmount());
     }
 
     /**
@@ -48,13 +48,4 @@ public class AggregatedExpenses {
     public BigDecimal getSum() {
         return sum;
     }
-
-    /**
-     *
-     * @param sum
-     */
-    public void setSum(BigDecimal sum) {
-        this.sum = sum;
-    }
-    private static final Logger LOG = Logger.getLogger(AggregatedExpenses.class.getName());
 }
