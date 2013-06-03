@@ -15,3 +15,7 @@
 /eapli.expensemanager.bootstrap/nbproject/private/
 /eapli.expensemanager.bootstrap/build/
 /LIBS/nbproject/private/
+/eapli.framework/nbproject/private/
+/eapli.framework/build/
+/eapli.framework/dist/
+bin

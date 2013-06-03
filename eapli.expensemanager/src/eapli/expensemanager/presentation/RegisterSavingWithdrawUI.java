@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.visitors.SavingGoalListVisitor;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.RegisterSavingWithdrawController;
 import eapli.expensemanager.model.SavingGoal;
@@ -16,11 +17,11 @@ import java.util.List;
  */
 public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
 
-    SelectWidget widget;
+    private SelectWidget<SavingGoal> widget;
 
     @Override
     public String headline() {
-        return "REGISTER AN SAVING WITHDRAW";
+        return "REGISTER A SAVING WITHDRAW";
     }
 
     @Override
@@ -33,11 +34,10 @@ public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
         System.out.println("\nSaving Withdraw recorded!");
         return true;
     }
-    
     RegisterSavingWithdrawController controller = new RegisterSavingWithdrawController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 
@@ -46,7 +46,7 @@ public class RegisterSavingWithdrawUI extends RegisterMovementBaseUI {
         System.out.println("-- SAVING GOAL --");
         List<SavingGoal> listSavingGoal = controller.getSavingGoals();
 
-        widget = new SelectWidget(listSavingGoal, new SavingGoalVisitor());
+        widget = new SelectWidget<SavingGoal>(listSavingGoal, new SavingGoalListVisitor());
         widget.show();
         int option = widget.selectedOption();
 

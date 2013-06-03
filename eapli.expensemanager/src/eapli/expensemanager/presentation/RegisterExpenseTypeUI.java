@@ -20,13 +20,13 @@ public class RegisterExpenseTypeUI extends RegisterMovementTypeBaseUI {
         controller.registerExpenseType(shortName, descr);
 
         System.out.println("\nExpense type recorded!");
-        
+
         return true;
     }
-    RegisterExpenseTypeController controller = new RegisterExpenseTypeController();
+    private RegisterExpenseTypeController controller = new RegisterExpenseTypeController();
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
 

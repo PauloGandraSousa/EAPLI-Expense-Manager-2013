@@ -10,10 +10,10 @@ import eapli.util.Console;
  *
  * @author Paulo Gandra Sousa
  */
-public abstract class RegisterMovementTypeBaseUI extends BaseForm {
+public abstract class RegisterMovementTypeBaseUI extends BaseUI {
 
-    String shortName;
-    String descr;
+    protected String shortName;
+    protected String descr;
 
     protected void readGeneralData() {
         shortName = Console.readLine("Short name:");

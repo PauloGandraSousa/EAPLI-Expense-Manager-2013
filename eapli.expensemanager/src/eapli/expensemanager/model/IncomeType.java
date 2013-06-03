@@ -11,19 +11,27 @@ import javax.persistence.Entity;
  * @author Paulo Gandra Sousa
  */
 @Entity
-public class IncomeType extends MovementType{
-        protected IncomeType() {}
-    
+public class IncomeType extends MovementType {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public IncomeType() {
+        super();
+    }
+
     public IncomeType(String key, String description) {
         super(key, description);
     }
-                
+
     @Override
     public String toString() {
-        return "Income Type: "  + super.toString();
+        return "Income Type: " + super.toString();
     }
-     
+
     public String toXml() {
-        return "<incomeType>" + super.toXml() + "</incomeType>" ;
+        return "<incomeType>" + super.toXml() + "</incomeType>";
     }
 }

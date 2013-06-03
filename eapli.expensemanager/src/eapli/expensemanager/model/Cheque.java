@@ -17,9 +17,13 @@ import javax.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Cheque extends PaymentMean {
 
-    String chequeBooksName;
-    String bank;
-    String accountNumber;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String chequeBooksName;
+    private String bank;
+    private String accountNumber;
 
     protected Cheque() {
     }
@@ -42,13 +46,13 @@ public class Cheque extends PaymentMean {
     public String getDescription() {
         return "Cheque " + chequeBooksName;
     }
-        
+
     public String toXml() {
-        return "<bank>" + bank + "</bank><accountNumber>" +
-                accountNumber +  "</accountNumber>";
+        return "<bank>" + bank + "</bank><accountNumber>"
+                + accountNumber + "</accountNumber>";
     }
-    
+
     public String toCsv() {
-        return "Cheque,," + bank + ",,,," + accountNumber +  ",";
+        return "Cheque,," + bank + ",,,," + accountNumber + ",";
     }
 }

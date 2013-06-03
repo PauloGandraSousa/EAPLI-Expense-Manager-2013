@@ -33,9 +33,9 @@ public class ExpenseRepositoryImpl extends JpaRepository<Expense, Long> implemen
     public BigDecimal expenditureOfWeek(int year, int weekNumber) {
         EntityManager em = getEntityManager();
         Query q = em.createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
-        Date start = DateTime.firstDateOfWeek(year, weekNumber).getTime();
+        Date start = DateTime.beginningOfWeek(year, weekNumber).getTime();
         q.setParameter("start", start);
-        Date end = DateTime.lastDateOfWeek(year, weekNumber).getTime();
+        Date end = DateTime.endOfWeek(year, weekNumber).getTime();
         q.setParameter("end", end);
 
         BigDecimal balance = (BigDecimal) q.getSingleResult();

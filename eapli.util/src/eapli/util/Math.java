@@ -11,7 +11,10 @@ import java.math.RoundingMode;
  *
  * @author Paulo Gandra Sousa
  */
-public class Math {
+public final class Math {
+
+    private Math() {
+    }
 
     /**
      * determines if a number is odd
@@ -23,32 +26,37 @@ public class Math {
         return i % 2 != 0;
     }
 
-    /**
-     *
-     * @param i
-     * @return
-     */
     public static boolean isEven(int i) {
         return i % 2 == 0;
     }
 
-    /**
-     *
-     * @param n
-     * @return
-     */
     public static int addOne(int n) {
         return n + 1;
     }
 
-    /**
-     *
-     * @param i
-     * @return
-     */
     public static int subtractOne(int i) {
         return i - 1;
+    }
 
+    /**
+     * checks whether an int is prime or not.
+     * http://www.mkyong.com/java/how-to-determine-a-prime-number-in-java/
+     *
+     * @param n
+     * @return
+     */
+    public static boolean isPrime(int n) {
+        // check if n is a multiple of 2
+        if (n % 2 == 0) {
+            return false;
+        }
+        // if not, then just check the odds
+        for (int i = 3; i * i <= n; i += 2) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -61,9 +69,12 @@ public class Math {
      * @param oldValue - exemplo 50
      * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
      */
-    public static float simpleLinearConversion(float oldMin, float oldMax, float newMin, float newMax, float oldValue) {
+    public static float simpleLinearConversion(float oldMin, float oldMax,
+                                               float newMin, float newMax,
+                                               float oldValue) {
         float new_value;
-        new_value = ((oldValue - oldMin) / (oldMax - oldMin)) * (newMax - newMin) + newMin;
+        new_value = ((oldValue - oldMin) / (oldMax - oldMin))
+                * (newMax - newMin) + newMin;
         return new_value;
 
     }
@@ -79,14 +90,19 @@ public class Math {
      * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
      */
     public static BigDecimal simpleLinearConversion(BigDecimal oldMin,
-            BigDecimal oldMax,
-            BigDecimal newMin,
-            BigDecimal newMax,
-            BigDecimal oldValue) {
+                                                    BigDecimal oldMax,
+                                                    BigDecimal newMin,
+                                                    BigDecimal newMax,
+                                                    BigDecimal oldValue) {
         BigDecimal new_value;
-        new_value = ((oldValue.subtract(oldMin)).divide(oldMax.subtract(oldMin),
-                1,
-                RoundingMode.HALF_UP)).multiply((newMax.subtract(newMin)).add(newMin));
+        new_value = ((oldValue.subtract(oldMin)).divide(
+                oldMax.subtract(oldMin), 1, RoundingMode.HALF_UP))
+                .multiply((newMax.subtract(newMin)).add(newMin));
         return new_value;
+    }
+
+    public static String format(BigDecimal amount) {
+        // TODO use number formatter
+        return amount.toString();
     }
 }

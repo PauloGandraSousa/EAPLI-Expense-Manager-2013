@@ -10,16 +10,17 @@ import java.util.List;
 
 /**
  * The Data Acces Object (DAO) for the Payment Method Active Record
- * 
- * For consistency purposes, this class keeps the Repository suffix even thou
- * it should be called PaymentMethodDAO
- * 
+ *
+ * For consistency purposes, this class keeps the Repository suffix even thou it
+ * should be called PaymentMethodDAO
+ *
  * @author Paulo Gandra Sousa
  */
-public interface PaymentMeanRepository {  
+public interface PaymentMeanRepository {
+
     List<PaymentMean> all();
-    
+
     PaymentMean save(PaymentMean paymentMethod);
 
-    public Cash getCash(String currency);
+    Cash getCash(String currency);
 }

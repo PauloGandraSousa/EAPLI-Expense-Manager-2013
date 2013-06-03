@@ -9,5 +9,6 @@ package eapli.expensemanager.persistence;
  * @author Paulo Gandra Sousa
  */
 public interface ActiveRecord {
-    public abstract void save();
+
+    void save();
 }

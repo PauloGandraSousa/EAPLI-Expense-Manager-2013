@@ -28,7 +28,7 @@ public class AggregatedExpenses {
      * @param movement
      */
     public void aggregate(Expense expense) {
-        all().add(expense);
+        expenses.add(expense);
     }
 
     /**

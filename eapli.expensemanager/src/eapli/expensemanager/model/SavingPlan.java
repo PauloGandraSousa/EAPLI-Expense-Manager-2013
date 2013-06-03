@@ -22,13 +22,16 @@ import javax.persistence.Temporal;
 @Entity
 public class SavingPlan implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
     @GeneratedValue
     private Long id;
     @Temporal(javax.persistence.TemporalType.DATE)
     // TODO what is the meaning of this field?
-    // FIX should follow naming conventions
-    private Date InicialDate;
+    private Date inicialDate;
     @OneToMany(cascade = CascadeType.ALL)
     private List<SavingGoal> savingGoals;
 
@@ -37,7 +40,8 @@ public class SavingPlan implements Serializable {
     }
 
     public SavingPlan(Date d) {
-        InicialDate = d;
+        inicialDate = d;
+        savingGoals = new ArrayList<SavingGoal>();
     }
 
     public SavingGoal registerSavingGoal(SavingGoal savingGoal) {

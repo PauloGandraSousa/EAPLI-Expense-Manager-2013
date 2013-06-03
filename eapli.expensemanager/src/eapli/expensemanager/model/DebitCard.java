@@ -14,26 +14,31 @@ import javax.persistence.InheritanceType;
  * @author Paulo Gandra Sousa
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class DebitCard extends Card {
 
-    public DebitCard() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public DebitCard() {
     }
 
     public DebitCard(String cardName, String bank, String cardNumber, String name, Calendar validUntil) {
-        super(cardName,bank, cardNumber, name, validUntil);
+        super(cardName, bank, cardNumber, name, validUntil);
     }
 
     @Override
     public String getDescription() {
         return "debit Card" + cardName;
     }
-        
+
     @Override
     public String toXml() {
         return "<debitCard>" + super.toXml() + "</debitCard>";
     }
-        
+
     @Override
     public String toCsv() {
         return "DebitCard," + super.toCsv();

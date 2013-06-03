@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.framework.Action;
+import eapli.framework.actions.Action;
 
 /**
  *
@@ -17,5 +17,4 @@ public class ExitWithMessageAction implements Action {
         System.out.println("Bye, bye.");
         return true;
     }
-    
 }

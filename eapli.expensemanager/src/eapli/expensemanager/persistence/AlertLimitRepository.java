@@ -5,10 +5,10 @@
 package eapli.expensemanager.persistence;
 
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.observer.AlertLimit;
-import eapli.expensemanager.model.observer.AlertLimitByExpenseType;
-import eapli.expensemanager.model.observer.AlertLimitExpenditure;
-import eapli.expensemanager.model.observer.AlertLimitType;
+import eapli.expensemanager.model.AlertLimit;
+import eapli.expensemanager.model.AlertLimitByExpenseType;
+import eapli.expensemanager.model.AlertLimitExpenditure;
+import eapli.expensemanager.model.AlertLimitType;
 import java.util.List;
 
 /**
@@ -21,19 +21,14 @@ public interface AlertLimitRepository {
 
     AlertLimit save(AlertLimit alertLimit);
 
-    // TODO does it make sense for this API to have save() and update()
-    void save(AlertLimitByExpenseType alertLimit);
-
-    void save(AlertLimitExpenditure alertLimit);
-
-    AlertLimitExpenditure update(AlertLimitExpenditure a);
-
-    AlertLimitByExpenseType update(AlertLimitByExpenseType a);
-
     AlertLimit findByKey(int i);
 
-    List<AlertLimitExpenditure> findByAlertType(AlertLimitType a);
+    AlertLimit findByAlertType(AlertLimitType a);
 
-    // TODO refactor to a more meaningfull name
-    List<AlertLimitByExpenseType> findByET(ExpenseType eT);
+    AlertLimit findByExpenseType(ExpenseType eT);
+
+    // FIXME the semantics we have for the save() method is "save or update", as
+    // such having an explicit update() method is confusing - we should be using
+    // save() instead
+    AlertLimit update(AlertLimit al);
 }

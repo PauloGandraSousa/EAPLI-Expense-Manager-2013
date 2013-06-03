@@ -5,11 +5,19 @@
 package eapli.util;
 
 /**
- *
+ * 
  * @author Paulo Gandra Sousa
  */
 public class Files {
-    public static String getCurrentDirectory() {
-        return new java.io.File(".").getAbsolutePath();
-    }
+	public static String getCurrentDirectory() {
+		return new java.io.File(".").getAbsolutePath();
+	}
+
+	public static String ensureExtension(String filename, String extension) {
+		if (!filename.endsWith(extension)) {
+			return filename + extension;
+		} else {
+			return filename;
+		}
+	}
 }

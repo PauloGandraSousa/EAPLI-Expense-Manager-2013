@@ -1,0 +1,32 @@
+{
+ expenses : [ 
+{ 
+occuredAt : '30/Mai/2013 16:40:34',
+amount : 100,
+description : 'sapatilhas',
+expenseType : 'Cloth.',
+paymentMean : 'Cash EUR'
+},
+{ 
+occuredAt : '4/Mai/2013 16:40:34',
+amount : 35,
+description : 'passe Metro',
+expenseType : 'Trans.',
+paymentMean : 'Cash EUR'
+},
+{ 
+occuredAt : '30/Mai/2013 16:40:34',
+amount : 10,
+description : 'T-shirt',
+expenseType : 'Cloth.',
+paymentMean : 'Cash EUR'
+},
+{ 
+occuredAt : '3/Jun/2013 16:40:34',
+amount : 150,
+description : 'calças',
+expenseType : 'Cloth.',
+paymentMean : 'Cash EUR'
+},
+] 
+ }

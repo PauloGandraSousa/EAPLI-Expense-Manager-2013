@@ -7,28 +7,28 @@ package eapli.expensemanager.model;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 
 /**
  *
  * @author AJS
  */
 @Entity
-public class SavingWithdraw extends Movement 
-{
-    
-    protected SavingWithdraw() 
-    {}
-    
-    public SavingWithdraw(String description, Date dateOccurred, BigDecimal amount) 
-    {
+public class SavingWithdraw extends Movement {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected SavingWithdraw() {
+    }
+
+    public SavingWithdraw(String description, Date dateOccurred, BigDecimal amount) {
         super(description, dateOccurred, amount);
     }
-    
-    public SavingWithdraw(String description, int year, int month, int day, BigDecimal amount) 
-    {
+
+    public SavingWithdraw(String description, int year, int month, int day, BigDecimal amount) {
         this(description, DateTime.newDate(year, month, day), amount);
     }
 }

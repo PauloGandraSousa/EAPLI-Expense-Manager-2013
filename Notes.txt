@@ -77,6 +77,26 @@ see "domain with persistence.pptx"
 --------------------------------------------------------------------------
 ##4) performing calculations in memory or directly at the persistence layer
 --------------------------------------------------------------------------
+both approaches have advantages and disavantages:
+
+
+in memory
+	advantages
+		allows the use of business logic in code		
+	disavantages
+		performance my be poor
+	
+at persistence layer		
+	advantages
+		use of aggregated SQL functions is straigth forward	
+		performance	
+	disavantages
+		complicated business logic is hard to implement
+
+the BaseController provides one example of each approach for calculating the
+current month expenditure and current week expenditure.
+
+see also http://www.martinfowler.com/articles/dblogic.html
 
 
 --------------------------------------------------------------------------

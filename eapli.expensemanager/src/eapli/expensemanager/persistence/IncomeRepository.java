@@ -4,7 +4,6 @@
  */
 package eapli.expensemanager.persistence;
 
-import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
 import java.util.List;
 
@@ -14,6 +13,8 @@ import java.util.List;
  */
 @Deprecated
 public interface IncomeRepository {
+
     Income save(Income income);
+
     List<Income> all();
 }

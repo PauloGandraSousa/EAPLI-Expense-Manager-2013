@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.presentation;
 
+import eapli.expensemanager.presentation.visitors.IncomeTypeListVisitor;
 import eapli.expensemanager.controllers.RegisterIncomeController;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.model.IncomeType;
@@ -17,17 +18,20 @@ import java.util.List;
 class RegisterIncomeUI extends RegisterMovementBaseUI {
 
     @Override
-    protected BaseController controller() {
+    protected BaseController getController() {
         return controller;
     }
-    RegisterIncomeController controller = new RegisterIncomeController();
-    SelectWidget<IncomeType> incomeTypesSelectWidget;
+    private RegisterIncomeController controller = new RegisterIncomeController();
+    private SelectWidget<IncomeType> incomeTypesSelectWidget;
 
     @Override
     public boolean doShow() {
         readGeneralData();
 
         IncomeType incomeType = readIncomeType();
+        if (incomeType == null) {
+            return true;
+        }
 
         controller.registerIncome(what, date, amount, incomeType);
 
@@ -41,7 +45,9 @@ class RegisterIncomeUI extends RegisterMovementBaseUI {
         List<IncomeType> listIncomeTypes = controller.getIncomeTypes();
         incomeTypesSelectWidget = new SelectWidget<IncomeType>(listIncomeTypes, new IncomeTypeListVisitor());
         int option = incomeTypesSelectWidget.selectedOption();
-
+        if (option == 0) {
+            return null;
+        }
         return listIncomeTypes.get(option - 1);
     }
 

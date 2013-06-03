@@ -17,19 +17,22 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 
 /**
- * the base movement class.
- * to be extended for concrete movement types such as Expense or Income
- * 
+ * the base movement class. to be extended for concrete movement types such as
+ * Expense or Income
+ *
  * @author Paulo Gandra Sousa
  */
 @Entity
-// TODO check if single table inheritance is the best strategy
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE) 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Movement implements Serializable {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateOcurred;
@@ -81,24 +84,59 @@ public abstract class Movement implements Serializable {
     public Date getDateOcurred() {
         return dateOcurred;
     }
-        
+
     public String toXml() {
-        return "<description>" + description + "</description>" + 
-                "<amount>" + amount + "</amount>" + 
-                "<dateOcurred>" + dateToString(dateOcurred) + "</dateOcurred>";
+        return "<description>" + description + "</description>"
+                + "<amount>" + amount + "</amount>"
+                + "<dateOcurred>" + dateToString(dateOcurred) + "</dateOcurred>";
     }
-    
+
     private String dateToString(Date date) {
         Calendar cal = DateTime.dateToCalendar(date);
         String dateString = cal.get(Calendar.DAY_OF_MONTH) + "-";
-        dateString += cal.get(Calendar.MONTH)+1 + "-";
+        dateString += cal.get(Calendar.MONTH) + 1 + "-";
         dateString += cal.get(Calendar.YEAR);
         return dateString;
     }
-    
+
     public String toCsv() {
-        return description + "," + amount + "," +
-                dateToString(dateOcurred) + ",";
+        return description + "," + amount + ","
+                + dateToString(dateOcurred) + ",";
     }
-    
+
+    public boolean ocurredInMonth(int year, int month) {
+        int monthOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
+        int yearOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+
+        return (monthOcurred == month && yearOcurred == year ? true : false);
+    }
+
+    public boolean ocurredInWeek(int year, int week) {
+        int weekOcurred = DateTime.weekNumber(dateOcurred);
+        int yearOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+
+        return (weekOcurred == week && yearOcurred == year ? true : false);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Movement other = (Movement) obj;
+        if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
 }
