@@ -19,3 +19,10 @@
 /eapli.framework/build/
 /eapli.framework/dist/
 bin
+/eapli.expensemanager.core/nbproject/private/
+/eapli.expensemanager.consoleapp/nbproject/private/
+/eapli.expensemanager.consoleapp/build/
+/eapli.expensemanager.core/build/
+/eapli.expensemanager.core/dist/
+/eapli.expensemanager.bootstrap/dist/
+/eapli.expensemanager.consoleapp/dist/
