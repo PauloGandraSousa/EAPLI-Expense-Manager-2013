@@ -6,11 +6,11 @@ package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.model.report.AggregatedExpenses;
+import eapli.expensemanager.model.report.ExpensesReport;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -44,24 +44,30 @@ class ListExpensesUIPerTypeTextChart extends ListExpensesUIPerTypeChart {
     //TODO: NMB: pretende-se mostrar também tipos que não tenham movimentos?
     @Override
     public boolean doShow() {
-        Map<ExpenseType, List<Expense>> mapExpenses = getController().getExpensesClassifiedByExpenseType();
-
-        //TODO: NMB: Verificar se esta conversão deve ser efectuada aqui ou se deve vir do controller
-        Map<ExpenseType, BigDecimal> mapExpensesSum = new HashMap<ExpenseType, BigDecimal>();
+        ExpensesReport expenseReport = getController().getExpensesClassifiedByExpenseType();
 
         //obter o valor máximo possível de todos os tipos de despesa para efectuar a conversão
         BigDecimal maxExpense = new BigDecimal(BigInteger.ZERO);
-        for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
-            BigDecimal expenseSum = getController().sumAmount(entry.getValue());
-            mapExpensesSum.put(entry.getKey(), expenseSum);
+
+        for (Entry<ExpenseType, AggregatedExpenses> entry : expenseReport.getAggregatedExpensesPerType().entrySet()) {
+            BigDecimal expenseSum = entry.getValue().getSum();
             if (expenseSum.compareTo(maxExpense) == 1) {
                 maxExpense = expenseSum;
             }
         }
-        //TODO: NMB quem criar o somatório?
-        for (Entry<ExpenseType, BigDecimal> entry : mapExpensesSum.entrySet()) {
-            BigDecimal expenseSumConverted = eapli.util.Math.simpleLinearConversion(BigDecimal.ZERO, maxExpense, BigDecimal.ZERO, BigDecimal.TEN, entry.getValue());
-            System.out.println(String.format("%-20s:", entry.getKey().getDescription() + "(" + entry.getValue() + ")") + String.format("%-" + expenseSumConverted.intValue() + "s", "").replace(' ', '*'));
+
+        for (Entry<ExpenseType, AggregatedExpenses> entry : expenseReport.getAggregatedExpensesPerType().entrySet()) {
+            BigDecimal expenseSumConverted = eapli.util.Math.simpleLinearConversion(
+                    BigDecimal.ZERO,
+                    maxExpense,
+                    BigDecimal.ZERO,
+                    BigDecimal.TEN,
+                    entry.getValue().getSum());
+            System.out.println(String.format("%-20s:",
+                    entry.getKey().getDescription()
+                    + "(" + entry.getValue().getSum()
+                    + ")")
+                    + String.format("%-" + expenseSumConverted.intValue() + "s", "").replace(' ', '*'));
         }
         return true;
     }

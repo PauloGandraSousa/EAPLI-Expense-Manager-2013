@@ -4,14 +4,8 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.presentation.charts.Chart;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
+import eapli.expensemanager.model.report.ExpensesReport;
+import eapli.expensemanager.presentation.charts.ChartImpl;
 
 /**
  * Para se criar o UI para os agregadores de despesa, existe a possibilidade de
@@ -33,16 +27,9 @@ class ListExpensesUIPerTypeGUIChart extends ListExpensesUIPerTypeChart {
     //TODO: NMB:pretende-se mostrar também tipos que não tenham movimentos?
     @Override
     public boolean doShow() {
-        Map<ExpenseType, List<Expense>> mapExpenses = getController().getExpensesClassifiedByExpenseType();
+        ExpensesReport expenseReport = getController().getExpensesClassifiedByExpenseType();
 
-        //TODO: NMB: Verificar se esta conversão deve ser efectuada aqui ou se deve vir do controller
-        Map<ExpenseType, BigDecimal> mapExpensesSum = new HashMap<ExpenseType, BigDecimal>();
-        for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
-            BigDecimal expenseSum = getController().sumAmount(entry.getValue());
-            mapExpensesSum.put(entry.getKey(), expenseSum);
-        }
-
-        Chart demo = new Chart("Expenses per type chart");
+        ChartImpl demo = new ChartImpl("Expenses per type chart");
 
         demo.setWindowTitle("Expenses per type chart");
         demo.setDomainAxisLabel("Expenses Type");
@@ -50,7 +37,7 @@ class ListExpensesUIPerTypeGUIChart extends ListExpensesUIPerTypeChart {
         demo.setChartTitle("Expenses per type");
 
         //criar o dataSet a utilizar no gráfico
-        demo.setDataset(mapExpensesSum);
+        demo.setDataset(expenseReport);
 
         demo.doShow();
 

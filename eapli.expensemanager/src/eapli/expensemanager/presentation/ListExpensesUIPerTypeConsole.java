@@ -7,8 +7,10 @@ package eapli.expensemanager.presentation;
 import eapli.expensemanager.controllers.ListExpensesPerTypeController;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.model.Movement;
+import eapli.expensemanager.model.report.AggregatedExpenses;
+import eapli.expensemanager.model.report.ExpensesReport;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -33,7 +35,7 @@ class ListExpensesUIPerTypeConsole extends ListExpensesUI {
 
     private void showExpenses(List<Expense> expenseList) {
         int position = 1;
-        for (Expense expense : expenseList) {
+        for (Movement expense : expenseList) {
             System.out.print("\t");
             System.out.print(position + ". ");
             System.out.print(expense.getDateOcurred() + " ");
@@ -52,11 +54,14 @@ class ListExpensesUIPerTypeConsole extends ListExpensesUI {
     //TODO: NMB:pretende-se mostrar também tipos que não tenham movimentos?
     @Override
     public boolean doShow() {
-        Map<ExpenseType, List<Expense>> mapExpenses = controller.getExpensesClassifiedByExpenseType();
-        for (Entry<ExpenseType, List<Expense>> entry : mapExpenses.entrySet()) {
+        ExpensesReport expenseReport = controller.getExpensesClassifiedByExpenseType();
+        //Map<ExpenseType, List<Expense>> mapExpenses = controller.getExpensesClassifiedByExpenseType();
+        
+        
+        for (Entry<ExpenseType, AggregatedExpenses> entry : expenseReport.getAggregatedExpensesPerType().entrySet()) {
             System.out.print(entry.getKey().getDescription());
-            System.out.println("\tTotal amount:" + controller.sumAmount(entry.getValue()));
-            showExpenses(entry.getValue());
+            System.out.println("\tTotal amount:" + entry.getValue().getSum());
+            showExpenses(entry.getValue().all());
         }
 
         return true;

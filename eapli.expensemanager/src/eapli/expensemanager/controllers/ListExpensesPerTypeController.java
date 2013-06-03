@@ -5,14 +5,12 @@
 package eapli.expensemanager.controllers;
 
 import eapli.expensemanager.model.CheckingAccount;
-import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Movement;
+import eapli.expensemanager.model.report.ExpensesReport;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Podia adoptar por 1) especializar o controller de ListExpenses ou 2) criar um
@@ -35,10 +33,12 @@ public class ListExpensesPerTypeController extends ListExpensesController {
      * de objectos ExpenseListPerType, que contém uma lista de despesas e
      * consegue calcular o seu resultado on the fly</ol></ul></p>
      */
-    public Map<ExpenseType, List<Expense>> getExpensesClassifiedByExpenseType() {
+    public ExpensesReport getExpensesClassifiedByExpenseType() {
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
-        return account.getExpensesClassifiedByExpenseType();
+        ExpensesReport expenseReport = account.getExpensesAggregatedByType(null, null);
+        return expenseReport;
+        //return account.getExpensesClassifiedByExpenseType();
     }
 
     /**
@@ -47,6 +47,7 @@ public class ListExpensesPerTypeController extends ListExpensesController {
      * @param theMovements
      * @return BigDecimal - o valor somado dos movimentos passados
      */
+    @Deprecated
     public BigDecimal sumAmount(List<? extends Movement> theMovements) {
         CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();

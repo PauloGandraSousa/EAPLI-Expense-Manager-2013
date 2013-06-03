@@ -4,13 +4,17 @@
  */
 package eapli.expensemanager.model;
 
+import eapli.expensemanager.model.report.ExpensesReport;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.persistence.CascadeType;
 import javax.persistence.FetchType;
 import javax.persistence.Entity;
@@ -159,6 +163,27 @@ public class CheckingAccount implements Serializable {
                 classifyExpense((Expense) movement);
             }
         }
+    }
+
+    public ExpensesReport getExpensesAggregatedByType(Date inicialPeriod, Date finalPeriod) {
+
+        ExpensesReport expenseReport = new ExpensesReport();
+        Map<ExpenseType, BigDecimal> tempExpenseList = new HashMap();
+
+        for (Expense expense : getExpenses()) {
+            expenseReport.aggregate(expense);
+            BigDecimal tempSum = tempExpenseList.get(expense.getExpenseType());
+            if (tempSum == null) {
+                tempSum = new BigDecimal(BigInteger.ZERO);
+            }
+            tempSum = tempSum.add(expense.getAmount()); // REMARK: BigDecimal is immutable
+            tempExpenseList.put(expense.getExpenseType(), tempSum);
+        }
+
+        for (Entry<ExpenseType, BigDecimal> entry : tempExpenseList.entrySet()) {
+            expenseReport.setAggregatedSum(entry.getKey(), entry.getValue());
+        }
+        return expenseReport;
     }
 
     public Map<ExpenseType, List<Expense>> getExpensesClassifiedByExpenseType() {

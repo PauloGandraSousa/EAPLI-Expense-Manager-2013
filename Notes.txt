@@ -1,4 +1,4 @@
-﻿Personal Expenses
+Personal Expenses
 Polythecnic of Porto, School of Engineering
 #EAPLI [^1]
 =======================
@@ -172,6 +172,13 @@ Não há redundância, é calculado sempre que necessário;
 - atributo ( + desempenho; - consistencia)
 - calculado (-desempenho; + consistencia)
 - saldos à data (-requer uma classe específica; +desempenho; + consistência)
+
+
+Reporting
+---
+The class AggregatedExpenses is responsible for reporting data related to Expenses that can be aggregated by ExpenseType. 
+
+In order to fully generalize the system, an AggregatedMovements should be used. Nevertheless, this approach has a major setback that can not be enforced by UML and only by using code (asserts). To crete an AggregatedMovements class, the a list of Movements should be kept. While ExpenseType and IncomeType inherit from MovementType, and Expense and Income inherit from Movement, only Expense is related to ExpenseType and Income to IncomeType therefore meaning that Movement is not related to MovementType. If this happenned, code should be used in the application to prevent that an object of type IncomeType wouldn't be used in an object of type Expense.
 
 
 --------------------------------------------------------------------------

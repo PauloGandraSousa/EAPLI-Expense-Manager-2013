@@ -12,25 +12,46 @@ import java.math.RoundingMode;
  * @author Paulo Gandra Sousa
  */
 public class Math {
+
     /**
      * determines if a number is odd
-     * 
+     *
      * @param i
-     * @return 
+     * @return
      */
-    public static boolean isOdd(int i) { return i % 2 != 0; }
-    
-    public static boolean isEven(int i) { return i % 2 == 0; }
-    
-    public static int addOne(int n) { return n+1; }
-    
-    public static int subtractOne ( int i)
-    {
-        return i-1;
-        
+    public static boolean isOdd(int i) {
+        return i % 2 != 0;
     }
-    
-        /**
+
+    /**
+     *
+     * @param i
+     * @return
+     */
+    public static boolean isEven(int i) {
+        return i % 2 == 0;
+    }
+
+    /**
+     *
+     * @param n
+     * @return
+     */
+    public static int addOne(int n) {
+        return n + 1;
+    }
+
+    /**
+     *
+     * @param i
+     * @return
+     */
+    public static int subtractOne(int i) {
+        return i - 1;
+
+    }
+
+    /**
      * Permite efectuar a conversão de um valor para outra escala
      *
      * @param oldMin - exemplo 0
@@ -57,9 +78,15 @@ public class Math {
      * @param oldValue - exemplo 50
      * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
      */
-    public static BigDecimal simpleLinearConversion(BigDecimal oldMin, BigDecimal oldMax, BigDecimal newMin, BigDecimal newMax, BigDecimal oldValue) {
+    public static BigDecimal simpleLinearConversion(BigDecimal oldMin,
+            BigDecimal oldMax,
+            BigDecimal newMin,
+            BigDecimal newMax,
+            BigDecimal oldValue) {
         BigDecimal new_value;
-        new_value = ((oldValue.subtract(oldMin)).divide(oldMax.subtract(oldMin), 1, RoundingMode.HALF_UP)).multiply((newMax.subtract(newMin)).add(newMin));
+        new_value = ((oldValue.subtract(oldMin)).divide(oldMax.subtract(oldMin),
+                1,
+                RoundingMode.HALF_UP)).multiply((newMax.subtract(newMin)).add(newMin));
         return new_value;
     }
 }
