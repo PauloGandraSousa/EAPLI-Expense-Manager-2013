@@ -8,6 +8,7 @@ import eapli.expensemanager.model.Income;
 import java.util.List;
 
 /**
+ * deprecated when the concept of checkingAccount was introduced
  *
  * @author Paulo Gandra Sousa
  */

@@ -25,8 +25,15 @@ import java.util.Date;
  */
 public class ReferenceDataBootstrap implements Bootstrap {
 
+    public static final String SALARY_INCOME_TYPE = "Sal.";
+    private static final String SALARY_INCOME_TYPE_DESC = "Salary";
+    public final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
+    private final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
+    public final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
+    private final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
+
     private void ensureClothingExpenseTypeExists(ExpenseTypeRepository repo) {
-        ExpenseType clothing = repo.findForName(CLOTHING_EXPENSE_TYPE);
+        ExpenseType clothing = repo.findById(CLOTHING_EXPENSE_TYPE);
         if (clothing == null) {
             clothing = new ExpenseType(CLOTHING_EXPENSE_TYPE, CLOTHING_EXPENSE_TYPE_DESC);
             repo.save(clothing);
@@ -34,7 +41,7 @@ public class ReferenceDataBootstrap implements Bootstrap {
     }
 
     private void ensureTransportsExpenseTypeExists(ExpenseTypeRepository repo) {
-        ExpenseType transports = repo.findForName(TRANSPORTS_EXPENSE_TYPE);
+        ExpenseType transports = repo.findById(TRANSPORTS_EXPENSE_TYPE);
         if (transports == null) {
             transports = new ExpenseType(TRANSPORTS_EXPENSE_TYPE, TRANSPORTS_EXPENSE_TYPE_DESC);
             repo.save(transports);
@@ -71,10 +78,6 @@ public class ReferenceDataBootstrap implements Bootstrap {
             repo.save(theSavingPlan);
         }
     }
-    public final static String CLOTHING_EXPENSE_TYPE = "Cloth.";
-    private final static String CLOTHING_EXPENSE_TYPE_DESC = "Clothing";
-    public final static String TRANSPORTS_EXPENSE_TYPE = "Trans.";
-    private final static String TRANSPORTS_EXPENSE_TYPE_DESC = "Transports";
 
     private void ensureDefaultExpenseTypesExist() {
         ExpenseTypeRepository repo = PersistenceFactory.
@@ -88,11 +91,9 @@ public class ReferenceDataBootstrap implements Bootstrap {
                 incomeTypeRepository();
         ensureSalaryIncomeTypeExists(repo);
     }
-    public static final String SALARY_INCOME_TYPE = "Sal.";
-    private static final String SALARY_INCOME_TYPE_DESC = "Salary";
 
     private void ensureSalaryIncomeTypeExists(IncomeTypeRepository repo) {
-        IncomeType salary = repo.findForName(SALARY_INCOME_TYPE);
+        IncomeType salary = repo.findById(SALARY_INCOME_TYPE);
         if (salary == null) {
             salary = new IncomeType(SALARY_INCOME_TYPE, SALARY_INCOME_TYPE_DESC);
             repo.save(salary);

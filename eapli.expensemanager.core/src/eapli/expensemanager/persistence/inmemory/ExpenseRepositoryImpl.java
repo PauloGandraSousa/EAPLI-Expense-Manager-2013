@@ -15,38 +15,61 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseRepositoryImpl implements ExpenseRepository {
+public class ExpenseRepositoryImpl extends InMemoryRepositoryBase<Expense, Long> implements ExpenseRepository {
 
-    static List<Expense> expenses = new ArrayList<Expense>();
-    
+    //static List<Expense> expenses = new ArrayList<Expense>();
+    @Override
+    protected List<Expense> getStaticStore() {
+        //return expenses;
+
+        // use the checking account list as the rest of the program uses CheckingAccount
+        return CheckingAccountRepositoryImpl.theOneAndOnlyAccount.getExpenses();
+    }
+
     @Override
     public BigDecimal expenditureOfMonth(int year, int month) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BigDecimal sum = new BigDecimal(0);
+        for (Expense one : getStaticStore()) {
+            if (one.ocurredInMonth(year, month)) {
+                sum = sum.add(one.getAmount());
+            }
+        }
+        return sum;
     }
 
     @Override
     public BigDecimal expenditureOfWeek(int year, int weekNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Expense save(Expense expense) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BigDecimal sum = new BigDecimal(0);
+        for (Expense one : getStaticStore()) {
+            if (one.ocurredInWeek(year, weekNumber)) {
+                sum = sum.add(one.getAmount());
+            }
+        }
+        return sum;
     }
 
     @Override
     public BigDecimal totalExpenditure() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        BigDecimal sum = new BigDecimal(0);
+        for (Expense one : getStaticStore()) {
+            sum = sum.add(one.getAmount());
+        }
+        return sum;
     }
 
     @Override
     public List<Expense> between(Date start, Date end) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Expense> collected = new ArrayList<Expense>();
+        for (Expense one : getStaticStore()) {
+            if (one.occursBetween(start, end)) {
+                collected.add(one);
+            }
+        }
+        return collected;
     }
 
     @Override
-    public List<Expense> all() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected boolean matches(Expense entity, Long id) {
+        return entity.is(id);
     }
-    
 }

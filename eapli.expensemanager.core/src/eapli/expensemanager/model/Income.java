@@ -12,39 +12,29 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 @Entity
 public class Income extends Movement {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@ManyToOne(cascade = CascadeType.MERGE)
-	private IncomeType type;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private IncomeType type;
 
-	public Income() {
-	}
+    public Income() {
+    }
 
-	public Income(String description, Date dateOccurred, BigDecimal amount,
-			IncomeType type) {
-		super(description, dateOccurred, amount);
-		this.type = type;
-	}
+    public Income(String description, Date dateOccurred, BigDecimal amount,
+                  IncomeType type) {
+        super(description, dateOccurred, amount);
+        this.type = type;
+    }
 
-	@Override
-	public String toXml() {
-		return "<income>" + super.toXml() + type.toXml() + "</income>";
-	}
-
-	@Override
-	public String toCsv() {
-		return "Income," + super.toCsv() + type.toCsv() + ",,,,,,,,";
-	}
-
-	public IncomeType getIncomeType() {
-		return type;
-	}
+    public IncomeType getIncomeType() {
+        return type;
+    }
 }

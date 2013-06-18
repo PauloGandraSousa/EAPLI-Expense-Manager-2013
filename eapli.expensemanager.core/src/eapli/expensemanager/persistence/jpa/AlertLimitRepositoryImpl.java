@@ -4,12 +4,10 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.JpaRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import eapli.expensemanager.model.AlertLimit;
@@ -21,10 +19,10 @@ import eapli.expensemanager.persistence.AlertLimitRepository;
  *
  * @author mcn
  */
-public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer> implements AlertLimitRepository {
+public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Long> implements AlertLimitRepository {
 
     @Override
-    public AlertLimit findByKey(int key) {
+    public AlertLimit findById(Long key) {
         return super.read(key);
     }
 
@@ -56,41 +54,5 @@ public class AlertLimitRepositoryImpl extends JpaRepository<AlertLimit, Integer>
             return null;
         }
         return list.get(0);
-    }
-
-    @Override
-    public AlertLimit update(AlertLimit al) {
-        EntityManager em = getEntityManager();
-
-        assert em != null;
-        EntityTransaction tx = em.getTransaction();
-
-        AlertLimit temp = null;
-        try {
-            tx.begin();
-            // Because entity is detached
-            temp = em.merge(al);
-            // if (al instanceof AlertLimitExpenditure) {
-            // ((AlertLimitExpenditure) temp).
-            // setLimitYellow(((AlertLimitExpenditure) al).
-            // getLimitYellow());
-            // ((AlertLimitExpenditure) temp).
-            // setLimitRed(((AlertLimitExpenditure) al).getLimitRed());
-            // } else {
-            // ((AlertLimitByExpenseType) temp).
-            // setPercentLimitYellow(((AlertLimitByExpenseType) al).
-            // getPercentLimitYellow());
-            // ((AlertLimitByExpenseType) temp).
-            // setPercentLimitRed(((AlertLimitByExpenseType) al).
-            // getPercentLimitRed());
-            // }
-            tx.commit();
-        } catch (PersistenceException ex) {
-            // FIXE
-            throw new IllegalStateException();
-        } finally {
-            em.close();
-        }
-        return temp;
     }
 }

@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.JpaRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.util.DateTime;

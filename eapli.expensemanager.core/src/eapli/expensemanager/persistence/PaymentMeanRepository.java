@@ -6,7 +6,7 @@ package eapli.expensemanager.persistence;
 
 import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.PaymentMean;
-import java.util.List;
+import eapli.framework.persistence.repositories.Repository;
 
 /**
  * The Data Acces Object (DAO) for the Payment Method Active Record
@@ -16,11 +16,7 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-public interface PaymentMeanRepository {
-
-    List<PaymentMean> all();
-
-    PaymentMean save(PaymentMean paymentMethod);
+public interface PaymentMeanRepository extends Repository<PaymentMean, Long> {
 
     Cash getCash(String currency);
 }

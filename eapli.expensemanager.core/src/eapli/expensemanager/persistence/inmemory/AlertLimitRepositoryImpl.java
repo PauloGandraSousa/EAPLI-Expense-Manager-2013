@@ -6,45 +6,50 @@ package eapli.expensemanager.persistence.inmemory;
 
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.AlertLimit;
+import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author mcn
  */
-public class AlertLimitRepositoryImpl implements AlertLimitRepository{
+public class AlertLimitRepositoryImpl extends InMemoryRepositoryBase<AlertLimit, Long> implements AlertLimitRepository {
 
-      @Override
-      public List<AlertLimit> all() {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
+    private static List<AlertLimit> store = new ArrayList<AlertLimit>();
 
+    @Override
+    protected List<AlertLimit> getStaticStore() {
+        return store;
+    }
 
-      @Override
-      public AlertLimit findByKey(int i) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
+    @Override
+    public AlertLimit findByAlertType(AlertLimitType a) {
+        for (AlertLimit one : store) {
+            if (one.getAlertType().equals(a)) {
+                return one;
+            }
+        }
+        return null;
+    }
 
-      @Override
-      public AlertLimit save(AlertLimit alertLimit) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
+    @Override
+    public AlertLimit findByExpenseType(ExpenseType eT) {
+        for (AlertLimit one : store) {
+            if (one instanceof AlertLimitByExpenseType) {
+                AlertLimitByExpenseType aet = (AlertLimitByExpenseType) one;
+                if (aet.getExpenseType().equals(eT)) {
+                    return one;
+                }
+            }
+        }
+        return null;
+    }
 
-      @Override
-      public AlertLimit findByAlertType(AlertLimitType a) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
-
-      @Override
-      public AlertLimit findByExpenseType(ExpenseType eT) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
-
-      @Override
-      public AlertLimit update(AlertLimit al) {
-            throw new UnsupportedOperationException("Not supported yet.");
-      }
-      
-      }
+    @Override
+    protected boolean matches(AlertLimit entity, Long id) {
+        return entity.is(id);
+    }
+}

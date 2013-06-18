@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.JpaRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.expensemanager.model.Income;
 import eapli.expensemanager.persistence.IncomeRepository;
 

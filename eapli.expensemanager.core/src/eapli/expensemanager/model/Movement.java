@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import eapli.framework.model.Identifiable;
 import eapli.util.DateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -24,7 +25,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Movement implements Serializable {
+public abstract class Movement implements Serializable, Identifiable<Long> {
 
     /**
      *
@@ -39,6 +40,17 @@ public abstract class Movement implements Serializable {
     private BigDecimal amount;
 
     public Movement() {
+    }
+
+    /**
+     * checks if the current object has the identity passed as a parameter
+     *
+     * @param id the identity to check
+     * @return true if the object has the identity
+     */
+    @Override
+    public boolean is(Long id) {
+        return this.id.equals(id);
     }
 
     public Movement(String description, Date dateOccurred, BigDecimal amount) {
@@ -67,8 +79,18 @@ public abstract class Movement implements Serializable {
 
     public boolean occursThisMonth() {
         int thisMonth = DateTime.today().get(Calendar.MONTH);
-        int movementMonth = DateTime.dateToCalendar(getDateOcurred()).get(Calendar.MONTH);
+        int movementMonth = DateTime.dateToCalendar(getDateOcurred()).
+                get(Calendar.MONTH);
         return (thisMonth == movementMonth);
+    }
+
+    public boolean occursBetween(Date start, Date end) {
+        if (this.getDateOcurred().compareTo(start) >= 0
+                && this.getDateOcurred().compareTo(end) <= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -85,35 +107,19 @@ public abstract class Movement implements Serializable {
         return dateOcurred;
     }
 
-    public String toXml() {
-        return "<description>" + description + "</description>"
-                + "<amount>" + amount + "</amount>"
-                + "<dateOcurred>" + dateToString(dateOcurred) + "</dateOcurred>";
-    }
-
-    private String dateToString(Date date) {
-        Calendar cal = DateTime.dateToCalendar(date);
-        String dateString = cal.get(Calendar.DAY_OF_MONTH) + "-";
-        dateString += cal.get(Calendar.MONTH) + 1 + "-";
-        dateString += cal.get(Calendar.YEAR);
-        return dateString;
-    }
-
-    public String toCsv() {
-        return description + "," + amount + ","
-                + dateToString(dateOcurred) + ",";
-    }
-
     public boolean ocurredInMonth(int year, int month) {
-        int monthOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.MONTH);
-        int yearOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+        int monthOcurred = DateTime.dateToCalendar(dateOcurred).
+                get(Calendar.MONTH) + 1;
+        int yearOcurred = DateTime.dateToCalendar(dateOcurred).
+                get(Calendar.YEAR);
 
         return (monthOcurred == month && yearOcurred == year ? true : false);
     }
 
     public boolean ocurredInWeek(int year, int week) {
         int weekOcurred = DateTime.weekNumber(dateOcurred);
-        int yearOcurred = DateTime.dateToCalendar(dateOcurred).get(Calendar.YEAR);
+        int yearOcurred = DateTime.dateToCalendar(dateOcurred).
+                get(Calendar.YEAR);
 
         return (weekOcurred == week && yearOcurred == year ? true : false);
     }

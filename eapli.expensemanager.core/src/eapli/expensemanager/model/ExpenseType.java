@@ -14,11 +14,11 @@ import javax.persistence.Entity;
 public class ExpenseType extends MovementType {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected ExpenseType() {
+    protected ExpenseType() {
     }
 
     public ExpenseType(String key, String description) {
@@ -28,9 +28,5 @@ public class ExpenseType extends MovementType {
     @Override
     public String toString() {
         return "Expense Type: " + super.toString();
-    }
-
-    public String toXml() {
-        return "<expenseType>" + super.toXml() + "</expenseType>";
     }
 }

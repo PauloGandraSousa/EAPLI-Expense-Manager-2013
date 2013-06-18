@@ -13,25 +13,17 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-public class IncomeTypeRepositoryImpl implements IncomeTypeRepository {
+public class IncomeTypeRepositoryImpl extends InMemoryRepositoryBase<IncomeType, String> implements IncomeTypeRepository {
 
     static List<IncomeType> incomeTypes = new ArrayList<IncomeType>();
-    
-    @Override
-    public IncomeType save(IncomeType incomeType) {
-        // TODO check if we alreay know this object or add it if not
-        incomeTypes.add(incomeType);
-        return incomeType;
-    }
 
     @Override
-    public List<IncomeType> all() {
+    protected List<IncomeType> getStaticStore() {
         return incomeTypes;
     }
 
     @Override
-    public IncomeType findForName(String shortDescription) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected boolean matches(IncomeType entity, String id) {
+        return entity.is(id);
     }
-    
 }

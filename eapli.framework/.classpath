@@ -6,5 +6,7 @@
 	<classpathentry kind="lib" path="/LIBs/junit_4/junit-4.10-sources.jar"/>
 	<classpathentry kind="lib" path="/LIBs/junit_4/junit-4.10.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/eapli.util"/>
+	<classpathentry kind="lib" path="/LIBs/eclipselink/eclipselink-2.3.2.jar"/>
+	<classpathentry kind="lib" path="/LIBs/eclipselink/javax.persistence-2.0.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -19,10 +19,10 @@ import javax.persistence.InheritanceType;
 public class Cash extends PaymentMean {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String currency;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private String currency;
     public static final String EUR = "EUR";
 
     public Cash() {
@@ -34,22 +34,13 @@ public class Cash extends PaymentMean {
     }
 
     public static Cash loadEUR() {
-        PaymentMeanRepository repo = PersistenceFactory.buildPersistenceFactory().paymentMeanRepository();
+        PaymentMeanRepository repo = PersistenceFactory.
+                buildPersistenceFactory().paymentMeanRepository();
         return repo.getCash(EUR);
     }
 
     @Override
     public String getDescription() {
         return "Cash " + currency;
-    }
-
-    @Override
-    public String toXml() {
-        return "<currency>" + currency + "</currency>";
-    }
-
-    @Override
-    public String toCsv() {
-        return "Cash," + ",,,,," + currency + ",,";
     }
 }

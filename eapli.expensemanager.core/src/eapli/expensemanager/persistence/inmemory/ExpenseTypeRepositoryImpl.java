@@ -13,24 +13,17 @@ import java.util.List;
  *
  * @author Paulo Gandra Sousa
  */
-public class ExpenseTypeRepositoryImpl implements ExpenseTypeRepository {
+public class ExpenseTypeRepositoryImpl extends InMemoryRepositoryBase<ExpenseType, String> implements ExpenseTypeRepository {
 
     static List<ExpenseType> expenseTypes = new ArrayList<ExpenseType>();
-    
-    @Override
-    public ExpenseType findForName(String key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
-    public ExpenseType save(ExpenseType expenseType) {
-        // TODO check if we alreay know this object or add it if not
-        expenseTypes.add(expenseType);
-        return expenseType;
-    }
-
-    @Override
-    public List<ExpenseType> all() {
+    protected List<ExpenseType> getStaticStore() {
         return expenseTypes;
-    }    
+    }
+
+    @Override
+    protected boolean matches(ExpenseType entity, String id) {
+        return entity.getId().equals(id);
+    }
 }

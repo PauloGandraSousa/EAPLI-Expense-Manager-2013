@@ -14,11 +14,11 @@ import javax.persistence.Entity;
 public class IncomeType extends MovementType {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public IncomeType() {
+    public IncomeType() {
         super();
     }
 
@@ -29,9 +29,5 @@ public class IncomeType extends MovementType {
     @Override
     public String toString() {
         return "Income Type: " + super.toString();
-    }
-
-    public String toXml() {
-        return "<incomeType>" + super.toXml() + "</incomeType>";
     }
 }

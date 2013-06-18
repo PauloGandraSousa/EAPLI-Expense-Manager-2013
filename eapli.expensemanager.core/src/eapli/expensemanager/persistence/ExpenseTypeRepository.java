@@ -5,19 +5,11 @@
 package eapli.expensemanager.persistence;
 
 import eapli.expensemanager.model.ExpenseType;
-import java.util.List;
+import eapli.framework.persistence.repositories.Repository;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public interface ExpenseTypeRepository {
-
-    //ExpenseType findOrCreate(String key, String description);
-
-    ExpenseType findForName(String key);
-    
-    ExpenseType save(ExpenseType expenseType);
-
-    public List<ExpenseType> all();
+public interface ExpenseTypeRepository extends Repository<ExpenseType, String> {
 }

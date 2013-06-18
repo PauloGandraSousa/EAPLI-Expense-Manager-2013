@@ -14,7 +14,7 @@ import eapli.expensemanager.persistence.CheckingAccountRepository;
 public class CheckingAccountRepositoryImpl implements CheckingAccountRepository {
 
     static CheckingAccount theOneAndOnlyAccount = new CheckingAccount();
-    
+
     @Override
     public CheckingAccount theAccount() {
         return theOneAndOnlyAccount;
@@ -23,12 +23,11 @@ public class CheckingAccountRepositoryImpl implements CheckingAccountRepository 
     @Override
     public CheckingAccount save(CheckingAccount account) {
         // make sure we receive the same object
-        assert  (account == theOneAndOnlyAccount);
+        assert (account == theOneAndOnlyAccount);
         if (account != theOneAndOnlyAccount) {
             throw new IllegalStateException();
         }
-            
+
         return theOneAndOnlyAccount;
     }
-    
 }

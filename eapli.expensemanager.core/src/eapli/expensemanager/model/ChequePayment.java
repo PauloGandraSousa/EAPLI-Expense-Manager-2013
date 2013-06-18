@@ -17,10 +17,10 @@ import javax.persistence.InheritanceType;
 public class ChequePayment extends Payment {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String chequeNumber;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private String chequeNumber;
 
     public ChequePayment() {
     }
@@ -28,14 +28,5 @@ public class ChequePayment extends Payment {
     public ChequePayment(Cheque method, String chequeNumber) {
         super(method);
         this.chequeNumber = chequeNumber;
-    }
-
-    public String toXml() {
-        return "<payment> + paymentMeans.toXml()"
-                + "<chequeNumber> + chequeNumber + </chequeNumber></payment>";
-    }
-
-    public String toCsv() {
-        return super.toCsv() + "," + chequeNumber;
     }
 }

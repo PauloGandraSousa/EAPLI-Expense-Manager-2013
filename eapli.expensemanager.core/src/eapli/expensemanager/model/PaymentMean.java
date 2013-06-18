@@ -4,9 +4,10 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.framework.persistence.ActiveRecord;
+import eapli.framework.persistence.activerecord.ActiveRecord;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
+import eapli.framework.model.Identifiable;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PaymentMean implements ActiveRecord, Serializable {
+public abstract class PaymentMean implements ActiveRecord, Identifiable<Long>, Serializable {
 
     /**
      *
@@ -55,7 +56,8 @@ public abstract class PaymentMean implements ActiveRecord, Serializable {
 
     abstract public String getDescription();
 
-    public abstract String toXml();
-
-    public abstract String toCsv();
+    @Override
+    public boolean is(Long id) {
+        return this.id.equals(id);
+    }
 }

@@ -12,6 +12,13 @@ import eapli.expensemanager.model.SavingPlan;
  */
 public interface SavingPlanRepository {
 
+    /**
+     * em termos conceptuais este objecto será um singleton. temos de garantir
+     * que o retorno da base de dados será sempre um e apenas um objecto, daí o
+     * nome theSavingPlan
+     *
+     * @return the one and only saving plan
+     */
     SavingPlan theSavingPlan();
 
     SavingPlan save(SavingPlan savingPlan);

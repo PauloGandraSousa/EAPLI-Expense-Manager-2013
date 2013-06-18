@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.JpaRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import javax.persistence.Query;
 
 import eapli.expensemanager.model.Cash;

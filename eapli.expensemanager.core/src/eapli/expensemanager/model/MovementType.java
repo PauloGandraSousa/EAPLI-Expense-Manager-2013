@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.model;
 
+import eapli.framework.model.Identifiable;
 import eapli.util.Validations;
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class MovementType implements Serializable {
+public abstract class MovementType implements Serializable, Identifiable<String> {
 
     /**
      *
@@ -57,10 +58,12 @@ public abstract class MovementType implements Serializable {
             return false;
         }
         final MovementType other = (MovementType) obj;
-        if ((this.shortName == null) ? (other.shortName != null) : !this.shortName.equals(other.shortName)) {
+        if ((this.shortName == null) ? (other.shortName != null) : !this.shortName.
+                equals(other.shortName)) {
             return false;
         }
-        if ((this.description == null) ? (other.description != null) : !this.description.equals(other.description)) {
+        if ((this.description == null) ? (other.description != null) : !this.description.
+                equals(other.description)) {
             return false;
         }
         return true;
@@ -82,15 +85,12 @@ public abstract class MovementType implements Serializable {
         return shortName;
     }
 
+    @Override
+    public boolean is(String id) {
+        return shortName.equals(id);
+    }
+
     public String getDescription() {
         return description;
-    }
-
-    public String toXml() {
-        return "<description>" + description + "</description>";
-    }
-
-    public String toCsv() {
-        return description + ",";
     }
 }

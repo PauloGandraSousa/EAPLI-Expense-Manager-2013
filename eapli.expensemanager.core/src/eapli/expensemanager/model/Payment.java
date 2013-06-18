@@ -14,40 +14,31 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Payment implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue
-	long id;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue
+    long id;
+    @ManyToOne
+    PaymentMean method;
 
-	@ManyToOne
-	PaymentMean method;
+    public Payment() {
+    }
 
-	public Payment() {
-	}
+    public Payment(PaymentMean method) {
+        this.method = method;
+    }
 
-	public Payment(PaymentMean method) {
-		this.method = method;
-	}
-
-	public PaymentMean getPaymentMean() {
-		return method;
-	}
-
-	public String toXml() {
-		return "<payment>" + method.toXml() + "</payment>";
-	}
-
-	public String toCsv() {
-		return method.toCsv();
-	}
+    public PaymentMean getPaymentMean() {
+        return method;
+    }
 }

@@ -5,17 +5,11 @@
 package eapli.expensemanager.persistence;
 
 import eapli.expensemanager.model.IncomeType;
-import java.util.List;
+import eapli.framework.persistence.repositories.Repository;
 
 /**
  *
  * @author Paulo Gandra Sousa
  */
-public interface IncomeTypeRepository {
-
-    IncomeType save(IncomeType incomeType);
-
-    IncomeType findForName(String shortDescription);
-
-    List<IncomeType> all();
+public interface IncomeTypeRepository extends Repository<IncomeType, String> {
 }

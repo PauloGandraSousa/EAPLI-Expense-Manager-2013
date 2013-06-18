@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.JpaRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import java.util.Collection;
@@ -19,6 +19,8 @@ import javax.persistence.EntityTransaction;
 public class CheckingAccountRepositoryImpl extends JpaRepository<CheckingAccount, Long> implements CheckingAccountRepository {
 
     /**
+     * returns the one and only account.
+     *
      * @exception IllegalStateException Esta exceção é uma runtime exception.
      * Como tal, a partir da versão 5.0 do J2SE não é necessário efectuar o
      * throws da exceção na declaração do método
@@ -36,7 +38,7 @@ public class CheckingAccountRepositoryImpl extends JpaRepository<CheckingAccount
             throw new IllegalStateException();
         }
 
-        //caso apenas tenha sido retornado um objecto, obter esse objecto e retorná-lo 
+        //caso apenas tenha sido retornado um objecto, obter esse objecto e retorná-lo
         Iterator<CheckingAccount> iterator = accounts.iterator();
         return iterator.next();
     }
@@ -57,6 +59,10 @@ public class CheckingAccountRepositoryImpl extends JpaRepository<CheckingAccount
             account = create(account);
         }
         tx.commit();
+        // we are closing the entity manager here because this code is runing in
+        // a non-container managed way. if it was the case to be runing under an
+        // application server with a JPA container and managed transactions/sessions,
+        // one should not be doing this
         em.close();
 
         return account;

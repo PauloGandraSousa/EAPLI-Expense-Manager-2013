@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/eapli.expensemanager.core"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/eapli.util"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/eapli.framework"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

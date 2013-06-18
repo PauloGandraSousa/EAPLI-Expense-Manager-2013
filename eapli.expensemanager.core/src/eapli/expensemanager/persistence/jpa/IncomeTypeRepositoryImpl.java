@@ -4,20 +4,19 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.JpaRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.expensemanager.model.IncomeType;
 import eapli.expensemanager.persistence.IncomeTypeRepository;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 public class IncomeTypeRepositoryImpl extends JpaRepository<IncomeType, String>
-		implements IncomeTypeRepository {
+        implements IncomeTypeRepository {
 
-	@Override
-	public IncomeType findForName(String shortDescription) {
-		return super.read(shortDescription);
-	}
-
+    @Override
+    public IncomeType findById(String shortDescription) {
+        return super.read(shortDescription);
+    }
 }

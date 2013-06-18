@@ -18,29 +18,20 @@ import javax.persistence.InheritanceType;
 public class DebitCard extends Card {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	public DebitCard() {
+    public DebitCard() {
     }
 
-    public DebitCard(String cardName, String bank, String cardNumber, String name, Calendar validUntil) {
+    public DebitCard(String cardName, String bank, String cardNumber,
+                     String name, Calendar validUntil) {
         super(cardName, bank, cardNumber, name, validUntil);
     }
 
     @Override
     public String getDescription() {
-        return "debit Card" + cardName;
-    }
-
-    @Override
-    public String toXml() {
-        return "<debitCard>" + super.toXml() + "</debitCard>";
-    }
-
-    @Override
-    public String toCsv() {
-        return "DebitCard," + super.toCsv();
+        return "Debit Card " + cardName;
     }
 }
