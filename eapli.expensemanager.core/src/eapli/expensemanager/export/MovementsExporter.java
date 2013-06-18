@@ -5,10 +5,13 @@
 package eapli.expensemanager.export;
 
 /**
+ * Interface defining the Export feature for movements.
+ *
+ * application of the Strategy pattern.
  *
  * @author Fernando
  */
-public interface ExportMovementsStrategy {
+public interface MovementsExporter {
 
     public static final int CSV = 1;
     public static final int XML = 2;

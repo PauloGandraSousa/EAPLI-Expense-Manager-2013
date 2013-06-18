@@ -6,36 +6,36 @@ import eapli.util.Console;
 
 public class ExportMovementsUI extends BaseUI {
 
-	private final ExportMovementsController controller = new ExportMovementsController();
+    private final ExportMovementsController controller = new ExportMovementsController();
 
-	@Override
-	protected BaseController getController() {
-		return controller;
-	}
+    @Override
+    protected BaseController getController() {
+        return controller;
+    }
 
-	@Override
-	public boolean doShow() {
-		String filename = Console
-				.readLine("Introduza o nome do ficheiro a criar:");
+    @Override
+    public boolean doShow() {
+        String filename = Console
+                .readLine("Introduza o nome do ficheiro a criar:");
 
-		System.out.println("1. CSV");
-		System.out.println("2. XML");
-		System.out.println("3. JSON");
-		System.out.println("0. Exit");
-		int option = Console.readOption(1, 3, 0);
-		if (option == 0) {
-			return true;
-		}
+        System.out.println("1. CSV");
+        System.out.println("2. XML");
+        System.out.println("3. JSON");
+        System.out.println("0. Exit");
+        int option = Console.readOption(1, 3, 0);
+        if (option == 0) {
+            return true;
+        }
 
-		controller.export(option, filename);
+        controller.export(option, filename);
 
-		System.out.println("Ficheiro gerado com sucesso");
+        System.out.println("Ficheiro gerado com sucesso");
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String headline() {
-		return "EXPORT MOVEMENTS";
-	}
+    @Override
+    public String headline() {
+        return "EXPORT MOVEMENTS";
+    }
 }

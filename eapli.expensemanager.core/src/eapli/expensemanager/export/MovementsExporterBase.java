@@ -21,7 +21,7 @@ import eapli.util.Files;
  * 
  * @author Paulo Gandra Sousa
  */
-abstract class MovementsExporterBase implements ExportMovementsStrategy {
+abstract class MovementsExporterBase implements MovementsExporter {
 
 	protected abstract String fileExtension();
 

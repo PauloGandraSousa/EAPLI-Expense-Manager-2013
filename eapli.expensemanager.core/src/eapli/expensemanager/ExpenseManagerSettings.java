@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * A "global" (singleton) class with the application settings.
  *
  * @author Paulo Gandra Sousa
  */
