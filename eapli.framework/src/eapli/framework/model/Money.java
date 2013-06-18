@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.Currency;
 
 /**
- * represents money values
+ * represents money values.
  * 
  * based on http://martinfowler.com/eaaDev/quantity.html
  * 

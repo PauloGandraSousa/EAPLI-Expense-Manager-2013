@@ -12,7 +12,7 @@ import eapli.framework.visitor.Visitor;
 
 /**
  * 
- * @author Fernando
+ * @author Paulo Gandra de Sousa
  */
 class ExportMovementsToJson extends MovementsExporterBase {
 

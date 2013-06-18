@@ -8,6 +8,11 @@ import eapli.framework.visitor.Visitor;
 import eapli.util.DateTime;
 import eapli.util.Math;
 
+/**
+ * 
+ * @author Paulo Gandra Sousa
+ * 
+ */
 class IncomeExporterToCsvVisitor implements Visitor<Income> {
 
 	private final Writer writer;

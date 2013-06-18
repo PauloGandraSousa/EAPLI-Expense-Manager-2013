@@ -5,11 +5,22 @@
 package eapli.util;
 
 /**
- *
+ * An utility class for validations.
+ * 
  * @author Paulo Gandra Sousa
  */
-public /*static*/ class Validations {
-    public static boolean isNullOrEmpty(String text) {
-        return (text == null || text.trim().length() == 0);
-    }
+public final class Validations {
+	private Validations() {
+
+	}
+
+	/**
+	 * checks whether a String is empty (zero length or all spaces) or null
+	 * 
+	 * @param text
+	 * @return
+	 */
+	public static boolean isNullOrEmpty(String text) {
+		return (text == null || text.trim().length() == 0);
+	}
 }

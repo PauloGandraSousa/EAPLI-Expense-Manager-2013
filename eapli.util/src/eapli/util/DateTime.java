@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * 
  * @author Paulo Gandra Sousa
  */
-public final/* static */class DateTime {
+public final class DateTime {
 
 	private DateTime() {
 	}

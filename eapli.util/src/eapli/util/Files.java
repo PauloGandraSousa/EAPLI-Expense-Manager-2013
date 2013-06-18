@@ -8,7 +8,11 @@ package eapli.util;
  * 
  * @author Paulo Gandra Sousa
  */
-public class Files {
+public final class Files {
+	private Files() {
+
+	}
+
 	public static String getCurrentDirectory() {
 		return new java.io.File(".").getAbsolutePath();
 	}

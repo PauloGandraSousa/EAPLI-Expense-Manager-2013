@@ -23,7 +23,7 @@ import eapli.util.DateTime;
 public abstract class BaseController implements Controller {
 
 	/**
-	 * gets the expenditure of the current week
+	 * gets the expenditure of the current week.
 	 * 
 	 * this method follows an "OO approach" by asking the repository to recreate
 	 * the expense record of the desired week and performs the calculation in
@@ -47,7 +47,7 @@ public abstract class BaseController implements Controller {
 	}
 
 	/**
-	 * gets the expenditure of the current month
+	 * gets the expenditure of the current month.
 	 * 
 	 * this methods relies on the repository to do the calculation. for
 	 * performance reasons this type of aggregated calculations can be done
@@ -62,6 +62,11 @@ public abstract class BaseController implements Controller {
 				DateTime.currentMonth());
 	}
 
+	/**
+	 * gets the current balance.
+	 * 
+	 * @return
+	 */
 	public BigDecimal getBalance() {
 		final CheckingAccountRepository repo = PersistenceFactory
 				.buildPersistenceFactory().checkingAccountRepository();

@@ -5,25 +5,25 @@
 package eapli.expensemanager.persistence;
 
 /**
- * an Abstract Factory for the persistence layer
- *
+ * an Abstract Factory for the persistence layer.
+ * 
  * @author Paulo Gandra Sousa
  */
 public interface RepositoryFactory {
 
-    CheckingAccountRepository checkingAccountRepository();
+	CheckingAccountRepository checkingAccountRepository();
 
-    SavingPlanRepository savingPlanRepository();
+	SavingPlanRepository savingPlanRepository();
 
-    ExpenseRepository expenseRepository();
+	ExpenseRepository expenseRepository();
 
-    ExpenseTypeRepository expenseTypeRepository();
+	ExpenseTypeRepository expenseTypeRepository();
 
-    IncomeRepository incomeRepository();
+	IncomeRepository incomeRepository();
 
-    IncomeTypeRepository incomeTypeRepository();
+	IncomeTypeRepository incomeTypeRepository();
 
-    PaymentMeanRepository paymentMeanRepository();
+	PaymentMeanRepository paymentMeanRepository();
 
-    AlertLimitRepository alertLimitRepository();
+	AlertLimitRepository alertLimitRepository();
 }

@@ -15,12 +15,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * utility class for reading different data types fro the Console.
+ * 
+ * based on code from Nuno Silva
  * 
  * @author Paulo Gandra Sousa
  * 
- *         based on code from Nuno Silva
  */
-public/* static */class Console {
+public final class Console {
 
 	private Console() {
 	}
