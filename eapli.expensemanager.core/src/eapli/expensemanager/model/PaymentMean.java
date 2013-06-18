@@ -4,7 +4,7 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.expensemanager.persistence.ActiveRecord;
+import eapli.framework.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.io.Serializable;

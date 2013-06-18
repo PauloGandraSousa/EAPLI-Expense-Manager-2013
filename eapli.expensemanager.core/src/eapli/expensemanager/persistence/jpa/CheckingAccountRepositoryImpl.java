@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
+import eapli.framework.persistence.JpaRepository;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import java.util.Collection;

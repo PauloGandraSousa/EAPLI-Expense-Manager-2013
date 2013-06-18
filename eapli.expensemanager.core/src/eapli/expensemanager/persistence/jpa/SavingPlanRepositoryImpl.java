@@ -4,6 +4,7 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
+import eapli.framework.persistence.JpaRepository;
 import eapli.expensemanager.model.SavingPlan;
 import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.util.Collection;

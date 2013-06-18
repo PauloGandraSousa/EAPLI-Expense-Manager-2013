@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-import eapli.expensemanager.persistence.ActiveRecord;
+import eapli.framework.persistence.ActiveRecord;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 
