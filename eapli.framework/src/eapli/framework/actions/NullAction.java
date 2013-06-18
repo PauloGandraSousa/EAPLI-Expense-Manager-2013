@@ -14,7 +14,7 @@ public class NullAction implements Action {
     
     private NullAction() {}
     
-    public static NullAction instance() {
+    public static NullAction getInstance() {
         return theInstance;
     }
     

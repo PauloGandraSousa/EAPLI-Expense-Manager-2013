@@ -21,7 +21,7 @@ public final class ExpenseManagerSettings {
     private static Properties applicationProperties = new Properties();
     private static ExpenseManagerSettings instance;
 
-    public static ExpenseManagerSettings instance() {
+    public static ExpenseManagerSettings getInstance() {
         if (instance == null) {
             instance = new ExpenseManagerSettings();
         }

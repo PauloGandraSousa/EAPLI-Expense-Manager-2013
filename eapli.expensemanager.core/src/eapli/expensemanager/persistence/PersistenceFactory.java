@@ -20,7 +20,7 @@ public class PersistenceFactory {
     }
 
     public static RepositoryFactory buildPersistenceFactory() {
-        String factoryClassName = ExpenseManagerSettings.instance().
+        String factoryClassName = ExpenseManagerSettings.getInstance().
                 getApplicationProperties().
                 getProperty("persistence.repositoryFactory");
 
