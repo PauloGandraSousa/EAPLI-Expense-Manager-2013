@@ -26,7 +26,7 @@ class IncomeExporterToXmlVisitor implements Visitor<Income> {
 			writer.write("<Income>\n");
 			// FIXME the following code block is duplicated with ExpenseExporter
 			writer.write("<OccuredAt>");
-			writer.write(DateTime.format(visited.getDateOcurred()));
+			writer.write(DateTime.format(visited.getOcurred()));
 			writer.write("</OccuredAt>\n");
 			writer.write("<Amount>");
 			writer.write(Math.format(visited.getAmount()));

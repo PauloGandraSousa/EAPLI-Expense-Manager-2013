@@ -29,7 +29,7 @@ class ExpenseExporterToCsvVisitor implements Visitor<Expense> {
 			writer.write("expense, ");
 
 			// FIXME the code block is duplicated
-			writer.write(DateTime.format(visited.getDateOcurred()));
+			writer.write(DateTime.format(visited.getOcurred()));
 			writer.write(",");
 			writer.write(Math.format(visited.getAmount()));
 			writer.write(",");

@@ -5,7 +5,7 @@
 package eapli.expensemanager.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class Income extends Movement {
     public Income() {
     }
 
-    public Income(String description, Date dateOccurred, BigDecimal amount,
+    public Income(String description, Calendar dateOccurred, BigDecimal amount,
                   IncomeType type) {
         super(description, dateOccurred, amount);
         this.type = type;

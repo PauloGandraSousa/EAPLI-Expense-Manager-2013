@@ -6,7 +6,7 @@ package eapli.expensemanager.presentation;
 
 import eapli.util.Console;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -15,12 +15,12 @@ import java.util.Date;
 public abstract class RegisterMovementBaseUI extends BaseUI {
 
     String what;
-    Date date;
+    Calendar date;
     BigDecimal amount;
 
     protected void readGeneralData() {
         what = Console.readLine("What:");
-        date = Console.readDate("When (dd-MM-yyyy):");
+        date = Console.readCalendar("When (dd-MM-yyyy):");
         double value = Console.readDouble("How much:");
         amount = new BigDecimal(value);
     }

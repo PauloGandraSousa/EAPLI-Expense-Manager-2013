@@ -6,7 +6,6 @@ package eapli.expensemanager.bootstrap;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
 
 import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.CheckingAccount;
@@ -44,8 +43,7 @@ public class SomeExpensesBootstrap implements Bootstrap {
 		Cash cashEur = repoPaymentMethod.getCash(Cash.EUR);
 		Payment payment = new Payment(cashEur);
 
-		Calendar baseDateOfExpense = DateTime.today();
-		Date dateOfExpense = baseDateOfExpense.getTime();
+		Calendar dateOfExpense = DateTime.today();
 		try {
 			Expense exp = new Expense(clothing, "sapatilhas", dateOfExpense,
 					new BigDecimal(100), payment);
@@ -55,15 +53,13 @@ public class SomeExpensesBootstrap implements Bootstrap {
 					new BigDecimal(10), payment);
 			theAccount.registerExpense(exp);
 
-			baseDateOfExpense.add(Calendar.DAY_OF_MONTH, 4);
-			dateOfExpense = baseDateOfExpense.getTime();
+			dateOfExpense.add(Calendar.DAY_OF_MONTH, 4);
 
-			exp = new Expense(clothing, "calÃ§as", dateOfExpense,
+			exp = new Expense(clothing, "calças", dateOfExpense,
 					new BigDecimal(150), payment);
 			theAccount.registerExpense(exp);
 
-			baseDateOfExpense.add(Calendar.DAY_OF_MONTH, -30);
-			dateOfExpense = baseDateOfExpense.getTime();
+			dateOfExpense.add(Calendar.DAY_OF_MONTH, -30);
 
 			exp = new Expense(transport, "passe Metro", dateOfExpense,
 					new BigDecimal(35), payment);

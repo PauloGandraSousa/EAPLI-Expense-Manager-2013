@@ -7,21 +7,21 @@ package eapli.framework.presentation;
 import eapli.framework.actions.Action;
 
 /**
- *
+ * 
  * @author Paulo Gandra Sousa
  */
 public class SubMenuAction implements Action {
 
-    Menu menu;
-    
-    public SubMenuAction(Menu menu) {
-        this.menu = menu;
-    }
+	Menu menu;
 
-    @Override
-    public boolean execute() {
-        System.out.println("\nÂ»Â» " + menu.title);
-        menu.show();
-        return false;
-    }
+	public SubMenuAction(Menu menu) {
+		this.menu = menu;
+	}
+
+	@Override
+	public boolean execute() {
+		System.out.println("\n»» " + menu.title);
+		menu.show();
+		return false;
+	}
 }

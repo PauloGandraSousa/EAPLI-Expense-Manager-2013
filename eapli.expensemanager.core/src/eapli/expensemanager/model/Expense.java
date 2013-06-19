@@ -5,13 +5,13 @@
 package eapli.expensemanager.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 import eapli.util.DateTime;
+import java.util.Calendar;
 
 /**
  *
@@ -32,7 +32,7 @@ public class Expense extends Movement {
     protected Expense() {
     }
 
-    public Expense(ExpenseType type, String description, Date dateOccurred,
+    public Expense(ExpenseType type, String description, Calendar dateOccurred,
                    BigDecimal amount, Payment payment) {
         super(description, dateOccurred, amount);
         if (type == null || payment == null) {
@@ -44,7 +44,7 @@ public class Expense extends Movement {
 
     public Expense(ExpenseType type, String description, int year, int month,
                    int day, BigDecimal amount, Payment payment) {
-        this(type, description, DateTime.newDate(year, month, day), amount,
+        this(type, description, DateTime.newCalendar(year, month, day), amount,
              payment);
     }
 

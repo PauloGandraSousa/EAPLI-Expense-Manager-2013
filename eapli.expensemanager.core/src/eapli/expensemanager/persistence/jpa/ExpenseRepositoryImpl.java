@@ -9,6 +9,7 @@ import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.util.DateTime;
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,7 +34,8 @@ public class ExpenseRepositoryImpl extends JpaRepository<Expense, Long> implemen
     @Override
     public BigDecimal expenditureOfWeek(int year, int weekNumber) {
         EntityManager em = getEntityManager();
-        Query q = em.createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
+        Query q = em.
+                createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
         Date start = DateTime.beginningOfWeek(year, weekNumber).getTime();
         q.setParameter("start", start);
         Date end = DateTime.endOfWeek(year, weekNumber).getTime();
@@ -59,10 +61,13 @@ public class ExpenseRepositoryImpl extends JpaRepository<Expense, Long> implemen
     @Override
     public BigDecimal expenditureOfMonth(int year, int month) {
         EntityManager em = getEntityManager();
-        Query q = em.createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
+        Query q = em.
+                createQuery("SELECT SUM(e.amount) FROM Expense e WHERE e.ocurred >= :start AND e.ocurred <= :end");
         Date start = new Date(year - 1900, month - 1, 1);
+        //Calendar start = DateTime.newCalendar(year, month, 1);
         q.setParameter("start", start);
         Date end = new Date(year - 1900, month - 1, 31);
+        //Calendar end = DateTime.newCalendar(year, month, 31);
         q.setParameter("end", end);
 
         BigDecimal balance = (BigDecimal) q.getSingleResult();
@@ -95,7 +100,8 @@ public class ExpenseRepositoryImpl extends JpaRepository<Expense, Long> implemen
     @Override
     public List<Expense> between(Date start, Date end) {
         EntityManager em = getEntityManager();
-        Query q = em.createQuery("SELECT e FROM Expense e WHERE e.dateOcurred >= :start AND e.dateOcurred <= :end");
+        Query q = em.
+                createQuery("SELECT e FROM Expense e WHERE e.ocurred >= :start AND e.ocurred <= :end");
         q.setParameter("start", start);
         q.setParameter("end", end);
 

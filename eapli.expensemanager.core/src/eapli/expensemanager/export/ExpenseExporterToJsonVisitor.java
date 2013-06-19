@@ -30,7 +30,7 @@ class ExpenseExporterToJsonVisitor implements Visitor<Expense> {
 		try {
 			writer.write("{ \n");
 			writer.write("occuredAt : '");
-			writer.write(DateTime.format(visited.getDateOcurred()));
+			writer.write(DateTime.format(visited.getOcurred()));
 			writer.write("',\n");
 			writer.write("amount : ");
 			writer.write(Math.format(visited.getAmount()));

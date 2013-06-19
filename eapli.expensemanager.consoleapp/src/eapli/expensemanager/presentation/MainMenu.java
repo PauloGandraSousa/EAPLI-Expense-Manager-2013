@@ -142,7 +142,7 @@ public class MainMenu extends AbstractUI {
 	private Menu buildMainMenu() {
 		Menu menu = new Menu();
 
-		// add a menu item and create an "anonynous class" action
+		// add a menu item and create an "anonymous class" action
 		menu.addMenuItem(new MenuItem(REGISTER_EXPENSE_OPTION,
 				"Register an expense", new Action() {
 					@Override

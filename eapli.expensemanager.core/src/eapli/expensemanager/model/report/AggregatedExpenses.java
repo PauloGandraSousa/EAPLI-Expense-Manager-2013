@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 
 import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
 
 /**
  *
@@ -19,7 +18,7 @@ import eapli.expensemanager.model.ExpenseType;
 public class AggregatedExpenses {
 
     private BigDecimal sum = BigDecimal.ZERO;
-    List<Expense> expenses = new ArrayList<Expense>();
+    private List<Expense> expenses = new ArrayList<Expense>();
 
     /**
      * Add a movement to the list

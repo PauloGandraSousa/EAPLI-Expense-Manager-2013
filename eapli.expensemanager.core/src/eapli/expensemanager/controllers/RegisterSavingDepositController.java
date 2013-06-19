@@ -12,9 +12,9 @@ import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
+import java.util.Calendar;
 
 /**
  *
@@ -25,17 +25,20 @@ public class RegisterSavingDepositController extends BaseController {
     public RegisterSavingDepositController() {
     }
 
-    public void registerSavingDeposit(SavingGoal goal, Date date, BigDecimal amount, String description) throws InsufficientBalanceException {
-        CheckingAccountRepository checkingAccountRepository = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
+    public void registerSavingDeposit(SavingGoal goal, Calendar date,
+                                      BigDecimal amount, String description) throws InsufficientBalanceException {
+        CheckingAccountRepository checkingAccountRepository = PersistenceFactory.
+                buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount checkingAccount = checkingAccountRepository.theAccount();
 
         try {
             SavingDeposit savingDeposit = new SavingDeposit(description, date, amount);
 
-            SavingPlanRepository savingPlanRepository = PersistenceFactory.buildPersistenceFactory().savingPlanRepository();
+            SavingPlanRepository savingPlanRepository = PersistenceFactory.
+                    buildPersistenceFactory().savingPlanRepository();
             SavingPlan savingPlan = savingPlanRepository.theSavingPlan();
 
-            // TODO should we call two different register methods or shuld the 
+            // TODO should we call two different register methods or shuld the
             // operation be encapsulated inside the "main" object?
             // where do we draw the line in our aggregates?
             checkingAccount.registerSavingDeposit(savingDeposit);
@@ -51,7 +54,7 @@ public class RegisterSavingDepositController extends BaseController {
     // TODO avoid duplication with RegisterSavingWithdrawController
     public List<SavingGoal> getSavingGoals() {
         // TODO should a controller create other controller objects?
-        // to avoid duplication we migth encapsulate this method in another 
+        // to avoid duplication we migth encapsulate this method in another
         // class which is not a controller
         return new ListSavingGoalsController().getSavingGoals();
     }

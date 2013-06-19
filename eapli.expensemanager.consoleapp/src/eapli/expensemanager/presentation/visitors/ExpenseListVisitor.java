@@ -6,6 +6,7 @@ package eapli.expensemanager.presentation.visitors;
 
 import eapli.expensemanager.model.Expense;
 import eapli.framework.visitor.Visitor;
+import eapli.util.DateTime;
 
 /**
  *
@@ -15,7 +16,7 @@ public class ExpenseListVisitor implements Visitor<Expense> {
 
     @Override
     public void visit(Expense visited) {
-        System.out.print(visited.getDateOcurred() + " ");
+        System.out.print(DateTime.format(visited.getOcurred()) + " ");
         System.out.print(visited.getAmount() + " ");
         System.out.println(visited.getDescription());
     }

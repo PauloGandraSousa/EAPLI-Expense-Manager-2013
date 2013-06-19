@@ -36,7 +36,7 @@ class ListExpensesPerTypeUI extends BaseUI {
         for (Movement expense : expenseList) {
             System.out.print("\t");
             System.out.print(position + ". ");
-            System.out.print(expense.getDateOcurred() + " ");
+            System.out.print(expense.getOcurred() + " ");
             System.out.print(expense.getAmount() + " ");
             System.out.println(expense.getDescription());
             position++;

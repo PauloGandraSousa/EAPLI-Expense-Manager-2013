@@ -6,7 +6,7 @@ package eapli.expensemanager.model;
 
 import eapli.util.DateTime;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 import javax.persistence.Entity;
 
 /**
@@ -17,18 +17,20 @@ import javax.persistence.Entity;
 public class SavingWithdraw extends Movement {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+     *
+     */
+    private static final long serialVersionUID = 1L;
 
-	protected SavingWithdraw() {
+    protected SavingWithdraw() {
     }
 
-    public SavingWithdraw(String description, Date dateOccurred, BigDecimal amount) {
+    public SavingWithdraw(String description, Calendar dateOccurred,
+                          BigDecimal amount) {
         super(description, dateOccurred, amount);
     }
 
-    public SavingWithdraw(String description, int year, int month, int day, BigDecimal amount) {
-        this(description, DateTime.newDate(year, month, day), amount);
+    public SavingWithdraw(String description, int year, int month, int day,
+                          BigDecimal amount) {
+        this(description, DateTime.newCalendar(year, month, day), amount);
     }
 }

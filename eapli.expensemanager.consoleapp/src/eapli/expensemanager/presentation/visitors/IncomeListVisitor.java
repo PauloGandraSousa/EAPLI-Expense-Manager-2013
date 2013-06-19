@@ -18,7 +18,7 @@ public class IncomeListVisitor implements Visitor<Income> {
 
     @Override
     public void visit(Income visited) {
-        System.out.print(visited.getDateOcurred() + " ");
+        System.out.print(visited.getOcurred() + " ");
         System.out.print(visited.getAmount() + " ");
         System.out.println(visited.getDescription());
     }

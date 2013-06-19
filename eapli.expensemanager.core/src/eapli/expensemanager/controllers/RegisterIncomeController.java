@@ -10,7 +10,7 @@ import eapli.expensemanager.model.IncomeType;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -19,15 +19,17 @@ import java.util.List;
  */
 public class RegisterIncomeController extends BaseController {
 
-    public void registerIncome(String what, Date date, BigDecimal amount, IncomeType type) {
+    public void registerIncome(String what, Calendar date, BigDecimal amount,
+                               IncomeType type) {
         Income income = new Income(what, date, amount, type);
         //IncomeRepository repo = PersistenceRegistry.instance().incomeRepository();
-        CheckingAccountRepository repo = PersistenceFactory.buildPersistenceFactory().checkingAccountRepository();
+        CheckingAccountRepository repo = PersistenceFactory.
+                buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
         account.registerIncome(income);
         repo.save(account);
     }
-        
+
     public List<IncomeType> getIncomeTypes() {
         // use existing controller to avoid duplication
         ListIncomeTypesController listIncomeTypesController = new ListIncomeTypesController();

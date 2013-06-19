@@ -36,7 +36,7 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
     private Long id;
     private String description;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateOcurred;
+    private Calendar ocurred;
     private BigDecimal amount;
 
     public Movement() {
@@ -53,7 +53,7 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
         return this.id.equals(id);
     }
 
-    public Movement(String description, Date dateOccurred, BigDecimal amount) {
+    public Movement(String description, Calendar dateOccurred, BigDecimal amount) {
         if (description == null || dateOccurred == null || amount == null) {
             throw new IllegalArgumentException();
         }
@@ -63,7 +63,7 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
         }
 
         this.description = description;
-        this.dateOcurred = dateOccurred;
+        this.ocurred = (Calendar) dateOccurred.clone();
         this.amount = amount;
     }
 
@@ -72,21 +72,20 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
     }
 
     public boolean occursThisWeek() {
-        int weekOfMovement = DateTime.weekNumber(getDateOcurred());
+        int weekOfMovement = DateTime.weekNumber(getOcurred());
         int thisWeek = DateTime.currentWeekNumber();
         return thisWeek == weekOfMovement;
     }
 
     public boolean occursThisMonth() {
         int thisMonth = DateTime.today().get(Calendar.MONTH);
-        int movementMonth = DateTime.dateToCalendar(getDateOcurred()).
-                get(Calendar.MONTH);
+        int movementMonth = getOcurred().get(Calendar.MONTH);
         return (thisMonth == movementMonth);
     }
 
     public boolean occursBetween(Date start, Date end) {
-        if (this.getDateOcurred().compareTo(start) >= 0
-                && this.getDateOcurred().compareTo(end) <= 0) {
+        if (this.getOcurred().compareTo(DateTime.dateToCalendar(start)) >= 0
+                && this.getOcurred().compareTo(DateTime.dateToCalendar(end)) <= 0) {
             return true;
         } else {
             return false;
@@ -103,23 +102,20 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
     /**
      * @return the date when the movement ocurred
      */
-    public Date getDateOcurred() {
-        return dateOcurred;
+    public Calendar getOcurred() {
+        return ocurred;
     }
 
     public boolean ocurredInMonth(int year, int month) {
-        int monthOcurred = DateTime.dateToCalendar(dateOcurred).
-                get(Calendar.MONTH) + 1;
-        int yearOcurred = DateTime.dateToCalendar(dateOcurred).
-                get(Calendar.YEAR);
+        int monthOcurred = ocurred.get(Calendar.MONTH) + 1;
+        int yearOcurred = ocurred.get(Calendar.YEAR);
 
         return (monthOcurred == month && yearOcurred == year ? true : false);
     }
 
     public boolean ocurredInWeek(int year, int week) {
-        int weekOcurred = DateTime.weekNumber(dateOcurred);
-        int yearOcurred = DateTime.dateToCalendar(dateOcurred).
-                get(Calendar.YEAR);
+        int weekOcurred = DateTime.weekNumber(ocurred);
+        int yearOcurred = ocurred.get(Calendar.YEAR);
 
         return (weekOcurred == week && yearOcurred == year ? true : false);
     }

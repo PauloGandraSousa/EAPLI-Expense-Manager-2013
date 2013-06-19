@@ -27,7 +27,7 @@ class IncomeExporterToJsonVisitor implements Visitor<Income> {
 
 			// FIXME this code block is duplicated with ExpenseExporter
 			writer.write("occuredAt : '");
-			writer.write(DateTime.format(visited.getDateOcurred()));
+			writer.write(DateTime.format(visited.getOcurred()));
 			writer.write("',\n");
 			writer.write("amount : ");
 			writer.write(Math.format(visited.getAmount()));

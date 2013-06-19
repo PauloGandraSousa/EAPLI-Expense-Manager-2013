@@ -30,7 +30,7 @@ class ExpenseExporterToXmlVisitor implements Visitor<Expense> {
 		try {
 			writer.write("<Expense>\n");
 			writer.write("<OccuredAt>");
-			writer.write(DateTime.format(visited.getDateOcurred()));
+			writer.write(DateTime.format(visited.getOcurred()));
 			writer.write("</OccuredAt>\n");
 			writer.write("<Amount>");
 			writer.write(Math.format(visited.getAmount()));
