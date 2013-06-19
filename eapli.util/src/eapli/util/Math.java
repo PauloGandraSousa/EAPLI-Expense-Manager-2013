@@ -112,4 +112,15 @@ public final class Math {
 		// TODO use number formatter
 		return amount.toString();
 	}
+
+	/**
+	 * returns a representation of a number as Roman numeral.
+	 * 
+	 * @param number
+	 * @return
+	 */
+	public static String formatAsRomanNumeral(int number) {
+		RomanNumeral roman = new RomanNumeral(number);
+		return roman.toString();
+	}
 }
