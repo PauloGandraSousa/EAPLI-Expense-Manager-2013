@@ -12,7 +12,7 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
-import eapli.expensemanager.limits.WatchDogLimits;
+import eapli.expensemanager.limits.LimitsWatchDog;
 import eapli.expensemanager.limits.WatchDogFactory;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
@@ -27,7 +27,7 @@ import java.util.Observer;
  */
 public class RegisterExpenseController extends BaseController {
 
-    WatchDogLimits watchDog;
+    LimitsWatchDog watchDog;
 
     public RegisterExpenseController() {
     }
@@ -51,7 +51,7 @@ public class RegisterExpenseController extends BaseController {
         CheckingAccountRepository repo = PersistenceFactory
                 .buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
-        // OBSERVER PATTERN: Register WatchDogLimits as account observer
+        // OBSERVER PATTERN: Register LimitsWatchDog as account observer
         account.addObserver(watchDog);
         account.registerExpense(expense);
         repo.save(account);

@@ -25,8 +25,8 @@ public class WatchDogFactory {
         return instance;
     }
 
-    public WatchDogLimits buildWatchDogLimits(Observer obs) {
-        WatchDogLimits watchDog = new WatchDogLimits();
+    public LimitsWatchDog buildWatchDogLimits(Observer obs) {
+        LimitsWatchDog watchDog = new LimitsWatchDog();
         watchDog.addObserver(obs);
         return watchDog;
     }

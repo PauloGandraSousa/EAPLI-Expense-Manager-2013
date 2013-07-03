@@ -25,7 +25,7 @@ import java.util.Calendar;
  *
  * @author mcn
  */
-public class WatchDogLimits extends Observable implements Observer {
+public class LimitsWatchDog extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
@@ -34,40 +34,10 @@ public class WatchDogLimits extends Observable implements Observer {
     }
 
     private void verifyLimits(ExpenseRegisteredEvent event) {
-        AlertLimitType[] types = AlertLimitType.values();
-        for (AlertLimitType alertLimType : types) {
-            AlertEvent alert;
-            switch (alertLimType) {
-                case LIMIT_WEEK_EXPENDITURE:
-                    alert = isOverLimitWeekExpenditure(event.getExpense());
-                    if (alert != null) {
-                        publishEvent(alert);
-                    }
-                    break;
-                case LIMIT_MONTH_EXPENDITURE:
-                    alert = isOverLimitMonthExpenditure(event.getExpense());
-                    if (alert != null) {
-                        publishEvent(alert);
-                    }
-                    break;
-                case LIMIT_DEVIATION_BY_EXPENSE_TYPE:
-                    alert = isOverLimitDeviationByExpenseType(event.getExpense());
-                    if (alert != null) {
-                        publishEvent(alert);
-                    }
-                    break;
-                case LIMIT_MINIMUM_BALANCE:
-                    AlertLimitExpenditure alertLimitBalance = (AlertLimitExpenditure) AlertLimit.
-                            findByAlertType(alertLimType);
-                    if (alertLimitBalance != null) {
-                        alert = buildAlertBalanceEvent(alertLimitBalance, event);
-                        if (alert != null) {
-                            publishEvent(alert);
-                        }
-                    }
-                    break;
-            }
-        }
+        checkIfIsOverLimitWeekExpenditure(event.getExpense());
+        checkIfIsOverLimitMonthExpenditure(event.getExpense());
+        checkIfIsOverLimitDeviationByExpenseType(event.getExpense());
+        checkIfIsOverBalanceLimit(event);
     }
 
     /**
@@ -75,8 +45,10 @@ public class WatchDogLimits extends Observable implements Observer {
      * considered the information expert
      */
     private void publishEvent(AlertEvent alert) {
-        this.setChanged();
-        notifyObservers(alert);
+        if (alert != null) {
+            this.setChanged();
+            notifyObservers(alert);
+        }
     }
 
     private AlertEvent buildAlertBalanceEvent(AlertLimitExpenditure alertLimit,
@@ -92,7 +64,7 @@ public class WatchDogLimits extends Observable implements Observer {
         return alert;
     }
 
-    public ExpenditureOverLimitAlertEvent buildAlertBalanceEvent(
+    private ExpenditureOverLimitAlertEvent buildAlertBalanceEvent(
             BigDecimal balance,
             AlertLimitType alertType) {
         AlertLimitExpenditure alertLimit = (AlertLimitExpenditure) AlertLimit.
@@ -136,12 +108,7 @@ public class WatchDogLimits extends Observable implements Observer {
 //    }
 
     /* ========================= */
-    // FIXME the name of this method is misleading. an isXXX() method should
-    // return boolean and should not have side effects, e.g., create objects
-    // TODO should this class be responsible for creating the AlertEvent?
-    // it increases the coupling between the two classes
-    // wouldn't it be better to have that responsibility in the WatchDog?
-    public ExpenditureOverLimitAlertEvent isOverLimitWeekExpenditure(
+    private void checkIfIsOverLimitWeekExpenditure(
             Expense expenseRegistered) {
         CheckingAccountRepository repo = PersistenceFactory
                 .buildPersistenceFactory().checkingAccountRepository();
@@ -154,16 +121,12 @@ public class WatchDogLimits extends Observable implements Observer {
 
         // Because the event registered is not saved yet
         expenditure = expenditure.add(expenseRegistered.getAmount());
-        return buildAlertEvent(expenditure,
-                               AlertLimitType.LIMIT_WEEK_EXPENDITURE);
+        AlertEvent alert = buildAlertEvent(expenditure,
+                                           AlertLimitType.LIMIT_WEEK_EXPENDITURE);
+        publishEvent(alert);
     }
 
-    // FIXME the name of this method is misleading. an isXXX() method should
-    // return boolean and should not have side effects, e.g., create objects
-    // TODO should this class be responsible for creating the AlertEvent?
-    // it increases the coupling between the two classes
-    // wouldn't it be better to have that responsibility in the WatchDog?
-    public ExpenditureOverLimitAlertEvent isOverLimitMonthExpenditure(
+    private void checkIfIsOverLimitMonthExpenditure(
             Expense expenseRegistered) {
         CheckingAccountRepository repo = PersistenceFactory
                 .buildPersistenceFactory().checkingAccountRepository();
@@ -174,12 +137,12 @@ public class WatchDogLimits extends Observable implements Observer {
         expenditure = account.expenditureOfMonth(year, month);
         // Because the event registered is not saved yet
         expenditure = expenditure.add(expenseRegistered.getAmount());
-        return buildAlertEvent(expenditure,
-                               AlertLimitType.LIMIT_MONTH_EXPENDITURE);
+        AlertEvent alert = buildAlertEvent(expenditure,
+                                           AlertLimitType.LIMIT_MONTH_EXPENDITURE);
+        publishEvent(alert);
     }
 
-    // FIXME this method should not be public
-    public ExpenditureOverLimitAlertEvent buildAlertEvent(
+    private ExpenditureOverLimitAlertEvent buildAlertEvent(
             BigDecimal expenditure, AlertLimitType alertType) {
         AlertLimitExpenditure alertLimit = (AlertLimitExpenditure) AlertLimit
                 .findByAlertType(alertType);
@@ -201,12 +164,7 @@ public class WatchDogLimits extends Observable implements Observer {
         return null;
     }
 
-    // FIXME the name of this method is misleading. an isXXX() method should
-    // return boolean and should not have side effects, e.g., create objects
-    // TODO should this class be responsible for creating the AlertEvent?
-    // it increases the coupling between the two classes
-    // wouldn't it be better to have that responsibility in the WatchDog?
-    public ExpenditureByExpenseTypeOverLimitAlertEvent isOverLimitDeviationByExpenseType(
+    private void checkIfIsOverLimitDeviationByExpenseType(
             Expense expenseRegistered) {
         AlertLimitRepository alertLimitRepo = PersistenceFactory
                 .buildPersistenceFactory().alertLimitRepository();
@@ -218,9 +176,12 @@ public class WatchDogLimits extends Observable implements Observer {
                     .buildPersistenceFactory().checkingAccountRepository();
             CheckingAccount account = repo.theAccount();
             BigDecimal average = account.averageExpenditure(eT);
-            return buildAlertEventDeviation(expenseRegistered.getAmount(), average, alertLimitET);
+            AlertEvent alert = buildAlertEventDeviation(expenseRegistered.
+                    getAmount(), average, alertLimitET);
+
+            publishEvent(alert);
+
         }
-        return null;
     }
 
     private ExpenditureByExpenseTypeOverLimitAlertEvent buildAlertEventDeviation(
@@ -252,5 +213,14 @@ public class WatchDogLimits extends Observable implements Observer {
                     getExpenseType());
         }
         return null;
+    }
+
+    private void checkIfIsOverBalanceLimit(ExpenseRegisteredEvent event) {
+        AlertLimitExpenditure alertLimitBalance = (AlertLimitExpenditure) AlertLimit.
+                findByAlertType(AlertLimitType.LIMIT_MINIMUM_BALANCE);
+        if (alertLimitBalance != null) {
+            AlertEvent alert = buildAlertBalanceEvent(alertLimitBalance, event);
+            publishEvent(alert);
+        }
     }
 }
