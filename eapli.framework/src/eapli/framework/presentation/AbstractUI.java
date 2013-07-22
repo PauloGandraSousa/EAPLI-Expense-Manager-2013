@@ -12,8 +12,8 @@ import eapli.framework.Controller;
  */
 public abstract class AbstractUI {
 
-    public static final String SEPARATOR = "+---------------------------------------------------------------------------------+";
-    public static final String BORDER = "+=================================================================================+";
+    public static final String SEPARATOR = "+------------------------------------------------------------------------------+";
+    public static final String BORDER = "+==============================================================================+";
 
     /**
      * derived classes should provide the getController object
@@ -74,7 +74,8 @@ public abstract class AbstractUI {
     }
 
     protected void drawFormTitle(String title) {
-        String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.substring(4 + title.length());
+        String titleBorder = BORDER.substring(0, 2) + " " + title + " " + BORDER.
+                substring(4 + title.length());
         System.out.println(titleBorder);
     }
 }
