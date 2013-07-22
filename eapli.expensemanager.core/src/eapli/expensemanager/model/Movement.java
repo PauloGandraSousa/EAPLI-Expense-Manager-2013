@@ -8,13 +8,17 @@ import eapli.framework.model.Identifiable;
 import eapli.util.DateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -38,6 +42,8 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar ocurred;
     private BigDecimal amount;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Tag> tags = new ArrayList<Tag>();
 
     public Movement() {
     }
@@ -65,6 +71,14 @@ public abstract class Movement implements Serializable, Identifiable<Long> {
         this.description = description;
         this.ocurred = (Calendar) dateOccurred.clone();
         this.amount = amount;
+    }
+
+    public Movement(String description, Calendar dateOccurred, BigDecimal amount,
+                    String[] tags) {
+        this(description, dateOccurred, amount);
+        for (String tag : tags) {
+            this.tags.add(new Tag(tag));
+        }
     }
 
     public BigDecimal getAmount() {

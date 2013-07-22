@@ -80,4 +80,12 @@ public interface ExpenseRepository {
      * @return
      */
     List<Expense> all();
+
+    /**
+     * returns the expenses with a certain tag
+     *
+     * @param tag
+     * @return
+     */
+    List<Expense> getExpensesByTag(String tag);
 }

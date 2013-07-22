@@ -72,4 +72,9 @@ public class ExpenseRepositoryImpl extends InMemoryRepositoryBase<Expense, Long>
     protected boolean matches(Expense entity, Long id) {
         return entity.is(id);
     }
+
+    @Override
+    public List<Expense> getExpensesByTag(String tag) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
