@@ -23,18 +23,21 @@ import javax.persistence.Query;
  *
  * based on http://stackoverflow.com/questions/3888575/single-dao-generic
  * -crud-methods-jpa-hibernate-spring and on https://burtbeckwith.com/blog/?p=40
+ *
+ * @param <T> the entity type that we want to build a repository for
+ * @param <PK> the key type of the entity
  */
 public abstract class JpaRepository<T, PK extends Serializable> {
 
     protected Class<T> entityClass;
     @PersistenceUnit
-    static private EntityManagerFactory emf = Persistence
+    static final private EntityManagerFactory emFactory = Persistence
             .createEntityManagerFactory("eapli.expensemanagerPU");
-    EntityManager entityManager; // = emf.createEntityManager();
+    EntityManager entityManager; // = emFactory.createEntityManager();
 
     protected EntityManager getEntityManager() {
         if (entityManager == null || !entityManager.isOpen()) {
-            entityManager = emf.createEntityManager();
+            entityManager = emFactory.createEntityManager();
         }
         return entityManager;
     }
@@ -135,6 +138,36 @@ public abstract class JpaRepository<T, PK extends Serializable> {
         }
 
         return entity;
+    }
+
+    public List<T> first(int n) {
+        EntityManager em = getEntityManager();
+
+        Query q = em.createQuery(
+                "SELECT e FROM " + entityClass.getSimpleName() + " e");
+        q.setMaxResults(n);
+
+        return q.getResultList();
+    }
+
+    public T first() {
+        List<T> r = first(1);
+        return (r.isEmpty() ? null : r.get(0));
+    }
+
+    public T last() {
+        throw new UnsupportedOperationException();
+    }
+
+    public List<T> page(int pageNumber, int pageSize) {
+        EntityManager em = getEntityManager();
+
+        Query q = em.createQuery(
+                "SELECT e FROM " + entityClass.getSimpleName() + " e");
+        q.setMaxResults(pageSize);
+        q.setFirstResult((pageNumber - 1) * pageSize);
+
+        return q.getResultList();
     }
 
     public List<T> all() {

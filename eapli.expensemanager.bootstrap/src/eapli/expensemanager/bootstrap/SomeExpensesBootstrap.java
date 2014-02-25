@@ -20,54 +20,54 @@ import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.util.DateTime;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 public class SomeExpensesBootstrap implements Bootstrap {
 
-	@Override
-	public void bootstrap() {
-		CheckingAccountRepository repoAccount = PersistenceFactory
-				.buildPersistenceFactory().checkingAccountRepository();
-		CheckingAccount theAccount = repoAccount.theAccount();
+    @Override
+    public void bootstrap() {
+        CheckingAccountRepository repoAccount = PersistenceFactory
+                .buildPersistenceFactory().checkingAccountRepository();
+        CheckingAccount theAccount = repoAccount.theAccount();
 
-		ExpenseTypeRepository repoExpenseType = PersistenceFactory
-				.buildPersistenceFactory().expenseTypeRepository();
-		ExpenseType clothing = repoExpenseType
-				.findById(ReferenceDataBootstrap.CLOTHING_EXPENSE_TYPE);
-		ExpenseType transport = repoExpenseType
-				.findById(ReferenceDataBootstrap.TRANSPORTS_EXPENSE_TYPE);
+        ExpenseTypeRepository repoExpenseType = PersistenceFactory
+                .buildPersistenceFactory().expenseTypeRepository();
+        ExpenseType clothing = repoExpenseType
+                .findById(ReferenceDataBootstrap.CLOTHING_EXPENSE_TYPE);
+        ExpenseType transport = repoExpenseType
+                .findById(ReferenceDataBootstrap.TRANSPORTS_EXPENSE_TYPE);
 
-		PaymentMeanRepository repoPaymentMethod = PersistenceFactory
-				.buildPersistenceFactory().paymentMeanRepository();
-		Cash cashEur = repoPaymentMethod.getCash(Cash.EUR);
-		Payment payment = new Payment(cashEur);
+        PaymentMeanRepository repoPaymentMethod = PersistenceFactory
+                .buildPersistenceFactory().paymentMeanRepository();
+        Cash cashEur = repoPaymentMethod.getCash(Cash.EUR);
+        Payment payment = new Payment(cashEur);
 
-		Calendar dateOfExpense = DateTime.today();
-		try {
-			Expense exp = new Expense(clothing, "sapatilhas", dateOfExpense,
-					new BigDecimal(100), payment);
-			theAccount.registerExpense(exp);
+        Calendar dateOfExpense = DateTime.today();
+        try {
+            Expense exp = new Expense(clothing, "sapatilhas", dateOfExpense,
+                                      new BigDecimal(100), payment);
+            theAccount.registerExpense(exp);
 
-			exp = new Expense(clothing, "T-shirt", dateOfExpense,
-					new BigDecimal(10), payment);
-			theAccount.registerExpense(exp);
+            exp = new Expense(clothing, "T-shirt", dateOfExpense,
+                              new BigDecimal(10), payment);
+            theAccount.registerExpense(exp);
 
-			dateOfExpense.add(Calendar.DAY_OF_MONTH, 4);
+            dateOfExpense.add(Calendar.DAY_OF_MONTH, 4);
 
-			exp = new Expense(clothing, "calças", dateOfExpense,
-					new BigDecimal(150), payment);
-			theAccount.registerExpense(exp);
+            exp = new Expense(clothing, "calcas", dateOfExpense,
+                              new BigDecimal(150), payment);
+            theAccount.registerExpense(exp);
 
-			dateOfExpense.add(Calendar.DAY_OF_MONTH, -30);
+            dateOfExpense.add(Calendar.DAY_OF_MONTH, -30);
 
-			exp = new Expense(transport, "passe Metro", dateOfExpense,
-					new BigDecimal(35), payment);
-			theAccount.registerExpense(exp);
-		} catch (InsufficientBalanceException ex) {
-			System.out
-					.println("unable to bootstrap all or some of the expenses due to insufficient balance");
-		}
-		repoAccount.save(theAccount);
-	}
+            exp = new Expense(transport, "passe Metro", dateOfExpense,
+                              new BigDecimal(35), payment);
+            theAccount.registerExpense(exp);
+        } catch (InsufficientBalanceException ex) {
+            System.out
+                    .println("unable to bootstrap all or some of the expenses due to insufficient balance");
+        }
+        repoAccount.save(theAccount);
+    }
 }
