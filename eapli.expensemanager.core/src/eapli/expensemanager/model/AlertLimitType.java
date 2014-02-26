@@ -42,6 +42,7 @@ public enum AlertLimitType {
 
     /**
      * Returns code.
+	 * @return 
      */
     public int getCode() {
         return this.code;
@@ -49,6 +50,7 @@ public enum AlertLimitType {
 
     /**
      * Returns the description .
+	 * @return 
      */
     public String getDescription() {
         return description;

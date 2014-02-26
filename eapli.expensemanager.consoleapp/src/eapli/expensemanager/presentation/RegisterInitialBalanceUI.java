@@ -15,25 +15,25 @@ import java.util.Date;
  * @author arocha
  */
 public class RegisterInitialBalanceUI extends BaseUI {
-
-    @Override
-    public boolean doShow() {
-        Date date = Console.readDate("Reference Date (dd-MM-yyyy):");
-        double initial = Console.readDouble("Initial value:");
-        BigDecimal value = new BigDecimal(initial);
-
-        controller.registerInitialBalance(date, value);
-
-        System.out.println("\nInitial Balance recorded!");
-
-        return true;
-    }
     RegisterInitialBalanceController controller = new RegisterInitialBalanceController();
 
     @Override
+    public boolean doShow() {
+		Date date = Console.readDate("Reference Date (dd-MM-yyyy):");
+		double initial = Console.readDouble("Initial value:");
+		BigDecimal value = new BigDecimal(initial);
+		
+		controller.registerInitialBalance(date, value);
+		
+		System.out.println("\nInitial Balance recorded!");
+		
+		return true;
+	}
+
+    @Override
     protected BaseController getController() {
-        return controller;
-    }
+		return controller;
+	}
 
     @Override
     public String headline() {

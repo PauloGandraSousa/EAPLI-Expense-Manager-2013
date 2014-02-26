@@ -16,29 +16,29 @@ import java.util.logging.Logger;
  */
 public class PersistenceFactory {
 
-    private PersistenceFactory() {
-    }
-
     public static RepositoryFactory buildPersistenceFactory() {
-        String factoryClassName = ExpenseManagerSettings.getInstance().
-                getApplicationProperties().
-                getProperty("persistence.repositoryFactory");
+		String factoryClassName = ExpenseManagerSettings.getInstance().
+				getApplicationProperties().
+				getProperty("persistence.repositoryFactory");
+		
+		try {
+			return (RepositoryFactory) Class.forName(factoryClassName).
+					newInstance();
+		} catch (ClassNotFoundException ex) {
+			Logger.getLogger(PersistenceFactory.class.getName()).
+					log(Level.SEVERE, null, ex);
+			return null;
+		} catch (InstantiationException ex) {
+			Logger.getLogger(PersistenceFactory.class.getName()).
+					log(Level.SEVERE, null, ex);
+		} catch (IllegalAccessException ex) {
+			Logger.getLogger(PersistenceFactory.class.getName()).
+					log(Level.SEVERE, null, ex);
+			return null;
+		}
+		return null;
+	}
 
-        try {
-            return (RepositoryFactory) Class.forName(factoryClassName).
-                    newInstance();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(PersistenceFactory.class.getName()).
-                    log(Level.SEVERE, null, ex);
-            return null;
-        } catch (InstantiationException ex) {
-            Logger.getLogger(PersistenceFactory.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(PersistenceFactory.class.getName()).
-                    log(Level.SEVERE, null, ex);
-            return null;
-        }
-        return null;
-    }
+    private PersistenceFactory() {
+	}
 }

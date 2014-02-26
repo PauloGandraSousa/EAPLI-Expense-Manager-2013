@@ -4,11 +4,10 @@
  */
 package eapli.expensemanager.limits;
 
+import eapli.expensemanager.model.ExpenseType;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
-
-import eapli.expensemanager.model.ExpenseType;
 
 /**
  *
@@ -16,10 +15,10 @@ import eapli.expensemanager.model.ExpenseType;
  */
 public class ExpenditureByExpenseTypeOverLimitAlertEvent extends AlertEvent {
 
-    private BigDecimal average;
-    private double yellow;
-    private double red;
-    private ExpenseType expenseType;
+    private final BigDecimal average;
+    private final double yellow;
+    private final double red;
+    private final ExpenseType expenseType;
 
     public ExpenditureByExpenseTypeOverLimitAlertEvent(
             String alertTypeDescription, double yellow, double red,

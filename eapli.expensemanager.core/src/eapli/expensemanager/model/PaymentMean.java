@@ -4,10 +4,10 @@
  */
 package eapli.expensemanager.model;
 
-import eapli.framework.persistence.activerecord.ActiveRecord;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.framework.model.Identifiable;
+import eapli.framework.persistence.activerecord.ActiveRecord;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
@@ -34,6 +34,12 @@ public abstract class PaymentMean implements ActiveRecord, Identifiable<Long>, S
      *
      */
     private static final long serialVersionUID = 1L;
+
+    public static List<PaymentMean> loadAll() {
+        PaymentMeanRepository repo = PersistenceFactory.
+                buildPersistenceFactory().paymentMeanRepository();
+        return repo.all();
+    }
     @Id
     @GeneratedValue
     Long id;
@@ -48,16 +54,10 @@ public abstract class PaymentMean implements ActiveRecord, Identifiable<Long>, S
         repo.save(this);
     }
 
-    public static List<PaymentMean> loadAll() {
-        PaymentMeanRepository repo = PersistenceFactory.
-                buildPersistenceFactory().paymentMeanRepository();
-        return repo.all();
-    }
+    public abstract String getDescription();
 
-    abstract public String getDescription();
-
-    @Override
+	@Override
     public boolean is(Long id) {
-        return this.id.equals(id);
-    }
+		return this.id.equals(id);
+	}
 }

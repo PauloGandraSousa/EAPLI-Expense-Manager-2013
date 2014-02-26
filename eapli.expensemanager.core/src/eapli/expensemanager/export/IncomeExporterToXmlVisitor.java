@@ -1,18 +1,17 @@
 package eapli.expensemanager.export;
 
-import java.io.IOException;
-import java.io.Writer;
-
 import eapli.expensemanager.model.Income;
 import eapli.framework.visitor.Visitor;
 import eapli.util.DateTime;
 import eapli.util.Math;
+import java.io.IOException;
+import java.io.Writer;
 
 class IncomeExporterToXmlVisitor implements Visitor<Income> {
 
 	private final Writer writer;
 
-	public IncomeExporterToXmlVisitor(Writer writer) {
+	IncomeExporterToXmlVisitor(Writer writer) {
 		this.writer = writer;
 	}
 
@@ -26,7 +25,7 @@ class IncomeExporterToXmlVisitor implements Visitor<Income> {
 			writer.write("<Income>\n");
 			// FIXME the following code block is duplicated with ExpenseExporter
 			writer.write("<OccuredAt>");
-			writer.write(DateTime.format(visited.getOcurred()));
+			writer.write(DateTime.format(visited.getOccurred()));
 			writer.write("</OccuredAt>\n");
 			writer.write("<Amount>");
 			writer.write(Math.format(visited.getAmount()));

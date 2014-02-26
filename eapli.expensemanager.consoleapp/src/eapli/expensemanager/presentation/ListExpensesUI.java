@@ -19,12 +19,12 @@ class ListExpensesUI extends BaseUI {
 
 	private final ListExpensesController controller = new ListExpensesController();
 
+	ListWidget<Expense> widget;
+
 	@Override
 	protected BaseController getController() {
 		return controller;
 	}
-
-	ListWidget<Expense> widget;
 
 	@Override
 	public boolean doShow() {

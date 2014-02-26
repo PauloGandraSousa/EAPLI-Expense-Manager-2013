@@ -18,25 +18,25 @@ import java.util.logging.Logger;
  */
 public final class ExpenseManagerSettings {
 
-    private static Properties applicationProperties = new Properties();
+    private static final Properties applicationProperties = new Properties();
     private static ExpenseManagerSettings instance;
+    //private final static String PROPERTIES_FILENAME = "./res/eapli/expensemanager/expensemanager.properties";
+    private final static String PROPERTIES_RESOURCE = "eapli/expensemanager/expensemanager.properties";
 
     public static ExpenseManagerSettings getInstance() {
-        if (instance == null) {
-            instance = new ExpenseManagerSettings();
-        }
-        return instance;
-    }
+		if (instance == null) {
+			instance = new ExpenseManagerSettings();
+		}
+		return instance;
+	}
 
     private ExpenseManagerSettings() {
-        loadProperties();
-    }
+		loadProperties();
+	}
 
     public Properties getApplicationProperties() {
         return applicationProperties;
     }
-    //private final static String PROPERTIES_FILENAME = "./res/eapli/expensemanager/expensemanager.properties";
-    private final static String PROPERTIES_RESOURCE = "eapli/expensemanager/expensemanager.properties";
 
     private void loadProperties() {
         InputStream propertiesStream = null;

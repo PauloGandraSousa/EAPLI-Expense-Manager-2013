@@ -4,9 +4,9 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.persistence.EntityManager;

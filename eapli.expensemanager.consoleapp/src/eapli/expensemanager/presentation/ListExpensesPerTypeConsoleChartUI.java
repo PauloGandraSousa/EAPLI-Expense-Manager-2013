@@ -4,13 +4,12 @@
  */
 package eapli.expensemanager.presentation;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Map.Entry;
-
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.report.AggregatedExpenses;
 import eapli.expensemanager.model.report.ExpensesReport;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Map.Entry;
 
 /**
  * Para se criar o UI para os agregadores de despesa, existe a possibilidade de

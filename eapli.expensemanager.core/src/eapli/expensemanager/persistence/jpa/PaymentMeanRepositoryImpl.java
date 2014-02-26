@@ -4,13 +4,12 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.jpa.JpaRepository;
-import javax.persistence.Query;
-
 import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.PaymentMean;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 
 /**
  *

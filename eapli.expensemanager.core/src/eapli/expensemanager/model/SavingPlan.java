@@ -6,6 +6,7 @@ package eapli.expensemanager.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -33,7 +34,7 @@ public class SavingPlan implements Serializable {
     // TODO what is the meaning of this field?
     private Date inicialDate;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<SavingGoal> savingGoals;
+    private final List<SavingGoal> savingGoals;
 
     public SavingPlan() {
         savingGoals = new ArrayList<SavingGoal>();
@@ -61,6 +62,6 @@ public class SavingPlan implements Serializable {
     }
 
     public List<SavingGoal> getSavingGoals() {
-        return savingGoals;
+        return Collections.unmodifiableList(savingGoals);
     }
 }

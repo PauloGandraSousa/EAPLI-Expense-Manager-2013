@@ -4,11 +4,11 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.visitors.PaymentMeanListVisitor;
-import eapli.framework.presentation.ListWidget;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListPaymentMeansController;
 import eapli.expensemanager.model.PaymentMean;
+import eapli.expensemanager.presentation.visitors.PaymentMeanListVisitor;
+import eapli.framework.presentation.ListWidget;
 
 /**
  *
@@ -16,7 +16,7 @@ import eapli.expensemanager.model.PaymentMean;
  */
 class ListPaymentMeansUI extends BaseUI {
 
-    private ListPaymentMeansController controller = new ListPaymentMeansController();
+    private final ListPaymentMeansController controller = new ListPaymentMeansController();
     private ListWidget<PaymentMean> widget;
 
     @Override

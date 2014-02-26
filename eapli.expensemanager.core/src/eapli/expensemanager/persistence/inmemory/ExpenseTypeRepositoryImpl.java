@@ -7,6 +7,7 @@ package eapli.expensemanager.persistence.inmemory;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class ExpenseTypeRepositoryImpl extends InMemoryRepositoryBase<ExpenseTyp
 
     @Override
     protected List<ExpenseType> getStaticStore() {
-        return expenseTypes;
+        return Collections.unmodifiableList(expenseTypes);
     }
 
     @Override

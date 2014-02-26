@@ -15,7 +15,7 @@ import java.math.BigDecimal;
  */
 public class RegisterSavingGoalUI extends BaseUI {
 
-    private RegisterSavingGoalController controller = new RegisterSavingGoalController();
+    private final RegisterSavingGoalController controller = new RegisterSavingGoalController();
 
     @Override
     protected BaseController getController() {

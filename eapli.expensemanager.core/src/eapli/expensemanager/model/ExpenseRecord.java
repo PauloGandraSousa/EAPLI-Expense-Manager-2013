@@ -20,7 +20,7 @@ import java.util.List;
 @Deprecated
 public class ExpenseRecord {
 
-    private List<Expense> theExpenses;
+    private final List<Expense> theExpenses;
 
     public ExpenseRecord(List<Expense> expenses) {
         theExpenses = expenses;

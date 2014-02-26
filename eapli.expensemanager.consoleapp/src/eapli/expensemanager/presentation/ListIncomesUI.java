@@ -4,10 +4,10 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.visitors.IncomeListVisitor;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListIncomesController;
 import eapli.expensemanager.model.Income;
+import eapli.expensemanager.presentation.visitors.IncomeListVisitor;
 import eapli.framework.presentation.ListWidget;
 
 /**
@@ -16,7 +16,7 @@ import eapli.framework.presentation.ListWidget;
  */
 class ListIncomesUI extends BaseUI {
 
-    private ListIncomesController controller = new ListIncomesController();
+    private final ListIncomesController controller = new ListIncomesController();
     private ListWidget<Income> widget;
 
     @Override

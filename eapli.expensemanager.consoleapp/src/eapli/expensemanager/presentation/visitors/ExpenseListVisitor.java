@@ -16,7 +16,7 @@ public class ExpenseListVisitor implements Visitor<Expense> {
 
     @Override
     public void visit(Expense visited) {
-        System.out.print(DateTime.format(visited.getOcurred()) + " ");
+        System.out.print(DateTime.format(visited.getOccurred()) + " ");
         System.out.print(visited.getAmount() + " ");
         System.out.println(visited.getDescription());
     }

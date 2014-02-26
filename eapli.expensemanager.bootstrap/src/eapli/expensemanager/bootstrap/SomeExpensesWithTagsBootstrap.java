@@ -4,21 +4,17 @@
  */
 package eapli.expensemanager.bootstrap;
 
-import java.math.BigDecimal;
-import java.util.Calendar;
-
 import eapli.expensemanager.model.Cash;
-import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Payment;
-import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
-import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.util.DateTime;
+import java.math.BigDecimal;
+import java.util.Calendar;
 
 /**
  *

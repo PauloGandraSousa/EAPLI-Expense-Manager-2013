@@ -7,6 +7,7 @@ package eapli.expensemanager.persistence.inmemory;
 import eapli.expensemanager.model.Income;
 import eapli.expensemanager.persistence.IncomeRepository;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class IncomeRepositoryImpl extends InMemoryRepositoryBase<Income, Long> i
 
     @Override
     protected List<Income> getStaticStore() {
-        return incomes;
+        return Collections.unmodifiableList(incomes);
     }
 
     @Override

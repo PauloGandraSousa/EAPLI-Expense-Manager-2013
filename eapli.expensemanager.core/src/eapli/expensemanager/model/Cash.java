@@ -22,22 +22,22 @@ public class Cash extends PaymentMean {
      *
      */
     private static final long serialVersionUID = 1L;
-    private String currency;
     public static final String EUR = "EUR";
 
+    public static Cash loadEUR() {
+		PaymentMeanRepository repo = PersistenceFactory.
+				buildPersistenceFactory().paymentMeanRepository();
+		return repo.getCash(EUR);
+	}
+    private String currency;
+
     public Cash() {
-    }
+	}
 
     public Cash(String currency) {
-        // may allow null if the currency is not important
-        this.currency = currency;
-    }
-
-    public static Cash loadEUR() {
-        PaymentMeanRepository repo = PersistenceFactory.
-                buildPersistenceFactory().paymentMeanRepository();
-        return repo.getCash(EUR);
-    }
+		// may allow null if the currency is not important
+		this.currency = currency;
+	}
 
     @Override
     public String getDescription() {

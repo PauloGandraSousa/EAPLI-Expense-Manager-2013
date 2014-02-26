@@ -17,7 +17,7 @@ import eapli.expensemanager.controllers.ListExpensesPerTypeController;
  */
 abstract class ListExpensesPerTypeChartBaseUI extends BaseUI {
 
-    private ListExpensesPerTypeController controller = new ListExpensesPerTypeController();
+    private final ListExpensesPerTypeController controller = new ListExpensesPerTypeController();
 
     @Override
     protected ListExpensesPerTypeController getController() {

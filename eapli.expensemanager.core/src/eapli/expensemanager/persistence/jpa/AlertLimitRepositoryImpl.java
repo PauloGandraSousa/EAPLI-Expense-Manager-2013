@@ -4,16 +4,14 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.jpa.JpaRepository;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.AlertLimitType;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *

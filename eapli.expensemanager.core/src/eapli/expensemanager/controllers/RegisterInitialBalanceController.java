@@ -4,13 +4,12 @@
  */
 package eapli.expensemanager.controllers;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.InitialBalance;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 

@@ -4,11 +4,6 @@
  */
 package eapli.expensemanager.export;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
@@ -16,6 +11,10 @@ import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.framework.visitor.Visitor;
 import eapli.util.Files;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * the base class for exporting movements o different formats.

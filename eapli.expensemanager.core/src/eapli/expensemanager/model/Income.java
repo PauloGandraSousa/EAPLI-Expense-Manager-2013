@@ -6,7 +6,6 @@ package eapli.expensemanager.model;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;

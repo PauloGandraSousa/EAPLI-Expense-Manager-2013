@@ -6,7 +6,6 @@ package eapli.expensemanager.model;
 
 import eapli.util.DateTime;
 import java.math.BigDecimal;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,12 +18,6 @@ import org.junit.Test;
  */
 public class ExpenseTest {
 
-    final BigDecimal ONE = new BigDecimal(1);
-    final BigDecimal MINUS_ONE = new BigDecimal(-1);
-
-    public ExpenseTest() {
-    }
-
     @BeforeClass
     public static void setUpClass() {
     }
@@ -33,22 +26,28 @@ public class ExpenseTest {
     public static void tearDownClass() {
     }
 
-    @Before
+    final BigDecimal ONE = new BigDecimal(1);
+    final BigDecimal MINUS_ONE = new BigDecimal(-1);
+
+    public ExpenseTest() {
+    }
+
+	@Before
     public void setUp() {
-    }
+	}
 
-    @After
+	@After
     public void tearDown() {
-    }
+	}
 
-    @Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
     public void testNegativeAmmountExpensesAreNotAllowed() {
-        new Expense(new ExpenseType(), "aaa", DateTime.today(), MINUS_ONE,
-                    new Payment(new Cash()));
-    }
+		new Expense(new ExpenseType(), "aaa", DateTime.today(), MINUS_ONE,
+				new Payment(new Cash()));
+	}
 
-    @Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
     public void testNullExpenseTypesAreNotAllowed() {
-        new Expense(null, "aaa", DateTime.today(), ONE, new Payment(new Cash()));
-    }
+		new Expense(null, "aaa", DateTime.today(), ONE, new Payment(new Cash()));
+	}
 }

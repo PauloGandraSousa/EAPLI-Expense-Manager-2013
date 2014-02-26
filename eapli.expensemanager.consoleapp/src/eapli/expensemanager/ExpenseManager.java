@@ -17,9 +17,6 @@ import eapli.expensemanager.presentation.MainMenu;
  */
 public final class ExpenseManager {
 
-	private ExpenseManager() {
-	}
-
 	/**
 	 * @param args
 	 *            the command line arguments
@@ -43,5 +40,8 @@ public final class ExpenseManager {
 		new SomeDefaultAlertLimitBootstrap().bootstrap();
 
 		new SomeExpensesWithTagsBootstrap().bootstrap();
+	}
+
+	private ExpenseManager() {
 	}
 }

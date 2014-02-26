@@ -14,8 +14,8 @@ import java.util.Locale;
  */
 public class ExpenditureOverLimitAlertEvent extends AlertEvent {
 
-    private BigDecimal yellow;
-    private BigDecimal red;
+    private final BigDecimal yellow;
+    private final BigDecimal red;
 
     public ExpenditureOverLimitAlertEvent(String alertTypeDescription,
                                           BigDecimal yellow, BigDecimal red,

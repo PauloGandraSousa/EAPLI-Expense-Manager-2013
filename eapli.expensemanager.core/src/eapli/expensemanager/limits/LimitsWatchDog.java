@@ -11,15 +11,14 @@ import eapli.expensemanager.model.AlertLimitType;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
-import java.util.Observable;
-import java.util.Observer;
-
 import eapli.expensemanager.model.events.ExpenseRegisteredEvent;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
@@ -114,8 +113,8 @@ public class LimitsWatchDog extends Observable implements Observer {
                 .buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
 
-        int year = expenseRegistered.getOcurred().get(Calendar.YEAR);
-        int week = expenseRegistered.getOcurred().get(Calendar.WEEK_OF_YEAR);
+        int year = expenseRegistered.getOccurred().get(Calendar.YEAR);
+        int week = expenseRegistered.getOccurred().get(Calendar.WEEK_OF_YEAR);
 
         BigDecimal expenditure = account.expenditureOfWeek(year, week);
 
@@ -131,8 +130,8 @@ public class LimitsWatchDog extends Observable implements Observer {
         CheckingAccountRepository repo = PersistenceFactory
                 .buildPersistenceFactory().checkingAccountRepository();
         CheckingAccount account = repo.theAccount();
-        int year = expenseRegistered.getOcurred().get(Calendar.YEAR);
-        int month = expenseRegistered.getOcurred().get(Calendar.MONTH);
+        int year = expenseRegistered.getOccurred().get(Calendar.YEAR);
+        int month = expenseRegistered.getOccurred().get(Calendar.MONTH);
         BigDecimal expenditure;
         expenditure = account.expenditureOfMonth(year, month);
         // Because the event registered is not saved yet

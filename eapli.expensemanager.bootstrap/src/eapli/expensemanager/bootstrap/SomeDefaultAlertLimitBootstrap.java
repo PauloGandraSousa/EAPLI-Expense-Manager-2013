@@ -4,12 +4,8 @@
  */
 package eapli.expensemanager.bootstrap;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitExpenditure;
-import eapli.expensemanager.model.AlertLimitType;
 import static eapli.expensemanager.model.AlertLimitType.LIMIT_DEVIATION_BY_EXPENSE_TYPE;
 import static eapli.expensemanager.model.AlertLimitType.LIMIT_MINIMUM_BALANCE;
 import static eapli.expensemanager.model.AlertLimitType.LIMIT_MONTH_EXPENDITURE;
@@ -17,6 +13,8 @@ import static eapli.expensemanager.model.AlertLimitType.LIMIT_WEEK_EXPENDITURE;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *

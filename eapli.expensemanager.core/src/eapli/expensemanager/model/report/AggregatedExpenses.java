@@ -4,12 +4,11 @@
  */
 package eapli.expensemanager.model.report;
 
+import eapli.expensemanager.model.Expense;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import eapli.expensemanager.model.Expense;
 
 /**
  *
@@ -18,11 +17,12 @@ import eapli.expensemanager.model.Expense;
 public class AggregatedExpenses {
 
     private BigDecimal sum = BigDecimal.ZERO;
-    private List<Expense> expenses = new ArrayList<Expense>();
+    private final List<Expense> expenses = new ArrayList<Expense>();
 
     /**
      * Add a movement to the list
      *
+	 * @param expense
      * @param movement
      */
     public void aggregate(Expense expense) {
@@ -32,6 +32,7 @@ public class AggregatedExpenses {
 
     /**
      * Returns all movements
+	 * @return 
      */
     public List<Expense> all() {
         return Collections.unmodifiableList(expenses);

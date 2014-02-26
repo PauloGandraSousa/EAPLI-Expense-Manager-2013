@@ -4,10 +4,9 @@
  */
 package eapli.expensemanager.model.events;
 
-import java.math.BigDecimal;
-
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
+import java.math.BigDecimal;
 
 /**
  *

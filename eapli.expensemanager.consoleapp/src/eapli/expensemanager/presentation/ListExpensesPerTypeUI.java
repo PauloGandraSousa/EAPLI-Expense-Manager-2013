@@ -10,6 +10,7 @@ import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.Movement;
 import eapli.expensemanager.model.report.AggregatedExpenses;
 import eapli.expensemanager.model.report.ExpensesReport;
+import eapli.util.DateTime;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -24,49 +25,50 @@ import java.util.Map.Entry;
  */
 class ListExpensesPerTypeUI extends BaseUI {
 
-    private ListExpensesPerTypeController controller = new ListExpensesPerTypeController();
+	private final ListExpensesPerTypeController controller = new ListExpensesPerTypeController();
 
-    @Override
-    protected ListExpensesPerTypeController getController() {
-        return controller;
-    }
+	@Override
+	protected ListExpensesPerTypeController getController() {
+		return controller;
+	}
 
-    private void showExpenses(List<Expense> expenseList) {
-        int position = 1;
-        for (Movement expense : expenseList) {
-            System.out.print("\t");
-            System.out.print(position + ". ");
-            System.out.print(expense.getOcurred() + " ");
-            System.out.print(expense.getAmount() + " ");
-            System.out.println(expense.getDescription());
-            position++;
-        }
-    }
+	private void showExpenses(List<Expense> expenseList) {
+		int position = 1;
+		for (Movement expense : expenseList) {
+			System.out.print("\t");
+			System.out.print(position + ". ");
+			System.out.print(DateTime.format(expense.getOccurred()) + " ");
+			System.out.print(expense.getAmount() + " ");
+			System.out.println(expense.getDescription());
+			position++;
+		}
+	}
 
-    /**
-     * Lists all expense movements grouped by their type it does not display
-     * types with no movements
-     *
-     * @return
-     */
-    //TODO: NMB:pretende-se mostrar também tipos que não tenham movimentos?
-    @Override
-    public boolean doShow() {
-        ExpensesReport expenseReport = controller.getExpensesClassifiedByExpenseType();
+	/**
+	 * Lists all expense movements grouped by their type it does not display
+	 * types with no movements
+	 *
+	 * @return
+	 */
+	//TODO: NMB:pretende-se mostrar também tipos que não tenham movimentos?
+	@Override
+	public boolean doShow() {
+		ExpensesReport expenseReport = controller.
+				getExpensesClassifiedByExpenseType();
         //Map<ExpenseType, List<Expense>> mapExpenses = controller.getExpensesClassifiedByExpenseType();
-        
-        
-        for (Entry<ExpenseType, AggregatedExpenses> entry : expenseReport.getAggregatedExpensesPerType().entrySet()) {
-            System.out.print(entry.getKey().getDescription());
-            System.out.println("\tTotal amount:" + entry.getValue().getSum());
-            showExpenses(entry.getValue().all());
-        }
 
-        return true;
-    }
+		for (Entry<ExpenseType, AggregatedExpenses> entry : expenseReport.
+				getAggregatedExpensesPerType().entrySet()) {
+			System.out.print(entry.getKey().getDescription());
+			System.out.println("\tTotal amount:" + entry.getValue().getSum());
+			showExpenses(entry.getValue().all());
+		}
 
-    @Override
-    public String headline() {
-        return "LIST EXPENSES PER TYPE";
-    }
+		return true;
+	}
+
+	@Override
+	public String headline() {
+		return "LIST EXPENSES PER TYPE";
+	}
 }

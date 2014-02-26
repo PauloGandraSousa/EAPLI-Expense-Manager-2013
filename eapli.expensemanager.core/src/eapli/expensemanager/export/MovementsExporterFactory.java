@@ -13,14 +13,14 @@ package eapli.expensemanager.export;
  */
 public class MovementsExporterFactory {
 
-    private static MovementsExporterFactory instance = new MovementsExporterFactory();
-
-    private MovementsExporterFactory() {
-    }
+    private static final MovementsExporterFactory instance = new MovementsExporterFactory();
 
     public static MovementsExporterFactory getInstance() {
-        return instance;
-    }
+		return instance;
+	}
+
+    private MovementsExporterFactory() {
+	}
 
     public MovementsExporter getExporter(int format) {
         switch (format) {

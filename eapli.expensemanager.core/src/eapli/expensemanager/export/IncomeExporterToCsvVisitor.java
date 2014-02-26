@@ -1,12 +1,11 @@
 package eapli.expensemanager.export;
 
-import java.io.IOException;
-import java.io.Writer;
-
 import eapli.expensemanager.model.Income;
 import eapli.framework.visitor.Visitor;
 import eapli.util.DateTime;
 import eapli.util.Math;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * 
@@ -17,7 +16,7 @@ class IncomeExporterToCsvVisitor implements Visitor<Income> {
 
 	private final Writer writer;
 
-	public IncomeExporterToCsvVisitor(Writer writer) {
+	IncomeExporterToCsvVisitor(Writer writer) {
 		this.writer = writer;
 	}
 
@@ -29,7 +28,7 @@ class IncomeExporterToCsvVisitor implements Visitor<Income> {
 			writer.write("income, ");
 
 			// FIXME this code block is duplicated with ExpenseExporter
-			writer.write(DateTime.format(visited.getOcurred()));
+			writer.write(DateTime.format(visited.getOccurred()));
 			writer.write(",");
 			writer.write(Math.format(visited.getAmount()));
 			writer.write(",");

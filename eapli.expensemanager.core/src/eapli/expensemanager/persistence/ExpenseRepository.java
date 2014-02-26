@@ -50,7 +50,6 @@ public interface ExpenseRepository {
      *
      * @param expense
      * @return the persistent object (may be a different object than the passed
-     * @param expense)
      */
     Expense save(Expense expense);
 

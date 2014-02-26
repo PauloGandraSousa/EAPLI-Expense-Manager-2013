@@ -1,12 +1,11 @@
 package eapli.expensemanager.export;
 
-import java.io.IOException;
-import java.io.Writer;
-
 import eapli.expensemanager.model.Expense;
 import eapli.framework.visitor.Visitor;
 import eapli.util.DateTime;
 import eapli.util.Math;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * 
@@ -17,7 +16,7 @@ class ExpenseExporterToJsonVisitor implements Visitor<Expense> {
 
 	private final Writer writer;
 
-	public ExpenseExporterToJsonVisitor(Writer writer) {
+	ExpenseExporterToJsonVisitor(Writer writer) {
 		this.writer = writer;
 	}
 
@@ -30,7 +29,7 @@ class ExpenseExporterToJsonVisitor implements Visitor<Expense> {
 		try {
 			writer.write("{ \n");
 			writer.write("occuredAt : '");
-			writer.write(DateTime.format(visited.getOcurred()));
+			writer.write(DateTime.format(visited.getOccurred()));
 			writer.write("',\n");
 			writer.write("amount : ");
 			writer.write(Math.format(visited.getAmount()));

@@ -4,10 +4,9 @@
  */
 package eapli.expensemanager.presentation.charts;
 
+import eapli.expensemanager.model.ExpenseType;
 import java.math.BigDecimal;
 import java.util.Map;
-
-import eapli.expensemanager.model.ExpenseType;
 
 /**
  *

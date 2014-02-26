@@ -8,6 +8,7 @@ import eapli.expensemanager.model.Cash;
 import eapli.expensemanager.model.PaymentMean;
 import eapli.expensemanager.persistence.PaymentMeanRepository;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class PaymentMeanRepositoryImpl extends InMemoryRepositoryBase<PaymentMea
 
     @Override
     protected List<PaymentMean> getStaticStore() {
-        return paymentMeans;
+        return Collections.unmodifiableList(paymentMeans);
     }
 
     @Override

@@ -4,16 +4,16 @@
  */
 package eapli.expensemanager.controllers;
 
+import eapli.expensemanager.limits.LimitsWatchDog;
+import eapli.expensemanager.limits.WatchDogFactory;
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.Cheque;
 import eapli.expensemanager.model.ChequePayment;
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import eapli.expensemanager.model.Payment;
 import eapli.expensemanager.model.PaymentMean;
-import eapli.expensemanager.limits.LimitsWatchDog;
-import eapli.expensemanager.limits.WatchDogFactory;
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import java.math.BigDecimal;

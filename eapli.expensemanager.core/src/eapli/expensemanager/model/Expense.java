@@ -4,14 +4,12 @@
  */
 package eapli.expensemanager.model;
 
+import eapli.util.DateTime;
 import java.math.BigDecimal;
 import java.util.Calendar;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-
-import eapli.util.DateTime;
 
 /**
  * 
@@ -38,24 +36,22 @@ public class Expense extends Movement {
 		init(type, payment);
 	}
 
+	public Expense(ExpenseType type, String description, Calendar dateOccurred, BigDecimal amount, Payment payment) {
+		super(description, dateOccurred, amount);
+		init(type, payment);
+	}
+
+	public Expense(ExpenseType type, String description, int year, int month, int day, BigDecimal amount, Payment payment) {
+		this(type, description, DateTime.newCalendar(year, month, day), amount,
+																		payment);
+	}
+
 	private void init(ExpenseType type, Payment payment) {
 		if (type == null || payment == null) {
 			throw new IllegalArgumentException();
 		}
 		this.type = type;
 		this.payment = payment;
-	}
-
-	public Expense(ExpenseType type, String description, Calendar dateOccurred,
-			BigDecimal amount, Payment payment) {
-		super(description, dateOccurred, amount);
-		init(type, payment);
-	}
-
-	public Expense(ExpenseType type, String description, int year, int month,
-			int day, BigDecimal amount, Payment payment) {
-		this(type, description, DateTime.newCalendar(year, month, day), amount,
-				payment);
 	}
 
 	public ExpenseType getExpenseType() {

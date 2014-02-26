@@ -4,11 +4,10 @@
  */
 package eapli.expensemanager.export;
 
-import java.io.Writer;
-
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.model.Income;
 import eapli.framework.visitor.Visitor;
+import java.io.Writer;
 
 /**
  * 

@@ -4,12 +4,14 @@
  */
 package eapli.expensemanager.presentation.charts;
 
+import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.model.report.AggregatedExpenses;
+import eapli.expensemanager.model.report.ExpensesReport;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.event.WindowEvent;
 import java.util.Map.Entry;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -23,10 +25,6 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
-
-import eapli.expensemanager.model.ExpenseType;
-import eapli.expensemanager.model.report.AggregatedExpenses;
-import eapli.expensemanager.model.report.ExpensesReport;
 
 /**
  * 
@@ -45,11 +43,19 @@ public class ChartImpl extends ApplicationFrame implements Chart {
 	private String chartTitle = "Default Graph Title";
 	private CategoryDataset chartDataset = null;
 
+		public ChartImpl(String windowTitle) {
+			super(windowTitle);
+			if (windowTitle != null && windowTitle.length() == 0) {
+				this.windowTitle = windowTitle;
+			}
+			super.setTitle(this.windowTitle);
+		}
+
 	/**
 	 * Tenho de efetuar o override ao evento windowClosing, caso contrário o
 	 * fecho da janela do gráfico finaliza a aplicação
 	 */
-	@Override
+		@Override
 	public void windowClosing(WindowEvent event) {
 		// System.out.println("Window Closing");
 		dispose();
@@ -63,14 +69,6 @@ public class ChartImpl extends ApplicationFrame implements Chart {
 
 	public void setRangeAxisLabel(String rangeAxisLabel) {
 		this.rangeAxisLabel = rangeAxisLabel;
-	}
-
-	public ChartImpl(String windowTitle) {
-		super(windowTitle);
-		if (windowTitle != null && windowTitle.length() == 0) {
-			this.windowTitle = windowTitle;
-		}
-		super.setTitle(this.windowTitle);
 	}
 
 	@Override

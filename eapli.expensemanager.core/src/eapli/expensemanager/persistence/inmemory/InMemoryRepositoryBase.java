@@ -11,6 +11,7 @@ import java.util.List;
  * a generic base class for in memory repositories using a List object
  *
  * @author Paulo Gandra Sousa
+ * @param <PK>
  */
 public abstract class InMemoryRepositoryBase<T, PK> implements Repository<T, PK> {
 

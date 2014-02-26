@@ -4,12 +4,11 @@
  */
 package eapli.expensemanager.model.report;
 
+import eapli.expensemanager.model.Expense;
+import eapli.expensemanager.model.ExpenseType;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import eapli.expensemanager.model.Expense;
-import eapli.expensemanager.model.ExpenseType;
 
 /**
  *

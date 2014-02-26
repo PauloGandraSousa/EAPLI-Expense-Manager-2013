@@ -15,15 +15,15 @@ public class WatchDogFactory {
 
     private static WatchDogFactory instance = null;
 
-    private WatchDogFactory() {
-    }
-
     public static WatchDogFactory getInstance() {
-        if (instance == null) {
-            instance = new WatchDogFactory();
-        }
-        return instance;
-    }
+		if (instance == null) {
+			instance = new WatchDogFactory();
+		}
+		return instance;
+	}
+
+    private WatchDogFactory() {
+	}
 
     public LimitsWatchDog buildWatchDogLimits(Observer obs) {
         LimitsWatchDog watchDog = new LimitsWatchDog();

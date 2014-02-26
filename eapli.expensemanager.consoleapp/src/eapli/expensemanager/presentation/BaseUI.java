@@ -5,7 +5,7 @@
 package eapli.expensemanager.presentation;
 
 import eapli.expensemanager.controllers.BaseController;
-import eapli.framework.presentation.*;
+import eapli.framework.presentation.AbstractUI;
 import java.text.NumberFormat;
 
 /**

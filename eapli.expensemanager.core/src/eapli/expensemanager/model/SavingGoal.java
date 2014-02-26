@@ -5,11 +5,10 @@
 package eapli.expensemanager.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,9 +33,9 @@ public class SavingGoal implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     // TODO what is the purpose of this field? the expected date of conclusion for the goal?
     // if so, the name should be more explicit
-    private Date ocurred = new Date();
+    private final Date ocurred = new Date();
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Movement> savings = new ArrayList<Movement>();
+    private final List<Movement> savings = new ArrayList<Movement>();
     private String goal;
     private BigDecimal targetAmount;
     private BigDecimal actualSavings;

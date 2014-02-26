@@ -16,20 +16,20 @@ public class InsufficientBalanceException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+    private final BigDecimal currentBalance;
+    private final BigDecimal expectedSpend;
 
-	public InsufficientBalanceException(BigDecimal currentBalance, BigDecimal expectedSpend) {
-        this.currentBalance = currentBalance;
-        this.expectedSpend = expectedSpend;
-    }
-    private BigDecimal currentBalance;
-    private BigDecimal expectedSpend;
+    public InsufficientBalanceException(BigDecimal currentBalance, BigDecimal expectedSpend) {
+		this.currentBalance = currentBalance;
+		this.expectedSpend = expectedSpend;
+	}
 
     /**
-     * @return the currentBalance
-     */
+	 * @return the currentBalance
+	 */
     public BigDecimal getCurrentBalance() {
-        return currentBalance;
-    }
+		return currentBalance;
+	}
 
     /**
      * @return the expectedSpend

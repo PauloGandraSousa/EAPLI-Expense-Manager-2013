@@ -4,9 +4,6 @@
  */
 package eapli.expensemanager.controllers;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.SavingGoal;
 import eapli.expensemanager.model.SavingPlan;
@@ -14,7 +11,9 @@ import eapli.expensemanager.model.SavingWithdraw;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingPlanRepository;
+import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *

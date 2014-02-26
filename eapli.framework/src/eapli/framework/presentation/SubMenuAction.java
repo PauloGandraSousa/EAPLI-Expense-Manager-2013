@@ -7,7 +7,7 @@ package eapli.framework.presentation;
 import eapli.framework.actions.Action;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 public class SubMenuAction implements Action {
@@ -20,7 +20,7 @@ public class SubMenuAction implements Action {
 
 	@Override
 	public boolean execute() {
-		System.out.println("\n�� " + menu.title);
+		System.out.println("\n>> " + menu.title);
 		menu.show();
 		return false;
 	}

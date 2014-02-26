@@ -4,12 +4,13 @@
  */
 package eapli.expensemanager.persistence.inmemory;
 
-import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.model.AlertLimit;
 import eapli.expensemanager.model.AlertLimitByExpenseType;
 import eapli.expensemanager.model.AlertLimitType;
+import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.AlertLimitRepository;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -18,11 +19,11 @@ import java.util.List;
  */
 public class AlertLimitRepositoryImpl extends InMemoryRepositoryBase<AlertLimit, Long> implements AlertLimitRepository {
 
-    private static List<AlertLimit> store = new ArrayList<AlertLimit>();
+    private static final List<AlertLimit> store = new ArrayList<AlertLimit>();
 
     @Override
     protected List<AlertLimit> getStaticStore() {
-        return store;
+        return Collections.unmodifiableList(store);
     }
 
     @Override

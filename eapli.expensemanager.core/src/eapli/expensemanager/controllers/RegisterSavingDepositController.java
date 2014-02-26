@@ -8,13 +8,13 @@ import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.SavingDeposit;
 import eapli.expensemanager.model.SavingGoal;
 import eapli.expensemanager.model.SavingPlan;
+import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.expensemanager.persistence.SavingPlanRepository;
 import java.math.BigDecimal;
-import java.util.List;
-import eapli.expensemanager.model.exceptions.InsufficientBalanceException;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  *

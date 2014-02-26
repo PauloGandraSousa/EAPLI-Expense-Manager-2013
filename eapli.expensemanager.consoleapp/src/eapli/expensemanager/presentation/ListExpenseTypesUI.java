@@ -4,11 +4,11 @@
  */
 package eapli.expensemanager.presentation;
 
-import eapli.expensemanager.presentation.visitors.ExpenseTypeListVisitor;
-import eapli.framework.presentation.ListWidget;
 import eapli.expensemanager.controllers.BaseController;
 import eapli.expensemanager.controllers.ListExpenseTypesController;
 import eapli.expensemanager.model.ExpenseType;
+import eapli.expensemanager.presentation.visitors.ExpenseTypeListVisitor;
+import eapli.framework.presentation.ListWidget;
 
 /**
  *
@@ -16,7 +16,7 @@ import eapli.expensemanager.model.ExpenseType;
  */
 class ListExpenseTypesUI extends BaseUI {
 
-    private ListExpenseTypesController controller = new ListExpenseTypesController();
+    private final ListExpenseTypesController controller = new ListExpenseTypesController();
     private ListWidget<ExpenseType> widget;
 
     @Override

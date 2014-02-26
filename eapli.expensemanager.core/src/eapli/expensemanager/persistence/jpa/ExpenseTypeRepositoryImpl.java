@@ -4,9 +4,9 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.expensemanager.model.ExpenseType;
 import eapli.expensemanager.persistence.ExpenseTypeRepository;
+import eapli.framework.persistence.jpa.JpaRepository;
 
 /**
  *

@@ -4,9 +4,6 @@
  */
 package eapli.expensemanager.controllers;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import eapli.expensemanager.model.CheckingAccount;
 import eapli.expensemanager.model.ExpenseRecord;
 import eapli.expensemanager.persistence.CheckingAccountRepository;
@@ -14,6 +11,8 @@ import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.expensemanager.persistence.PersistenceFactory;
 import eapli.framework.Controller;
 import eapli.util.DateTime;
+import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * the base controller class for all controllers

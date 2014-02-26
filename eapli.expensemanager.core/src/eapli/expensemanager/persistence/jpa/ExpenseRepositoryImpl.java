@@ -4,17 +4,15 @@
  */
 package eapli.expensemanager.persistence.jpa;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
 import eapli.expensemanager.model.Expense;
 import eapli.expensemanager.persistence.ExpenseRepository;
 import eapli.framework.persistence.jpa.JpaRepository;
 import eapli.util.DateTime;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  * 
