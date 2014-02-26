@@ -20,7 +20,7 @@ public class SubMenuAction implements Action {
 
 	@Override
 	public boolean execute() {
-		System.out.println("\n»» " + menu.title);
+		System.out.println("\nï¿½ï¿½ " + menu.title);
 		menu.show();
 		return false;
 	}

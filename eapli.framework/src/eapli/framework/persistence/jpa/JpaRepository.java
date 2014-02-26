@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -28,171 +27,171 @@ import javax.persistence.Query;
  * @param <PK> the key type of the entity
  */
 public abstract class JpaRepository<T, PK extends Serializable> {
+	@PersistenceUnit
+	static final private EntityManagerFactory emFactory = Persistence
+			.createEntityManagerFactory("eapli.expensemanagerPU");
 
-    protected Class<T> entityClass;
-    @PersistenceUnit
-    static final private EntityManagerFactory emFactory = Persistence
-            .createEntityManagerFactory("eapli.expensemanagerPU");
-    EntityManager entityManager; // = emFactory.createEntityManager();
+	protected Class<T> entityClass;
+	EntityManager entityManager; // = emFactory.createEntityManager();
 
-    protected EntityManager getEntityManager() {
-        if (entityManager == null || !entityManager.isOpen()) {
-            entityManager = emFactory.createEntityManager();
-        }
-        return entityManager;
-    }
+	@SuppressWarnings("unchecked")
+	public JpaRepository() {
+		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
+				.getGenericSuperclass();
+		this.entityClass = (Class<T>) genericSuperclass
+				.getActualTypeArguments()[0];
+	}
 
-    @SuppressWarnings("unchecked")
-    public JpaRepository() {
-        ParameterizedType genericSuperclass = (ParameterizedType) getClass()
-                .getGenericSuperclass();
-        this.entityClass = (Class<T>) genericSuperclass
-                .getActualTypeArguments()[0];
-    }
+		protected EntityManager getEntityManager() {
+			if (entityManager == null || !entityManager.isOpen()) {
+				entityManager = emFactory.createEntityManager();
+			}
+			return entityManager;
+		}
 
-    public T create(T entity) {
-        this.getEntityManager().persist(entity);
-        return entity;
-    }
+	public T create(T entity) {
+		this.getEntityManager().persist(entity);
+		return entity;
+	}
 
-    public T read(PK id) {
-        return this.getEntityManager().find(entityClass, id);
-    }
+	public T read(PK id) {
+		return this.getEntityManager().find(entityClass, id);
+	}
 
-    // alias to read()
-    public T findById(PK id) {
-        return read(id);
-    }
+	// alias to read()
+	public T findById(PK id) {
+		return read(id);
+	}
 
-    public T update(T entity) {
-        return this.getEntityManager().merge(entity);
-    }
+	public T update(T entity) {
+		return this.getEntityManager().merge(entity);
+	}
 
-    public void delete(T entity) {
-        entity = this.getEntityManager().merge(entity);
-        this.getEntityManager().remove(entity);
-    }
+	public void delete(T entity) {
+		entity = this.getEntityManager().merge(entity);
+		this.getEntityManager().remove(entity);
+	}
 
-    // alias to getCount(); to make a more fluente interface
-    public long size() {
-        return getCount();
-    }
+	// alias to getCount(); to make a more fluente interface
+	public long size() {
+		return getCount();
+	}
 
-    public long getCount() {
-        return (Long) getEntityManager().createQuery(
-                "SELECT COUNT(*) FROM " + entityClass.getSimpleName())
-                .getSingleResult();
-    }
+	public long getCount() {
+		return (Long) getEntityManager().createQuery(
+				"SELECT COUNT(*) FROM " + entityClass.getSimpleName())
+				.getSingleResult();
+	}
 
-    @SuppressWarnings("unchecked")
-    public Collection<T> findAll() {
-        return getEntityManager().createQuery(
-                "SELECT e FROM " + entityClass.getSimpleName() + " e")
-                .getResultList();
-    }
+	@SuppressWarnings("unchecked")
+	public Collection<T> findAll() {
+		return getEntityManager().createQuery(
+				"SELECT e FROM " + entityClass.getSimpleName() + " e")
+				.getResultList();
+	}
 
-    /**
-     * inserts or updates an entity
-     *
-     * check
-     * http://blog.xebia.com/2009/03/23/jpa-implementation-patterns-saving-
-     * detached-entities/ for a discussion on saveOrUpdate() behaviour and
-     * merge()
-     *
-     * @param entity
-     * @return the persisted entity - migth be a diferent object than the
-     * parameter
-     */
-    public T save(T entity) {
-        if (entity == null) {
-            throw new IllegalArgumentException();
-        }
+	/**
+	 * inserts or updates an entity
+	 *
+	 * check
+	 * http://blog.xebia.com/2009/03/23/jpa-implementation-patterns-saving-
+	 * detached-entities/ for a discussion on saveOrUpdate() behaviour and
+	 * merge()
+	 *
+	 * @param entity
+	 * @return the persisted entity - migth be a diferent object than the
+	 * parameter
+	 */
+	public T save(T entity) {
+		if (entity == null) {
+			throw new IllegalArgumentException();
+		}
 
         // the following code atempts to do a save or update by checking for
-        // persistence exceptions while doing persist()
-        // this could be made more efficient if we check if the entity has an
-        // autogenerated id
-        EntityManager em = getEntityManager();
-        assert em != null;
-        try {
-            // transaction will be rolled back if any exception occurs
-            EntityTransaction tx = em.getTransaction();
-            try {
-                tx.begin();
-                em.persist(entity);
-                tx.commit();
-            } catch (PersistenceException ex) {
+		// persistence exceptions while doing persist()
+		// this could be made more efficient if we check if the entity has an
+		// autogenerated id
+		EntityManager em = getEntityManager();
+		assert em != null;
+		try {
+			// transaction will be rolled back if any exception occurs
+			EntityTransaction tx = em.getTransaction();
+			try {
+				tx.begin();
+				em.persist(entity);
+				tx.commit();
+			} catch (PersistenceException ex) {
                 // we need to set up a new transaction if persist raises an
-                // exception
-                tx = em.getTransaction();
-                tx.begin();
-                entity = em.merge(entity);
-                tx.commit();
-            }
-        } finally {
+				// exception
+				tx = em.getTransaction();
+				tx.begin();
+				entity = em.merge(entity);
+				tx.commit();
+			}
+		} finally {
             // we are closing the entity manager here because this code is runing in
-            // a non-container managed way. if it was the case to be runing under an
-            // application server with a JPA container and managed transactions/sessions,
-            // one should not be doing this
-            em.close();
-        }
+			// a non-container managed way. if it was the case to be runing under an
+			// application server with a JPA container and managed transactions/sessions,
+			// one should not be doing this
+			em.close();
+		}
 
-        return entity;
-    }
+		return entity;
+	}
 
-    public List<T> first(int n) {
-        EntityManager em = getEntityManager();
+	public List<T> first(int n) {
+		EntityManager em = getEntityManager();
 
-        Query q = em.createQuery(
-                "SELECT e FROM " + entityClass.getSimpleName() + " e");
-        q.setMaxResults(n);
+		Query q = em.createQuery(
+				"SELECT e FROM " + entityClass.getSimpleName() + " e");
+		q.setMaxResults(n);
 
-        return q.getResultList();
-    }
+		return q.getResultList();
+	}
 
-    public T first() {
-        List<T> r = first(1);
-        return (r.isEmpty() ? null : r.get(0));
-    }
+	public T first() {
+		List<T> r = first(1);
+		return (r.isEmpty() ? null : r.get(0));
+	}
 
-    public T last() {
-        throw new UnsupportedOperationException();
-    }
+	public T last() {
+		throw new UnsupportedOperationException();
+	}
 
-    public List<T> page(int pageNumber, int pageSize) {
-        EntityManager em = getEntityManager();
+	public List<T> page(int pageNumber, int pageSize) {
+		EntityManager em = getEntityManager();
 
-        Query q = em.createQuery(
-                "SELECT e FROM " + entityClass.getSimpleName() + " e");
-        q.setMaxResults(pageSize);
-        q.setFirstResult((pageNumber - 1) * pageSize);
+		Query q = em.createQuery(
+				"SELECT e FROM " + entityClass.getSimpleName() + " e");
+		q.setMaxResults(pageSize);
+		q.setFirstResult((pageNumber - 1) * pageSize);
 
-        return q.getResultList();
-    }
+		return q.getResultList();
+	}
 
-    public List<T> all() {
-        // TODO check performance impact of this 'where' clause
-        return match("1=1");
+	public List<T> all() {
+		// TODO check performance impact of this 'where' clause
+		return match("1=1");
 
         // EntityManager em = getEntityManager();
-        // assert em != null;
-        //
-        // String tableName = entityClass.getName();
-        // //entityClass.getAnnotation(Table.class).name();
-        // Query q = em.createQuery("SELECT it FROM " + tableName + " it");
-        // List<T> all = q.getResultList();
-        // return all;
-    }
+		// assert em != null;
+		//
+		// String tableName = entityClass.getName();
+		// //entityClass.getAnnotation(Table.class).name();
+		// Query q = em.createQuery("SELECT it FROM " + tableName + " it");
+		// List<T> all = q.getResultList();
+		// return all;
+	}
 
-    @SuppressWarnings("unchecked")
-    private List<T> match(String where) {
-        EntityManager em = getEntityManager();
-        assert em != null;
+	@SuppressWarnings("unchecked")
+	private List<T> match(String where) {
+		EntityManager em = getEntityManager();
+		assert em != null;
 
-        String tableName = entityClass.getSimpleName(); // entityClass.getAnnotation(Table.class).name();
-        Query q = em.createQuery("SELECT it FROM " + tableName + " it WHERE "
-                + where);
-        List<T> some = q.getResultList();
-        return some;
-    }
+		String tableName = entityClass.getSimpleName(); // entityClass.getAnnotation(Table.class).name();
+		Query q = em.createQuery("SELECT it FROM " + tableName + " it WHERE "
+				+ where);
+		List<T> some = q.getResultList();
+		return some;
+	}
 }
