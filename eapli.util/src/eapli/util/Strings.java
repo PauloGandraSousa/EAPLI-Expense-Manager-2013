@@ -15,12 +15,11 @@ import javax.xml.transform.stream.StreamSource;
 
 /**
  * @author Paulo Gandra Sousa
- * 
+ *
  */
 public final class Strings {
 
 	private Strings() {
-
 	}
 
 	public static String prettyFormat(String input) {
@@ -33,7 +32,7 @@ public final class Strings {
 	 * based in code from
 	 * http://stackoverflow.com/questions/139076/how-to-pretty
 	 * -print-xml-from-java
-	 * 
+	 *
 	 * @param input
 	 * @param indent
 	 * @return

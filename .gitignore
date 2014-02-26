@@ -26,3 +26,4 @@ bin
 /eapli.expensemanager.core/dist/
 /eapli.expensemanager.bootstrap/dist/
 /eapli.expensemanager.consoleapp/dist/
+*.db

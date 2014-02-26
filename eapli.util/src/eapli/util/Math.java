@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 public final class Math {
@@ -18,9 +18,8 @@ public final class Math {
 
 	/**
 	 * determines if a number is odd.
-	 * 
-	 * @param i
-	 *            the number to be tested
+	 *
+	 * @param i the number to be tested
 	 * @return
 	 */
 	public static boolean isOdd(int i) {
@@ -29,9 +28,8 @@ public final class Math {
 
 	/**
 	 * determines if a number is even.
-	 * 
-	 * @param i
-	 *            the number to be tested
+	 *
+	 * @param i the number to be tested
 	 * @return
 	 */
 	public static boolean isEven(int i) {
@@ -41,7 +39,7 @@ public final class Math {
 	/**
 	 * checks whether an int is prime or not.
 	 * http://www.mkyong.com/java/how-to-determine-a-prime-number-in-java/
-	 * 
+	 *
 	 * @param n
 	 * @return
 	 */
@@ -61,21 +59,17 @@ public final class Math {
 
 	/**
 	 * Permite efectuar a conversão de um valor para outra escala.
-	 * 
-	 * @param oldMin
-	 *            - exemplo 0
-	 * @param oldMax
-	 *            - exemplo 100
-	 * @param newMin
-	 *            - exemplo 0
-	 * @param newMax
-	 *            - exemplo 10
-	 * @param oldValue
-	 *            - exemplo 50
+	 *
+	 * @param oldMin - exemplo 0
+	 * @param oldMax - exemplo 100
+	 * @param newMin - exemplo 0
+	 * @param newMax - exemplo 10
+	 * @param oldValue - exemplo 50
 	 * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
 	 */
 	public static float simpleLinearConversion(float oldMin, float oldMax,
-			float newMin, float newMax, float oldValue) {
+											   float newMin, float newMax,
+											   float oldValue) {
 		float new_value;
 		new_value = ((oldValue - oldMin) / (oldMax - oldMin))
 				* (newMax - newMin) + newMin;
@@ -85,22 +79,19 @@ public final class Math {
 
 	/**
 	 * Permite efectuar a conversão de um valor para outra escala.
-	 * 
-	 * @param oldMin
-	 *            - exemplo 0
-	 * @param oldMax
-	 *            - exemplo 100
-	 * @param newMin
-	 *            - exemplo 0
-	 * @param newMax
-	 *            - exemplo 10
-	 * @param oldValue
-	 *            - exemplo 50
+	 *
+	 * @param oldMin - exemplo 0
+	 * @param oldMax - exemplo 100
+	 * @param newMin - exemplo 0
+	 * @param newMax - exemplo 10
+	 * @param oldValue - exemplo 50
 	 * @return retorna o novo valor aplicando uma conversão linear - exemplo 5
 	 */
 	public static BigDecimal simpleLinearConversion(BigDecimal oldMin,
-			BigDecimal oldMax, BigDecimal newMin, BigDecimal newMax,
-			BigDecimal oldValue) {
+													BigDecimal oldMax,
+													BigDecimal newMin,
+													BigDecimal newMax,
+													BigDecimal oldValue) {
 		BigDecimal new_value;
 		new_value = ((oldValue.subtract(oldMin)).divide(
 				oldMax.subtract(oldMin), 1, RoundingMode.HALF_UP))
@@ -115,7 +106,7 @@ public final class Math {
 
 	/**
 	 * returns a representation of a number as Roman numeral.
-	 * 
+	 *
 	 * @param number
 	 * @return
 	 */

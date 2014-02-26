@@ -5,10 +5,11 @@
 package eapli.util;
 
 /**
- * 
+ *
  * @author Paulo Gandra Sousa
  */
 public final class Files {
+
 	private Files() {
 
 	}

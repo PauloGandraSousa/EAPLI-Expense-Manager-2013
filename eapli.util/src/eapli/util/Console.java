@@ -16,11 +16,11 @@ import java.util.logging.Logger;
 
 /**
  * utility class for reading different data types fro the Console.
- * 
+ *
  * based on code from Nuno Silva
- * 
+ *
  * @author Paulo Gandra Sousa
- * 
+ *
  */
 public final class Console {
 
@@ -49,7 +49,7 @@ public final class Console {
 				return valor;
 			} catch (NumberFormatException ex) {
 				Logger.getLogger(Console.class.getName()).log(Level.SEVERE,
-						null, ex);
+															  null, ex);
 			}
 		} while (true);
 	}
@@ -65,7 +65,7 @@ public final class Console {
 				}
 			} catch (NumberFormatException ex) {
 				Logger.getLogger(Console.class.getName()).log(Level.SEVERE,
-						null, ex);
+															  null, ex);
 			}
 		} while (true);
 	}
@@ -91,7 +91,7 @@ public final class Console {
 				return date;
 			} catch (ParseException ex) {
 				Logger.getLogger(Console.class.getName()).log(Level.SEVERE,
-						null, ex);
+															  null, ex);
 			}
 		} while (true);
 	}
@@ -106,7 +106,7 @@ public final class Console {
 				return date;
 			} catch (ParseException ex) {
 				Logger.getLogger(Console.class.getName()).log(Level.SEVERE,
-						null, ex);
+															  null, ex);
 			}
 		} while (true);
 	}
@@ -120,7 +120,7 @@ public final class Console {
 				return valor;
 			} catch (NumberFormatException ex) {
 				Logger.getLogger(Console.class.getName()).log(Level.SEVERE,
-						null, ex);
+															  null, ex);
 			}
 		} while (true);
 	}
@@ -131,7 +131,7 @@ public final class Console {
 			System.in.read();
 		} catch (IOException ex) {
 			Logger.getLogger(Console.class.getName()).log(Level.SEVERE, null,
-					ex);
+														  ex);
 		}
 	}
 }
